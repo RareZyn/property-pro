@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <h1>PropertyPro+</h1>
       <p>Testing</p>
-      <p>Razin is the best !</p>
+      <p>Ini adalah cubaan PUSH</p>
     </div>
   );
 }
