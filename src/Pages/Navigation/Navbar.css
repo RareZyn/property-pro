@@ -1,0 +1,22 @@
+h3 {
+  color: white;
+}
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b3d50;
+  height: 120px;
+  gap: 20px;
+}
+
+#nav {
+  color: white;
+  text-decoration: none;
+}
+
+#nav:hover {
+  color: rgb(0, 119, 255);
+}
