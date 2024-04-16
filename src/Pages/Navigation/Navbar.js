@@ -103,15 +103,3 @@ export const Navbar = () => {
     </div>
   );
 };
-{
-  /*           <Route path="/browser-property" element={<BrowserProperty />} />
-          <Route path="/saved-property" element={<SavedProperty />} />
-          <Route path="/manage-property" element={<ManageProperty />} />
-          <Route path="/view-account-header" element={<ViewAccountHeader />} />
-          <Route
-            path="/view-account-property"
-            element={<ViewAccountProperty />}
-          />
-          <Route path="/view-account-post" element={<ViewAccountPost />} />
-          <Route path="/view-account-about" element={<ViewAccountAbout />} /> */
-}
