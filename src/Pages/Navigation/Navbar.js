@@ -64,10 +64,22 @@ export const Navbar = () => {
           ManageAccount
         </Link>
       </div>
-
-      <Link id="nav" to="/">
-        HomePage
-      </Link>
+      <div id="user">
+        <h4>Aisyah</h4>
+        <Link id="nav" to="/">
+          HomePage
+        </Link>
+        <Link id="nav" to="property-details">
+          Property Details
+        </Link>
+        <Link id="nav" to="publish-property">
+          Publish Property
+        </Link>
+      </div>
     </div>
   );
 };
+{
+  /* <Route path="/property-details" element={<PropertyDetails />} />
+          <Route path="/publish-property" element={<PublishProperty />} /> */
+}

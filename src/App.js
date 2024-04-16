@@ -21,6 +21,8 @@ import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
 import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
+import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
           <Route path="/myaccount-details" element={<MyAccountDetails />} />
           <Route path="/myaccount-property" element={<MyAccountProperty />} />
           <Route path="/manage-account" element={<ManageAccount />} />
+          <Route path="/property-details" element={<PropertyDetails />} />
+          <Route path="/publish-property" element={<PublishProperty />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>
