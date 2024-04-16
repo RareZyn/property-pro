@@ -1,15 +1,16 @@
-h3 {
-  color: white;
-}
-
 .Navbar {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: #2b3d50;
-  height: 160px;
-  gap: 20px;
+  height: 200px;
+  gap: 30px;
+  color: rgb(47, 231, 255);
+}
+#user {
+  display: flex;
+  flex-direction: column;
 }
 
 #nav {

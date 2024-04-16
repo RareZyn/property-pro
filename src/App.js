@@ -9,6 +9,12 @@ import { RegisterPage } from "./Pages/general/RegisterPage.js";
 import { SideBar } from "./Pages/Navigation/SideBar.js";
 import { NavHeader } from "./Pages/Navigation/NavHeader.js";
 import { LoginPage } from "./Pages/general/LoginPage.js";
+import { MakePaymentPage } from "./Pages/Transaction/MakePaymentPage.js";
+import { ChatPopup } from "./Pages/Social/ChatPopup.js";
+import { RegisterBroker } from "./Pages/Broker/RegisterBroker.js";
+import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
+import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
+import { Chat } from "./Pages/Social/Chat.js";
 
 function App() {
   return (
@@ -22,6 +28,12 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/side" element={<SideBar />} />
+          <Route path="/make-payment" element={<MakePaymentPage />} />
+          <Route path="/chat-popup" element={<ChatPopup />} />
+          <Route path="/register-broker" element={<RegisterBroker />} />
+          <Route path="/verify-property" element={<VerifyProperty />} />
+          <Route path="/update-progress" element={<UpdateProgress />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>
