@@ -1,9 +1,15 @@
-import "./DropdownMenu.css"
+import './DropdownMenu.css'
 
-export const DropdownMenu = () => {
+export const DropdownMenu = ({className}) => {
+    console.log(className);
     return(
-        <div className="DropdownMenu">
-            Dropdown
+        <div className={className}>
+            <div className='ProfileView'></div>
+            <nav>
+                <ul>
+
+                </ul>
+            </nav>
         </div>
-    )
+    );
 }
