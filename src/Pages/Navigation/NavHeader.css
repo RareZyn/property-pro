@@ -1,0 +1,23 @@
+:root {
+    --creamywWhite: #FFFDEF;
+    --orange: #F49F1F;
+    --darkBlue: #2B3D50;
+    --darkGreen: #27A088;
+    --lightGreen: #6BEAD3;
+    --grey: #868686;
+    --white: #FFFFFF;
+  }
+
+.NavHeader{
+    display: flex;
+    align-items: center;
+    background-color: var(--darkBlue);
+}
+
+h1{
+    align-items: center;
+}
+
+.NavTitle{
+    margin-left: 20px;
+}

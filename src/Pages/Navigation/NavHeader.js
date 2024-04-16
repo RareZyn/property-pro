@@ -1,9 +1,11 @@
+import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 
 export const NavHeader = () => {
   return (
     <div className="NavHeader">
-      <h1>Navigation Bar yang sebenar</h1>
+      <DropdownMenu></DropdownMenu>
+      <h1 className="NavTitle">Navigation Bar yang sebenar</h1>
     </div>
   );
 };
