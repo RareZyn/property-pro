@@ -35,6 +35,12 @@ export const Navbar = () => {
         </section>
 
         <section>
+          <Link id="nav" to="/login">
+            Login Page
+          </Link>
+        </section>
+
+        <section>
           <Link id="nav" to="/side">
             SideBar
           </Link>

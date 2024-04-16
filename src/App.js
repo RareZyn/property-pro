@@ -8,6 +8,7 @@ import { Navbar } from "./Pages/Navigation/Navbar.js";
 import { RegisterPage } from "./Pages/general/RegisterPage.js";
 import { SideBar } from "./Pages/Navigation/SideBar.js";
 import { NavHeader } from "./Pages/Navigation/NavHeader.js";
+import { LoginPage } from "./Pages/general/LoginPage.js";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/launch" element={<LaunchPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/side" element={<SideBar />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
