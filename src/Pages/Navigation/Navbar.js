@@ -43,6 +43,27 @@ export const Navbar = () => {
           Update Progress
         </Link>
       </div>
+      <div id="user">
+        <h4>Ezyan</h4>
+        <Link id="nav" to="/myaccount">
+          MyAccount Header
+        </Link>
+        <Link id="nav" to="/myaccount-transaction">
+          MyAccount Transaction
+        </Link>
+        <Link id="nav" to="/myaccount-post">
+          MyAccount Post
+        </Link>
+        <Link id="nav" to="myaccount-property">
+          MyAccount Property
+        </Link>
+        <Link id="nav" to="myaccount-details">
+          MyAccount Details
+        </Link>
+        <Link id="nav" to="manage-account">
+          ManageAccount
+        </Link>
+      </div>
 
       <Link id="nav" to="/">
         HomePage

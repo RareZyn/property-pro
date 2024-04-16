@@ -15,6 +15,12 @@ import { RegisterBroker } from "./Pages/Broker/RegisterBroker.js";
 import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
 import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
 import { Chat } from "./Pages/Social/Chat.js";
+import { MyAccountHeader } from "./Pages/general/MyAccountHeader.js";
+import { MyAccountTransaction } from "./Pages/general/MyAccountTransaction.js";
+import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
+import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
+import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
+import { ManageAccount } from "./Pages/general/ManageAccount.js";
 
 function App() {
   return (
@@ -34,6 +40,15 @@ function App() {
           <Route path="/verify-property" element={<VerifyProperty />} />
           <Route path="/update-progress" element={<UpdateProgress />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/myaccount" element={<MyAccountHeader />} />
+          <Route
+            path="/myaccount-transaction"
+            element={<MyAccountTransaction />}
+          />
+          <Route path="/myaccount-post" element={<MyAccountPost />} />
+          <Route path="/myaccount-details" element={<MyAccountDetails />} />
+          <Route path="/myaccount-property" element={<MyAccountProperty />} />
+          <Route path="/manage-account" element={<ManageAccount />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>
