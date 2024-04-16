@@ -76,10 +76,42 @@ export const Navbar = () => {
           Publish Property
         </Link>
       </div>
+      <div id="user">
+        <h4>Azim</h4>
+        <Link id="nav" to="browser-property">
+          BrowserProperty
+        </Link>
+        <Link id="nav" to="saved-property">
+          Saved Property
+        </Link>
+        <Link id="nav" to="manage-property">
+          Manage Property
+        </Link>
+        <Link id="nav" to="view-account-header">
+          View Account Header
+        </Link>
+        <Link id="nav" to="view-account-property">
+          ViewAccountProperty
+        </Link>
+        <Link id="nav" to="view-account-post">
+          View Account Post
+        </Link>
+        <Link id="nav" to="view-account-about">
+          View Account About
+        </Link>
+      </div>
     </div>
   );
 };
 {
-  /* <Route path="/property-details" element={<PropertyDetails />} />
-          <Route path="/publish-property" element={<PublishProperty />} /> */
+  /*           <Route path="/browser-property" element={<BrowserProperty />} />
+          <Route path="/saved-property" element={<SavedProperty />} />
+          <Route path="/manage-property" element={<ManageProperty />} />
+          <Route path="/view-account-header" element={<ViewAccountHeader />} />
+          <Route
+            path="/view-account-property"
+            element={<ViewAccountProperty />}
+          />
+          <Route path="/view-account-post" element={<ViewAccountPost />} />
+          <Route path="/view-account-about" element={<ViewAccountAbout />} /> */
 }

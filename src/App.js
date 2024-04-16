@@ -23,6 +23,13 @@ import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
 import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
+import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
+import { SavedProperty } from "./Pages/Property/SavedProperty.js";
+import { ManageProperty } from "./Pages/Property/ManageProperty.js";
+import { ViewAccountHeader } from "./Pages/Property/ViewAccountHeader.js";
+import { ViewAccountProperty } from "./Pages/Property/ViewAccountProperty.js";
+import { ViewAccountPost } from "./Pages/Property/ViewAccountPost.js";
+import { ViewAccountAbout } from "./Pages/Property/ViewAccountAbout.js";
 
 function App() {
   return (
@@ -53,6 +60,16 @@ function App() {
           <Route path="/manage-account" element={<ManageAccount />} />
           <Route path="/property-details" element={<PropertyDetails />} />
           <Route path="/publish-property" element={<PublishProperty />} />
+          <Route path="/browser-property" element={<BrowserProperty />} />
+          <Route path="/saved-property" element={<SavedProperty />} />
+          <Route path="/manage-property" element={<ManageProperty />} />
+          <Route path="/view-account-header" element={<ViewAccountHeader />} />
+          <Route
+            path="/view-account-property"
+            element={<ViewAccountProperty />}
+          />
+          <Route path="/view-account-post" element={<ViewAccountPost />} />
+          <Route path="/view-account-about" element={<ViewAccountAbout />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>
