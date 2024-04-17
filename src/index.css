@@ -1,7 +1,6 @@
 body {
   margin: 0;
-  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Outfit", "Zilla Slab", "Roboto";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -9,4 +8,19 @@ body {
 code {
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url(./Res/Outfit/Outfit-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: "Zilla Slab";
+  src: url(./Res/Zilla_Slab/ZillaSlab-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url(./Res/Roboto/Roboto-Bold.ttf);
 }

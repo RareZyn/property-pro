@@ -100,6 +100,18 @@ export const Navbar = () => {
           View Account About
         </Link>
       </div>
+      <div id="user">
+        <h4>Razin</h4>
+        <Link id="nav" to="forum-page">
+          ForumPage
+        </Link>
+        <Link id="nav" to="forum-header">
+          ForumHeader
+        </Link>
+        <Link id="nav" to="forum-create-post">
+          ForumCreatePost
+        </Link>
+      </div>
     </div>
   );
 };

@@ -30,6 +30,9 @@ import { ViewAccountHeader } from "./Pages/Property/ViewAccountHeader.js";
 import { ViewAccountProperty } from "./Pages/Property/ViewAccountProperty.js";
 import { ViewAccountPost } from "./Pages/Property/ViewAccountPost.js";
 import { ViewAccountAbout } from "./Pages/Property/ViewAccountAbout.js";
+import { ForumPage } from "./Pages/Social/ForumPage.js";
+import { ForumHeader } from "./Pages/Social/ForumHeader.js";
+import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
 
 function App() {
   return (
@@ -70,6 +73,9 @@ function App() {
           />
           <Route path="/view-account-post" element={<ViewAccountPost />} />
           <Route path="/view-account-about" element={<ViewAccountAbout />} />
+          <Route path="/forum-page" element={<ForumPage />} />
+          <Route path="/forum-header" element={<ForumHeader />} />
+          <Route path="/forum-create-post" element={<ForumCreatePost />} />
           <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>

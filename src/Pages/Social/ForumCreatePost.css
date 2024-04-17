@@ -1,0 +1,19 @@
+.ForumCreatePost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topic-discuss {
+  background-color: #fffdef;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+}
+
+.user-profile {
+  display: flex;
+}
