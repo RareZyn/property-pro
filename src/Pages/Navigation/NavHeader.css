@@ -59,7 +59,15 @@ body{
 }
 
 .NavHeader li.active{
+    align-content: center;
     background-color: var(--orange);
+    cursor: pointer;
+}
+
+.NavHeader li.active:hover{
+    align-content: center;
+    background-color: var(--white);
+    cursor: pointer;
 }
 
 .NavHeader li:hover{

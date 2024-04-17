@@ -51,6 +51,13 @@
     cursor: pointer;
 }
 
+.ChatTitle a{
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
 .ProfilePicture{
     width: 64px;
     height: 64px;
@@ -74,4 +81,8 @@
 .ChatInfo p{
     font-family: 'Roboto-Thin', sans-serif;
     font-size: 1rem;
+}
+
+.hidden{
+    display: none;
 }
