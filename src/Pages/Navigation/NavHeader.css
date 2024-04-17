@@ -20,6 +20,7 @@ body{
     padding: 1em;
     justify-content: space-between;
     align-items: stretch;
+    z-index: 1;
 }
 
 .NavigatorRightHeader{

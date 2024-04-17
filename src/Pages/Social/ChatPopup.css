@@ -7,10 +7,12 @@
 
 .ChatPopup{
     background-color: var(--creamyWhite);
-    position: relative;
-    top:4rem;
-    right: 32rem;
+    position: absolute;
+    top:5rem;
+    right: 0;
+    transform: translateX(-15%);
     width: 450px;
+    z-index: 2;
 }
 
 .ChatPopup ul{
