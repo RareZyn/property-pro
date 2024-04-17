@@ -1,0 +1,77 @@
+@import url("/src/Res/Colors.css");
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.ChatPopup{
+    background-color: var(--creamyWhite);
+    position: relative;
+    top:4rem;
+    right: 32rem;
+    width: 450px;
+}
+
+.ChatPopup ul{
+    list-style: none;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--creamyWhite);
+    box-shadow: 0.2px 5px 15px;
+    border: 2px solid var(--darkBlue);
+}
+
+.ChatPopup li{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.ChatPopup li:nth-child(1):hover{
+    background-color: var(--creamyWhite);
+}
+
+.ChatTitle{
+    width: 100%;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--grey);
+    z-index: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ChatTitle img{
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.ProfilePicture{
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--darkBlue);
+    margin: 1rem;
+    border-radius: 50%;
+}
+
+.ChatInfo{
+    align-self: center;
+    text-align: left;
+    margin: 0px;
+    margin-left: 1rem;
+}
+
+.ChatInfo h1{
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+}
+
+.ChatInfo p{
+    font-family: 'Roboto-Thin', sans-serif;
+    font-size: 1rem;
+}

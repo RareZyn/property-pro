@@ -5,9 +5,13 @@
     box-sizing: border-box;
 }
 
+body{
+    margin: 0;
+}
+
 .NavHeader{
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 5em;
     display: flex;
     justify-content: flex-start;
@@ -19,6 +23,7 @@
 }
 
 .NavigatorRightHeader{
+    background-color: var(--darkBlue);
     position: relative;
     height: 5em;
     display: flex;
@@ -31,8 +36,8 @@
 }
 
 .NavTitle{
-    position: absolute;
-    left: 2.5em;
+    position: relative;
+    left: -2rem;
     text-decoration: none;
     align-self: center;
     font-family: "Outfit", sans-serif;
@@ -50,6 +55,7 @@
     display: flex;
     align-items: center;
     padding: .25rem;
+    cursor: pointer;
 }
 
 .NavHeader li.active{
