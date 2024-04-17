@@ -23,6 +23,7 @@ body{
 }
 
 .NavigatorRightHeader{
+    background-color: var(--darkBlue);
     position: relative;
     height: 5em;
     display: flex;
