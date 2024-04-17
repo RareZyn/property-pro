@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { DropdownMenuIcon } from "./DropdownMenuIcon.js";
 import { DropdownMenu } from './DropdownMenu.js';
 import "./NavHeader.css";
+import { ChatPopup } from '../Social/ChatPopup.js';
 
 export const NavHeader = () => {
 
@@ -30,13 +31,14 @@ export const NavHeader = () => {
       <CustomLink href="/">Home</CustomLink>
         <CustomLink href="/browser-property">Browser</CustomLink>
         <CustomLink href="/publish-property">Sell</CustomLink>
+        <li className='Navigator'>Chat</li>
         <CustomLink href="/forum-page">Community</CustomLink>
         <CustomLink href="/register-broker">Broker</CustomLink>
-        <li className='Navigator'>Chat</li>
 
         <CustomLink href="/launch">Logout</CustomLink>
       </ul>
       </nav>
+      <ChatPopup></ChatPopup>
     </div>
   );
 };
