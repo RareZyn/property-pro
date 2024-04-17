@@ -32,6 +32,7 @@ export const NavHeader = () => {
         <CustomLink href="/publish-property">Sell</CustomLink>
         <CustomLink href="/">Community</CustomLink>
         <CustomLink href="/register-broker">Broker</CustomLink>
+        <li className='Navigator'>Chat</li>
 
         <CustomLink href="/launch">Logout</CustomLink>
       </ul>
