@@ -12,14 +12,29 @@
     display: flex;
     justify-content: flex-start;
     background-color: var(--darkBlue);
+    gap: 2rem;
     padding: 1em;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
-h1{
-    align-items: center;
+.NavigatorRightHeader{
+    position: relative;
+    height: 5em;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    gap: 2rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
 .NavTitle{
+    position: absolute;
+    left: 2.5em;
+    text-decoration: none;
+    align-self: center;
     font-family: "Outfit", sans-serif;
     font-size: 32px;
     font-weight: normal;
@@ -28,3 +43,38 @@ h1{
     margin-left: 20px;
 }
 
+.Navigator{
+    height: 100%;
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+}
+
+.NavHeader li.active{
+    background-color: var(--orange);
+}
+
+.NavHeader li:hover{
+    height: 100%;
+    background-color: var(--grey);
+}
+
+.Navigator:active{
+    color: var(--darkBlue);
+}
+
+.NavHeader ul{
+    font-family: "Outfit", sans-serif;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+.NavHeader li{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}

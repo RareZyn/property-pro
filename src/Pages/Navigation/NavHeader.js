@@ -23,8 +23,29 @@ export const NavHeader = () => {
   return (
     <div className="NavHeader">
       <DropdownMenuIcon onClick={showMenu} className={burger_icon}></DropdownMenuIcon>
-      <h1 className="NavTitle">PropertyPro</h1>
+      <a href='/' className="NavTitle">PropertyPro</a>
       <DropdownMenu className={dropdownMenu}></DropdownMenu>
+      <nav className='NavigatorRightHeader'>
+      <ul>
+      <CustomLink href="/">Home</CustomLink>
+        <CustomLink href="/browser-property">Browser</CustomLink>
+        <CustomLink href="/publish-property">Sell</CustomLink>
+        <CustomLink href="/">Community</CustomLink>
+        <CustomLink href="/register-broker">Broker</CustomLink>
+
+        <CustomLink href="/launch">Logout</CustomLink>
+      </ul>
+      </nav>
     </div>
   );
 };
+
+function CustomLink({href,children,...props}){
+  const path = window.location.pathname;
+
+  return(
+    <li className={path===href? "active" : ""}>
+      <a className='Navigator' href={href} {...props}>{children}</a>
+    </li>
+  );
+}
