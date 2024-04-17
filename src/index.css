@@ -10,3 +10,8 @@ code {
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
+
+@font-face {
+  font-family: "Outfit";
+  src: url(./Res/Outfit/Outfit-VariableFont_wght.ttf);
+}
