@@ -1,0 +1,23 @@
+#search-bar{
+    display: flex;
+    background-color: white;
+    aspect-ratio: 14.2/1;
+    width: 73.96vw;
+    margin: 0 auto;
+    border-radius: 100px;
+}
+
+#search-input{
+    height: 75%;
+    width: 87.75%;
+    margin-top: calc(0.125 * 73.96vw/14.2);
+    margin-left: 1.78%;
+    border-color: rgba(0, 0, 0, 0);
+}
+
+#icon{
+    aspect-ratio: 1/1;
+    height: 75%;
+    margin-top: calc(0.125 * 73.96vw/14.2);
+    margin-left: 3%;
+}
