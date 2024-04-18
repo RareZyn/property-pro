@@ -1,0 +1,11 @@
+.Properties-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 23.96%);
+    column-gap: 1.04%;
+    row-gap: 1.39%;
+    justify-content: center;
+}
+
+#title{
+    grid-column: 1/4;
+}

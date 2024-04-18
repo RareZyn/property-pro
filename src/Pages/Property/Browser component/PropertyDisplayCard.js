@@ -1,15 +1,16 @@
 import "../Browser component/PropertyDisplayCard.css";
 
 export const PropertyDisplayCard = () => {
-    <div id="prop-card">
-        <h1>Test</h1>
-        <div id="img-placeholder">
-            
+    return(
+        <div id="prop-card" className="box-shadow">
+            <div id="details">
+                <div id="img-placeholder">
+                   <img src="src/Res/image/IMG PH.png" alt="Image" srcset="" />
+                </div>
+                <h4 className="txt40">Item name</h4>
+                <p className="txt24">RM XX.XX</p>
+            </div>
         </div>
-        <div>
-            <h6>Item name</h6>
-            <p>RM XX.XX</p>
-        </div>
-    </div>
+    )
 }
 
