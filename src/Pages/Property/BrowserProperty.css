@@ -1,3 +1,16 @@
+header{
+    aspect-ratio: 5/1;
+    width: 100%;
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+}
+
+#back-button{
+    width: 4.51%;
+    margin: 2%;
+}
+
 .Properties-grid{
     display: grid;
     grid-template-columns: repeat(3, 23.96%);
