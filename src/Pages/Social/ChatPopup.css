@@ -10,14 +10,14 @@
     position: absolute;
     top:5rem;
     right: 0;
-    transform: translateX(-15%);
-    width: 450px;
+    transform: translateX(-50%);
+    width: auto;
     z-index: 2;
 }
 
 .ChatPopup ul{
     list-style: none;
-    width: 450px;
+    width: auto;
     display: flex;
     flex-direction: column;
     background-color: var(--creamyWhite);
@@ -87,4 +87,11 @@
 
 .hidden{
     display: none;
+}
+
+a{
+    text-decoration: none;
+    color: var(--darkBlue);
+    display: flex;
+    align-items: center;
 }

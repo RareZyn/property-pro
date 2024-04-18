@@ -32,11 +32,14 @@
     margin: 10px;
 }
 
-.ChatList li h1{
+.ChatList li div{
     text-align: left;
+    margin-left: 10px;
+}
+
+.ChatList li h1{
     text-decoration: none;
     font-size: 24px;
-    margin-left: 10px;
 }
 
 .ChatScreen{
@@ -80,7 +83,25 @@
 }
 
 .SendChat{
+    height: 90px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
     background-color: var(--white);
     position: relative;
     bottom: 0;
+}
+
+.SendChat .ChatInput{
+    display: inline-block;
+    width: 800px;
+    border-radius: 25px;
+    background-color: red;
+    font-size: 24px;
+}
+
+.SendChat img{
+    width: 32px;
+    height: 32px;
+    margin: 10px;
 }

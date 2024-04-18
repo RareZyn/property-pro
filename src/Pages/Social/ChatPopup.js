@@ -13,12 +13,15 @@ export const ChatPopup = ({className}) => {
             </a>
           </div>
         </li>
+
         <li>
-          <div className="ProfilePicture"></div>
-          <div className="ChatInfo">
-            <h1>Chat 1</h1>
-            <p>Assalamualaikum</p>
-          </div>
+          <a href="./chat">
+            <div className="ProfilePicture"></div>
+            <div className="ChatInfo">
+              <h1>Chat 1</h1>
+              <p>Assalamualaikum</p>
+            </div>
+          </a>
         </li>
         <CustomChatUserListPopup username={"Chat 2"} chat={"Bang, barang sampai dah ke?"}></CustomChatUserListPopup>
         <CustomChatUserListPopup username={"Chat 3"} chat={"Berapa?"}></CustomChatUserListPopup>
