@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Chat{
+    display: flex;
+}
+
+.ChatList{
+    padding: 0;
+    background-color: var(--creamyWhite);
+    flex: 2;
+    list-style: none;
+}
+
+.ChatList li{
+    display: flex;
+    align-items: center;
+}
+
+.ChatList li:hover{
+    cursor: pointer;
+    background-color: var(--grey);
+}
+
+.ChatList li img{
+    height: 64px;
+    text-align: left;
+    text-decoration: none;
+    font-size: 24px;
+    margin: 10px;
+}
+
+.ChatList li h1{
+    text-align: left;
+    text-decoration: none;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.ChatScreen{
+    width: 100vw;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    border-left: 3px solid var(--grey);
+    background-color: var(--lightGreen);
+}
+
+.ChatUser{
+    display: flex;
+    background-color: var(--white);
+    align-items: center;
+    
+}
+.ChatUser h1{
+    font-family: "Outfit", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.ChatUser img{
+    height: 64px;
+    width: 64px;
+    margin: 20px;
+}
+
+.ChatContainer{
+    height: 100vw;
+}
+
+.SendChat::before,
+.SendChat::after{
+    display: block;
+    content: ' ';
+    background-color: red;
+    margin: 20px;
+}
+
+.SendChat{
+    background-color: var(--white);
+    position: relative;
+    bottom: 0;
+}
