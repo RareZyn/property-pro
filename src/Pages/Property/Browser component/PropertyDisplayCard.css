@@ -1,3 +1,35 @@
+#body{
+    font-size: calc(1vw + 0.8888889vh); /* Formula to scale font size dynamically */
+
+  /* Set a minimum font size of 16px when the viewport width is 1440px */
+  @media screen and (min-width: 1440px) {
+    font-size: 16px;
+  }
+}
+
 #prop-card{
     background-color: orange;
+    aspect-ratio: 1.14/1;
+    text-align: start;
+    /* margin: 2.89% 2.17%; */
+    border-radius: 10px;
+}
+
+#img-placeholder{
+    aspect-ratio: 1.5/1;
+    background-color: white;
+}
+
+#details{
+    margin: 0 auto;
+    padding-top: 4.64%;
+    width: 84.34%;
+}
+
+.txt24{
+    font-size: 1.5rem;
+}
+
+.txt40{
+    font-size: 2.5em;
 }
