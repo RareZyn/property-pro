@@ -19,16 +19,24 @@ export const ChatPopup = ({className}) => {
             <h1>Chat 1</h1>
             <p>Assalamualaikum</p>
           </div>
-          
         </li>
-        <li>
-          <div className="ProfilePicture"></div>
-          <div className="ChatInfo">
-            <h1>Chat 2</h1>
-            <p>Bang, barang sampai dah ke?</p>
-          </div>
-        </li>
+        <CustomChatUserListPopup username={"Chat 2"} chat={"Bang, barang sampai dah ke?"}></CustomChatUserListPopup>
+        <CustomChatUserListPopup username={"Chat 3"} chat={"Berapa?"}></CustomChatUserListPopup>
+
       </ul>
     </div>
   );
 };
+
+function CustomChatUserListPopup({username,chat}){
+  return(
+    <li>
+      <div className="ProfilePicture"></div>
+      <div className="ChatInfo">
+        <h1>{username}</h1>
+        <p>{chat}</p>
+      </div>
+      
+    </li>
+  )
+}
