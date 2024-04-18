@@ -1,14 +1,16 @@
 import "./ChatPopup.css";
 
-export const ChatPopup = () => {
+export const ChatPopup = ({className}) => {
   return (
-    <div className="ChatPopup">
+    <div className={className}>
       
       <ul>
         <li>
           <div className="ChatTitle">
             <h1>Chats</h1>
-            <img src={require("../../Res/image/fullscreen-icon.png")}/>
+            <a href="/chat">
+              <img src={require("../../Res/image/fullscreen-icon.png")}/>
+            </a>
           </div>
         </li>
         <li>

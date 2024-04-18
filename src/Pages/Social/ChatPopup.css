@@ -7,10 +7,12 @@
 
 .ChatPopup{
     background-color: var(--creamyWhite);
-    position: relative;
-    top:4rem;
-    right: 32rem;
+    position: absolute;
+    top:5rem;
+    right: 0;
+    transform: translateX(-15%);
     width: 450px;
+    z-index: 2;
 }
 
 .ChatPopup ul{
@@ -51,6 +53,13 @@
     cursor: pointer;
 }
 
+.ChatTitle a{
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
 .ProfilePicture{
     width: 64px;
     height: 64px;
@@ -74,4 +83,8 @@
 .ChatInfo p{
     font-family: 'Roboto-Thin', sans-serif;
     font-size: 1rem;
+}
+
+.hidden{
+    display: none;
 }

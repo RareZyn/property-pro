@@ -10,6 +10,10 @@ export const NavHeader = () => {
   const [dropdownMenu, setDropdownMenu] = useState("menu hidden")
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
+  const [isChatClicked, setIsChatClicked] = useState(true);
+  const [chatPopdown, setChatPopdown] = useState("ChatPopup hidden"); 
+  const [chatNavigation, setChatNavigation] = useState("Navigator");
+
   const showMenu = () =>{
     if(isMenuClicked){
       setBurgerIcon("DropdownBar clicked");
@@ -19,6 +23,17 @@ export const NavHeader = () => {
       setDropdownMenu('menu hidden');
     }
     setIsMenuClicked(!isMenuClicked)
+  };
+
+  const showChat = () =>{
+    if(isChatClicked){
+      setChatPopdown("ChatPopup");
+      setChatNavigation("active");
+    } else{
+      setChatPopdown("ChatPopup hidden");
+      setChatNavigation("Navigator");
+    }
+    setIsChatClicked(!isChatClicked);
   };
 
   return (
@@ -31,14 +46,14 @@ export const NavHeader = () => {
       <CustomLink href="/">Home</CustomLink>
         <CustomLink href="/browser-property">Browser</CustomLink>
         <CustomLink href="/publish-property">Sell</CustomLink>
-        <li className='Navigator'>Chat</li>
+        <li className={chatNavigation} onClick={showChat}>Chat</li>
         <CustomLink href="/forum-page">Community</CustomLink>
         <CustomLink href="/register-broker">Broker</CustomLink>
 
         <CustomLink href="/launch">Logout</CustomLink>
       </ul>
       </nav>
-      <ChatPopup></ChatPopup>
+      <ChatPopup className={chatPopdown}></ChatPopup>
     </div>
   );
 };
