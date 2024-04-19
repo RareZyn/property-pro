@@ -1,0 +1,32 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.box-shadow{
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.txt24{
+  font-size: 1.5em;
+}
+
+.txt40{
+  font-size: 2.5em;
+}
+
+a{
+  color: var(--f5);
+  text-decoration: none;
+  margin: 0 auto;
+}
