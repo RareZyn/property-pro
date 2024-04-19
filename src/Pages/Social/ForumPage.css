@@ -52,6 +52,13 @@
   align-items: center;
   column-gap: 10px;
 }
+
+.share-post:hover {
+  cursor: pointer;
+  -webkit-box-shadow: -1px 0px 34px -9px rgba(255, 253, 156, 1);
+  -moz-box-shadow: -1px 0px 34px -9px rgba(255, 253, 156, 1);
+  box-shadow: -1px 0px 34px -9px rgba(255, 253, 156, 1);
+}
 .one {
   border-right: 3px solid #b2b2b2;
   padding-right: 40px;
