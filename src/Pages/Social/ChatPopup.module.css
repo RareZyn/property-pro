@@ -60,12 +60,8 @@
     cursor: pointer;
 }
 
-.ProfilePicture{
+#ProfilePicture{
     width: 64px;
-    height: 64px;
-    border: 1px solid var(--darkBlue);
-    margin: 1rem;
-    border-radius: 50%;
 }
 
 .ChatInfo{

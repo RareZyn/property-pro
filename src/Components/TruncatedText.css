@@ -1,0 +1,8 @@
+#see-more{
+    color: var(--darkGreen);
+}
+
+#see-more :hover{
+    cursor: pointer;
+}
+
