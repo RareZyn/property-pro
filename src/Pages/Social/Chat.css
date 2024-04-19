@@ -87,7 +87,7 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
-    background-color: var(--white);
+    background-color: var(--creamyWhite);
     position: relative;
     bottom: 0;
 }
@@ -96,8 +96,9 @@
     display: inline-block;
     width: 800px;
     border-radius: 25px;
-    background-color: red;
+    background-color: var(--white);
     font-size: 24px;
+    padding: 10px;
 }
 
 .SendChat img{

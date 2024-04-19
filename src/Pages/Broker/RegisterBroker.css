@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.RegisterBrokerCard{
+    font-family: "Zilla-Slab";
+    background-color: var(--darkGreen);
+    display: flex;
+    flex-direction: column;
+    color: var(--darkBlue);
+}
+
+.RegisterBrokerCard h3{
+    color: var(--white);
+}
+
+.InputDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 20px;
+}
+
+.InputDetails h7{
+    text-align: left;
+    width: 100%;
+    align-items: left;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 3px;
+    margin-left: 30px;
+}
+
+.Input{
+    position: relative;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: 50px;
+    width: 100%;
+    color: var(--grey);
+    text-align: left;
+    padding: 10px;
+    cursor: text;
+    box-shadow: 0px 2px 5px var(--darkBlue);
+}
+
+.RegisterBrokerCard button{
+    border: 0px;
+    align-self: center;
+    background-color: var(--orange);
+    color: var(--darkBlue);
+    font-family: "Zilla_Slab";
+    font-size: 24px;
+    width: fit-content;
+    padding: 10px;
+    padding-left: 90px;
+    padding-right: 90px;
+    border-radius: 50px;
+    box-shadow: 0px 2px 5px var(--darkBlue);
+}
+
+.RegisterBrokerCard button:hover{
+    cursor: pointer;
+    background-color: var(--white);
+}
+
+.RegisterBrokerToLogin{
+    font-family: 'Zilla_Slab';
+    font-size: 28px;
+    justify-content: center;
+    display: flex;
+    color: var(--darkBlue);
+}
+
+.RegisterBrokerToLogin a{
+    text-decoration: none;
+    color: var(--orange);
+    margin-left: 5px ;
+}
+
+.RegisterBrokerToLogin a:hover{
+    color: var(--white);
+    cursor: pointer;
+}
