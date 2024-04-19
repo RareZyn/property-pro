@@ -47,7 +47,6 @@
   column-gap: 20px;
   align-items: center;
 }
-
 .box {
   border: none;
   background-color: #fffdef;
@@ -56,11 +55,30 @@
   font-weight: 550;
   font-size: 16px;
   font-family: "Roboto";
-}
-
-.box:hover {
-  cursor: pointer;
   border-radius: 15px;
+}
+.box {
+  border: none;
+  background-color: #fffdef;
+  margin-top: 30px;
+  width: 150px;
+  font-weight: 550;
+  font-size: 16px;
+  font-family: "Roboto";
+  border-radius: 15px;
+}
+.box:hover {
+  .box {
+    border: none;
+    background-color: #fffdef;
+    margin-top: 30px;
+    width: 150px;
+    font-weight: 550;
+    font-size: 16px;
+    font-family: "Roboto";
+    border-radius: 15px;
+  }
+  cursor: pointer;
   box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
   -webkit-box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
   -moz-box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
@@ -82,7 +100,69 @@
   margin-left: auto;
 }
 
-.three > img#button-image {
+.three > #button-image {
   width: 30px;
   height: auto;
+}
+
+.upload-container-image,
+.upload-container-video {
+  position: relative;
+  display: inline-block;
+}
+
+.input-file {
+  display: none;
+}
+
+.upload-container-image,
+.upload-container-video {
+  display: none;
+  margin-top: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  padding: 10px;
+  background-color: white;
+  border-radius: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  height: 300px;
+  transition: transform 0.3s;
+}
+.custom-file-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.custom-file-upload img {
+  width: 80px;
+  height: 80px;
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+.custom-file-upload:hover {
+  opacity: 0.8;
+  transform: translateY(-10px);
+}
+
+.custom-file-upload:hover img {
+  transform: translateY(-10px);
+}
+
+.custom-file-upload h4 {
+  color: #b2b2b2;
 }
