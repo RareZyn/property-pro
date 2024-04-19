@@ -70,13 +70,14 @@
 .RegisterBrokerToLogin{
     font-family: 'Zilla_Slab';
     font-size: 28px;
-    justify-content: center;
     display: flex;
+    justify-content: center;
     color: var(--darkBlue);
 }
 
 .RegisterBrokerToLogin a{
     text-decoration: none;
+    margin: 0;
     color: var(--orange);
     margin-left: 5px ;
 }
