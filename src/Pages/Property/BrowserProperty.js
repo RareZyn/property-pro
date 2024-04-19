@@ -7,7 +7,7 @@ export const BrowserProperty = () => {
   return (
     <div className="BrowserProperty">
       <header>
-        <a href=""><img id="back-button" src={backIcon} alt=""/></a>
+        {/* <a href=""><img id="back-button" src={backIcon} alt=""/></a> */}
         <SearchBar hint="Browse Property..."/>
       </header>
       <div className="Properties-grid">

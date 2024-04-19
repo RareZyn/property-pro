@@ -1,0 +1,26 @@
+.ViewAccountHeader{
+    background-color: var(--darkGreen);
+    aspect-ratio: 8/1;
+}
+
+#details-vah{
+    margin-left: 19.02%;
+}
+
+.acc-desc{
+    display: block;
+    justify-content: start;
+    align-items: start;
+}
+
+hr{
+    background-color: var(--f5);
+    width: 74%;
+    margin: 0 auto;
+}
+
+a{
+    color: var(--f5);
+    text-decoration: none;
+    margin: 0 auto;
+}
