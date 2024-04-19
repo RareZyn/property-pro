@@ -59,12 +59,13 @@
     padding-left: 90px;
     padding-right: 90px;
     border-radius: 50px;
-    box-shadow: 0px 2px 5px var(--darkBlue);
+    box-shadow: 0px 3px 5px var(--darkBlue);
 }
 
 .RegisterBrokerCard button:hover{
     cursor: pointer;
     background-color: var(--white);
+    box-shadow: 0px 1px 5px var(--darkBlue);
 }
 
 .RegisterBrokerToLogin{
