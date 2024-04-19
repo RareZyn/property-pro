@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.VerifyProperty{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ThumbnailImage{
+    width: 128px;
+    height: 128px;
+    justify-items: center;
+    background-color: var(--darkGreen);
+}
+
+.PropertyDetailsCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    background-color: var(--lightGreen);
+    border-radius: 24px;
+}
+
+.PropertyDetailsCard h1,
+.PropertyDetailsCard p{
+    width: 500px;
+}
+
+.PropertyDetailsCard h1{
+    font-family: "Outfit";
+}
+
+.PropertyDetailsCard p{
+    font-family: "Zilla_Slab";
+}
+
+.PropertyDetailsCard button{
+    font-family: 'Zilla_Slab';
+    padding: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    margin: 20px;
+    border: 0px;
+    border-radius: 50px;
+    background-color: var(--orange);
+    box-shadow: 0px 5px 10px;
+}
+
+.PropertyDetailsCard button:hover{
+    background-color: var(--white);
+    cursor: pointer;
+    box-shadow: 0px 3px 20px;
+}
+
+.RejectVerify{
+    display: flex;
+    gap: 100px;
+}
+
+.RejectVerify h3:nth-child(1){
+    background-color: red;
+}
+
+.RejectVerify h3:nth-child(2){
+    background-color: var(--darkGreen);
+}

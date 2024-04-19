@@ -8,7 +8,7 @@ export const NavHeader = () => {
 
   const [burger_icon, setBurgerIcon] = useState("DropdownBar unclicked");
   const [dropdownMenu, setDropdownMenu] = useState("menu hidden")
-  const [isMenuClicked, setIsMenuClicked] = useState(false);
+  const [isMenuClicked, setIsMenuClicked] = useState(true);
 
   const [isChatClicked, setIsChatClicked] = useState(true);
   const [chatPopdown, setChatPopdown] = useState("ChatPopup hidden"); 

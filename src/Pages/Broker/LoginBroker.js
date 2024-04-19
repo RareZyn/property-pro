@@ -1,28 +1,21 @@
-import "./RegisterBroker.css";
-import SearchBar from "../../Components/SearchBar";
+import "./LoginBroker.css";
 
-export const RegisterBroker = () => {
+export const LoginBroker = () => {
   return (
-    <div className="RegisterBroker">
-      <div className="RegisterBrokerCard">
+    <div className="LoginBroker">
+      <div className="LoginBrokerCard">
         <h3>BROKER registration</h3>
         <h5>In broker we trust</h5>
-        <div className="InputDetails">
-          <h7>Name (As in IC)</h7>
-          <div className="Input">
-            Enter your Name
-          </div>
-        </div>
         <RegisterBrokerInputItem inputTitle="Email" inputHint=""></RegisterBrokerInputItem> 
         <RegisterBrokerInputItem inputTitle="Password" inputHint=""></RegisterBrokerInputItem>
         <button>
           <a href="./verify-property">
-            Create Account
+            Login
           </a>
         </button>
         <div className="RegisterBrokerToLogin">
-          <p>Already have an account?</p>
-          <a href="./login-broker">Login</a>
+          <p>Don't have an account?</p>
+          <a href="./register-broker">Register</a>
         </div>
       </div>
     </div>
