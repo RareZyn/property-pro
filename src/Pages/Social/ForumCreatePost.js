@@ -2,6 +2,8 @@ import "./ForumCreatePost.css";
 import React, { useState, createContext } from "react";
 
 export const ForumCreatePost = () => {
+  const [image, setImage] = useState(false);
+  const [video, setVideo] = useState(false);
   return (
     <div className="ForumCreatePost">
       <div className="posting-box">
@@ -15,7 +17,7 @@ export const ForumCreatePost = () => {
               id="button-image"
               src={require("../../Res/image/image icon.png")}
             />
-            <p id="button-text">Likes</p>
+            <p id="button-text">Image</p>
           </button>
           <div class="vertical-line"></div>
           <button className="box two">
