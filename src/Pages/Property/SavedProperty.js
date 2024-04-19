@@ -1,5 +1,5 @@
 import "./SavedProperty.css";
-import { PropertyDisplayCard } from "./Browser component/PropertyDisplayCard";
+import { PropertyDisplayCard } from "./Property component/PropertyDisplayCard";
 import backIcon from "../../Res/image/back-icon.png"
 import { Link } from "react-router-dom";
 

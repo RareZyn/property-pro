@@ -1,5 +1,5 @@
 import "./BrowserProperty.css";
-import {PropertyDisplayCard} from "./Browser component/PropertyDisplayCard";
+import {PropertyDisplayCard} from "./Property component/PropertyDisplayCard";
 import SearchBar from "../../Components/SearchBar";
 import backIcon from "../../Res/image/back-icon.png"
 

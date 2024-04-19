@@ -1,0 +1,26 @@
+#item-card{
+    width: 73%;
+    aspect-ratio: 2.62/1;
+    background-color: var(--lightGreen);
+    margin: 0 auto;
+    padding: 5.09vh 0;
+    border-radius: 100px;
+    display: flex;
+}
+
+#img-container{
+    aspect-ratio: 1.14/1;
+    background-color: white;
+    margin-left: 7%;
+}
+
+#details-container{
+    width: 40%;
+    margin-left: 9%;
+}
+
+#price{
+    background-color: var(--orange);
+    padding: 5% ;
+    text-align: center;
+}

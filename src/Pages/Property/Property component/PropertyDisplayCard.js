@@ -1,4 +1,4 @@
-import "../Browser component/PropertyDisplayCard.css";
+import "./PropertyDisplayCard.css";
 import imgPh from "../../../Res/image/IMG PH.png"
 
 export const PropertyDisplayCard = () => {
