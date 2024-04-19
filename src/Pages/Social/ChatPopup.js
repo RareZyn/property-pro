@@ -34,11 +34,13 @@ export const ChatPopup = ({className}) => {
 function CustomChatUserListPopup({username,chat}){
   return(
     <li>
-      <div className="ProfilePicture"></div>
-      <div className="ChatInfo">
-        <h1>{username}</h1>
-        <p>{chat}</p>
-      </div>
+      <a href="./chat">
+        <div className="ProfilePicture"></div>
+        <div className="ChatInfo">
+          <h1>{username}</h1>
+          <p>{chat}</p>
+        </div>
+      </a>
       
     </li>
   )
