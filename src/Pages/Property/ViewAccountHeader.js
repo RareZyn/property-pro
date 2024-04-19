@@ -1,19 +1,21 @@
 import "./ViewAccountHeader.css";
 
-export const ViewAccountHeader = ({name, bio}) => {
+export const ViewAccountHeader = ({name, bio, currentPage}) => {
   return (
     <div className="ViewAccountHeader">
       <section className="flex" id="details-vah">
-        <div className="ProfilePicture"></div>
+        <div style={{paddingTop: "10.28%", width:"10.28%"}} className="ProfilePicture"></div>
         <div className="acc-desc">
-          <h1>{name}</h1>
-          <p>{bio}</p>
+          <h1 style={{fontSize: "3em"}}>{name}</h1>
+          <p style={{fontSize: "1.5em"}}>{bio}</p>
         </div>
       </section>
       <hr />
-      <a href="">Property</a>
-      <a href="">Post</a>
-      <a href="">About</a>
+      <section id="account-link-container">
+        <a className="account-link" href="">Property</a>
+        <a className="account-link" href="">Post</a>
+        <a className="account-link" href="">About</a>
+      </section>
     </div>
   );
 };
