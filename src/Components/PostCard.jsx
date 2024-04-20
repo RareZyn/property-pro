@@ -1,9 +1,9 @@
 import styles from "./PostCard.module.css"
 import TruncatedText from "./TruncatedText";
 import likeIcon from "../Res/image/heart.png";
-import likedIcon from "../Res/image/red-heart.png"
-import commentIcon from "../Res/image/message-square.png"
-import shareIcon from "../Res/image/share-2.png"
+import likedIcon from "../Res/image/red-heart.png";
+import commentIcon from "../Res/image/message-square.png";
+import shareIcon from "../Res/image/share-2.png";
 import { useState } from "react";
 
 function PostCard(){
