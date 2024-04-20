@@ -4,7 +4,7 @@ export const ForumHeader = () => {
   return (
     <div className="ForumHeader">
       <div className="header">
-        <h1 id="title">PropertyPro+ community</h1>
+        <h1 id="community-title">PropertyPro+ community</h1>
         <p id="description">
           Connecting customers, seller, broker and developer team together
         </p>
