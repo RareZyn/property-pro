@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.ChatPopup{
+.ChatPopup2{
     background-color: var(--creamyWhite);
     position: absolute;
     top:5rem;
@@ -15,7 +15,7 @@
     z-index: 2;
 }
 
-.ChatPopup ul{
+.ChatPopup2 ul{
     list-style: none;
     width: auto;
     display: flex;
@@ -25,13 +25,7 @@
     border: 2px solid var(--darkBlue);
 }
 
-.ChatPopup li{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.ChatPopup li:nth-child(1):hover{
+.ChatPopup2 li:nth-child(1):hover{
     background-color: var(--creamyWhite);
 }
 
@@ -39,25 +33,24 @@
     width: 100%;
     font-size: 1rem;
     border-bottom: 1px solid var(--grey);
-    z-index: 2px;
     padding-left: 20px;
     padding-right: 20px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .ChatTitle img{
-    align-self: center;
     width: 32px;
     height: 32px;
     cursor: pointer;
 }
 
 .ChatTitle a{
-    align-self: center;
+    align-self: left;
     width: 32px;
     height: 32px;
     cursor: pointer;
+    margin-right: 0px;
 }
 
 #ProfilePicture{
@@ -85,7 +78,7 @@
     display: none;
 }
 
-a{
+.ChatPopup2 a{
     text-decoration: none;
     color: var(--darkBlue);
     display: flex;
