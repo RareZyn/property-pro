@@ -1,5 +1,24 @@
+#title{
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
 
-#back-button{
-    width: 4.51%;
+#title img{
+    width: 4%;
     margin: 2%;
+}
+
+#title h1{
+    font-family: Outfit;
+    font-size: 1em;
+}
+
+.Properties-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 15%);
+    column-gap: 1.04%;
+    row-gap: 1.39%;
+    margin-top: 5%;
+    justify-content: center;
 }

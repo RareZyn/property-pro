@@ -23,7 +23,7 @@ export const PropertyDisplayCard = ({color, thumbnailImage}) => {
                    <img src={thumbnail} alt="Image" srcset="" id="img-ph"/>
                 </div>
                 <h4>Item name</h4>
-                <span>RM XX.XXxxxxxxxxxxxxxxxxxxxxx</span>
+                <span>RM XX.XX</span>
             </div>
         </div>
     )
