@@ -1,0 +1,32 @@
+#header-container{
+    aspect-ratio: 5/1;
+    width: 100%;
+    background-color: grey;
+    margin: 0;
+    display: block;
+}
+
+#back-button-container{
+    margin-left: 12%;
+}
+
+#back-button{
+    width: 4.51%;
+    margin: 2% 3%;
+}
+
+.Properties-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 15%);
+    column-gap: 1.04%;
+    row-gap: 15px;
+    margin: 5% 0;
+    justify-content: center;
+}
+
+#title{
+    grid-column: 1/6;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 48px;
+}

@@ -1,9 +1,10 @@
 #item-card{
-    width: 73%;
-    aspect-ratio: 2.62/1;
+    width: 70%;
+    min-width: 360px;
+    aspect-ratio: 4/1;
     background-color: var(--lightGreen);
     margin: 0 auto;
-    padding: 5.09vh 0;
+    padding: 2% 0;
     border-radius: 100px;
     display: flex;
 }
@@ -14,13 +15,30 @@
     margin-left: 7%;
 }
 
+#img-container img{
+    width: 100%;
+}
+
 #details-container{
-    width: 40%;
-    margin-left: 9%;
+    width: 65%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15%;
+}
+
+#details-container h1{
+    font-size: calc(100vw/1440 * 32);
+}
+
+#details-container span{
+    font-size: calc(100vw/1440 * 24); /* 1.5 em*/
 }
 
 #price{
+    width: fit-content;
     background-color: var(--orange);
-    padding: 5% ;
+    padding: 2% 4%;
     text-align: center;
+    border-radius: 50px;
 }

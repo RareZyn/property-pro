@@ -7,8 +7,8 @@ function ItemComponentCard({imgLink}){
                 <img src={imgLink} alt="image property" srcset="" />
             </section>
             <section id="details-container">
-                <h1 style={{fontSize: "4em"}}>Item Title</h1>
-                <p style={{fontSize: "1.5em"}} id="price">Price: RMxxx.xx</p>
+                <h1>Item Title</h1>
+                <span id="price">Price: RMxxx.xx</span>
             </section>
         </div>
     )

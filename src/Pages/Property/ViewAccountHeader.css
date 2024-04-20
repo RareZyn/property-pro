@@ -2,22 +2,42 @@
     background-color: var(--darkGreen);
     display: flex;
     flex-direction: column;
-    justify-content: end;
 }
 
 #details-vah{
     display: flex;
-    align-items: center;
-    margin-left: 19.02%;
+    margin-left: 15%;
     margin-bottom: .7%;
     margin-top: 2%;
     font-family: "Zilla_Slab";
+}
+
+#pp-container{
+    width: 130px;
+    /* min-width: 96px; */
+    aspect-ratio: 1/1;
+    margin: 0 1rem;
+}
+
+#pp-container img{
+    width: 100%;
 }
 
 .acc-desc{
     display: block;
     justify-content: start;
     align-items: start;
+    padding-top: 2%;
+    width: 73%;
+}
+
+.acc-desc h1{
+    font-size: 2.5em;
+    width: 50%;
+}
+
+.acc-desc span{
+    font-size: 1em;
 }
 
 hr{
@@ -41,6 +61,12 @@ hr{
     margin-right: 3.47%;
 }
 
-.selected-acc-link{
+.account-link:hover{
+    cursor: pointer;
     color: var(--orange);
+}
+
+.active{
+    color: var(--orange);
+    font-weight: bold;
 }

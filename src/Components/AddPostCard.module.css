@@ -1,0 +1,65 @@
+.add-post-card-container{
+    background-color: #fffdef;
+    width: 70%;
+    border-radius: 30px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.container-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+}
+
+#user-image {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+#user-text-button {
+  background-color: #e5e5e5;
+  padding: 15px;
+  width: 100%;
+  text-align: start;
+  border-radius: 12px;
+  color: #4c4c4cbd;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.img-vid-container {
+    display: flex;
+    column-gap: 40px;
+    margin-top: 20px;
+}
+
+.img-vid-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-right: 3%; */
+  column-gap: 10px;
+}
+
+.img-vid-btn:hover{
+    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+}
+
+.img-vid-btn img{
+    width: 40px;
+}
+
+.img-vid-btn p{
+    width: 40px;
+}
+
+.vertical-line{
+  border-right: 3px solid #b2b2b2;
+}

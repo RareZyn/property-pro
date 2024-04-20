@@ -27,10 +27,10 @@ export const NavHeader = () => {
 
   const showChat = () =>{
     if(isChatClicked){
-      setChatPopdown("ChatPopup");
+      setChatPopdown("ChatPopup2");
       setChatNavigation("active");
     } else{
-      setChatPopdown("ChatPopup hidden");
+      setChatPopdown("ChatPopup2 hidden");
       setChatNavigation("Navigator");
     }
     setIsChatClicked(!isChatClicked);

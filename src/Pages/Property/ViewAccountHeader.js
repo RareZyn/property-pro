@@ -1,21 +1,46 @@
 import "./ViewAccountHeader.css";
+import { useState } from "react";
+import {ViewAccountProperty} from "./ViewAccountProperty";
+import {ViewAccountPost} from "./ViewAccountPost";
+import {ViewAccountAbout} from "./ViewAccountAbout";
+import profilePic from "../../Res/image/user profile.png"
 
-export const ViewAccountHeader = ({name, bio, currentPage}) => {
+export const ViewAccountHeader = ({name, bio}) => {
+  const [currentPage, setCurrentPage] = useState("Property");
+  let page;
+
+  switch(currentPage){
+    case "Property":
+      page = <ViewAccountProperty />
+      break;
+    case "Post":
+      page = <ViewAccountPost />
+      break;
+    case "About":
+      page = <ViewAccountAbout />
+      break;
+  }
+
   return (
-    <div className="ViewAccountHeader">
-      <section className="flex" id="details-vah">
-        <div style={{paddingTop: "10.28%", width:"10.28%"}} className="ProfilePicture"></div>
-        <div className="acc-desc">
-          <h1 style={{fontSize: "3em"}}>{name}</h1>
-          <p style={{fontSize: "1.5em"}}>{bio}</p>
-        </div>
-      </section>
-      <hr />
-      <section id="account-link-container">
-        <a className="account-link" href="">Property</a>
-        <a className="account-link" href="">Post</a>
-        <a className="account-link" href="">About</a>
-      </section>
-    </div>
+    <>
+      <div className="ViewAccountHeader">
+        <section className="flex" id="details-vah">
+          <div id="pp-container">
+            <img src={profilePic} alt="" srcset="" />
+          </div>
+          <div className="acc-desc">
+            <h1 >{name}</h1>
+            <span>{bio}</span>
+          </div>
+        </section>
+        <hr />
+        <section id="account-link-container">
+          <a className={`account-link ${currentPage === "Property" ? "active" : ""}`} onClick={() => setCurrentPage("Property")}>Property</a>
+          <a className={`account-link ${currentPage === "Post" ? "active" : ""}`} onClick={() => setCurrentPage("Post")}>Post</a>
+          <a className={`account-link ${currentPage === "About" ? "active" : ""}`} onClick={() => setCurrentPage("About")}>About</a>
+        </section>
+      </div>
+      {page}
+    </>
   );
 };

@@ -1,12 +1,20 @@
-import "./ViewAccountPost.css";
-import PostCard from "../../Components/PostCard"
+import styles from "./ViewAccountPost.module.css";
+import PostCard from "../../Components/PostCard";
+import {ViewAccountHeader} from './ViewAccountHeader';
+
+import AddPostCard from "../../Components/AddPostCard";
 
 export const ViewAccountPost = () => {
+  let items=[];
+  for(let i=0 ; i<5 ; i++){
+    items.push(<PostCard/>);
+  }
+
   return (
     <div className="ViewAccountPost">
-      <h1>View Account Post</h1>
-      <PostCard />
-      <PostCard />
+      <div id={styles["post-card-container"]}>
+        {items}
+      </div>
     </div>
   );
 };
