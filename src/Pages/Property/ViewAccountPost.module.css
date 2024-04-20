@@ -1,0 +1,6 @@
+#post-card-container{
+    display: grid;
+    grid-template-columns: 100%;
+    margin-top: 5%;
+    row-gap: 4%;
+}

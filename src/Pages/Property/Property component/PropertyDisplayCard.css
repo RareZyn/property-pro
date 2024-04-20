@@ -3,7 +3,25 @@
     aspect-ratio: 1.14/1;
     text-align: start;
     border-radius: 10px;
+    color: white;
+    font-family: Roboto;
+    font-weight: nromal;
 }
+
+#prop-card h4{
+    font-size: 2em;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#prop-card span{
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 
 #img-placeholder{
     aspect-ratio: 1.5/1;

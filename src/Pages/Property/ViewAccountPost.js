@@ -1,12 +1,15 @@
-import "./ViewAccountPost.css";
-import PostCard from "../../Components/PostCard"
+import styles from "./ViewAccountPost.module.css";
+import PostCard from "../../Components/PostCard";
+import {ViewAccountHeader} from './ViewAccountHeader';
 
 export const ViewAccountPost = () => {
   return (
     <div className="ViewAccountPost">
-      <h1>View Account Post</h1>
-      <PostCard />
-      <PostCard />
+      <ViewAccountHeader />
+      <div id={styles["post-card-container"]}>
+        <PostCard />
+        <PostCard />
+      </div>
     </div>
   );
 };
