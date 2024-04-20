@@ -36,6 +36,11 @@ import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 
 function App() {
+  let userDetails = {
+    username: "Wan Razim",
+    bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
+  }
+
   return (
     <div className="App">
       <Router>
@@ -68,7 +73,7 @@ function App() {
           <Route path="/browser-property" element={<BrowserProperty />} />
           <Route path="/saved-property" element={<SavedProperty />} />
           <Route path="/manage-property" element={<ManageProperty />} />
-          <Route path="/view-account-header" element={<ViewAccountHeader name={"Azim"} bio={"Bio"}/>} />
+          <Route path="/view-account-header" element={<ViewAccountHeader name={userDetails.username} bio={userDetails.bio}/>} />
           <Route
             path="/view-account-property"
             element={<ViewAccountProperty />}

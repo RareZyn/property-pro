@@ -6,7 +6,7 @@ export const ManageProperty = () => {
   const propertyCards = [];
   let color = 0;
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 4; i++) {
     color = i - (6 * parseInt(i/6));
     console.log(color);
     switch(color){

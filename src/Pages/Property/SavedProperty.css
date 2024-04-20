@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: repeat(5, 15%);
     column-gap: 1.04%;
-    row-gap: 1.39%;
-    margin-top: 5%;
+    row-gap: 15px;
+    margin: 5% 0;
     justify-content: center;
 }
