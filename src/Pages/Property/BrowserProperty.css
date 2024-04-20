@@ -1,14 +1,18 @@
-header{
+#header-container{
     aspect-ratio: 5/1;
     width: 100%;
     background-color: grey;
     margin: 0;
-    padding-top: 7.5%;
+    display: block;
+}
+
+#back-button-container{
+    margin-left: 12%;
 }
 
 #back-button{
     width: 4.51%;
-    margin: 2%;
+    margin-left: 10%;
 }
 
 .Properties-grid{
@@ -16,9 +20,13 @@ header{
     grid-template-columns: repeat(3, 23.96%);
     column-gap: 1.04%;
     row-gap: 1.39%;
+    margin-top: 5%;
     justify-content: center;
 }
 
 #title{
     grid-column: 1/4;
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 48px;
 }
