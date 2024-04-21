@@ -117,7 +117,8 @@
 
 /* Form wrapper styles */
 .MakePaymentPage,
-.MakePaymentDebit {
+.MakePaymentDebit,
+.MakePaymentDebitOnline {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,8 +129,8 @@
 }
 
 .wrapper {
-  max-width: 1200px; /* Adjust this width as needed */
-  margin: 0 auto; /* Center the wrapper horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
   background: #171623;
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
