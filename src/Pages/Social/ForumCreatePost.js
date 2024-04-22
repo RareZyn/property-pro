@@ -1,3 +1,4 @@
+import { ReplyCard } from "../../Components/ReplyCard";
 import "./ForumCreatePost.css";
 import React, { useState, createContext } from "react";
 
@@ -92,6 +93,8 @@ export const ForumCreatePost = () => {
           </button>
         </div>
       </div>
+
+      <ReplyCard />
     </div>
   );
 };
