@@ -1,8 +1,11 @@
 import "./MyAccountHeader.css";
+import {ViewAccountProperty} from "../Property/ViewAccountProperty";
+import {ViewAccountPost} from "../Property/ViewAccountPost";
+import {ViewAccountAbout} from "../Property/ViewAccountAbout";
+import profilePic from "../../Res/image/user profile.png";
 import React, { useState } from 'react';
 
-export const MyAccountHeader = ({name, bio, currentPage}) => {
-
+export const MyAccountHeader = ({name, bio, /*currentPage*/}) => {
   const [selectedLink, setSelectedLink] = useState(null);
 
   const handleLinkClick = (link) => {
@@ -62,4 +65,45 @@ export const MyAccountHeader = ({name, bio, currentPage}) => {
       </section>
     </div>
   );
+
+
+  //Azim-code
+  // const [currentPage, setCurrentPage] = useState("Property");
+  // let page;
+
+  // switch(currentPage){
+  //   case "Property":
+  //     page = <ViewAccountProperty />
+  //     break;
+  //   case "Post":
+  //     page = <ViewAccountPost />
+  //     break;
+  //   case "About":
+  //     page = <ViewAccountAbout />
+  //     break;
+  // }
+
+  // return (
+  //   <>
+  //     <div className="ViewAccountHeader">
+  //       <section className="flex" id="details-vah">
+  //         <div id="pp-container">
+  //           <img src={profilePic} alt="" srcset="" />
+  //         </div>
+  //         <div className="acc-desc">
+  //           <h1 >{name}</h1>
+  //           <span>{bio}</span>
+  //         </div>
+  //       </section>
+  //       <hr />
+  //       <section id="account-link-container">
+  //         <a className={`account-link ${currentPage === "Property" ? "active" : ""}`} onClick={() => setCurrentPage("Property")}>Property</a>
+  //         <a className={`account-link ${currentPage === "Post" ? "active" : ""}`} onClick={() => setCurrentPage("Post")}>Post</a>
+  //         <a className={`account-link ${currentPage === "About" ? "active" : ""}`} onClick={() => setCurrentPage("My Transaction")}>My Transaction</a>
+  //         <a className={`account-link ${currentPage === "About" ? "active" : ""}`} onClick={() => setCurrentPage("About")}>About</a>
+  //       </section>
+  //     </div>
+  //     {page}
+  //   </>
+  // );
 };

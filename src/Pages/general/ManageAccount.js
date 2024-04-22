@@ -2,7 +2,6 @@ import "./ManageAccount.css";
 import { MyAccountHeader } from './MyAccountHeader';
 import React, { useState } from 'react';
 
-<<<<<<< HEAD
 export const ManageAccount = () => {
   
     const [name, setName] = useState('');
@@ -29,9 +28,9 @@ export const ManageAccount = () => {
     return (
       <div className="ManageAccount">
          <MyAccountHeader
-       name="Username" 
+            name="Username" 
             bio="new user in this website"
-        currentPage="Property"
+            currentPage="Property"
       />
           <div className="ManageAccountCard">
 
@@ -97,7 +96,3 @@ export const ManageAccount = () => {
     
     );
   }
-  
-=======
-export const ManageAccount = () => {};
->>>>>>> 3e2f213e9739d33650322c29274e20a5bb75808e
