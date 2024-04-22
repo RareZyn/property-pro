@@ -1,5 +1,5 @@
 import "./RegisterBroker.css";
-import SearchBar from "../../Components/SearchBar";
+import SearchBar from "../../Cards/General Cards/SearchBar";
 
 export const RegisterBroker = () => {
   return (

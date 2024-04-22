@@ -3,30 +3,14 @@
     width: 100%;
     background-color: grey;
     margin: 0;
-    display: block;
-    padding: 5% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-image: url("../../Res/image/image-property.png");
     background-size: cover;
     backdrop-filter: blur(3px);
-    /* filter: blur(3px); */
 }
 
 #browse-search{
     width: 50%;
-}
-
-.Properties-grid{
-    display: grid;
-    grid-template-columns: repeat(4, 300px);
-    column-gap: 1.04%;
-    row-gap: 15px;
-    margin: 5% 0;
-    justify-content: center;
-}
-
-#title{
-    grid-column: 1/5;
-    font-family: "Outfit";
-    font-weight: bold;
-    font-size: 2.5em;
 }

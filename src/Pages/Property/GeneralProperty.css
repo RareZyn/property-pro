@@ -1,0 +1,15 @@
+.properties-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 216px);
+    column-gap: 1.04%;
+    row-gap: 15px;
+    margin: 5% 0;
+    justify-content: center;
+}
+
+.property-headline{
+    grid-column: 1/6;
+    font-family: "Outfit";
+    font-weight: bold;
+    font-size: 2.5em;
+}

@@ -10,14 +10,6 @@
     align-items: center;
 }
 
-.Blur{
-    display: absolute;
-    width: 100%;
-    height: fit-content;
-    z-index: 10;
-    background-color: red;
-}
-
 .ThumbnailImage{
     width: 128px;
     height: 128px;
@@ -25,6 +17,49 @@
     background-color: var(--darkGreen);
     margin: 20px;
 }
+
+.MoreThumbnails{
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+
+.MoreThumbnails img{
+    align-items: center;
+    background-color: var(--orange);
+    box-shadow: 2px 2px 5px;
+    width: 128px;
+    margin: 12px;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.MoreThumbnails img:nth-child(1){
+    grid-area: 1/1;
+    transform: translate(10px,10px);
+}
+
+.MoreThumbnails img:nth-child(2){
+    grid-area: 1/1;
+    transform: translate(5px,5px);
+}
+
+.MoreThumbnails img:nth-child(3){
+    grid-area: 1/1;
+    transform: translate(0px,0px);
+}
+
+.MoreThumbnails:hover img:nth-child(1){
+    transform: translate(160px,10px);
+}
+.MoreThumbnails:hover img:nth-child(2){
+    transform: translate(5px,10px);
+}
+.MoreThumbnails:hover img:nth-child(3){
+    transform: translate(-150px,10px);
+}
+
+
 
 .PropertyDetailsCard{
     display: flex;
@@ -66,6 +101,124 @@
     background-color: var(--white);
     cursor: pointer;
     box-shadow: 0px 3px 20px;
+}
+
+.SupportingDocumentCard{
+    background-color: var(--creamyWhite);
+    border-radius: 6px;
+    width: 540px;
+    height: fit-content;
+    padding: 10px;
+}
+
+.SupportingDocumentCard h2{
+    font-family: 'Outfit';
+    margin: 10px;
+}
+
+.SupportingDocumentCard ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.SupportingDocumentCard li{
+    display: flex;
+    flex-direction: column;
+    width: 155px;
+    margin: 5px;
+    box-shadow: 1px 1px 5px;
+}
+
+
+.SupportingDocumentCard li img{
+    margin-left: 42px;
+    margin-right: 42px;
+    height: 64px;
+}
+
+.SupportingDocumentCard ul li div{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+
+.SupportingDocumentCard ul li div button{
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+    box-shadow: 1px 1px 5px black;
+    background-color: var(--creamyWhite);
+    border: 3px solid var(--orange);
+    color: var(--orange);
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 12px;
+}
+
+.SupportingDocumentCard ul li div button:hover{
+    background-color: var(--white);
+    color: var(--darkBlue);
+    border: 0px solid black;
+    box-shadow: 1px 1px 5px black;
+}
+
+.SupportingDocumentCard div:nth-child(3){
+    display: flex;
+    gap: 0px;
+}
+
+.SupportingDocumentCard h3{
+    color: var(--orange);
+    font-size: 16px;
+}
+
+
+.ProgressBar{
+    font-family: 'Roboto-Bold';
+    background-color: var(--creamyWhite);
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    border-radius: 50px;
+    border: 1px solid var(--darkBlue);
+    margin-top: 20px;
+}
+
+.ProgressBar p{
+    color: var(--creamyWhite);
+}
+
+.ProgressBar p:nth-child(1){
+    background-color: var(--darkGreen);
+    color: var(--darkGreen);
+}
+.ProgressBar p:nth-child(2){
+    border-left: 1px solid var(--darkBlue);
+    border-right: 1px solid var(--darkBlue);
+}
+
+.ProgressBarLabel{
+    background-color: var(--lightGreen);
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    margin-bottom: 100px;
+}
+
+.ProgressBarLabel p{
+    font-family: 'Roboto-Bold';
+}
+
+.ProgressBarLabel p:nth-child(2){
+    text-align: center;
+}
+.ProgressBarLabel p:nth-child(3){
+    color: var(--lightGreen);    
+}
+.ProgressBarLabel p:nth-child(5){
+    text-align: right;   
 }
 
 .RejectVerify{

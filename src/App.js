@@ -33,10 +33,10 @@ import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
 import { SavedProperty } from "./Pages/Property/SavedProperty.js";
 import { ManageProperty } from "./Pages/Property/ManageProperty.js";
-import { ViewAccountHeader } from "./Pages/Property/ViewAccountHeader.js";
-import { ViewAccountProperty } from "./Pages/Property/ViewAccountProperty.js";
-import { ViewAccountPost } from "./Pages/Property/ViewAccountPost.js";
-import { ViewAccountAbout } from "./Pages/Property/ViewAccountAbout.js";
+import { ViewAccountHeader } from "./Pages/general/ViewAccountHeader.js";
+import { ViewAccountProperty } from "./Pages/general/ViewAccountProperty.js";
+import { ViewAccountPost } from "./Pages/general/ViewAccountPost.js";
+import { ViewAccountAbout } from "./Pages/general/ViewAccountAbout.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
@@ -65,7 +65,7 @@ function App() {
       <AppContext.Provider value={{ userDetails }}>
         <Router>
           <Navbar />
-          <NavHeaderWrapper />
+          {/* <NavHeaderWrapper /> */}
           <Routes>
             <Route path="/HomePage" element={<HomePage />} />
             <Route path="/" element={<LaunchPage />} />

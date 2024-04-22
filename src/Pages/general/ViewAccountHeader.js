@@ -1,13 +1,15 @@
-import "./ViewAccountHeader.css";
-import { useState } from "react";
-import { ViewAccountProperty } from "./ViewAccountProperty";
-import { ViewAccountPost } from "./ViewAccountPost";
-import { ViewAccountAbout } from "./ViewAccountAbout";
-import profilePic from "../../Res/image/user profile.png";
+import "./AccountHeader.css";
+import { useState, useContext} from "react";
+import {ViewAccountProperty} from "./ViewAccountProperty";
+import {ViewAccountPost} from "./ViewAccountPost";
+import {ViewAccountAbout} from "./ViewAccountAbout";
+import profilePic from "../../Res/image/user profile.png"
+import { AppContext } from "../../App";
 
 export const ViewAccountHeader = ({ name, bio }) => {
   const [currentPage, setCurrentPage] = useState("Property");
   let page;
+  const { userDetails } = useContext(AppContext);
 
   switch (currentPage) {
     case "Property":
@@ -15,9 +17,6 @@ export const ViewAccountHeader = ({ name, bio }) => {
       break;
     case "Post":
       page = <ViewAccountPost />;
-      break;
-    case "About":
-      page = <ViewAccountAbout />;
       break;
   }
 
@@ -29,8 +28,8 @@ export const ViewAccountHeader = ({ name, bio }) => {
             <img src={profilePic} alt="" srcset="" />
           </div>
           <div className="acc-desc">
-            <h1>{name}</h1>
-            <span>{bio}</span>
+            <h1 >{userDetails.username}</h1>
+            <span>{userDetails.bio}</span>
           </div>
         </section>
         <hr />
@@ -48,14 +47,6 @@ export const ViewAccountHeader = ({ name, bio }) => {
             onClick={() => setCurrentPage("Post")}
           >
             Post
-          </a>
-          <a
-            className={`account-link ${
-              currentPage === "About" ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage("About")}
-          >
-            About
           </a>
         </section>
       </div>

@@ -1,8 +1,7 @@
 import styles from "./AddPostCard.module.css";
-import pp from "../Res/image/user profile.png";
-import likeIcon from "../Res/image/heart.png";
-import imageIcon from "../Res/image/image icon.png";
-import videoIcon from "../Res/image/video.png";
+import pp from "../../Res/image/user profile.png";
+import imageIcon from "../../Res/image/image icon.png";
+import videoIcon from "../../Res/image/video.png";
 
 function AddPostCard(){
     return(
