@@ -10,6 +10,7 @@
     top: 5em;
     left: 0;
     display: flex;
+    flex-direction: column;
     width: 560px;
     min-width: 240px;
     height: 30em;
@@ -45,6 +46,40 @@
     padding: 0;
     margin: 10px;
     color: var(--darkBlue); 
+}
+
+.NavHeader .DropdownMenuNavigation{
+    background-color: var(--darkBlue);
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 12px;
+}
+
+.DropdownMenuNavigation h1{
+    font-size: 16px;
+    text-align: center;
+    color: var(--orange);
+}
+
+.NavHeader .DropdownMenuNavigationItem a{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-out;
+}
+
+.NavHeader .DropdownMenuNavigationItem:hover{
+    transition: all 0.3s ease-out;
+    align-content: center;
+    background-color: var(--white);
+}
+
+.NavHeader .DropdownMenuNavigationItem:active{
+    transition: all 0s ease;
+    background-color: var(--orange);
 }
 
 .hidden{
