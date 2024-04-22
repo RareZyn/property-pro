@@ -6,14 +6,6 @@ export const MyAccountPost = () => {
   return (
     
     <div className="MyAccountPost">
-
-      <MyAccountHeader 
-
-      name="Username" 
-      bio="please guide me"
-      
-        currentPage="Property"
-      />
   <div className="MyAccountPost-page">
       <button className="share-post">
         <div className="share-firstRow">

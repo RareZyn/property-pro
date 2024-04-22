@@ -6,12 +6,6 @@ export const MyAccountDetails = () => {
   return (
     <div className="MyAccountDetails">
 
-           <MyAccountHeader 
-            name="Username" 
-            bio="new user in this website"
-        currentPage="Property"
-      />
-
       <div className="MyAccountDetailsCard">
     <div className="MyAccountDetailsItem">
         <img

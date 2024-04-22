@@ -6,10 +6,11 @@
 
 #details-vah{
     display: flex;
-    margin-left: 15%;
+    margin: 0 15%;
     margin-bottom: .7%;
     margin-top: 2%;
     font-family: "Zilla_Slab";
+    align-items: center;
 }
 
 #pp-container{
@@ -27,7 +28,6 @@
     display: block;
     justify-content: start;
     align-items: start;
-    padding-top: 2%;
     width: 73%;
 }
 
@@ -69,4 +69,13 @@ hr{
 .active{
     color: var(--orange);
     font-weight: bold;
+}
+
+#edit-account img{
+    width: 50px;
+}
+
+#edit-account img:hover{
+    box-shadow: 9px 11px 12px 0px rgba(0, 0, 0, 0.3);
+
 }

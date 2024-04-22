@@ -1,7 +1,7 @@
 import "./ViewAccountProperty.css";
 import { ViewAccountHeader } from "./ViewAccountHeader";
 import ItemComponentCard from "./Property component/ItemComponentCard";
-import image from "../../Res/image/property image.png"
+import image from "../../Res/image/image-dummy-house.png"
 
 export const ViewAccountProperty = () => {
   let items=[];

@@ -1,15 +1,12 @@
 import "./PublishProperty.css";
 import { MyAccountHeader } from "../general/MyAccountHeader";
 import { Link } from "react-router-dom";
+import { NavHeader } from "../Navigation/NavHeader";
 
 export const PublishProperty = () => {
   return (
     <div className="PublishProperty">
-      <MyAccountHeader
-        name="Username"
-        bio="please guide me"
-        currentPage="Property"
-      />
+      <NavHeader/>
       <div className="publish-section">
         <div className="cart-box">
           <img src={require("../../Res/image/cart-icon.png")} />

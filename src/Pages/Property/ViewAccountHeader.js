@@ -1,13 +1,15 @@
 import "./ViewAccountHeader.css";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import {ViewAccountProperty} from "./ViewAccountProperty";
 import {ViewAccountPost} from "./ViewAccountPost";
 import {ViewAccountAbout} from "./ViewAccountAbout";
 import profilePic from "../../Res/image/user profile.png"
+import { AppContext } from "../../App.js";
 
 export const ViewAccountHeader = ({name, bio}) => {
   const [currentPage, setCurrentPage] = useState("Property");
   let page;
+  const { userDetails } = useContext(AppContext);
 
   switch(currentPage){
     case "Property":
@@ -29,8 +31,8 @@ export const ViewAccountHeader = ({name, bio}) => {
             <img src={profilePic} alt="" srcset="" />
           </div>
           <div className="acc-desc">
-            <h1 >{name}</h1>
-            <span>{bio}</span>
+            <h1 >{userDetails.username}</h1>
+            <span>{userDetails.bio}</span>
           </div>
         </section>
         <hr />
