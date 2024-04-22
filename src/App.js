@@ -40,82 +40,79 @@ import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 
+export const AppContext = createContext();
 function App() {
-  let userDetails = {
+  const userDetails = {
     username: "Wan Razim",
     bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
   };
-
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/navHeader" element={<NavHeader />} />
-          <Route path="/HomePage" element={<HomePage />} />
-          <Route path="/" element={<LaunchPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/choose-bank" element={<ChooseBank />} />
-          <Route
-            path="/make-payment-debit-online"
-            element={<MakePaymentDebitOnline />}
-          />
-          <Route
-            path="/make-payment-success"
-            element={<MakePaymentSuccess />}
-          />
-          <Route path="/side" element={<SideBar />} />
-          <Route path="/make-payment" element={<MakePaymentPage />} />
-          <Route path="/chat-popup" element={<ChatPopup />} />
-          <Route path="/register-broker" element={<RegisterBroker />} />
-          <Route path="/login-broker" element={<LoginBroker />} />
-          <Route
-            path="/verify-property-homepage"
-            element={<VerifyPropertyHome />}
-          />
-          <Route path="/verify-property" element={<VerifyProperty />} />
-          <Route path="/update-progress" element={<UpdateProgress />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/myaccount" element={<MyAccountHeader />} />
-          <Route
-            path="/myaccount-transaction"
-            element={<MyAccountTransaction />}
-          />
-          <Route path="/myaccount-post" element={<MyAccountPost />} />
-          <Route path="/myaccount-details" element={<MyAccountDetails />} />
-          <Route path="/myaccount-property" element={<MyAccountProperty />} />
-          <Route path="/manage-account" element={<ManageAccount />} />
-          <Route path="/property-details" element={<PropertyDetails />} />
-          <Route path="/publish-property" element={<PublishProperty />} />
-          <Route path="/browser-property" element={<BrowserProperty />} />
-          <Route path="/saved-property" element={<SavedProperty />} />
-          <Route path="/manage-property" element={<ManageProperty />} />
-          <Route
-            path="/property-details-ownerview"
-            element={<PropertyDetailsOwnerView />}
-          />
-          <Route
-            path="/view-account-header"
-            element={
-              <ViewAccountHeader
-                name={userDetails.username}
-                bio={userDetails.bio}
-              />
-            }
-          />
-          <Route
-            path="/view-account-property"
-            element={<ViewAccountProperty />}
-          />
-          <Route path="/view-account-post" element={<ViewAccountPost />} />
-          <Route path="/view-account-about" element={<ViewAccountAbout />} />
-          <Route path="/forum-page" element={<ForumPage />} />
-          <Route path="/forum-header" element={<ForumHeader />} />
-          <Route path="/forum-create-post" element={<ForumCreatePost />} />
-          <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
-        </Routes>
-      </Router>
+      <AppContext.Provider value={{ userDetails }}>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/navHeader" element={<NavHeader />} />
+            <Route path="/HomePage" element={<HomePage />} />
+            <Route path="/" element={<LaunchPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/choose-bank" element={<ChooseBank />} />
+            <Route
+              path="/make-payment-debit-online"
+              element={<MakePaymentDebitOnline />}
+            />
+            <Route
+              path="/make-payment-success"
+              element={<MakePaymentSuccess />}
+            />
+            <Route path="/side" element={<SideBar />} />
+            <Route path="/make-payment" element={<MakePaymentPage />} />
+            <Route path="/chat-popup" element={<ChatPopup />} />
+            <Route path="/register-broker" element={<RegisterBroker />} />
+            <Route path="/login-broker" element={<LoginBroker />} />
+            <Route
+              path="/verify-property-homepage"
+              element={<VerifyPropertyHome />}
+            />
+            <Route path="/verify-property" element={<VerifyProperty />} />
+            <Route path="/update-progress" element={<UpdateProgress />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/myaccount" element={<MyAccountHeader />} />
+            <Route
+              path="/myaccount-transaction"
+              element={<MyAccountTransaction />}
+            />
+            <Route path="/myaccount-post" element={<MyAccountPost />} />
+            <Route path="/myaccount-details" element={<MyAccountDetails />} />
+            <Route path="/myaccount-property" element={<MyAccountProperty />} />
+            <Route path="/manage-account" element={<ManageAccount />} />
+            <Route path="/property-details" element={<PropertyDetails />} />
+            <Route path="/publish-property" element={<PublishProperty />} />
+            <Route path="/browser-property" element={<BrowserProperty />} />
+            <Route path="/saved-property" element={<SavedProperty />} />
+            <Route path="/manage-property" element={<ManageProperty />} />
+            <Route
+              path="/property-details-ownerview"
+              element={<PropertyDetailsOwnerView />}
+            />
+            <Route
+              path="/view-account-header"
+              element={<ViewAccountHeader />}
+            />
+            <Route
+              path="/view-account-property"
+              element={<ViewAccountProperty />}
+            />
+            <Route path="/view-account-post" element={<ViewAccountPost />} />
+            <Route path="/view-account-about" element={<ViewAccountAbout />} />
+            <Route path="/forum-page" element={<ForumPage />} />
+            <Route path="/forum-header" element={<ForumHeader />} />
+            <Route path="/forum-create-post" element={<ForumCreatePost />} />
+            <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
+          </Routes>
+        </Router>
+      </AppContext.Provider>
     </div>
   );
 }
