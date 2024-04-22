@@ -1,18 +1,24 @@
 import "./LaunchPage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export const LaunchPage = () => {
   const [hovered, setHovered] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const handleHover = () => {
     setHovered(!hovered);
   };
 
   return (
-    <div className="launchPage">
+    <div className={`launchPage ${loaded ? "loaded" : ""}`}>
       <section className="home" id="home">
         <div className="content">
+          <h1 id="website-name">PropertyPro+</h1>
           <h1
             id="launch-topic"
             className={hovered ? "hovered" : ""}
