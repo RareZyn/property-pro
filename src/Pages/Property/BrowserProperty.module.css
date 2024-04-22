@@ -14,19 +14,3 @@
 #browse-search{
     width: 50%;
 }
-
-.Properties-grid{
-    display: grid;
-    grid-template-columns: repeat(4, 300px);
-    column-gap: 1.04%;
-    row-gap: 15px;
-    margin: 5% 0;
-    justify-content: center;
-}
-
-#title{
-    grid-column: 1/5;
-    font-family: "Outfit";
-    font-weight: bold;
-    font-size: 2.5em;
-}

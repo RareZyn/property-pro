@@ -1,6 +1,7 @@
 import style from "./BrowserProperty.module.css";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
 import SearchBar from "../../Cards/General Cards/SearchBar";
+import "./GeneralProperty.css"
 import backIcon from "../../Res/image/back-icon.png";
 import { NavHeader } from "../Navigation/NavHeader";
 
@@ -19,8 +20,8 @@ export const BrowserProperty = () => {
       <header id={style["header-container"]}>
         <SearchBar id={style["browse-search"]} hint="Browse Property..." />
       </header>
-      <div className={style["Properties-grid"]}>
-        <h1 id={style["title"]}>HOT ITEMS</h1>
+      <div className="properties-grid">
+        <h1 className="property-headline">Hot Items</h1>
         {propertyCards}
       </div>
     </div>

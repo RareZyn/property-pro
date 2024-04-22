@@ -1,8 +1,7 @@
 import "./SavedProperty.css";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
 import backIcon from "../../Res/image/back-icon.png";
-import { Link } from "react-router-dom";
-import { NavHeader } from "../Navigation/NavHeader";
+
 
 export const SavedProperty = () => {
   const propertyCards = [];
@@ -35,11 +34,10 @@ export const SavedProperty = () => {
 
   return (
     <div className="SavedProperty">
-      <div id="title">
-        <img src={backIcon} alt="" srcset="" />
-        <h1>Saved Property</h1>
+      <div className="properties-grid">
+        <h1 className="property-headline">Saved Property</h1>
+        {propertyCards}
       </div>
-      <div className="Properties-grid">{propertyCards}</div>
     </div>
   );
 };

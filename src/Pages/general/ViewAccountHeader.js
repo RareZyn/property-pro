@@ -18,9 +18,6 @@ export const ViewAccountHeader = ({ name, bio }) => {
     case "Post":
       page = <ViewAccountPost />;
       break;
-    case "About":
-      page = <ViewAccountAbout />;
-      break;
   }
 
   return (
@@ -50,14 +47,6 @@ export const ViewAccountHeader = ({ name, bio }) => {
             onClick={() => setCurrentPage("Post")}
           >
             Post
-          </a>
-          <a
-            className={`account-link ${
-              currentPage === "About" ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage("About")}
-          >
-            About
           </a>
         </section>
       </div>

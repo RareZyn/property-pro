@@ -32,11 +32,13 @@
 }
 
 .acc-desc h1{
+    font-family: "Outfit";
     font-size: 2.5em;
     width: 50%;
 }
 
 .acc-desc span{
+    font-family: "Roboto";
     font-size: 1em;
 }
 
@@ -54,7 +56,7 @@ hr{
 
 .account-link{
     font-family: "Outfit";
-    font-size: 2em;
+    font-size: 1.8em;
     color: var(--f5);
     text-decoration: none;
     display: inline-block;
