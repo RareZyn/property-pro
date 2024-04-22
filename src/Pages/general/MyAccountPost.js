@@ -6,8 +6,6 @@ import { NavHeader } from "../Navigation/NavHeader";
 export const MyAccountPost = () => {
   return (
     <div className="MyAccountPost">
-      <NavHeader />
-
       <MyAccountHeader
         name="Username"
         bio="please guide me"

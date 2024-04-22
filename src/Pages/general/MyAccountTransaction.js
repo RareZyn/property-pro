@@ -5,7 +5,6 @@ import { NavHeader } from "../Navigation/NavHeader";
 export const MyAccountTransaction = () => {
   return (
     <div className="MyAccountTransaction">
-      <NavHeader />
       <MyAccountHeader
         name="Username"
         bio="please guide me"

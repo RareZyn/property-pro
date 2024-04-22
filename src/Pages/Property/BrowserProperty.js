@@ -36,7 +36,6 @@ export const BrowserProperty = () => {
 
   return (
     <div className={style["BrowserProperty"]}>
-      <NavHeader />
       <header id={style["header-container"]}>
         {/* <img src={require("../../Res/image/image-property.png")} alt="" srcset="" /> */}
         <SearchBar id={style["browse-search"]} hint="Browse Property..." />

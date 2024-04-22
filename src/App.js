@@ -1,6 +1,12 @@
 import "./App.css";
 import React, { useState, createContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { LaunchPage } from "./Pages/general/LaunchPage.js";
 import { HomePage } from "./Pages/general/HomePage.js";
@@ -41,18 +47,26 @@ import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnli
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 
 export const AppContext = createContext();
+
+function NavHeaderWrapper() {
+  const { pathname } = useLocation();
+  const shouldShowNavHeader = !["/", "/register", "/login"].includes(pathname);
+  return shouldShowNavHeader ? <NavHeader /> : null;
+}
+
 function App() {
   const userDetails = {
     username: "Wan Razim",
     bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
   };
+
   return (
     <div className="App">
       <AppContext.Provider value={{ userDetails }}>
         <Router>
           <Navbar />
+          <NavHeaderWrapper />
           <Routes>
-            <Route path="/navHeader" element={<NavHeader />} />
             <Route path="/HomePage" element={<HomePage />} />
             <Route path="/" element={<LaunchPage />} />
             <Route path="/register" element={<RegisterPage />} />
