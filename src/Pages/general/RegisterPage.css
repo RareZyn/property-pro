@@ -1,0 +1,108 @@
+.RegisterPage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../Res/image/launchBackground.jpg");
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  height: 1000px;
+  width: 100%;
+  /* Remove or adjust z-index */
+}
+
+.RegisterPage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  filter: blur(5px);
+  /* Remove or adjust z-index */
+}
+
+.RegisterBlock {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  z-index: 2;
+  background-color: #27a088;
+  border-radius: 30px;
+}
+form {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.register-topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+  width: 50%;
+}
+
+#input-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 600;
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+input {
+  border-radius: 20px;
+  height: 40px;
+  border: none;
+  padding-left: 20px;
+  margin-left: -20px;
+  margin-top: 5px;
+}
+
+#create-account {
+  margin-top: 40px;
+  background-color: #f49f1f;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#have-account {
+  margin-top: 20px;
+  text-align: center;
+  z-index: 99;
+}
+
+#login-word {
+  color: #f49f1f;
+  font-weight: 600;
+}
+#create-account:hover {
+  background-color: #e68700;
+  color: white;
+}
+
+#login-word:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

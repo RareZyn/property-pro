@@ -31,7 +31,7 @@
     background-color: #27a08a;
 }
 
-.text{
+.buyer, .seller{
     text-align: center;
     font-size: 75px;
     font-weight: bold;
