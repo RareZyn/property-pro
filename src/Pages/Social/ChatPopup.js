@@ -1,4 +1,4 @@
-import styles from "./ChatPopup.module.css";
+import "./ChatPopup.css";
 
 
 export const ChatPopup = ({className}) => {
@@ -7,7 +7,7 @@ export const ChatPopup = ({className}) => {
       
       <ul>
         <li>
-          <div className={styles.ChatTitle}>
+          <div className="ChatTitle">
             <h1>Chats</h1>
             <a href="/chat">
               <img src={require("../../Res/image/fullscreen-icon.png")}/>
@@ -17,7 +17,7 @@ export const ChatPopup = ({className}) => {
 
         <li>
           <a href="./chat">
-            <div id={styles.ProfilePicture} className="ProfilePicture"></div>
+            <div className="ProfilePicture"></div>
             <div className="ChatInfo">
               <h1>Chat 1</h1>
               <p>Assalamualaikum</p>
@@ -36,8 +36,8 @@ function CustomChatUserListPopup({username,chat}){
   return(
     <li>
       <a href="./chat">
-        <div id={styles.ProfilePicture} className="ProfilePicture"></div>
-        <div className={styles.ChatInfo}>
+        <div className="ProfilePicture"></div>
+        <div className="ChatInfo">
           <h1>{username}</h1>
           <p>{chat}</p>
         </div>
