@@ -1,1 +1,114 @@
+.MyAccountTransactions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+.MyAccountTransactionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--darkBlue);
+    border-radius: 25px;
+    box-shadow: 0px 3px 5px var(--darkBlue);
+    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    padding: 30px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.MyAccountTransactionItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
+.MyAccountTransactionItem img {
+    margin-right: 50px; 
+    height: auto 
+}
+
+.MyAccountTransactions p {
+    flex: 1; 
+    margin: 0; 
+    margin-bottom: 10px;
+}
+
+.MyAccountTransactionItem h1 {
+    flex: 1; 
+    margin: 0; 
+    margin-bottom: 15px;
+    color: var(--creamyWhite);
+}
+
+.MyAccountTransactionItem h2 {
+    flex: 1; 
+    margin: 0; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--creamyWhite);
+}
+
+.PriceContainer {
+    background-color: var(--orange);
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+.MyAccountTransactionDone {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--orange);
+    border-radius: 25px;
+    box-shadow: 0px 3px 5px var(--darkBlue);
+    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    padding: 30px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.MyAccountTransactionItem-done {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
+.MyAccountTransactionItem-done img {
+    margin-right: 50px; 
+    height: auto 
+}
+
+.MyAccountTransactionItem-done h1 {
+    flex: 1; 
+    margin: 0; 
+    margin-bottom: 15px;
+    color: var(--darkBlue);
+}
+
+.MyAccountTransactionItem-done h2 {
+    flex: 1; 
+    margin: 0; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--darkBlue);
+}
+
+.PriceContainer-done {
+    background-color: var(--darkBlue);
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: var(--creamyWhite);
+    width: fit-content;
+}

@@ -1,4 +1,4 @@
-import "./BrowserProperty.css";
+import style from "./BrowserProperty.module.css";
 import {PropertyDisplayCard} from "./Property component/PropertyDisplayCard";
 import SearchBar from "../../Components/SearchBar";
 import backIcon from "../../Res/image/back-icon.png";
@@ -33,13 +33,15 @@ export const BrowserProperty = () => {
   }
 
   return (
-    <div className="BrowserProperty">
-      <header id="header-container">
-        <a id="back-button-container" href=""><img id="back-button" src={backIcon} alt=""/></a>
+    <div className={style["BrowserProperty"]}>
+      <header id={style["header-container"]}>
+        <a id={style["back-button-container"]} href="">
+          <img id={style["back-button"]} src={backIcon} alt=""/>
+        </a>
         <SearchBar hint="Browse Property..."/>
       </header>
-      <div className="Properties-grid">
-        <h1 id="title">HOT ITEMS</h1>
+      <div className={style["Properties-grid"]}>
+        <h1 id={style["title"]}>HOT ITEMS</h1>
         {propertyCards}
       </div>
     </div>

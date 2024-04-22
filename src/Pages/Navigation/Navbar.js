@@ -18,6 +18,15 @@ export const Navbar = () => {
         <Link id="nav" to="/make-payment">
           Make Payment Page
         </Link>
+        <Link id="nav" to="/choose-bank">
+          ChooseBank
+        </Link>
+        <Link id="nav" to="/make-payment-debit-online">
+          MakePaymentDebitOnline
+        </Link>
+        <Link id="nav" to="/make-payment-success">
+          MakePaymentSuccess
+        </Link>
       </div>
       <div id="user">
         <h4>Wan</h4>

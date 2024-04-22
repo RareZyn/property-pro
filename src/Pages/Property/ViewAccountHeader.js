@@ -3,6 +3,7 @@ import { useState } from "react";
 import {ViewAccountProperty} from "./ViewAccountProperty";
 import {ViewAccountPost} from "./ViewAccountPost";
 import {ViewAccountAbout} from "./ViewAccountAbout";
+import profilePic from "../../Res/image/user profile.png"
 
 export const ViewAccountHeader = ({name, bio}) => {
   const [currentPage, setCurrentPage] = useState("Property");
@@ -24,7 +25,9 @@ export const ViewAccountHeader = ({name, bio}) => {
     <>
       <div className="ViewAccountHeader">
         <section className="flex" id="details-vah">
-          <div id="pp-container" className="ProfilePicture"></div>
+          <div id="pp-container">
+            <img src={profilePic} alt="" srcset="" />
+          </div>
           <div className="acc-desc">
             <h1 >{name}</h1>
             <span>{bio}</span>
