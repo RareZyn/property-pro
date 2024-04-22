@@ -10,7 +10,7 @@
     position: absolute;
     top:5rem;
     right: 0;
-    transform: translateX(-50%);
+    transform: translateX(-75%);
     width: auto;
     z-index: 2;
 }
@@ -53,7 +53,8 @@
     margin-right: 0px;
 }
 
-#ProfilePicture{
+.ProfilePicture{
+    background-color: var(--creamyWhite);
     width: 64px;
 }
 
