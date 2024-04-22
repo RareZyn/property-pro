@@ -22,7 +22,9 @@ export const RegisterPage = () => {
               Password
               <input type="Password" />
             </section>
-            <button id="create-account">Create Account</button>
+            <Link to="/Homepage">
+              <button id="create-account">Create Account</button>
+            </Link>
             <div id="have-account">
               <p>
                 Already have an account?{" "}

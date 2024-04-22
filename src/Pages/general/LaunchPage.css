@@ -69,11 +69,11 @@
 
 #launch-topic {
   margin-top: 100px;
-  font-size: 70px;
+  font-size: 70px; /* Initial font size */
   text-align: center;
   color: rgb(255, 255, 255);
   text-shadow: 5px 1px rgb(9, 119, 119), 5px 1px rgb(9, 119, 119);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition */
   animation: slideInFromRight 2s ease forwards;
 }
 
@@ -101,9 +101,10 @@
   color: rgb(243, 243, 243);
 }
 
-.hovered {
-  transform: scale(1.1);
-  color: rgb(243, 243, 243);
+#launch-topic.hovered {
+  font-size: 75px;
+  transform: scale(1.5);
+  color: rgb(255, 255, 255);
   text-shadow: 5px 0 var(--darkGreen), 5px 0 var(--darkGreen);
 }
 

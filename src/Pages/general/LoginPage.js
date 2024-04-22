@@ -1,39 +1,35 @@
+import "./LoginPage.css";
+import { Link } from "react-router-dom";
+
 export const LoginPage = () => {
   return (
     <div className="LoginPage">
-      <div class="wrapper">
-        <form action="">
-          <h1>Login To Your Account</h1>
-
-          <div class="input-box">
-            <input type="text" placeholder="Username" required />
-            <i class="bx bxs-user"></i>
-          </div>
-
-          <div class="input-box">
-            <input type="password" placeholder="Password" required />
-            <i class="bx bxs-lock-alt"></i>
-          </div>
-
-          <div class="remember-forgot">
-            <label>
-              <input type="checkbox" />
-              Remember me
-            </label>
-            <a href="#">Forgot password?</a>
-          </div>
-
-          <button id="loginButton" class="btn">
-            Login
-          </button>
-
-          <div class="register-link">
+      <form className="LoginBlock" action="">
+        <div className="login-topic">
+          <h1>Login to your account</h1>
+        </div>
+        <div className="login-div">
+          <section id="login-section">
+            Name
+            <input type="text" />
+          </section>
+          <section id="login-section">
+            password
+            <input type="password" />
+          </section>
+          <Link to="/Homepage">
+            <button id="login-account">Login Account</button>
+          </Link>
+          <div id="dont-have-account">
             <p>
-              Don't have an account? <a href="#">Register</a>
+              Do not have an account?{" "}
+              <Link to="/register" id="register-word">
+                Register
+              </Link>
             </p>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
