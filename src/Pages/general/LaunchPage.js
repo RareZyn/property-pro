@@ -21,7 +21,7 @@ export const LaunchPage = () => {
           <h1 id="website-name">PropertyPro+</h1>
           <h1
             id="launch-topic"
-            className={hovered ? "hovered" : ""}
+            className={`${hovered ? "hovered" : ""}`}
             onMouseEnter={handleHover}
             onMouseLeave={handleHover}
           >

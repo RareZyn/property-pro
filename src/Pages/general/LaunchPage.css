@@ -101,10 +101,11 @@
   color: rgb(243, 243, 243);
 }
 
-.hovered {
+#launch-topic.hovered {
   transform: scale(1.1);
   color: rgb(243, 243, 243);
   text-shadow: 5px 0 var(--darkGreen), 5px 0 var(--darkGreen);
+  font-size: larger;
 }
 
 #button-register,
