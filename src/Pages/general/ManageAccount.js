@@ -1,3 +1,4 @@
+import { NavHeader } from "../Navigation/NavHeader";
 import "./ManageAccount.css";
 import { MyAccountHeader } from "./MyAccountHeader";
 import React, { useState } from "react";

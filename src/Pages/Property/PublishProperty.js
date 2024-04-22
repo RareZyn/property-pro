@@ -1,6 +1,7 @@
 import "./PublishProperty.css";
 import { MyAccountHeader } from "../general/MyAccountHeader";
 import { Link } from "react-router-dom";
+import { NavHeader } from "../Navigation/NavHeader";
 
 export const PublishProperty = () => {
   return (

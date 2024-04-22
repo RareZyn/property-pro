@@ -1,6 +1,7 @@
 import "./PropertyDetails.css";
 import { MyAccountHeader } from "../general/MyAccountHeader";
 import { Link } from "react-router-dom";
+import { NavHeader } from "../Navigation/NavHeader";
 export const PropertyDetails = () => {
   //do a function onClick for saved icon
   //if click saved icon, will create a new propertydisplaycard

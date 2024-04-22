@@ -1,6 +1,7 @@
 import "./ManageProperty.css";
 import backIcon from "../../Res/image/back-icon.png";
 import { PropertyDisplayCard } from "./Property component/PropertyDisplayCard";
+import { NavHeader } from "../Navigation/NavHeader";
 
 export const ManageProperty = () => {
   const propertyCards = [];
