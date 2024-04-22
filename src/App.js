@@ -49,6 +49,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/navHeader" element={<NavHeader />} />
           <Route path="/HomePage" element={<HomePage />} />
