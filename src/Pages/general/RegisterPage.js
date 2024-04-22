@@ -9,7 +9,7 @@ export const RegisterPage = () => {
             <h1>Create New Account</h1>
           </div>
           <div className="inputDiv">
-            <input type="text">
+            <input type="text" />
           </div>
         </form>
       </div>
