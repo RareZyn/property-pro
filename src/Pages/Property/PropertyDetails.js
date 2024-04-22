@@ -1,81 +1,100 @@
 import "./PropertyDetails.css";
+import {MyAccountHeader} from './MyAccountHeader';
 
 export const PropertyDetails = () => {
+  //do a function onClick for saved icon
+  //if click saved icon, will create a new propertydisplaycard 
+  //and display it at SavedProperty page
+
   return (
     <div className="PropertyDetails">
-      <span class="back-icon">
-      </span>
 
-      <div class="main-img-div">
-          <div class="main-img">
-              <img/>
-          </div>
+      <MyAccountHeader 
+        name="Username" 
+        bio="please guide me"
+        currentPage="Property"
+      />
+      
+      <div className="main-img-div">
+        <div className="main-img-div">
+                <span className="back-icon">
+                    <img src={require("../../Res/image/back-icon.png")}/>
+                </span>
+                <Link to="/browser-property">
+                  <div className="main-img-box">
+                      <img src={require("../../Res/image/IMG PH.png")}/>
+                  </div>
+                </Link>
+                <div className="invisible-element"></div>
+            </div>
       </div>
 
-      <div class="property-details">
-          <div class="other-imgs">
-              <div class="other-imgs-box">
-                  <img/>
-              </div>
+      <div className="property-details">
+          <div className="other-imgs">
+              <img src={require("../../Res/image/IMG PH.png")}/>
           </div>
 
-          <div class="item-div">
-              <div class="first-line-div">
-                  <span class="item-title">Item Title</span>
-                  <div class="share-icon">
+          <div className="item-div">
+              <div className="first-line-div">
+                  <span className="item-title">Item Title</span>
+                  <div className="share-icon">
                     <div>
                         <img src={require("../../Res/image/share-icon-black.png")}/>
                     </div>
-                    <span class="shares-text">Shares</span>
+                    <span className="shares-text">Shares</span>
                   </div>
               </div>
               
-              <div class="seller-name">Seller</div>
+              <Link to="/view-account-property">
+                <div className="seller-name">Seller</div>
+              </Link>
   
-              <div class="item-desc">
+              <div className="item-desc">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui incidunt quaerat totam eos alias rerum odio enim deleniti porro, culpa explicabo reprehenderit exercitationem aliquam molestias doloremque, error hic dolorum facilis.
               </div>
               
-              <div class="price-saved-div">
-                  <div class="invisible-element"></div>
-                  <button class="price-btn">Price RMXX.XX</button>
-                  <div class="bookmark-icon">
+              <div className="price-saved-div">
+                  <div className="invisible-element"></div>
+                  <Link to="/make-payment">
+                    <button className="price-btn">Price RMXX.XX</button>
+                  </Link>
+                  <div className="bookmark-icon">
                     <img src={require("../../Res/image/bookmark-icon.png")}/>
                   </div>                
               </div>
           </div>
 
-          <div class="comments-section">
-              <div class="comments">Comments</div>
+          <div className="comments-section">
+              <div className="comments">Comments</div>
 
-              <div class="comments-container">
-                  <div class="commenter-details">
-                    <div class="icon-name-div">
+              <div className="comments-container">
+                  <div className="commenter-details">
+                    <div className="icon-name-div">
                             <img src={require("../../Res/image/user profile.png")}/>                           
                         </div>
                       <div>
-                          <div class="name">Wany Haritah</div>
-                          <div class="time-public-div">10 mins ago . Public</div>
+                          <div className="name">Wany Haritah</div>
+                          <div className="time-public-div">10 mins ago . Public</div>
                       </div>
                   </div>
 
-                  <div class="comment-text">
+                  <div className="comment-text">
                       Comment bla bla bla bla bla
                   </div>
               </div>
 
-              <div class="comments-container">
-                  <div class="commenter-details">
-                    <div class="icon-name-div">
+              <div className="comments-container">
+                  <div className="commenter-details">
+                    <div className="icon-name-div">
                           <img src={require("../../Res/image/user profile.png")}/>                           
                         </div>
                       <div>
-                          <div class="name">Wany Haritah</div>
-                          <div class="time-public-div">10 mins ago . Public</div>
+                          <div className="name">Wany Haritah</div>
+                          <div className="time-public-div">10 mins ago . Public</div>
                       </div>
                   </div>
 
-                  <div class="comment-text">
+                  <div className="comment-text">
                       Comment bla bla bla bla bla
                   </div>
               </div>
