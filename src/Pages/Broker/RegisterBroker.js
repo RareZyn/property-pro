@@ -16,7 +16,7 @@ export const RegisterBroker = () => {
         <RegisterBrokerInputItem inputTitle="Email" inputHint=""></RegisterBrokerInputItem> 
         <RegisterBrokerInputItem inputTitle="Password" inputHint=""></RegisterBrokerInputItem>
         <button>
-          <a href="./verify-property">
+          <a href="./verify-property-homepage">
             Create Account
           </a>
         </button>

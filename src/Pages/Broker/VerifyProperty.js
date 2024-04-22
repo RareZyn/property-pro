@@ -1,12 +1,13 @@
-import { useState } from "react";
+import React,{ useState,useRef,useEffect } from "react";
 import "./VerifyProperty.css";
-import { PropertyRejectionCard } from "./PropertyRejectionCard.js"
+import PropertyRejectionCard from "./PropertyRejectionCard.js"
 
 export const VerifyProperty = () => {
   const [isRejectClicked,setIsRejectClicked] = useState(true);
   const [rejectionCard,setRejectionCard] = useState("hide"); 
+  let rejectionCardRef = useRef();
 
-  const BrokerRejectProperty = () =>{
+const BrokerRejectProperty = () =>{
     setIsRejectClicked(!isRejectClicked);
     if(isRejectClicked){
       setRejectionCard("visible");
@@ -14,11 +15,27 @@ export const VerifyProperty = () => {
     else{
       setRejectionCard("hide");
     }
+    console.log(rejectionCard);
   } 
+
+  useEffect(() => {
+    let handler = (e) =>{
+      if(rejectionCardRef.current && 
+        !rejectionCardRef.current.contains(e.target)){
+      setRejectionCard("hidden");
+      setIsRejectClicked(!isRejectClicked);
+      }
+    }
+    document.addEventListener("mousedown",handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  },[rejectionCard])
 
   return (
     <div className="VerifyProperty">
-      {rejectionCard === "visible" && <PropertyRejectionCard />}
+      {rejectionCard === "visible" && <PropertyRejectionCard ref={rejectionCardRef}/>}
       <img src={require("../../Res/image/image icon.png")} className="ThumbnailImage"/>
       <div className="PropertyDetailsCard">
         <img src={require("../../Res/image/image icon.png")}/>
