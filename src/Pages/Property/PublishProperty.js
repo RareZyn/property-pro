@@ -1,11 +1,23 @@
 import "./PublishProperty.css";
+import {MyAccountHeader} from './MyAccountHeader';
 
 export const PublishProperty = () => {
   return (
     <div className="PublishProperty">
+
+      <MyAccountHeader 
+        name="Username" 
+        bio="please guide me"
+        currentPage="Property"
+      />
+
       <div class="for-top-margin"></div>
 
-      <span class="back-icon"></span>
+      <Link to="/manage-property">
+        <span class="back-icon">
+              <img src={require("../../Res/image/back-icon.png")}/>
+        </span>
+      </Link>
 
       <div class="publish-section">
           <div class="cart-box">
@@ -86,7 +98,9 @@ export const PublishProperty = () => {
           </div>
 
           <div class="publish-div">
+            <Link to="/manage-property">
               <button class="publish-btn">Publish</button>
+            </Link>
           </div>
       </div>
     </div>
