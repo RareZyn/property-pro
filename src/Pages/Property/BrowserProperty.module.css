@@ -9,7 +9,6 @@
     background-image: url("../../Res/image/image-property.png");
     background-size: cover;
     backdrop-filter: blur(3px);
-    /* filter: blur(3px); */
 }
 
 #browse-search{

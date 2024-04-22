@@ -1,7 +1,0 @@
-.own-property-container{
-    display: grid;
-    grid-template-columns: 70%;
-    row-gap: 50px;
-    margin: 5% auto;
-    place-content: center;
-}

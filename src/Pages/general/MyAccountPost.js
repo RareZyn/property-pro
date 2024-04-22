@@ -1,5 +1,5 @@
 import "./MyAccountPost.css";
-import PostCard from "../../Components/PostCard";
+import PostCard from "../../Cards/Posting Cards/PostCard";
 import { MyAccountHeader } from "./MyAccountHeader";
 import { NavHeader } from "../Navigation/NavHeader";
 

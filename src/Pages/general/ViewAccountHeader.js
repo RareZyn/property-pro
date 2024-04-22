@@ -1,4 +1,4 @@
-import "./ViewAccountHeader.css";
+import "./AccountHeader.css";
 import { useState, useContext} from "react";
 import {ViewAccountProperty} from "./ViewAccountProperty";
 import {ViewAccountPost} from "./ViewAccountPost";

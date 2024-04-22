@@ -7,7 +7,7 @@
   }
 
 #item-card{
-    min-width: calc(1440px * 0.7);
+    width: 100%;
     aspect-ratio: 6/1;
     background-color: #FFF2AF;
     margin: 0 auto;
@@ -18,15 +18,19 @@
     transition: 
         box-shadow 0.5s ease 0.2,
         background-color 0.5s ease 0s
-        opacity 0.5s ease 0s;
+        opacity 0.5s ease 0s,
+        width 1s ease 0.2s,
+        height 1s ease 0.2s;
 }
 
 #item-card:hover{
     box-shadow: 0px 11px 17px 11px rgba(112, 112, 112, 0.3);
-    /* background-color: #FFFDEF; */
-    opacity: 0.8;
+    background-color: var(--orange);
+    opacity: 0.6;
     border: none;
     cursor: pointer;
+    width: 101%;
+    height: 101%;
 }
 
 #img-container{

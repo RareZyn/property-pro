@@ -1,5 +1,5 @@
 import "./MyAccountTransaction.css";
-import ItemComponentCard from "../Property/Property component/ItemComponentCard";
+import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
 
 export const MyAccountTransaction = () => {
   return (

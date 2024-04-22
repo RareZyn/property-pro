@@ -1,5 +1,5 @@
-import "./ViewAccountProperty.css";
-import ItemComponentCard from "./Property component/ItemComponentCard";
+import "./AccountFragmentGrid.css";
+import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
 import image from "../../Res/image/property image.png"
 
 export const ViewAccountProperty = () => {
@@ -9,8 +9,10 @@ export const ViewAccountProperty = () => {
   }
 
   return (
-    <div className="own-property-container">
-      {items}
+    <div>
+      <div className="acc-grid-container">
+        {items}
+      </div>
     </div>
   );
 };

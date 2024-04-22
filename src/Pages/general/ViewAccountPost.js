@@ -1,8 +1,8 @@
 import styles from "./ViewAccountPost.module.css";
-import PostCard from "../../Components/PostCard";
+import PostCard from "../../Cards/Posting Cards/PostCard";
 import { ViewAccountHeader } from "./ViewAccountHeader";
 
-import AddPostCard from "../../Components/AddPostCard";
+import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
 
 export const ViewAccountPost = () => {
   let items = [];

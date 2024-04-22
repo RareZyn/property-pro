@@ -1,5 +1,5 @@
 import styles from "./SearchBar.module.css"
-import icon from "../Res/image/search-icon.png"
+import icon from "../../Res/image/search-icon.png"
 
 function SearchBar({hint}){
     return(

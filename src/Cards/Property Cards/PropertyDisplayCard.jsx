@@ -1,9 +1,9 @@
 import "./PropertyDisplayCard.css";
-import imgPh from "../../../Res/image/image-dummy-house.png"
+import imgPh from "../../Res/image/image-dummy-house.png"
 import { useState } from "react";
 import { useEffect } from "react";
 
-export const PropertyDisplayCard = ({color, thumbnailImage}) => {
+export const PropertyDisplayCard = ({thumbnailImage}) => {
     const [thumbnail, setThumbnail] = useState(imgPh);
     useEffect(() => {
         if (thumbnailImage) {
@@ -17,7 +17,7 @@ export const PropertyDisplayCard = ({color, thumbnailImage}) => {
     }, [thumbnailImage]);
     
     return(
-        <div id="prop-card" style={{backgroundColor: color}}>
+        <div id="prop-card">
         <div id="img-placeholder">
            <img src={thumbnail} alt="Image" srcset="" id="img-ph"/>
         </div>
