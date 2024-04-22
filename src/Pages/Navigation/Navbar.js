@@ -36,7 +36,7 @@ export const Navbar = () => {
         <Link id="nav" to="/register-broker">
           Register Broker
         </Link>
-        <Link id="nav" to="/verify-property">
+        <Link id="nav" to="/verify-property-homepage">
           Verify Property
         </Link>
         <Link id="nav" to="/update-progress">

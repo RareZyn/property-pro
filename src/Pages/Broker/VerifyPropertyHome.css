@@ -1,0 +1,39 @@
+.VerifyPropertyHome{
+    margin-left: 64px;
+    margin-right: 64px;
+}
+
+.VerifyPropertyTitle{
+    font-family: 'Roboto';
+    width: 100%;
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.VerifyPropertyHomeItemsGrid{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    grid-auto-rows: 240px;
+    grid-auto-columns: 240px;
+}
+
+.VerifyPropertyHomeItem{
+    cursor: pointer;
+    background-color: var(--orange);
+    align-content: center;
+    width: 100%;
+    text-align: center;
+    color: var(--darkBlue);
+    transition: all 0.3s ease-out;
+}
+
+.VerifyPropertyHomeItem:hover{
+    transition: all 0.3s ease-out;
+    background-color: var(--white);
+}
+
+.VerifyPropertyHomeItem:active{
+    transition: all 0s;
+    background-color: var(--darkBlue);
+}

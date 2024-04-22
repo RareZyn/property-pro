@@ -34,6 +34,7 @@ import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
+import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/chat-popup" element={<ChatPopup />} />
           <Route path="/register-broker" element={<RegisterBroker />} />
           <Route path="/login-broker" element={<LoginBroker />} />
+          <Route path="/verify-property-homepage" element={<VerifyPropertyHome />} />
           <Route path="/verify-property" element={<VerifyProperty />} />
           <Route path="/update-progress" element={<UpdateProgress />} />
           <Route path="/chat" element={<Chat />} />

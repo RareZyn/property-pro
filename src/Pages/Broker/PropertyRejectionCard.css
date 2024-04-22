@@ -1,0 +1,10 @@
+.PropertyRejectionCard{
+    display: absolute;
+    background-color: var(--creamyWhite);
+    z-index: 4;
+}
+
+.PropertyRejectionCard h2{
+    width: 100%;
+    text-align: right;
+}
