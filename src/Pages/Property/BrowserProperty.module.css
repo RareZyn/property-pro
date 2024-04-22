@@ -1,23 +1,23 @@
 #header-container{
-    aspect-ratio: 5/1;
+    aspect-ratio: 6/1;
     width: 100%;
     background-color: grey;
     margin: 0;
     display: block;
+    padding: 5% 0;
+    background-image: url("../../Res/image/image-property.png");
+    background-size: cover;
+    backdrop-filter: blur(3px);
+    /* filter: blur(3px); */
 }
 
-#back-button-container{
-    margin-left: 12%;
-}
-
-#back-button{
-    width: 4.51%;
-    margin: 2% 3%;
+#browse-search{
+    width: 50%;
 }
 
 .Properties-grid{
     display: grid;
-    grid-template-columns: repeat(5, 15%);
+    grid-template-columns: repeat(4, 300px);
     column-gap: 1.04%;
     row-gap: 15px;
     margin: 5% 0;
@@ -25,8 +25,8 @@
 }
 
 #title{
-    grid-column: 1/6;
-    font-family: Roboto;
-    font-weight: normal;
-    font-size: 48px;
+    grid-column: 1/5;
+    font-family: "Outfit";
+    font-weight: bold;
+    font-size: 2.5em;
 }
