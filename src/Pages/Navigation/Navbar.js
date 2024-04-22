@@ -12,6 +12,9 @@ export const Navbar = () => {
         <Link id="nav" to="/register">
           Register Page
         </Link>
+        <Link id="nav" to="/login">
+          Login Page
+        </Link>
 
         <Link id="nav" to="/make-payment">
           Make Payment Page
