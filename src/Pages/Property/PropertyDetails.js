@@ -15,16 +15,16 @@ export const PropertyDetails = () => {
         currentPage="Property"
       />
       
-      <div className="main-img-div">
+      <div className="main-img">
         <div className="main-img-div">
-                <span className="back-icon">
-                    <img src={require("../../Res/image/back-icon.png")}/>
-                </span>
                 <Link to="/browser-property">
+                  <span className="back-icon">
+                      <img src={require("../../Res/image/back-icon.png")}/>
+                  </span>
+                </Link>
                   <div className="main-img-box">
                       <img src={require("../../Res/image/IMG PH.png")}/>
                   </div>
-                </Link>
                 <div className="invisible-element"></div>
             </div>
       </div>

@@ -85,6 +85,7 @@ function App() {
           <Route path="/browser-property" element={<BrowserProperty />} />
           <Route path="/saved-property" element={<SavedProperty />} />
           <Route path="/manage-property" element={<ManageProperty />} />
+          <Route path="/property-details-ownerview" element={<PropertyDetails-OwnerView />} />
           <Route
             path="/view-account-header"
             element={
