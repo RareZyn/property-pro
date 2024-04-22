@@ -50,8 +50,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/navHeader" element={<NavHeader />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/launch" element={<LaunchPage />} />
+          <Route path="/HomePage" element={<HomePage />} />
+          <Route path="/" element={<LaunchPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/choose-bank" element={<ChooseBank />} />

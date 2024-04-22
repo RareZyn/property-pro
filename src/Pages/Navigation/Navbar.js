@@ -6,15 +6,13 @@ export const Navbar = () => {
     <div className="Navbar">
       <div id="user">
         <h4>Aufa</h4>
-        <Link id="nav" to="/launch">
+        <Link id="nav" to="/">
           Launch Page
         </Link>
         <Link id="nav" to="/register">
           Register Page
         </Link>
-        <Link id="nav" to="/login">
-          Login Page
-        </Link>
+
         <Link id="nav" to="/make-payment">
           Make Payment Page
         </Link>
@@ -75,7 +73,7 @@ export const Navbar = () => {
       </div>
       <div id="user">
         <h4>Aisyah</h4>
-        <Link id="nav" to="/">
+        <Link id="nav" to="/HomePage">
           HomePage
         </Link>
         <Link id="nav" to="property-details">
