@@ -1,0 +1,28 @@
+#search-bar{
+    background-color: whitesmoke;
+    display: flex;
+    width: 50vw;
+    aspect-ratio: 15/1;
+    padding: 5px;
+    column-gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #bfbfbf;
+}
+
+#search-bar img{
+    height: inherit;
+    margin: 0;
+}
+
+#search-bar input{
+    height: inherit;
+    width: inherit;
+    margin: 0;
+}
+
+#search-bar:hover{
+    
+}
+
+#search-bar input:hover{
+}
