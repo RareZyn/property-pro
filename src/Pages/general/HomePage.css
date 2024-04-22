@@ -1,124 +1,200 @@
-.homepage-img-grid, .community-grid, .broker-grid, .ad-grid, .buyer-seller-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.homepage-img-grid,
+.community-grid,
+.broker-grid,
+.ad-grid,
+.buyer-seller-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.community-grid, .broker-grid, .ad-grid{
-    height: 320px;
+.community-grid,
+.broker-grid,
+.ad-grid {
+  height: 320px;
 }
 
-.homepage-img-grid{
-    box-sizing: content-box;
+.homepage-img-grid {
+  box-sizing: content-box;
 }
 
-.homepage-img-women{
-    margin-left: 80px;
+.homepage-img-women {
+  margin-left: 80px;
 }
 
-.homepage-img-men{
-    margin-right: 90px;
+.homepage-img-men {
+  margin-right: 90px;
 }
 
-.homepage-img img{
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
+.homepage-img img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.buyer-seller-section, .extra-div{
-    height: 250px;
-    background-color: #27a08a;
+.buyer-seller-section,
+.extra-div {
+  height: 250px;
+  background-color: #27a08a;
 }
 
-.buyer, .seller{
-    text-align: center;
-    font-size: 75px;
-    font-weight: bold;
-    font-family:'Outfit';
+.buyer,
+.seller {
+  text-align: center;
+  font-size: 75px;
+  font-weight: bold;
+  font-family: "Outfit";
 }
 
-.buyer{
-    color: white;
-    text-decoration: none;
+.buyer {
+  color: #2b3d50;
+  text-decoration: none;
 }
 
-.seller{
-    color: #2B3D50;
-    text-decoration: none;
+.seller {
+  color: #2b3d50;
+  text-decoration: none;
+}
+.buyer-seller-grid:hover .homepage-img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
-.img-div1, .img-div2, .img-div3{
-    margin: auto;
+.buyer:hover,
+.seller:hover {
+  color: white;
+  transform: scale(1.1) translateX(5px);
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.img-div1{
-    height: 220px;
+.homepage-img-men.enlarged img,
+.seller.enlarged {
+  transform: scale(1.1) translateY(-15px); /* Slide left */
+  transition: transform 0.3s ease;
 }
 
-.img-div2, .img-div3{
-    height: 180px;
+.homepage-img-women.enlarged img,
+.buyer.enlarged {
+  transform: scale(1.1) translateY(-15px); /* Slide right */
+  transition: transform 0.3s ease;
 }
 
-.community-img, .broker-img, .ad-img{
-    max-width: 100%;
-    max-height: 100%;
+.img-div1,
+.img-div2,
+.img-div3 {
+  margin: auto;
 }
 
-.homepage-btn{
-    background-color: #F49F1F;
-    border-radius: 35px;
-    border: none;
-    text-align: center;
-    font-size: 12px;
-    padding: 18px;
-    width: 150px;
-    cursor: pointer;
-    /*to make the transition smoother*/
-    transition: box-shadow 0.2s, background-color 0.2s;
+.img-div1 {
+  height: 220px;
 }
 
-.homepage-btn:hover{
-    background-color: #ffb340;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+.img-div2,
+.img-div3 {
+  height: 180px;
 }
 
-.homepage-btn:active{
-    opacity: 0.7;
+.community-img,
+.broker-img,
+.ad-img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.log-in-btn{
-    margin-right: 15px;
+.homepage-btn {
+  background-color: #f49f1f;
+  border-radius: 35px;
+  border: none;
+  text-align: center;
+  font-size: 12px;
+  padding: 18px;
+  width: 150px;
+  cursor: pointer;
+  /*to make the transition smoother*/
+  transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-.community-heading, .ad-heading{
-    text-align: center;
+.homepage-btn:hover {
+  background-color: #ffb340;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-.community-heading, .broker-heading, .ad-heading{
-    font-size: 40px;
-    color: #2B3D50;
-    font-weight: bold;
+.homepage-btn:active {
+  opacity: 0.7;
 }
 
-.broker-grid, .extra-div{
-    background-color: #27a08a;
+.log-in-btn {
+  margin-right: 15px;
 }
 
-.community-details{
-    text-align: center;
-    margin: auto;
+.community-heading,
+.ad-heading {
+  text-align: center;
 }
 
-.broker-details, .ad-details{
-    margin: auto;
+.community-heading,
+.broker-heading,
+.ad-heading {
+  font-size: 40px;
+  color: #2b3d50;
+  font-weight: bold;
 }
 
-.broker-btns{
-    text-align: center;
+.broker-grid,
+.extra-div {
+  background-color: #27a08a;
 }
 
-.community-heading, .community-desc, .broker-heading, 
-.broker-desc, .ad-heading, .ad-desc{
-    margin-bottom: 25px;
+.community-details {
+  text-align: center;
+  margin: auto;
+}
+
+.broker-details,
+.ad-details {
+  margin: auto;
+}
+
+.broker-btns {
+  text-align: center;
+}
+
+.community-heading,
+.community-desc,
+.broker-heading,
+.broker-desc,
+.ad-heading,
+.ad-desc {
+  margin-bottom: 25px;
+}
+
+.community-grid.slide-in,
+.ad-grid.slide-in {
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+.broker-grid.slide-in {
+  animation: slideInFromRight 1s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0.2;
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0.2;
+    transform: translateX(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
