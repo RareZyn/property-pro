@@ -1,3 +1,4 @@
+import { NavHeader } from "../Navigation/NavHeader";
 import "./ManageAccount.css";
 import { MyAccountHeader } from "./MyAccountHeader";
 import React, { useState } from "react";
@@ -26,6 +27,7 @@ export const ManageAccount = () => {
 
   return (
     <div className="ManageAccount">
+      <NavHeader />
       <MyAccountHeader
         name="Username"
         bio="new user in this website"
