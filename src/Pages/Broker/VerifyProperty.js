@@ -38,16 +38,80 @@ const BrokerRejectProperty = () =>{
       {rejectionCard === "visible" && <PropertyRejectionCard ref={rejectionCardRef}/>}
       <img src={require("../../Res/image/image icon.png")} className="ThumbnailImage"/>
       <div className="PropertyDetailsCard">
-        <img src={require("../../Res/image/image icon.png")}/>
-        <img src={require("../../Res/image/image icon.png")}/>
-        <img src={require("../../Res/image/image icon.png")}/>
+        <div className="MoreThumbnails">
+          <img src={require("../../Res/image/image icon.png")}/>
+          <img src={require("../../Res/image/image icon.png")}/>
+          <img src={require("../../Res/image/image icon.png")}/>
+        </div>
         <h1>Item Title</h1>
         <p>
           Bla bla bla bla bla
         </p>
         <button>Price RMXX.XX</button>
-        <div className="SupportingDocuments"></div>
-        <div className="ProgressBar"></div>
+        <div className="SupportingDocumentCard">
+          <h2>Supporting document</h2>
+          <ul>
+            <li>
+              <img src={require("../../Res/image/broker-icons/codicon_file-zip.png")}/>
+              <div className="VerifyRejectDocumnet">
+                <a href="/">
+                  <button className="SupportingDocumentButton">Verify</button>
+                </a>
+                <a href="/">
+                <button className="SupportingDocumentButton">Reject</button>
+                </a>
+              </div>
+              <div>
+                <h3>filename.zip</h3>
+                <button className="SupportingDocumentButton">View</button>
+              </div>
+            </li>
+
+            <li>
+              <img src={require("../../Res/image/broker-icons/codicon_file-zip.png")}/>
+              <div className="VerifyRejectDocumnet">
+                <a href="/">
+                  <button className="SupportingDocumentButton">Verify</button>
+                </a>
+                <a href="/">
+                <button className="SupportingDocumentButton">Reject</button>
+                </a>
+              </div>
+              <div>
+                <h3>filename.zip</h3>
+                <button className="SupportingDocumentButton">View</button>
+              </div>
+            </li>
+
+            <li>
+              <img src={require("../../Res/image/broker-icons/codicon_file-zip.png")}/>
+              <div className="VerifyRejectDocumnet">
+                <a href="/">
+                  <button className="SupportingDocumentButton">Verify</button>
+                </a>
+                <a href="/">
+                <button className="SupportingDocumentButton">Reject</button>
+                </a>
+              </div>
+              <div>
+                <h3>filename.zip</h3>
+                <button className="SupportingDocumentButton">View</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div className="ProgressBar">
+          <p>A section</p>
+          <p>B section</p>
+          <p>C section</p>
+        </div>
+        <div className="ProgressBarLabel">
+          <p>Upload property</p>
+          <p>Document verification</p>
+          <p>null</p>
+          <p>Broker verification</p>
+          <p>Property verified</p>
+        </div>
         <div className='RejectVerify'>
           <h3 onClick={BrokerRejectProperty}>Reject</h3>
           <h3>Verify</h3>
