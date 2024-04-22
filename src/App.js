@@ -70,7 +70,10 @@ function App() {
           <Route path="/chat-popup" element={<ChatPopup />} />
           <Route path="/register-broker" element={<RegisterBroker />} />
           <Route path="/login-broker" element={<LoginBroker />} />
-          <Route path="/verify-property-homepage" element={<VerifyPropertyHome />} />
+          <Route
+            path="/verify-property-homepage"
+            element={<VerifyPropertyHome />}
+          />
           <Route path="/verify-property" element={<VerifyProperty />} />
           <Route path="/update-progress" element={<UpdateProgress />} />
           <Route path="/chat" element={<Chat />} />
@@ -88,7 +91,10 @@ function App() {
           <Route path="/browser-property" element={<BrowserProperty />} />
           <Route path="/saved-property" element={<SavedProperty />} />
           <Route path="/manage-property" element={<ManageProperty />} />
-          <Route path="/property-details-ownerview" element={<PropertyDetailsOwnerView />} />
+          <Route
+            path="/property-details-ownerview"
+            element={<PropertyDetailsOwnerView />}
+          />
           <Route
             path="/view-account-header"
             element={
