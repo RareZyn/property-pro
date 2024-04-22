@@ -28,12 +28,12 @@ export const DropdownMenu = ({className}) => {
                     itemName={"Find Property"}
                 ></DropdownMenuNavItem>
                 <DropdownMenuNavItem
-                    href='/browser-property'
+                    href='/chat'
                     src={require("../../Res/image/dropdownmenu-icons/chat icon.png")}
                     itemName={"Chat"}
                 ></DropdownMenuNavItem>
                 <DropdownMenuNavItem
-                    href='/browser-property'
+                    href='/saved-property'
                     src={require("../../Res/image/dropdownmenu-icons/save icon.png")}
                     itemName={"Saved Property"}
                 ></DropdownMenuNavItem>
@@ -43,12 +43,12 @@ export const DropdownMenu = ({className}) => {
                     itemName={"Help Center"}
                 ></DropdownMenuNavItem>
                 <DropdownMenuNavItem
-                    href='/browser-property'
+                    href='/myaccount-details'
                     src={require("../../Res/image/dropdownmenu-icons/about app.png")}
                     itemName={"About App"}
                 ></DropdownMenuNavItem>
                 <DropdownMenuNavItem
-                    href='/browser-property'
+                    href='/'
                     src={require("../../Res/image/dropdownmenu-icons/logout icon.png")}
                     itemName={"Logout"}
                 ></DropdownMenuNavItem>
