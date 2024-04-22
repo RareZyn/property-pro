@@ -6,7 +6,7 @@ export const Navbar = () => {
     <div className="Navbar">
       <div id="user">
         <h4>Aufa</h4>
-        <Link id="nav" to="/launch">
+        <Link id="nav" to="/">
           Launch Page
         </Link>
         <Link id="nav" to="/register">
@@ -15,8 +15,18 @@ export const Navbar = () => {
         <Link id="nav" to="/login">
           Login Page
         </Link>
+
         <Link id="nav" to="/make-payment">
           Make Payment Page
+        </Link>
+        <Link id="nav" to="/choose-bank">
+          ChooseBank
+        </Link>
+        <Link id="nav" to="/make-payment-debit-online">
+          MakePaymentDebitOnline
+        </Link>
+        <Link id="nav" to="/make-payment-success">
+          MakePaymentSuccess
         </Link>
       </div>
       <div id="user">
@@ -36,7 +46,7 @@ export const Navbar = () => {
         <Link id="nav" to="/register-broker">
           Register Broker
         </Link>
-        <Link id="nav" to="/verify-property">
+        <Link id="nav" to="/verify-property-homepage">
           Verify Property
         </Link>
         <Link id="nav" to="/update-progress">
@@ -66,7 +76,7 @@ export const Navbar = () => {
       </div>
       <div id="user">
         <h4>Aisyah</h4>
-        <Link id="nav" to="/">
+        <Link id="nav" to="/HomePage">
           HomePage
         </Link>
         <Link id="nav" to="property-details">

@@ -10,6 +10,14 @@
     align-items: center;
 }
 
+.Blur{
+    display: absolute;
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+    background-color: red;
+}
+
 .ThumbnailImage{
     width: 128px;
     height: 128px;
@@ -26,6 +34,7 @@
     background-color: var(--lightGreen);
     border-radius: 24px;
     box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
+    
 }
 
 .PropertyDetailsCard h1,

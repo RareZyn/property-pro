@@ -22,6 +22,7 @@ import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
 import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PropertyDetailsOwnerView } from "./Pages/Property/PropertyDetails-OwnerView.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
 import { SavedProperty } from "./Pages/Property/SavedProperty.js";
@@ -34,12 +35,16 @@ import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
+import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
+import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
+import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
+import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 
 function App() {
   let userDetails = {
     username: "Wan Razim",
-    bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
-  }
+    bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
+  };
 
   return (
     <div className="App">
@@ -47,15 +52,28 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/navHeader" element={<NavHeader />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/launch" element={<LaunchPage />} />
+          <Route path="/HomePage" element={<HomePage />} />
+          <Route path="/" element={<LaunchPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/choose-bank" element={<ChooseBank />} />
+          <Route
+            path="/make-payment-debit-online"
+            element={<MakePaymentDebitOnline />}
+          />
+          <Route
+            path="/make-payment-success"
+            element={<MakePaymentSuccess />}
+          />
           <Route path="/side" element={<SideBar />} />
           <Route path="/make-payment" element={<MakePaymentPage />} />
           <Route path="/chat-popup" element={<ChatPopup />} />
           <Route path="/register-broker" element={<RegisterBroker />} />
           <Route path="/login-broker" element={<LoginBroker />} />
+          <Route
+            path="/verify-property-homepage"
+            element={<VerifyPropertyHome />}
+          />
           <Route path="/verify-property" element={<VerifyProperty />} />
           <Route path="/update-progress" element={<UpdateProgress />} />
           <Route path="/chat" element={<Chat />} />
@@ -73,7 +91,19 @@ function App() {
           <Route path="/browser-property" element={<BrowserProperty />} />
           <Route path="/saved-property" element={<SavedProperty />} />
           <Route path="/manage-property" element={<ManageProperty />} />
-          <Route path="/view-account-header" element={<ViewAccountHeader name={userDetails.username} bio={userDetails.bio}/>} />
+          <Route
+            path="/property-details-ownerview"
+            element={<PropertyDetailsOwnerView />}
+          />
+          <Route
+            path="/view-account-header"
+            element={
+              <ViewAccountHeader
+                name={userDetails.username}
+                bio={userDetails.bio}
+              />
+            }
+          />
           <Route
             path="/view-account-property"
             element={<ViewAccountProperty />}
