@@ -6,7 +6,6 @@ import { MyAccountHeader } from "../general/MyAccountHeader";
 export const PropertyDetailsOwnerView = () => {
   return (
     <div className="PropertyDetails-OwnerView">
-      <NavHeader />
       <MyAccountHeader
         name="Username"
         bio="please guide me"

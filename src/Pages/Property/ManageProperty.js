@@ -34,7 +34,6 @@ export const ManageProperty = () => {
 
   return (
     <div className="SavedProperty">
-      <NavHeader />
       <div id="title">
         <img src={backIcon} alt="" srcset="" />
         <h1>Manage Property</h1>

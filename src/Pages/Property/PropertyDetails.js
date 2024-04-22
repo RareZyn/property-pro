@@ -9,7 +9,6 @@ export const PropertyDetails = () => {
 
   return (
     <div className="PropertyDetails">
-      <NavHeader />
       <MyAccountHeader
         name="Username"
         bio="please guide me"

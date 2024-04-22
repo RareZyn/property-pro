@@ -27,7 +27,6 @@ export const ManageAccount = () => {
 
   return (
     <div className="ManageAccount">
-      <NavHeader />
       <MyAccountHeader
         name="Username"
         bio="new user in this website"

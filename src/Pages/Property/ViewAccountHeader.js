@@ -4,7 +4,6 @@ import { ViewAccountProperty } from "./ViewAccountProperty";
 import { ViewAccountPost } from "./ViewAccountPost";
 import { ViewAccountAbout } from "./ViewAccountAbout";
 import profilePic from "../../Res/image/user profile.png";
-import { NavHeader } from "../Navigation/NavHeader";
 
 export const ViewAccountHeader = ({ name, bio }) => {
   const [currentPage, setCurrentPage] = useState("Property");
@@ -25,7 +24,6 @@ export const ViewAccountHeader = ({ name, bio }) => {
   return (
     <>
       <div className="ViewAccountHeader">
-        <NavHeader />
         <section className="flex" id="details-vah">
           <div id="pp-container">
             <img src={profilePic} alt="" srcset="" />

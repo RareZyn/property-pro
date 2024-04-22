@@ -5,8 +5,6 @@ import { MyAccountHeader } from "./MyAccountHeader";
 export const MyAccountDetails = () => {
   return (
     <div className="MyAccountDetails">
-      <NavHeader />
-
       <MyAccountHeader
         name="Username"
         bio="new user in this website"
