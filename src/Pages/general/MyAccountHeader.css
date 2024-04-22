@@ -1,18 +1,23 @@
 .MyAccountHeader {
+  margin: 0;
+  padding: 0;
   background-color: #27a088;
   width: auto;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: center;
 }
 
 #details-vah {
+  margin: 0;
+  padding: 0;
   display: flex;
-  align-items: center;
-  margin-left: 19.02%;
-  margin-bottom: 0.7%;
-  margin-top: 2%;
+  justify-content: center;
   font-family: "Zilla_Slab";
+}
+
+.editButton {
+  width: 50px;
 }
 
 #user-image-9902 {
@@ -35,9 +40,8 @@ hr {
 }
 
 #account-link-container {
-  margin-left: 13%;
-  margin-bottom: 0.5%;
-  margin-top: 0.5%;
+  display: flex;
+  justify-content: center;
   font-size: 0.6em;
   padding: 5px 10px;
 }
@@ -47,6 +51,7 @@ hr {
   color: var(--f5);
   display: inline-block;
   margin-right: 6%;
+  padding: 0;
   transition: color 0.3s ease;
 }
 
@@ -59,4 +64,9 @@ hr {
   width: 25px;
   height: auto;
   margin-left: 20px;
+}
+
+#section {
+  width: 200px;
+  text-align: center;
 }
