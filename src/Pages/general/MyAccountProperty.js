@@ -3,7 +3,7 @@ import ItemComponentCard from "../Property/Property component/ItemComponentCard"
 import image from "../../Res/image/image-dummy-house.png"
 import { MyAccountHeader } from './MyAccountHeader';
 import { Link } from "react-router-dom";
-
+import { NavHeader } from "../Navigation/NavHeader";
 
 export const MyAccountProperty = () => {
   let items=[];
@@ -26,7 +26,6 @@ export const MyAccountProperty = () => {
         </button>
         </Link>
       </div>
-
     </div>
   );
 };

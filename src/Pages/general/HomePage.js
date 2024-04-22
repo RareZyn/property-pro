@@ -59,7 +59,6 @@ export const HomePage = () => {
 
   return (
     <div className="HomePage">
-      <NavHeader />
       <div className="homepage-img-grid">
         <div
           className={`homepage-img homepage-img-women ${

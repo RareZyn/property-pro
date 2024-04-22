@@ -20,7 +20,7 @@
 .ProfileViewDetailsCard{
     display: block;
     width: 100%;
-    margin: 0;
+    margin-left: 24px;
     height: fit-content;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
 }

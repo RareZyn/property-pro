@@ -1,11 +1,19 @@
 import "./MyAccountPost.css";
-import PostCard from "../../Components/PostCard"
-import { MyAccountHeader } from './MyAccountHeader';
+import PostCard from "../../Components/PostCard";
+import { MyAccountHeader } from "./MyAccountHeader";
+import { NavHeader } from "../Navigation/NavHeader";
 
 export const MyAccountPost = () => {
   return (
-    
     <div className="MyAccountPost">
+
+      <MyAccountHeader 
+
+      name="Username" 
+      bio="please guide me"
+      
+        currentPage="Property"
+      />
   <div className="MyAccountPost-page">
       <button className="share-post">
         <div className="share-firstRow">
@@ -72,50 +80,50 @@ export const MyAccountPost = () => {
       </div>
 
 
-      <div className="mypost">
-        <div className="user-profile">
-          <img
-            id="user-image"
-            src={require("../../Res/image/user profile.png")}
-          />
-          <section id="user-text">
-            <p id="user-name">Username</p>
-            <p id="user-time">10 min ago</p>
-          </section>
-        </div>
-        <div className="user-text">
-          <p id="user-text-post">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
-            nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas
-            ligula massa, varius a, semper congue, euismod non, mi. Proin
-            porttitor, orci nec nonummy molestie, enim est eleifend mi, non
-            fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa,
-            scelerisque vitae, consequat in, pretium a, enim.
-          </p>
-        </div>
-        <div className="user-button">
-          <button className="button">
-            <img id="img-button" src={require("../../Res/image/heart.png")} />
-            <p id="img-description">Likes</p>
-          </button>
-          <button className="button">
+        <div className="mypost">
+          <div className="user-profile">
             <img
-              id="img-button"
-              src={require("../../Res/image/message-square.png")}
+              id="user-image"
+              src={require("../../Res/image/user profile.png")}
             />
-            <p id="img-description">Comment</p>
-          </button>
-          <button className="button">
-            <img id="img-button" src={require("../../Res/image/share-2.png")} />
-            <p id="img-description">Share</p>
-          </button>
+            <section id="user-text">
+              <p id="user-name">Username</p>
+              <p id="user-time">10 min ago</p>
+            </section>
+          </div>
+          <div className="user-text">
+            <p id="user-text-post">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+              risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+              nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas
+              ligula massa, varius a, semper congue, euismod non, mi. Proin
+              porttitor, orci nec nonummy molestie, enim est eleifend mi, non
+              fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa,
+              scelerisque vitae, consequat in, pretium a, enim.
+            </p>
+          </div>
+          <div className="user-button">
+            <button className="button">
+              <img id="img-button" src={require("../../Res/image/heart.png")} />
+              <p id="img-description">Likes</p>
+            </button>
+            <button className="button">
+              <img
+                id="img-button"
+                src={require("../../Res/image/message-square.png")}
+              />
+              <p id="img-description">Comment</p>
+            </button>
+            <button className="button">
+              <img
+                id="img-button"
+                src={require("../../Res/image/share-2.png")}
+              />
+              <p id="img-description">Share</p>
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
 };
-
-
-      
