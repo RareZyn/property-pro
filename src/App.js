@@ -65,7 +65,7 @@ function App() {
       <AppContext.Provider value={{ userDetails }}>
         <Router>
           <Navbar />
-          <NavHeaderWrapper />
+          {/* <NavHeaderWrapper /> */}
           <Routes>
             <Route path="/HomePage" element={<HomePage />} />
             <Route path="/" element={<LaunchPage />} />

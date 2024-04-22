@@ -12,7 +12,7 @@ export const MyAccountProperty = () => {
   }
 
   return (
-    <div id="own-property-container">
+    <div className="own-property-container">
       {items}
 
       <div className="MyAccountPropertyAdd">
@@ -26,6 +26,7 @@ export const MyAccountProperty = () => {
         </button>
         </Link>
       </div>
+      
     </div>
   );
 };

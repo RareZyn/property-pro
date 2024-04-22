@@ -1,4 +1,4 @@
-#own-property-container{
+.own-property-container{
     display: grid;
     grid-template-columns: 70%;
     row-gap: 50px;

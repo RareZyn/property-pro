@@ -5,7 +5,7 @@ export const DropdownMenu = ({className}) => {
 
     return(
         <div className={className}>
-            <a className='ProfileViewDetailsCard' href='/myaccount-property'>
+            <a className='ProfileViewDetailsCard' href='/myaccount'>
                 <img className='ProfileView' src={require("../../Res/image/user profile.png")}/>
                 <h3 className='ProfileViewName'>Name</h3>
                 <p className='ProfileViewDesc'>Bla bla bla</p>
