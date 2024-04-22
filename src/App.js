@@ -22,6 +22,7 @@ import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
 import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PropertyDetailsOwnerView } from "./Pages/Property/PropertyDetails-OwnerView.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
 import { SavedProperty } from "./Pages/Property/SavedProperty.js";
@@ -85,7 +86,7 @@ function App() {
           <Route path="/browser-property" element={<BrowserProperty />} />
           <Route path="/saved-property" element={<SavedProperty />} />
           <Route path="/manage-property" element={<ManageProperty />} />
-          <Route path="/property-details-ownerview" element={<PropertyDetails-OwnerView />} />
+          <Route path="/property-details-ownerview" element={<PropertyDetailsOwnerView />} />
           <Route
             path="/view-account-header"
             element={
