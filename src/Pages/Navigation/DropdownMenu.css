@@ -10,9 +10,41 @@
     top: 5em;
     left: 0;
     display: flex;
-    width: 50%;
+    width: 560px;
+    min-width: 240px;
     height: 30em;
     background-color: var(--orange);
+}
+
+.ProfileViewDetailsCard{
+    display: block;
+    width: 100%;
+    margin: 0;
+    height: fit-content;
+}
+
+.ProfileView{
+    height: fit-content;
+    border-radius: 50%;
+    box-shadow: 0px 2px 12px var(--darkBlue);
+}
+
+.ProfileViewName{
+    font-family: 'Zilla_Slab';
+    width: fit-content;
+    text-align: left;
+    padding: 0;
+    margin: 10px;
+    color: var(--darkBlue);
+    border-bottom: 1px solid var(--darkBlue);
+}
+
+.ProfileViewDesc{
+    font-family: 'Zilla_Slab';
+    text-align: left;
+    padding: 0;
+    margin: 10px;
+    color: var(--darkBlue); 
 }
 
 .hidden{
