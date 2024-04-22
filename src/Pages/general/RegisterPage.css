@@ -49,6 +49,7 @@ form {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 20px;
   color: white;
 }
@@ -65,12 +66,16 @@ form {
   width: 100%;
   font-weight: 600;
   margin-top: 20px;
+  padding-left: 20px;
 }
 
 input {
   border-radius: 20px;
   height: 40px;
   border: none;
+  padding-left: 20px;
+  margin-left: -20px;
+  margin-top: 5px;
 }
 
 #create-account {
