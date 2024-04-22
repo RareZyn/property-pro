@@ -27,7 +27,7 @@ export const MyAccountHeader = () => {
           <img src={require("../../Res/image/editicon.jpg")} alt="Edit icon" />
         </a>
       </section>
-      <hr />
+
       <section id="account-link-container">
         <a
           className={`account-link ${

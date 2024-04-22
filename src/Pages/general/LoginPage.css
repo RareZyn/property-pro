@@ -27,7 +27,7 @@
 .LoginBlock {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
   z-index: 2;
   background-color: #27a088;
   border-radius: 30px;
@@ -54,7 +54,7 @@ form {
   display: flex;
   flex-direction: column;
   margin: 10px auto;
-  width: 50%;
+  width: 80%;
 }
 
 #login-section {
