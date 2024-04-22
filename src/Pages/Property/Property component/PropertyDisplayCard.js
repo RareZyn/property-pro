@@ -1,5 +1,5 @@
 import "./PropertyDisplayCard.css";
-import imgPh from "../../../Res/image/IMG PH.png"
+import imgPh from "../../../Res/image/image-dummy-house.png"
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -17,13 +17,13 @@ export const PropertyDisplayCard = ({color, thumbnailImage}) => {
     }, [thumbnailImage]);
     
     return(
-        <div id="prop-card" className="box-shadow" style={{backgroundColor: color}}>
+        <div id="prop-card" style={{backgroundColor: color}}>
+        <div id="img-placeholder">
+           <img src={thumbnail} alt="Image" srcset="" id="img-ph"/>
+        </div>
             <div id="details">
-                <div id="img-placeholder">
-                   <img src={thumbnail} alt="Image" srcset="" id="img-ph"/>
-                </div>
-                <h4>Item name</h4>
-                <span>RM XX.XX</span>
+                <span>Item name</span>
+                <span style={{fontWeight:"bold"}}>RM XX.XX</span>
             </div>
         </div>
     )
