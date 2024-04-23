@@ -37,7 +37,6 @@ export const MyAccountHeader = () => {
 
   return (
     <>
-    <NavHeader/>
       <div className="ViewAccountHeader">
         <section className="flex" id="details-vah">
           <div id="pp-container">
