@@ -6,7 +6,6 @@ import { NavHeader } from "../Navigation/NavHeader";
 export const PublishProperty = () => {
   return (
     <div className="PublishProperty">
-      <NavHeader/>
       <div className="publish-section">
         <div className="cart-box">
           <img src={require("../../Res/image/cart-icon.png")} />
