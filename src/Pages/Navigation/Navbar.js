@@ -85,6 +85,10 @@ export const Navbar = () => {
         <Link id="nav" to="publish-property">
           Publish Property
         </Link>
+
+        <Link id="nav" to="property-details-overvew">
+          Property Detail overview
+        </Link>
       </div>
       <div id="user">
         <h4>Azim</h4>
