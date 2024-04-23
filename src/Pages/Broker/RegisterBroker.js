@@ -15,6 +15,25 @@ export const RegisterBroker = () => {
         </div>
         <RegisterBrokerInputItem inputTitle="Email" inputHint=""></RegisterBrokerInputItem> 
         <RegisterBrokerInputItem inputTitle="Password" inputHint=""></RegisterBrokerInputItem>
+
+        <h7 className="RegisterBrokerUploadFileInstruction">Identification Card (IC)</h7>
+        <div id="RegisterBrokerUploadIC">
+          <input type="file" id="RegisterBrokerUploadIC-input"/>
+          <label for="RegisterBrokerUploadIC-input">
+            <img src={require("../../Res/image/upload.png")}/>
+            <h1>Choose files to upload</h1>
+          </label>
+        </div>
+
+        <h7 className="RegisterBrokerUploadFileInstruction">Real Estate Negotiator Liscence</h7>
+        <div id="RegisterBrokerUploadIC">
+          <input type="file" id="RegisterBrokerUploadIC-input"/>
+          <label for="RegisterBrokerUploadIC-input">
+            <img src={require("../../Res/image/upload.png")}/>
+            <h1>Choose files to upload</h1>
+          </label>
+        </div>
+
         <button>
           <a href="./verify-property-homepage">
             Create Account
