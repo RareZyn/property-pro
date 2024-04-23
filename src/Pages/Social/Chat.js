@@ -15,10 +15,10 @@ export const Chat = () => {
         <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"}></CustomChatUserList>
       </ul>
       <div className="ChatScreen">
-        <div className="ChatUser">
+        <a className="ChatUser" href="/view-account-header">
           <img src={require("../../Res/image/user profile.png")}/>
           <h1>Nama 1</h1>
-        </div>
+        </a>
 
         <div className="ChatContainer"></div>
 
