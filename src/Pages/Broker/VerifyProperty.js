@@ -1,7 +1,7 @@
 import React,{ useState,useRef,useEffect } from "react";
 import "./VerifyProperty.css";
 import PropertyRejectionCard from "./PropertyRejectionCard.js"
-import { number } from "yup";
+import { forwardRef } from "react";
 
 export const VerifyProperty = () => {
   const [isRejectClicked,setIsRejectClicked] = useState(true);
@@ -10,10 +10,15 @@ export const VerifyProperty = () => {
   const [supportingZip,setSupportingZip] = useState("");
   const [supportingPdf,setSupportingPdf] = useState("");
   const [supportingMedia,setSupportingMedia] = useState("");
+  const [documentRejectionPoup,setDocumentRejectionPopup] = useState("DocumentRejection-hidden");
   let rejectionCardRef = useRef();
   let verifyZip = useRef();
   let verifyPdf = useRef();
   let verifyMedia = useRef();
+  let rejectZipRef = useRef();
+  let rejectPdfRef = useRef();
+  let rejectMediaRef = useRef();
+  let cancelDocumentRejectionRef = useRef();
 
 const BrokerRejectProperty = () =>{
     setIsRejectClicked(!isRejectClicked);
@@ -31,8 +36,9 @@ const BrokerRejectProperty = () =>{
       if(rejectionCardRef.current && !rejectionCardRef.current.contains(e.target)){
         setRejectionCard("hidden");
         setIsRejectClicked(!isRejectClicked);
-      } 
-      else if(verifyZip.current && verifyZip.current.contains(e.target)){
+      }
+
+      if(verifyZip.current && verifyZip.current.contains(e.target)){
         if(supportingZip==="Verified"){
           setSupportingZip("");
         } 
@@ -56,6 +62,28 @@ const BrokerRejectProperty = () =>{
           setSupportingMedia("Verified");
         }
       }
+
+      if(rejectZipRef.current && rejectZipRef.current.contains(e.target)){
+        if(documentRejectionPoup==="DocumentRejection-hidden"){
+          setDocumentRejectionPopup("DocumentRejection");
+        }
+      }
+      else if(rejectPdfRef.current && rejectPdfRef.current.contains(e.target)){
+        if(documentRejectionPoup==="DocumentRejection-hidden"){
+          setDocumentRejectionPopup("DocumentRejection");
+        }
+      }
+      else if(rejectMediaRef.current && rejectMediaRef.current.contains(e.target)){
+        if(documentRejectionPoup==="DocumentRejection-hidden"){
+          setDocumentRejectionPopup("DocumentRejection");
+        }
+      }
+
+      if(cancelDocumentRejectionRef.current && cancelDocumentRejectionRef.current.contains(e.target)){
+        if(documentRejectionPoup==="DocumentRejection"){
+          setDocumentRejectionPopup("DocumentRejection-hidden");
+        }
+      }
     }
 
     document.addEventListener("mousedown",handler);
@@ -63,7 +91,7 @@ const BrokerRejectProperty = () =>{
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  },[rejectionCard,supportingZip,supportingPdf,supportingMedia])
+  },[rejectionCard,supportingZip,supportingPdf,supportingMedia,documentRejectionPoup])
 
   return (
     <div className="VerifyProperty">
@@ -89,8 +117,8 @@ const BrokerRejectProperty = () =>{
                 <a>
                   <button className="SupportingDocumentButton" ref={verifyZip}>{supportingZip==="Verified"? "Unverify" : "Verify"}</button>
                 </a>
-                <a href="/">
-                <button className="SupportingDocumentButton">Reject</button>
+                <a>
+                <button className="SupportingDocumentButton" ref={rejectZipRef}>Reject</button>
                 </a>
               </div>
               <div>
@@ -105,8 +133,8 @@ const BrokerRejectProperty = () =>{
                 <a>
                 <button className="SupportingDocumentButton"ref={verifyPdf}>{supportingPdf==="Verified"? "Unverify" : "Verify"}</button>
                 </a>
-                <a href="/">
-                <button className="SupportingDocumentButton">Reject</button>
+                <a>
+                <button className="SupportingDocumentButton" ref={rejectPdfRef}>Reject</button>
                 </a>
               </div>
               <div>
@@ -121,8 +149,8 @@ const BrokerRejectProperty = () =>{
                 <a>
                 <button className="SupportingDocumentButton" ref={verifyMedia}>{supportingMedia==="Verified"? "Unverify" : "Verify"}</button>
                 </a>
-                <a href="/">
-                <button className="SupportingDocumentButton">Reject</button>
+                <a>
+                <button className="SupportingDocumentButton" ref={rejectMediaRef}>Reject</button>
                 </a>
               </div>
               <div>
@@ -144,6 +172,7 @@ const BrokerRejectProperty = () =>{
           <p>Broker verification</p>
           <p>Property verified</p>
         </div>
+        <DocumentRejection className={documentRejectionPoup} ref={cancelDocumentRejectionRef}></DocumentRejection>
         <div className='RejectVerify'>
           <h3 onClick={BrokerRejectProperty}>Reject</h3>
           <h3>Verify</h3>
@@ -152,3 +181,17 @@ const BrokerRejectProperty = () =>{
     </div>
   );
 };
+
+const DocumentRejection = forwardRef((props, ref) => {
+  return (
+    <div className={props.className}>
+      <h1>Document rejection</h1>
+      <h3>Give reason for rejection</h3>
+      <textarea placeholder="Write your reason here..." ref={ref} />
+      <div>
+        <h5 className="Cancel" ref={ref}>Cancel</h5>
+        <h5 className="Send">Send</h5>
+      </div>
+    </div>
+  );
+});
