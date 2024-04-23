@@ -130,7 +130,6 @@
     box-shadow: 1px 1px 5px;
 }
 
-
 .SupportingDocumentCard li img{
     margin-left: 42px;
     margin-right: 42px;
@@ -155,6 +154,7 @@
     font-size: 16px;
     border-radius: 5px;
     margin-right: 12px;
+    transition: padding 0.3s ease-in-out;
 }
 
 .SupportingDocumentCard ul li div button:hover{
@@ -162,6 +162,7 @@
     color: var(--darkBlue);
     border: 0px solid black;
     box-shadow: 1px 1px 5px black;
+    padding: 12px;
 }
 
 .SupportingDocumentCard div:nth-child(3){
@@ -173,6 +174,21 @@
     color: var(--orange);
     font-size: 16px;
 }
+
+.SupportingDocumentCard li.Verified{
+    background-color: var(--darkGreen);
+    display: flex;
+    flex-direction: column;
+    width: 155px;
+    margin: 5px;
+    box-shadow: 1px 1px 5px;
+}
+
+.SupportingDocumentCard li.Verified h3{
+    color: var(--creamyWhite);
+    font-size: 16px;
+}
+
 
 
 .ProgressBar{
