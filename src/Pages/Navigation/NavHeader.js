@@ -56,7 +56,7 @@ export const NavHeader = () => {
           <CustomLink href="/forum-page">Community</CustomLink>
           <CustomLink href="/register-broker">Broker</CustomLink>
 
-          <CustomLink href="/launch">Logout</CustomLink>
+          <CustomLink href="/">Logout</CustomLink>
         </ul>
       </nav>
       <ChatPopup className={chatPopdown}></ChatPopup>

@@ -25,7 +25,9 @@ export const PropertyDetails = () => {
           </button>
         </div>
         <div className="property-second-row">
-          <p id="seller-name">Seller Name: Razin</p>
+          <Link to={"/view-account-header"}>
+            <p id="seller-name">Seller Name: Razin</p>
+          </Link>
           <p>
             Description of the product: Lorem ipsum dolor sit amet, consectetur
             adipiscing elit, sed do eiusmod tempor incididunt ut labore et

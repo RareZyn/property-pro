@@ -9,8 +9,7 @@
 }
 
 #search-input {
-  border-color: white;
-  background-color: white;
+  border: 0px;
 }
 
 #icon {

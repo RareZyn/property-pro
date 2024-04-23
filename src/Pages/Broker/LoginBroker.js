@@ -1,22 +1,22 @@
 import "./LoginBroker.css";
+import { Link } from "react-router-dom";
 
 export const LoginBroker = () => {
   return (
     <div className="LoginBroker">
       <div className="LoginBrokerCard">
-        <h3>BROKER registration</h3>
-        <h5>In broker we trust</h5>
-        <RegisterBrokerInputItem
-          inputTitle="Email"
-          inputHint=""
-        ></RegisterBrokerInputItem>
-        <RegisterBrokerInputItem
-          inputTitle="Password"
-          inputHint=""
-        ></RegisterBrokerInputItem>
-        <button>
-          <a href="./verify-property-homepage">Login</a>
-        </button>
+        <h1>Login Broker</h1>
+        <section className="broker-section">
+          <span id="broker-input-title">Name</span>
+          <input type="text" id="input-broker" />
+        </section>
+        <section className="broker-section">
+          <span id="broker-input-title">Password</span>
+          <input type="password" id="input-broker" />
+        </section>
+        <Link to="/verify-property-homepage">
+          <button id="register-broker-button">Login</button>
+        </Link>
         <div className="RegisterBrokerToLogin">
           <p>Don't have an account?</p>
           <a href="./register-broker">Register</a>
@@ -25,14 +25,3 @@ export const LoginBroker = () => {
     </div>
   );
 };
-
-function RegisterBrokerInputItem({ inputTitle, inputHint }) {
-  return (
-    <div className="InputDetails">
-      <h7>{inputTitle}</h7>
-      <div className="Input">
-        {inputHint === "" ? "Enter your " + inputTitle : { inputHint }}
-      </div>
-    </div>
-  );
-}

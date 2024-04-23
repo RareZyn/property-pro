@@ -1,21 +1,19 @@
-import "./VerifyPropertyHome.css"
+import { Link } from "react-router-dom";
+import "./VerifyPropertyHome.css";
+import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
 
 export const VerifyPropertyHome = () => {
-    return (
-        <div className="VerifyPropertyHome">
-            <h3 className='VerifyPropertyTitle'>New Published Property</h3>
-            <div className='VerifyPropertyHomeItemsGrid'>
-                <a className='VerifyPropertyHomeItem' href="./verify-property">
-                    Item 1
-                </a>
-                <a className='VerifyPropertyHomeItem' href="./verify-property">
-                    Item 2
-                </a>
-                <a className='VerifyPropertyHomeItem' href="./verify-property">
-                    Item 3
-                </a>
-                
-            </div>
-        </div>
-    )
-}
+  let newPropertyToVerify = [];
+  for (let i = 0; i < 5; i++) {
+    newPropertyToVerify.push(<PropertyDisplayCard link={"/verify-property"} />);
+  }
+
+  return (
+    <div className="VerifyPropertyHome">
+      <div className="properties-grid">
+        <h1 className="property-headline">New Published Property</h1>
+        {newPropertyToVerify}
+      </div>
+    </div>
+  );
+};
