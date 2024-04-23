@@ -1,0 +1,88 @@
+.file-container {
+    text-align: center;
+    border: 1px solid gray;
+    width: 130px;
+    height: 150px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: auto;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.files-icon {
+    height: 75px;
+    width: 75px;
+    margin: auto;
+}
+
+.files-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.view-btn {
+    border: 2px solid #f49f1f;
+    border-radius: 5px;
+    padding: 3px 0;
+    width: 50%;
+    align-self: center;
+    color: #f49f1f;
+    background-color: white;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.view-btn:hover {
+    color: white;
+    background-color: #f49f1f;
+}
+
+.bottom-container {
+    padding: 6px 0;
+    align-items: center;
+    justify-content: center;
+    text-align: start;
+    display: flex;
+    flex-direction: row;
+    row-gap: auto;
+}
+
+.filename{
+    color: #f49f1f;
+    font-weight: bold;
+    font-size: 0.6em;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 65%;
+}
+
+.filename:hover{
+    overflow: visible;
+    background-color: #fff;
+}
+
+.filename:hover ~ * {
+    filter: blur(2px); /* Blur all siblings */
+}
+
+.filename:hover ~ * > * {
+    filter: blur(2px); /* Blur all descendants of siblings */
+}
+
+.filename:hover * {
+    filter: blur(2px); /* Blur all children */
+}
+
+.bottom-btn {
+    display: flex;
+    height: 17px;
+}
+
+.bottom-btn img {
+    width: 17px;
+    cursor: pointer;
+}
