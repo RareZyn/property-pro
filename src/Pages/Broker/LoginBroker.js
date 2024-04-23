@@ -6,8 +6,17 @@ export const LoginBroker = () => {
       <div className="LoginBrokerCard">
         <h3>BROKER registration</h3>
         <h5>In broker we trust</h5>
-        <RegisterBrokerInputItem inputTitle="Email" inputHint=""></RegisterBrokerInputItem> 
-        <RegisterBrokerInputItem inputTitle="Password" inputHint=""></RegisterBrokerInputItem>
+
+        <div className="InputDetails">
+          <h7>Email</h7>
+          <input type="email" placeholder="Enter your Email"/>
+        </div>
+        
+        <div className="InputDetails">
+          <h7>Password</h7>
+          <input type="password" placeholder="Enter your Password"/>
+        </div>
+        
         <button>
           <a href="./verify-property-homepage">
             Login
@@ -21,14 +30,3 @@ export const LoginBroker = () => {
     </div>
   );
 };
-
-function RegisterBrokerInputItem({inputTitle,inputHint}){
-  return(
-    <div className="InputDetails">
-      <h7>{inputTitle}</h7>
-      <div className="Input">
-        {inputHint===""? "Enter your "+inputTitle : {inputHint}}
-      </div>
-    </div>
-  )
-}
