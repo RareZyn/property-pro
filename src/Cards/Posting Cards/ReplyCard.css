@@ -1,0 +1,64 @@
+.ReplyCard {
+  background-color: #fffdef;
+  display: flex;
+  width: 80%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.first-div {
+  display: flex;
+}
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.profile-picture > img {
+  width: 60px;
+  height: auto;
+  object-fit: fill;
+}
+
+#comment {
+  margin-left: 20px;
+}
+
+#comment-user {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#comment-reply {
+  margin-top: 5px;
+}
+.second-div {
+  display: flex;
+  column-gap: 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Roboto";
+}
+
+#last-seen {
+  margin-left: 100px;
+  color: #808080;
+}
+
+#like-button {
+  border: none;
+  width: 100px;
+  background: none;
+  text-align: start;
+  font-size: 16px;
+}
+
+#like-total {
+  font-weight: 600;
+}
+
+#like-button:hover {
+  cursor: pointer;
+}
