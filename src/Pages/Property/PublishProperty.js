@@ -20,6 +20,7 @@ export const PublishProperty = () => {
   return (
     <div className="PublishProperty">
       <div className="publish-section">
+        <h1 id="selling-property">Selling Property</h1>
         <div className="cart-box">
           <img src={require("../../Res/image/cart-icon.png")} />
         </div>
