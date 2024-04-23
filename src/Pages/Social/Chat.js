@@ -15,17 +15,23 @@ export const Chat = () => {
         <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"}></CustomChatUserList>
       </ul>
       <div className="ChatScreen">
-        <div className="ChatUser">
+        <a className="ChatUser" href="/view-account-header">
           <img src={require("../../Res/image/user profile.png")}/>
           <h1>Nama 1</h1>
-        </div>
+        </a>
 
         <div className="ChatContainer"></div>
 
         <div className="SendChat">
-          <img src={require("../../Res/image/image-chat.png")}/>
-          <img src={require("../../Res/image/video.png")}/>
-          <div className="ChatInput">Type your message</div>
+          <input type="file" id="SendChatSendImg"/>
+          <input type="file" id="SendChatSendVid"/>
+          <label for="SendChatSendImg">
+            <img src={require("../../Res/image/image-chat.png")}/>
+          </label>
+          <label for="SendChatSendVid">
+            <img src={require("../../Res/image/video.png")}/>
+          </label>
+          <input type="text" className="ChatInput" placeholder="type your message"/>
           <img src={require("../../Res/image/send-orange.png")}/>
         </div>
       </div>

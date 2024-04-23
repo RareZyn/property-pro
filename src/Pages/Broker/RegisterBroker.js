@@ -7,14 +7,21 @@ export const RegisterBroker = () => {
       <div className="RegisterBrokerCard">
         <h3>BROKER registration</h3>
         <h5>In broker we trust</h5>
+
         <div className="InputDetails">
-          <h7>Name (As in IC)</h7>
-          <div className="Input">
-            Enter your Name
-          </div>
+          <h7>Name as in IC</h7>
+          <input type="username" placeholder="Enter your Name"/>
         </div>
-        <RegisterBrokerInputItem inputTitle="Email" inputHint=""></RegisterBrokerInputItem> 
-        <RegisterBrokerInputItem inputTitle="Password" inputHint=""></RegisterBrokerInputItem>
+
+        <div className="InputDetails">
+          <h7>Email</h7>
+          <input type="email" placeholder="Enter your Email"/>
+        </div>
+
+        <div className="InputDetails">
+          <h7>Password</h7>
+          <input type="password" placeholder="Enter your Password"/>
+        </div>
 
         <div id="RegisterBrokerUploadIC">
           <input type="file" id="RegisterBrokerUploadIC-input"/>
