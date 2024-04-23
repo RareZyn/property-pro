@@ -1,9 +1,14 @@
 .add-post-card-container{
     background-color: #fffdef;
-    width: 70%;
+    width: 100%;
     border-radius: 30px;
     padding: 30px;
     margin: 0 auto;
+}
+
+.add-post-card-container:hover{
+  background-color: var(--orange);
+  cursor: pointer;
 }
 
 .container-1{
@@ -46,6 +51,7 @@
 }
 
 .img-vid-btn:hover{
+  cursor: pointer;
     box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
     -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);

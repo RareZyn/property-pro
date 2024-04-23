@@ -1,11 +1,11 @@
 import "./MyAccountTransaction.css";
-import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
+import ItemInTransactionCard from "../../Cards/Property Cards/ItemInTransactionCard";
 
 export const MyAccountTransaction = () => {
   return (
     <div className="ViewAccountProperty">
-      <div id="own-property-container">
-        <ItemComponentCard/>
+      <div className="acc-grid-container">
+        <ItemInTransactionCard/>
       </div>
     </div>
   );

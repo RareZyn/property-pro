@@ -11,14 +11,13 @@ export const ViewAccountPost = () => {
   }
 
   return (
-    <div className="ViewAccountPost">
-      <div id={styles["post-card-container"]}>
-        {items}
-      </div>
-    </div>
-
-    // <div id="own-property-container">
-
+    // <div className="ViewAccountPost">
+    //   <div id={styles["post-card-container"]}>
+    //     {items}
+    //   </div>
     // </div>
+    <div className="acc-grid-container">
+      {items}
+    </div>
   );
 };
