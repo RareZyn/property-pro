@@ -1,165 +1,176 @@
-.RegisterBroker{
-    display: flex;
-    justify-content: center;
+.RegisterBroker {
+  display: flex;
+  justify-content: center;
+  background-image: url("../../Res/image/register\ background.png");
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 
-.RegisterBrokerCard{
-    width: 75%;
-    font-family: "Zilla-Slab";
-    background-color: var(--darkGreen);
-    display: flex;
-    flex-direction: column;
-    color: var(--darkBlue);
-    box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
-    margin: 64px;
-    padding: 24px;
-    border-radius: 50px;
+.RegisterBrokerCard {
+  width: 55%;
+  background-color: rgb(39, 160, 136, 0.8);
+  display: flex;
+  flex-direction: column;
+  color: var(--darkBlue);
+  box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
+  margin: 64px;
+  margin-top: 80px;
+  padding: 24px;
+  border-radius: 50px;
+  height: 820px;
 }
 
-.RegisterBrokerCard input{
-    position: relative;
-    text-align: center;
-    background-color: var(--white);
-    border-radius: 50px;
-    width: 100%;
-    color: var(--grey);
-    text-align: left;
-    padding: 10px;
-    cursor: text;
-    box-shadow: 0px 2px 5px var(--darkBlue);
-    border: 0px;
+.RegisterBrokerCard input {
+  position: relative;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 50px;
+  width: 100%;
+  color: var(--grey);
+  text-align: left;
+  padding: 10px;
+  cursor: text;
+  box-shadow: 0px 2px 5px var(--darkBlue);
+  border: 0px;
 }
 
-.RegisterBrokerCard h3{
-    color: var(--white);
-    text-align: center;
+.RegisterBrokerCard h3 {
+  color: var(--white);
+  text-align: center;
+  font-size: 25px;
 }
-.RegisterBrokerCard h5{
-    text-align: center;
-}
-
-.InputDetails{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 50px;
-    margin-right: 50px;
-    padding-bottom: 20px;
+.RegisterBrokerCard h5 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.InputDetails h7{
-    text-align: left;
-    width: 100%;
-    align-items: left;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 3px;
-    margin-left: 30px;
+.InputDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
 }
 
-.Input{
-    position: relative;
-    text-align: center;
-    background-color: var(--white);
-    border-radius: 50px;
-    width: 100%;
-    color: var(--grey);
-    text-align: left;
-    padding: 10px;
-    cursor: text;
-    box-shadow: 0px 2px 5px var(--darkBlue);
+.InputDetails > span {
+  text-align: left;
+  width: 100%;
+  align-items: left;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 3px;
+  margin-left: 30px;
+  font-size: 20px;
 }
 
-.RegisterBrokerUploadFileInstruction{
-    font-family: 'Poppins',sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 16px;
-    margin-left: 32px;
+.Input {
+  position: relative;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 50px;
+  width: 100%;
+  color: var(--grey);
+  text-align: left;
+  padding: 10px;
+  cursor: text;
+  box-shadow: 0px 2px 5px var(--darkBlue);
 }
 
-#RegisterBrokerUploadIC{
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    border-radius: 24px;
-    width: 400px;
-    padding: 12px;
-    margin: 10px;
-    transition: width 0.3s ease-out, height 0.3s ease-out;
-}
-#RegisterBrokerUploadIC-input{
-    display: none;
-}
-#RegisterBrokerUploadIC label{
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    align-items: center;
-}
-#RegisterBrokerUploadIC label img{
-    align-items: center;
-    width: 64px;
-    transition: margin-bottom 1s ease-out;
-}
-#RegisterBrokerUploadIC label h1{
-    font-size: 20px;
-}
-#RegisterBrokerUploadIC:hover{
-    width: 480px;
-    height: 240px;
-}
-#RegisterBrokerUploadIC:hover label img{
-    margin-bottom: 24px;
+.RegisterBrokerUploadFileInstruction {
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-left: 32px;
 }
 
-.RegisterBrokerCard button{
-    border: 0px;
-    align-self: center;
-    background-color: var(--orange);
-    color: var(--darkBlue);
-    font-family: "Zilla_Slab";
-    font-size: 24px;
-    width: fit-content;
-    padding: 10px;
-    padding-left: 90px;
-    padding-right: 90px;
-    border-radius: 50px;
-    box-shadow: 0px 3px 5px var(--darkBlue);
+#RegisterBrokerUploadIC {
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  width: 400px;
+  padding: 12px;
+  margin: 10px;
+  height: 150px;
+  transition: width 0.3s ease-out, height 0.3s ease-out;
+}
+#RegisterBrokerUploadIC-input {
+  display: none;
+}
+#RegisterBrokerUploadIC label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+}
+#RegisterBrokerUploadIC label img {
+  align-items: center;
+  width: 64px;
+  transition: margin-bottom 1s ease-out;
+}
+#RegisterBrokerUploadIC label h1 {
+  font-size: 20px;
+}
+#RegisterBrokerUploadIC:hover {
+  width: 480px;
+  height: auto;
+  height: 150px;
 }
 
-.RegisterBrokerCard button a{
-    align-self: center;
-    color: var(--darkBlue);
-    font-family: "Zilla_Slab";
-    font-size: 24px;
+.RegisterBrokerCard button {
+  border: 0px;
+  align-self: center;
+  background-color: var(--orange);
+  color: var(--darkBlue);
+  font-family: "Roboto";
+  font-size: 24px;
+  width: fit-content;
+  padding: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 5px var(--darkBlue);
 }
 
-.RegisterBrokerCard button:hover{
-    cursor: pointer;
-    background-color: var(--white);
-    box-shadow: 0px 1px 5px var(--darkBlue);
+.RegisterBrokerCard button a {
+  align-self: center;
+  color: var(--darkBlue);
+  font-family: "Roboto";
+  font-size: 24px;
 }
 
-.RegisterBrokerToLogin{
-    font-family: 'Zilla_Slab';
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    color: var(--darkBlue);
+.RegisterBrokerCard button:hover {
+  cursor: pointer;
+  background-color: var(--white);
+  box-shadow: 0px 1px 5px var(--darkBlue);
 }
 
-.RegisterBrokerToLogin a{
-    text-decoration: none;
-    margin: 0;
-    color: var(--orange);
-    margin-left: 5px ;
+.RegisterBrokerToLogin {
+  font-family: "Roboto";
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  color: var(--darkBlue);
 }
 
-.RegisterBrokerToLogin a:hover{
-    color: var(--white);
-    cursor: pointer;
+.RegisterBrokerToLogin a {
+  margin-top: 20px;
+  text-decoration: none;
+  margin: 0;
+  color: var(--orange);
+  margin-left: 5px;
+}
+
+.RegisterBrokerToLogin a:hover {
+  color: var(--white);
+  cursor: pointer;
 }

@@ -1,8 +1,6 @@
 import "./PublishProperty.css";
-import { MyAccountHeader } from "../general/MyAccountHeader";
 import { Link } from "react-router-dom";
 // import { useState } from "react";
-import { NavHeader } from "../Navigation/NavHeader";
 import FileCard from "../../Cards/General Cards/FileCard";
 import { useState } from "react";
 
@@ -22,6 +20,7 @@ export const PublishProperty = () => {
   return (
     <div className="PublishProperty">
       <div className="publish-section">
+        <h1 id="selling-property">Selling Property</h1>
         <div className="cart-box">
           <img src={require("../../Res/image/cart-icon.png")} />
         </div>
@@ -61,21 +60,6 @@ export const PublishProperty = () => {
         </div>
 
         <div className="files-grid">
-          <FileCard
-            className="file-card"
-            filename={"geran tanah"}
-            filetype={"pdf"}
-          />
-          <FileCard
-            className="file-card"
-            filename={"details"}
-            filetype={"zip"}
-          />
-          <FileCard
-            className="file-card"
-            filename={"gambar"}
-            filetype={"png"}
-          />
           {files.map((file, index) => (
             <FileCard
               key={index}

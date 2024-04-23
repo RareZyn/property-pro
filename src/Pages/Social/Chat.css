@@ -1,124 +1,123 @@
-.Chat{
-    display: flex;
+.Chat {
+  display: flex;
 }
 
-.ChatList{
-    padding: 0;
-    background-color: var(--creamyWhite);
-    flex: 1;
-    list-style: none;
+.ChatList {
+  padding: 0;
+  background-color: var(--creamyWhite);
+  flex: 1;
+  list-style: none;
 }
 
-.ChatList li{
-    display: flex;
-    align-items: center;
+.ChatList li {
+  display: flex;
+  align-items: center;
 }
 
-.ChatList li:hover{
-    cursor: pointer;
-    background-color: var(--grey);
+.ChatList li:hover {
+  cursor: pointer;
+  background-color: var(--grey);
 }
 
-.ChatList li img{
-    height: 64px;
-    text-align: left;
-    text-decoration: none;
-    font-size: 24px;
-    margin: 10px;
+.ChatList li img {
+  height: 64px;
+  text-align: left;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 10px;
 }
 
-.ChatList li div{
-    text-align: left;
-    margin-left: 10px;
+.ChatList li div {
+  text-align: left;
+  margin-left: 10px;
 }
 
-.ChatList li h1{
-    text-decoration: none;
-    font-size: 24px;
+.ChatList li h1 {
+  text-decoration: none;
+  font-size: 24px;
 }
 
-.ChatScreen{
-    width: 100vw;
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    border-left: 3px solid var(--grey);
-    background-color: var(--lightGreen);
+.ChatScreen {
+  width: 100vw;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid var(--grey);
+  background-color: #27a088;
 }
 
-.ChatUser{
-    width: 100%;
-    display: flex;
-    background-color: var(--white);
-    align-items: center;
-    
+.ChatUser {
+  width: 100%;
+  display: flex;
+  background-color: var(--white);
+  align-items: center;
 }
-.ChatUser h1{
-    color: var(--darkBlue);
-    font-family: "Outfit", sans-serif;
-    font-size: 32px;
-    font-weight: bold;
-    text-align: left;
-}
-
-.ChatUser img{
-    height: 64px;
-    width: 64px;
-    margin: 20px;
+.ChatUser h1 {
+  color: var(--darkBlue);
+  font-family: "Outfit", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: left;
 }
 
-.ChatContainer{
-    height: 100vw;
+.ChatUser img {
+  height: 64px;
+  width: 64px;
+  margin: 20px;
+}
+
+.ChatContainer {
+  height: 100vw;
 }
 
 .SendChat::before,
-.SendChat::after{
-    display: block;
-    content: ' ';
-    background-color: red;
-    margin: 20px;
+.SendChat::after {
+  display: block;
+  content: " ";
+  background-color: red;
+  margin: 20px;
 }
 
-.SendChat{
-    height: 90px;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    background-color: var(--creamyWhite);
-    position: sticky;
-    bottom: 0;
+.SendChat {
+  height: 90px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  background-color: var(--creamyWhite);
+  position: sticky;
+  bottom: 0;
 }
 
-.SendChat .ChatInput{
-    display: inline-block;
-    width: 800px;
-    border-radius: 25px;
-    background-color: var(--white);
-    font-size: 24px;
-    padding: 10px;
-    border: 0px;
+.SendChat .ChatInput {
+  display: inline-block;
+  width: 800px;
+  border-radius: 25px;
+  background-color: var(--white);
+  font-size: 24px;
+  padding: 10px;
+  border: 0px;
 }
 
-.SendChat img{
-    width: 32px;
-    height: 32px;
-    margin: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease-out;
+.SendChat img {
+  width: 32px;
+  height: 32px;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
 }
 
-.SendChat img:hover{
-    border-radius: 24px;
-    padding: 28px;
-    margin: 0px;
-    background-color: orange;
-    box-shadow: 1px 1px 3px;
+.SendChat img:hover {
+  border-radius: 24px;
+  padding: 28px;
+  margin: 0px;
+  background-color: orange;
+  box-shadow: 1px 1px 3px;
 }
 
-#SendChatSendImg{
-    display: none;
+#SendChatSendImg {
+  display: none;
 }
 
-#SendChatSendVid{
-    display: none;
+#SendChatSendVid {
+  display: none;
 }

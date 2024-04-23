@@ -2,11 +2,17 @@
   display: flex;
   justify-content: center;
   font-family: "Roboto";
+  background-image: url("../../Res/image/login\ background.png");
+  background-size: cover;
+  background-position: end;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .LoginBrokerCard {
   width: 40%;
-  background-color: var(--darkGreen);
+  background-color: rgb(39, 160, 136, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +20,7 @@
 
   padding: 24px;
   border-radius: 50px;
-  margin-top: 50px;
+  margin-top: 80px;
   font-family: "Roboto";
   height: 400px;
   min-width: 500px;
@@ -50,76 +56,26 @@
   border: 0px;
 }
 
-.InputDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-bottom: 20px;
-}
-
-#broker-login-button a {
-  align-self: center;
-  color: var(--darkBlue);
-  font-size: 24px;
-}
-
-.LoginBrokerCard button:hover {
-  cursor: pointer;
-  background-color: var(--white);
-  box-shadow: 0px 1px 5px var(--darkBlue);
-}
-
-.LoginBrokerToLogin {
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  color: var(--darkBlue);
-}
-
-.LoginBrokerToLogin a {
-  text-decoration: none;
-  margin: 0;
-  color: var(--orange);
-  margin-left: 5px;
-}
-
-.LoginBrokerToLogin a:hover {
-  color: var(--white);
-  cursor: pointer;
-}
-
-.broker-login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 80%;
-  margin-left: 60px;
-  padding: 0 20px;
-}
-
-.broker-login > .broker-input {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 20px;
+.broker-section {
   width: 100%;
+  padding: 5px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-.broker-input > span {
-  margin-left: 10px;
-}
-
-#broker-email,
-#broker-password {
-  padding: 10px 10px;
-  border-radius: 15px;
+#register-broker-button {
+  margin: 15px 60px;
+  padding: 12px 80px;
+  border-radius: 20px;
+  background-color: #f49f1f;
   border: none;
-  margin-top: 5px;
-  width: 100%;
 }
 
-.button-section {
-  margin: 0 30px;
+#register-broker-button:hover {
+  cursor: pointer;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.RegisterBrokerToLogin {
+  font-size: 16px;
 }

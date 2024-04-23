@@ -5,46 +5,48 @@ export const RegisterBroker = () => {
   return (
     <div className="RegisterBroker">
       <div className="RegisterBrokerCard">
-        <h3>BROKER registration</h3>
+        <h3>Broker Registeration</h3>
         <h5>In broker we trust</h5>
 
         <div className="InputDetails">
-          <h7>Name as in IC</h7>
-          <input type="username" placeholder="Enter your Name"/>
+          <span>Name as in IC</span>
+          <input type="username" placeholder="Enter your Name" />
         </div>
 
         <div className="InputDetails">
-          <h7>Email</h7>
-          <input type="email" placeholder="Enter your Email"/>
+          <span>Email</span>
+          <input type="email" placeholder="Enter your Email" />
         </div>
 
         <div className="InputDetails">
-          <h7>Password</h7>
-          <input type="password" placeholder="Enter your Password"/>
+          <span>Password</span>
+          <input type="password" placeholder="Enter your Password" />
         </div>
 
         <div id="RegisterBrokerUploadIC">
-          <input type="file" id="RegisterBrokerUploadIC-input"/>
+          <input type="file" id="RegisterBrokerUploadIC-input" />
           <label for="RegisterBrokerUploadIC-input">
-            <img src={require("../../Res/image/upload.png")}/>
+            <img src={require("../../Res/image/upload.png")} />
             <h1>Choose files to upload</h1>
-            <h7 className="RegisterBrokerUploadFileInstruction">Identification Card (IC)</h7>
+            <h7 className="RegisterBrokerUploadFileInstruction">
+              Identification Card (IC)
+            </h7>
           </label>
         </div>
 
         <div id="RegisterBrokerUploadIC">
-          <input type="file" id="RegisterBrokerUploadIC-input"/>
+          <input type="file" id="RegisterBrokerUploadIC-input" />
           <label for="RegisterBrokerUploadIC-input">
-            <img src={require("../../Res/image/upload.png")}/>
+            <img src={require("../../Res/image/upload.png")} />
             <h1>Choose files to upload</h1>
-            <h7 className="RegisterBrokerUploadFileInstruction">Real Estate Negotiator Liscence</h7>
+            <h7 className="RegisterBrokerUploadFileInstruction">
+              Real Estate Negotiator Liscence
+            </h7>
           </label>
         </div>
 
-        <button>
-          <a href="./verify-property-homepage">
-            Create Account
-          </a>
+        <button id="broker-button">
+          <a href="./verify-property-homepage">Create Account</a>
         </button>
         <div className="RegisterBrokerToLogin">
           <p>Already have an account?</p>
@@ -55,13 +57,13 @@ export const RegisterBroker = () => {
   );
 };
 
-function RegisterBrokerInputItem({inputTitle,inputHint}){
-  return(
+function RegisterBrokerInputItem({ inputTitle, inputHint }) {
+  return (
     <div className="InputDetails">
       <h7>{inputTitle}</h7>
       <div className="Input">
-        {inputHint===""? "Enter your "+inputTitle : {inputHint}}
+        {inputHint === "" ? "Enter your " + inputTitle : { inputHint }}
       </div>
     </div>
-  )
+  );
 }

@@ -5,7 +5,9 @@ export const MyAccountTransaction = () => {
   return (
     <div className="ViewAccountProperty">
       <div className="acc-grid-container">
-        <ItemInTransactionCard/>
+        <ItemInTransactionCard
+          imgLink={require("../../Res/image/image-dummy-house.png")}
+        />
       </div>
     </div>
   );

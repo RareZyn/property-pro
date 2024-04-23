@@ -1,12 +1,12 @@
-#header-container{
-    aspect-ratio: 6/1;
-    width: 100%;
-    background-color: grey;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../../Res/image/image-property.png");
-    background-size: cover;
-    backdrop-filter: blur(3px);
+#header-container {
+  aspect-ratio: 6/1;
+  width: 100%;
+  background-color: grey;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../Res/image/login\ broker\ wallpaper.png");
+  background-size: cover;
+  backdrop-filter: blur(3px);
 }
