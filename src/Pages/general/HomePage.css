@@ -9,7 +9,8 @@
 
 .community-grid,
 .broker-grid,
-.ad-grid {
+.ad-grid,
+.HomePageSuggestedPropertiesContainer {
   height: 320px;
 }
 
@@ -170,7 +171,8 @@
 }
 
 .community-grid.slide-in,
-.ad-grid.slide-in {
+.ad-grid.slide-in,
+.HomePageSuggestedPropertiesContainer.slide-in {
   animation: slideInFromLeft 1s ease-in-out;
 }
 
@@ -198,4 +200,9 @@
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+.HomePageSuggestedPropertiesContainer{
+  background-color: red;
+  width: 100%;
 }

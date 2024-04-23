@@ -4,6 +4,8 @@ import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { NavHeader } from "../Navigation/NavHeader";
 import { Footer } from "./Footer.jsx";
+import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
+import { BsDisplay } from "react-icons/bs";
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
@@ -22,12 +24,14 @@ export const HomePage = () => {
   const [isCommunityVisible, setIsCommunityVisible] = useState(false);
   const [isBrokerVisible, setIsBrokerVisible] = useState(false);
   const [isAdVisible, setIsAdVisible] = useState(false);
+  const [isSuggestVisible,setIsSuggestVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const communityElement = document.querySelector(".community-grid");
       const brokerElement = document.querySelector(".broker-grid");
       const adElement = document.querySelector(".ad-grid");
+      const suggestElement = document.querySelector(".HomePageSuggestedPropertiesContainer");
 
       if (isElementInViewport(communityElement)) {
         setIsCommunityVisible(true);
@@ -37,6 +41,9 @@ export const HomePage = () => {
       }
       if (isElementInViewport(adElement)) {
         setIsAdVisible(true);
+      }
+      if(isElementInViewport(suggestElement)){
+        setIsSuggestVisible(true);
       }
     };
 
@@ -57,6 +64,11 @@ export const HomePage = () => {
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   };
+
+  let suggestedItems = [];
+  for (let i = 0; i < 3; i++){
+    suggestedItems.push(<PropertyDisplayCard/>);
+  }
 
   return (
     <div className="HomePage">
@@ -145,19 +157,10 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <div className={`ad-grid ${isAdVisible ? "slide-in" : ""}`}>
-        <div className="img-div3">
-          <img
-            src={require("../../Res/image/ad-image.png")}
-            className="ad-img"
-          />
-        </div>
-        <div className="ad-details">
-          <div className="ad-heading">ADVERTISEMENT</div>
-          <div className="ad-desc">
-            This part can be used as advertisement or any current issues or news
-            to be updated for user to read or be notified.
-          </div>
+      <div className={`.HomePageSuggestedPropertiesContainer ${isSuggestVisible ? "slide-in" : ""}`}>
+        <div className="properties-grid">
+          <h1 className="property-headline">Hot Items</h1>
+            {suggestedItems}
         </div>
       </div>
 
