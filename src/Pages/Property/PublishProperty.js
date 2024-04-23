@@ -1,12 +1,26 @@
 import "./PublishProperty.css";
 import { MyAccountHeader } from "../general/MyAccountHeader";
 import { Link } from "react-router-dom";
+// import { useState } from "react";
 import { NavHeader } from "../Navigation/NavHeader";
+import FileCard from "../../Cards/General Cards/FileCard";
+import { useState } from "react";
 
 export const PublishProperty = () => {
+  const [files, setFiles] = useState([]);
+
+  // Function to handle file selection
+  const handleFileChange = (event) => {
+    const fileList = event.target.files;
+    const newFiles = Array.from(fileList).map(file => ({
+      filename: file.name.split(".")[0],
+      filetype: file.name.split('.')[1]
+    }));
+    setFiles(prevFiles => [...prevFiles, ...newFiles]);
+  };
+
   return (
     <div className="PublishProperty">
-      <NavHeader/>
       <div className="publish-section">
         <div className="cart-box">
           <img src={require("../../Res/image/cart-icon.png")} />
@@ -37,6 +51,7 @@ export const PublishProperty = () => {
             id="myFile"
             name="filename"
             className="input-file"
+            onChange={handleFileChange}
           />
           <label for="myFile" className="custom-file-upload" id="addFile">
             <img src={require("../../Res/image/upload.png")} alt="Upload" />
@@ -46,62 +61,12 @@ export const PublishProperty = () => {
         </div>
 
         <div className="files-grid">
-          <div className="zip-box">
-            <div className="files-icon">
-              <img src={require("../../Res/image/zip-file-icon.png")} />
-            </div>
-            <button class="view-btn">View</button>
-
-            <div classNames="file-edit-delete-div">
-              <span className="filename-zip">filename.zip</span>
-              <div className="delete-edit-icon-div">
-                <div className="delete-pic">
-                  <img src={require("../../Res/image/delete-icon.png")} />
-                </div>
-                <div className="edit-pic">
-                  <img src={require("../../Res/image/edit-icon.png")} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="pdf-box">
-            <div class="files-icon">
-              <img src={require("../../Res/image/pdf-file-icon.png")} />
-            </div>
-            <button class="view-btn">View</button>
-
-            <div class="file-edit-delete-div">
-              <span class="filename-pdf">filename.pdf</span>
-              <div class="delete-edit-icon-div">
-                <div class="delete-pic">
-                  <img src={require("../../Res/image/delete-icon.png")} />
-                </div>
-                <div class="edit-pic">
-                  <img src={require("../../Res/image/edit-icon.png")} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="jpg-box">
-            <div class="files-icon">
-              <img src={require("../../Res/image/jpg-file-icon.png")} />
-            </div>
-            <button class="view-btn">View</button>
-
-            <div class="file-edit-delete-div">
-              <span class="filename-jpg">filename.jpg</span>
-              <div class="delete-edit-icon-div">
-                <div class="delete-pic">
-                  <img src={require("../../Res/image/delete-icon.png")} />
-                </div>
-                <div class="edit-pic">
-                  <img src={require("../../Res/image/edit-icon.png")} />
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* <FileCard className="file-card" filename={"geran tanah"} filetype={"pdf"}/>
+          <FileCard className="file-card" filename={"details"} filetype={"zip"}/>
+          <FileCard className="file-card" filename={"gambar"} filetype={"png"}/> */}
+          {files.map((file, index) => (
+            <FileCard key={index} className="file-card" filename={file.filename} filetype={file.filetype} />
+          ))}
         </div>
 
         <div class="publish-div">
