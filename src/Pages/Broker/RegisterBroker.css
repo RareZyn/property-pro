@@ -1,18 +1,26 @@
 .RegisterBroker {
   display: flex;
   justify-content: center;
+  background-image: url("../../Res/image/register\ background.png");
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .RegisterBrokerCard {
   width: 55%;
-  background-color: var(--darkGreen);
+  background-color: rgb(39, 160, 136, 0.8);
   display: flex;
   flex-direction: column;
   color: var(--darkBlue);
   box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
   margin: 64px;
+  margin-top: 80px;
   padding: 24px;
   border-radius: 50px;
+  height: 820px;
 }
 
 .RegisterBrokerCard input {
