@@ -1,5 +1,6 @@
 import "./PropertyDetails.css";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
+import { Link } from "react-router-dom";
 export const PropertyDetails = () => {
   return (
     <div className="PropertyDetails">
@@ -38,7 +39,11 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="property-third-row">
-          <button id="button-buy">RM 50,000</button>
+          <Link to="/make-payment">
+            {" "}
+            <button id="button-buy">RM 50,000</button>
+          </Link>
+
           <button id="saved-button">
             <img src={require("../../Res/image/saved.png")} />
             SAVE
