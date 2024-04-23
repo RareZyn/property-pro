@@ -12,11 +12,11 @@ export const PublishProperty = () => {
   // Function to handle file selection
   const handleFileChange = (event) => {
     const fileList = event.target.files;
-    const newFiles = Array.from(fileList).map(file => ({
+    const newFiles = Array.from(fileList).map((file) => ({
       filename: file.name.split(".")[0],
-      filetype: file.name.split('.')[1]
+      filetype: file.name.split(".")[1],
     }));
-    setFiles(prevFiles => [...prevFiles, ...newFiles]);
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
   };
 
   return (
@@ -28,11 +28,11 @@ export const PublishProperty = () => {
 
         <div className="input-div">
           <div className="section-input">
-            Name
+            <span>Name</span>
             <input type="text" placeholder="Name" className="name-input" />
           </div>
           <div className="section-input">
-            Description
+            <span>Description</span>
             <input
               type="text"
               placeholder="Description"
@@ -40,7 +40,7 @@ export const PublishProperty = () => {
             />
           </div>
           <div className="section-input">
-            Price
+            <span>Price</span>
             <input type="text" placeholder="RMXX.XX" className="price-input" />
           </div>
         </div>
@@ -61,11 +61,28 @@ export const PublishProperty = () => {
         </div>
 
         <div className="files-grid">
-          {/* <FileCard className="file-card" filename={"geran tanah"} filetype={"pdf"}/>
-          <FileCard className="file-card" filename={"details"} filetype={"zip"}/>
-          <FileCard className="file-card" filename={"gambar"} filetype={"png"}/> */}
+          <FileCard
+            className="file-card"
+            filename={"geran tanah"}
+            filetype={"pdf"}
+          />
+          <FileCard
+            className="file-card"
+            filename={"details"}
+            filetype={"zip"}
+          />
+          <FileCard
+            className="file-card"
+            filename={"gambar"}
+            filetype={"png"}
+          />
           {files.map((file, index) => (
-            <FileCard key={index} className="file-card" filename={file.filename} filetype={file.filetype} />
+            <FileCard
+              key={index}
+              className="file-card"
+              filename={file.filename}
+              filetype={file.filetype}
+            />
           ))}
         </div>
 

@@ -1,15 +1,21 @@
-#search-bar{
-    display: flex;
-    background-color: white;
-    aspect-ratio: 15/1;
-    width: 50vw;
-    border-radius: 100px;
-    font-size: calc(100vw / 1440 * 16);
+#search-bar {
+  display: flex;
+  background-color: white;
+  aspect-ratio: 15/1;
+  width: 50vw;
+  border-radius: 100px;
+  font-size: calc(100vw / 1440 * 16);
+  border: none;
 }
 
-#icon{
-    aspect-ratio: 1/1;
-    height: 75%;
-    margin-top: calc(0.125 * 73.96vw/14.2);
-    margin-left: 3%;
+#search-input {
+  border-color: white;
+  background-color: white;
+}
+
+#icon {
+  aspect-ratio: 1/1;
+  height: 75%;
+  margin-top: calc(0.125 * 73.96vw / 14.2);
+  margin-left: 3%;
 }
