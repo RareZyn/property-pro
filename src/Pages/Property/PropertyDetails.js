@@ -1,12 +1,6 @@
 import "./PropertyDetails.css";
-import { MyAccountHeader } from "../general/MyAccountHeader";
-import { Link } from "react-router-dom";
-import { NavHeader } from "../Navigation/NavHeader";
+import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 export const PropertyDetails = () => {
-  //do a function onClick for saved icon
-  //if click saved icon, will create a new propertydisplaycard
-  //and display it at SavedProperty page
-
   return (
     <div className="PropertyDetails">
       <div className="property-image-div">
@@ -22,8 +16,41 @@ export const PropertyDetails = () => {
           <img src={require("../../Res/image/image icon.png")} />
         </div>
 
-        <h1>Item Title</h1>
-        <p>Bla bla bla bla bla</p>
+        <div className="property-fist-row">
+          <h1 id="title-property">Petaling Jaya House</h1>
+          <button id="share-button">
+            <img src={require("../../Res/image/share-icon-black.png")} />
+            Shares
+          </button>
+        </div>
+        <div className="property-second-row">
+          <p id="seller-name">Seller Name: Razin</p>
+          <p>
+            Description of the product: Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+
+        <div className="property-third-row">
+          <button id="button-buy">RM 50,000</button>
+          <button id="saved-button">
+            <img src={require("../../Res/image/saved.png")} />
+            SAVE
+          </button>
+        </div>
+
+        <div className="comment-div">
+          <h1>Comment</h1>
+          <ReplyCard />
+          <ReplyCard />
+          <ReplyCard />
+        </div>
       </div>
     </div>
   );
