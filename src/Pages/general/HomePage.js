@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { NavHeader } from "../Navigation/NavHeader";
-import Footer from './Footer.jsx';
+import { Footer } from "./Footer.jsx";
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
@@ -162,7 +162,7 @@ export const HomePage = () => {
       </div>
 
       <div className="extra-div">
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
