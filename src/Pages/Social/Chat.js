@@ -23,9 +23,15 @@ export const Chat = () => {
         <div className="ChatContainer"></div>
 
         <div className="SendChat">
-          <img src={require("../../Res/image/image-chat.png")}/>
-          <img src={require("../../Res/image/video.png")}/>
-          <div className="ChatInput">Type your message</div>
+          <input type="file" id="SendChatSendImg"/>
+          <input type="file" id="SendChatSendVid"/>
+          <label for="SendChatSendImg">
+            <img src={require("../../Res/image/image-chat.png")}/>
+          </label>
+          <label for="SendChatSendVid">
+            <img src={require("../../Res/image/video.png")}/>
+          </label>
+          <input type="text" className="ChatInput" placeholder="type your message"/>
           <img src={require("../../Res/image/send-orange.png")}/>
         </div>
       </div>
