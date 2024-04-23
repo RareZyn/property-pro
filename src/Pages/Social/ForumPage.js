@@ -1,7 +1,10 @@
 import styles from "./ForumPage.module.css";
+import { ForumHeader } from "./ForumHeader";
 
 const ForumPage = () => {
   return (
+    <>
+    <ForumHeader/>
     <div className={styles.ForumPage}>
       <button className={styles['create-post']}>
         <div className={styles['create-firstRow-container']}>
@@ -107,6 +110,7 @@ const ForumPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
