@@ -2,21 +2,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .posting-box {
   background-color: #fffdef;
-  width: 70%;
+  width: 50%;
   border-radius: 30px;
   box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
   -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
   padding: 30px;
   margin-top: 30px;
-  text-align: start;
-  display: flex; /* Add this line */
-  flex-direction: column; /* Add this line */
-  align-items: stretch; /* Add this line */
 }
 
 #title-post {
@@ -28,7 +25,7 @@
   background-color: #e5e5e5;
   margin-top: 30px;
   border-radius: 15px;
-  height: 200px;
+  height: 100px;
 }
 #type-text:focus {
   outline: none;
