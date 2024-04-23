@@ -1,19 +1,27 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+.LoginBroker{
+    display: flex;
+    justify-content: center;
 }
 
 .LoginBrokerCard{
+    width: 75%;
     font-family: "Zilla-Slab";
     background-color: var(--darkGreen);
     display: flex;
     flex-direction: column;
     color: var(--darkBlue);
     box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
+    margin: 64px;
+    padding: 24px;
+    border-radius: 50px;
 }
 
 .LoginBrokerCard h3{
     color: var(--white);
+    text-align: center;
+}
+.LoginBrokerCard h5{
+    text-align: center;
 }
 
 .InputDetails{
