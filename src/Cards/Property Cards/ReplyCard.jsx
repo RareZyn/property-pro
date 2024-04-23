@@ -4,7 +4,7 @@ export const ReplyCard = () => {
     <div className="ReplyCard">
       <div className="first-div">
         <div className="profile-picture">
-          <img src={require("../Res/image/user profile.png")} />
+          <img src={require("../../Res/image/user-image.png")} />
         </div>
         <div id="comment">
           <p id="comment-user">Ahmad</p>
@@ -18,9 +18,8 @@ export const ReplyCard = () => {
       </div>
       <div className="second-div">
         <p id="last-seen">2 hours</p>
-        <button id="like-button">
-          <span id="like-total">7 </span> Like
-        </button>
+        <span id="like-total">7 </span>
+        <button id="like-button">Like</button>
       </div>
     </div>
   );

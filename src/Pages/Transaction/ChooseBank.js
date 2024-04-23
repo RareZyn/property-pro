@@ -3,33 +3,33 @@ import "./MakePaymentPage.css";
 export const ChooseBank = () => {
   return (
     <div className="ChooseBank">
-      <div class="wrapper">
-        <div class="container">
-          <section class="step-wizard">
-            <ul class="step-wizard-list">
-              <li class="step-wizard-item">
-                <span class="progress-count">1</span>
+      <div className="wrapper">
+        <div className="container">
+          <section className="step-wizard">
+            <ul className="step-wizard-list">
+              <li className="step-wizard-item">
+                <span className="progress-count">1</span>
               </li>
-              <li class="step-wizard-item current-item">
-                <span class="progress-count">2</span>
+              <li className="step-wizard-item current-item">
+                <span className="progress-count">2</span>
               </li>
-              <li class="step-wizard-item">
-                <span class="progress-count">3</span>
+              <li className="step-wizard-item">
+                <span className="progress-count">3</span>
               </li>
-              <li class="step-wizard-item">
-                <span class="progress-count">4</span>
+              <li className="step-wizard-item">
+                <span className="progress-count">4</span>
               </li>
             </ul>
           </section>
 
-          <div class="register-link">
+          <div className="register-link">
             <p>Select Bank</p>
           </div>
 
           <form action="">
-            <div class="flexbox">
-              <div class="inputBox">
-                <select name="bankName" id="bankName" class="bank-input">
+            <div className="flexbox">
+              <div className="inputBox">
+                <select name="bankName" id="bankName" className="bank-input">
                   <option value="Bank Name" selected disabled>
                     Bank Name
                   </option>
@@ -39,7 +39,7 @@ export const ChooseBank = () => {
                 </select>
               </div>
             </div>
-            <input type="submit" value="submit" class="submit-btn" />
+            <input type="submit" value="submit" className="submit-btn" />
           </form>
         </div>
       </div>
