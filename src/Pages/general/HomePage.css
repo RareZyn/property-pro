@@ -143,6 +143,7 @@
 .broker-grid,
 .extra-div {
   background-color: #27a08a;
+  display: grid;
 }
 
 .community-details {
