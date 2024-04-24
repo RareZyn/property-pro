@@ -23,15 +23,15 @@ export const HomePage = () => {
 
   const [isCommunityVisible, setIsCommunityVisible] = useState(false);
   const [isBrokerVisible, setIsBrokerVisible] = useState(false);
-  const [isAdVisible, setIsAdVisible] = useState(false);
-  const [isSuggestVisible,setIsSuggestVisible] = useState(false);
+  const [isSuggestVisible, setIsSuggestVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const communityElement = document.querySelector(".community-grid");
       const brokerElement = document.querySelector(".broker-grid");
-      const adElement = document.querySelector(".ad-grid");
-      const suggestElement = document.querySelector(".HomePageSuggestedPropertiesContainer");
+      const suggestElement = document.querySelector(
+        ".HomePageSuggestedPropertiesContainer"
+      );
 
       if (isElementInViewport(communityElement)) {
         setIsCommunityVisible(true);
@@ -39,10 +39,7 @@ export const HomePage = () => {
       if (isElementInViewport(brokerElement)) {
         setIsBrokerVisible(true);
       }
-      if (isElementInViewport(adElement)) {
-        setIsAdVisible(true);
-      }
-      if(isElementInViewport(suggestElement)){
+      if (isElementInViewport(suggestElement)) {
         setIsSuggestVisible(true);
       }
     };
@@ -66,8 +63,8 @@ export const HomePage = () => {
   };
 
   let suggestedItems = [];
-  for (let i = 0; i < 3; i++){
-    suggestedItems.push(<PropertyDisplayCard/>);
+  for (let i = 0; i < 3; i++) {
+    suggestedItems.push(<PropertyDisplayCard />);
   }
 
   return (
@@ -157,15 +154,15 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <div className={`.HomePageSuggestedPropertiesContainer ${isSuggestVisible ? "slide-in" : ""}`}>
+      <div
+        className={`HomePageSuggestedPropertiesContainer ${
+          isSuggestVisible ? "slide-in" : ""
+        }`}
+      >
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
-            {suggestedItems}
+          {suggestedItems}
         </div>
-      </div>
-
-      <div className="extra-div">
-        <Footer />
       </div>
     </div>
   );

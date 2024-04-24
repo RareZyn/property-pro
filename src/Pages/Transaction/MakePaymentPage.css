@@ -107,7 +107,8 @@
 }
 
 .MakePaymentPage,
-.ChooseBank {
+.ChooseBank,
+.MakePaymentSuccess {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -237,4 +238,15 @@ form {
 .container form .submit-btn:hover {
   letter-spacing: 2px;
   opacity: 0.8;
+}
+
+.payment-gateway {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#home-button {
+  width: 100%;
 }

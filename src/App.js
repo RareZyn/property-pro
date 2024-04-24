@@ -46,6 +46,7 @@ import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
+import { Footer } from "./Pages/general/Footer.jsx";
 
 
 export const AppContext = createContext();
@@ -66,7 +67,6 @@ function App() {
     <div className="App">
       <AppContext.Provider value={{ userDetails }}>
         <Router>
-          <Navbar />
           <NavHeaderWrapper />
           <Routes>
             <Route path="/HomePage" element={<HomePage />} />
@@ -105,10 +105,7 @@ function App() {
             <Route path="/manage-account" element={<ManageAccount />} />
             <Route path="/property-details" element={<PropertyDetails />} />
             <Route path="/publish-property" element={<PublishProperty />} />
-            <Route
-              path="/property-details-overvew"
-              element={<PropertyDetailsOwnerView />}
-            />
+
             <Route path="/browser-property" element={<BrowserProperty />} />
             <Route path="/saved-property" element={<SavedProperty />} />
             <Route path="/manage-property" element={<ManageProperty />} />
@@ -135,6 +132,7 @@ function App() {
             <Route path="/forum-create-post" element={<ForumCreatePost />} />
             <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
           </Routes>
+          <Footer />
         </Router>
       </AppContext.Provider>
     </div>

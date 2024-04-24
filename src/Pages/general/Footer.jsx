@@ -64,17 +64,17 @@ export const Footer = () => {
         </div>
 
         <div className="footer-rightcontainer">
-          <Link to="/myaccount-details">
+          <Link to="/myaccount-details" id="FooterAboutNav">
             <br></br>
             <h4>About </h4>
             <br></br>
           </Link>
 
-          <Link to="/register">
+          <Link to="/register" id="FooterTermsNav">
             <h4>Terms & Condition</h4>
           </Link>
 
-          <Link to="/forum-page">
+          <Link to="/forum-page" id="FooterHelpNav">
             <br></br>
             <h4>Help</h4>
           </Link>
