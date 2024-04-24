@@ -41,7 +41,7 @@ export const ChooseBank = () => {
               </div>
             </div>
             <Link to="/make-payment-success">
-            <input type="submit" value="submit" className="submit-btn" />
+              <input type="submit" value="submit" className="submit-btn" />
             </Link>
           </form>
         </div>
