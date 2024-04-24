@@ -171,13 +171,13 @@
 }
 
 .community-grid.slide-in,
-.ad-grid.slide-in,
-.HomePageSuggestedPropertiesContainer.slide-in {
-  animation: slideInFromLeft 1s ease-in-out;
+.HomePageSuggestedPropertiesContainer.slide-in,
+.ad-grid.slide-in {
+  animation: slideInFromRight 1s ease-in-out;
 }
 
 .broker-grid.slide-in {
-  animation: slideInFromRight 1s ease-in-out;
+  animation: slideInFromLeft 1s ease-in-out;
 }
 
 @keyframes slideInFromLeft {
@@ -202,7 +202,19 @@
   }
 }
 
-.HomePageSuggestedPropertiesContainer{
-  background-color: red;
+.HomePageSuggestedPropertiesContainer {
   width: 100%;
+  margin-top: -60px;
+  margin-bottom: 50px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0.2;
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
