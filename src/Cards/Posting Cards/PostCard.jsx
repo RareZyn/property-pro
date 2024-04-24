@@ -13,7 +13,7 @@ function PostCard({name, lastSeen, postPrivacy}){
     const [liked, setLiked] = useState(false);
     const [isDiscussionClicked,setIsDiscussionClicked] = useState(true);
     const [showPopdownDiscussion,setShowPopdownDiscussion] = useState("PopdownDiscussion-hidden");
-    const [share, setShare] = useState(True);
+    const [share, setShare] = useState(false);
     let likeButton;
     const like = () =>{
         setLiked(!liked)
@@ -31,6 +31,10 @@ function PostCard({name, lastSeen, postPrivacy}){
         }
     }
 
+    const sharePopup = () => {
+        setShare(true);
+    }
+
     if(liked){
         likeButton = <img src={likedIcon} alt="likes" srcset=""/>
     }
@@ -45,6 +49,9 @@ function PostCard({name, lastSeen, postPrivacy}){
 
     return(
         <>
+        {
+            share
+        }
         <div id={styles["post-card-container"]} className="box-shadow">
             <div id={styles["user-profile"]}>
                 <div id={styles["profile-container"]} >
@@ -70,7 +77,7 @@ function PostCard({name, lastSeen, postPrivacy}){
                     <span>Discuss</span>
                 </div>
                 <div className={styles["engagement-button"]}>
-                    <img src={shareIcon} alt="Shares" />
+                    <img src={shareIcon} alt="Shares" onClick={sharePopup}/>
                     <span>Shares</span>
                 </div>
             </div>
