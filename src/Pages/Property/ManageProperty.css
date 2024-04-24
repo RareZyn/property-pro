@@ -1,0 +1,31 @@
+#ManagePropertyPage {
+  padding-bottom: 25%;
+}
+
+#add-property-button {
+  display: flex;
+  margin: 0 auto;
+  border: 0px;
+  background-color: var(--creamyWhite);
+  text-align: center;
+  width: fit-content;
+  padding: 10px;
+  padding-left: 70px;
+  padding-right: 70px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 5px var(--darkBlue);
+  align-items: center;
+  justify-content: center;
+}
+
+#add-property-button:hover {
+  cursor: pointer;
+  background-color: var(--white);
+  box-shadow: 0px 1px 5px var(--darkBlue);
+}
+
+#add-property-button img {
+  margin-right: 10px;
+  width: 50px;
+  height: auto;
+}

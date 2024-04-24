@@ -46,6 +46,7 @@ import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
+import { Footer } from "./Pages/general/Footer.jsx";
 
 export const AppContext = createContext();
 
@@ -130,6 +131,7 @@ function App() {
             <Route path="/forum-create-post" element={<ForumCreatePost />} />
             <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
           </Routes>
+          <Footer />
         </Router>
       </AppContext.Provider>
     </div>
