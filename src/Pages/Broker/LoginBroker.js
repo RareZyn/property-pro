@@ -14,9 +14,11 @@ export const LoginBroker = () => {
           <span id="broker-input-title">Password</span>
           <input type="password" id="input-broker" />
         </section>
-        <Link to="/verify-property-homepage">
-          <button id="register-broker-button">Login</button>
-        </Link>
+        <div className="input-button">
+          <Link to="/verify-property-homepage">
+            <button id="register-broker-button">Login</button>
+          </Link>
+        </div>
         <div className="RegisterBrokerToLogin">
           <p>Don't have an account?</p>
           <a href="./register-broker">Register</a>

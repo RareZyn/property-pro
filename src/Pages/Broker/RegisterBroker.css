@@ -141,6 +141,10 @@
   box-shadow: 0px 3px 5px var(--darkBlue);
 }
 
+#broker-button > a {
+  text-decoration: none;
+}
+
 .RegisterBrokerCard button a {
   align-self: center;
   color: var(--darkBlue);
