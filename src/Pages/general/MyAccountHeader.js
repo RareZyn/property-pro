@@ -56,6 +56,7 @@ export const MyAccountHeader = () => {
             <h1>{userDetails.username}</h1>
             <span>{userDetails.bio}</span>
           </div>
+          
           <a id="edit-account" onClick={() => setCurrentPage("Manage Account")}>
             <img
               src={require("../../Res/image/editicon.jpg")}
