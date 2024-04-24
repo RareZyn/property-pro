@@ -1,95 +1,89 @@
-@import url("/src/Res/Colors.css");
-
-*{
-    margin: 0;
-    box-sizing: border-box;
+.NavHeader {
+  position: sticky;
+  width: 100%;
+  height: 5em;
+  display: flex;
+  justify-content: flex-start;
+  background-color: var(--darkBlue);
+  gap: 2rem;
+  padding: 1em;
+  justify-content: space-between;
+  align-items: stretch;
+  z-index: 1;
 }
 
-body{
-    margin: 0;
+.NavigatorRightHeader {
+  background-color: var(--darkBlue);
+  position: relative;
+  height: 5em;
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+  gap: 2rem;
+  padding: 0 1rem;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
-.NavHeader{
-    position: relative;
-    width: 100vw;
-    height: 5em;
-    display: flex;
-    justify-content: flex-start;
-    background-color: var(--darkBlue);
-    gap: 2rem;
-    padding: 1em;
-    justify-content: space-between;
-    align-items: stretch;
-    z-index: 1;
+.NavTitle {
+  position: relative;
+  left: 0;
+  text-align: left;
+  text-decoration: none;
+  align-self: center;
+  font-family: "Outfit", sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--orange);
 }
 
-.NavigatorRightHeader{
-    background-color: var(--darkBlue);
-    position: relative;
-    height: 5em;
-    display: flex;
-    justify-content: flex-start;
-    align-self: center;
-    gap: 2rem;
-    padding: 0 1rem;
-    justify-content: space-between;
-    align-items: stretch;
+.Navigator {
+  height: 100%;
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  cursor: pointer;
 }
 
-.NavTitle{
-    position: relative;
-    left: -2rem;
-    text-decoration: none;
-    align-self: center;
-    font-family: "Outfit", sans-serif;
-    font-size: 32px;
-    font-weight: normal;
-    font-style: normal;
-    color: var(--orange);
-    margin-left: 20px;
+.NavHeader li.active {
+  align-content: center;
+  background-color: var(--orange);
+  cursor: pointer;
 }
 
-.Navigator{
-    height: 100%;
-    text-decoration: none;
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    padding: .25rem;
-    cursor: pointer;
+.NavHeader li.active:hover {
+  align-content: center;
+  background-color: var(--white);
+  cursor: pointer;
 }
 
-.NavHeader li.active{
-    align-content: center;
-    background-color: var(--orange);
-    cursor: pointer;
+.NavHeader li:hover {
+  height: 100%;
+  background-color: var(--grey);
 }
 
-.NavHeader li.active:hover{
-    align-content: center;
-    background-color: var(--white);
-    cursor: pointer;
+.Navigator:active {
+  color: var(--darkBlue);
 }
 
-.NavHeader li:hover{
-    height: 100%;
-    background-color: var(--grey);
+.NavHeader ul {
+  font-family: "Outfit", sans-serif;
+  font-size: 24px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
 }
 
-.Navigator:active{
-    color: var(--darkBlue);
+.NavHeader li {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.NavHeader ul{
-    font-family: "Outfit", sans-serif;
-    font-size: 24px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-}
-
-.NavHeader li{
-    padding-left: 1rem;
-    padding-right: 1rem;
+#dropdown-and-title {
+  display: flex;
+  gap: 24px;
 }

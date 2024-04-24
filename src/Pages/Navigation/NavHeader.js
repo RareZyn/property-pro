@@ -3,6 +3,7 @@ import { DropdownMenuIcon } from "./DropdownMenuIcon.js";
 import { DropdownMenu } from "./DropdownMenu.js";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup.js";
+import { Link } from "react-router-dom";
 
 export const NavHeader = () => {
   const [burger_icon, setBurgerIcon] = useState("DropdownBar unclicked");
@@ -37,19 +38,21 @@ export const NavHeader = () => {
 
   return (
     <div className="NavHeader">
-      <DropdownMenuIcon
-        onClick={showMenu}
-        className={burger_icon}
-      ></DropdownMenuIcon>
-      <a href="/" className="NavTitle">
-        PropertyPro
-      </a>
+      <div id="dropdown-and-title">
+        <DropdownMenuIcon
+          onClick={showMenu}
+          className={burger_icon}
+        ></DropdownMenuIcon>
+        <Link to={"/HomePage"} className="NavTitle">
+          PropertyPro
+        </Link>
+      </div>
       <DropdownMenu className={dropdownMenu}></DropdownMenu>
       <nav className="NavigatorRightHeader">
         <ul>
           <CustomLink href="/HomePage">Home</CustomLink>
           <CustomLink href="/browser-property">Browser</CustomLink>
-          <CustomLink href="/publish-property">Sell</CustomLink>
+          <CustomLink href="/manage-property">Sell</CustomLink>
           <li className={chatNavigation} onClick={showChat}>
             Chat
           </li>
