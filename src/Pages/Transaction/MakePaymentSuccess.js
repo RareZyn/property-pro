@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 export const MakePaymentSuccess = () => {
   return (
     <div className="MakePaymentSuccess">
@@ -33,12 +36,17 @@ export const MakePaymentSuccess = () => {
 
           <form action="">
             <div class="button-container">
+              <Link to="/forum-page">
               <input
                 type="submit"
                 value="Contact Seller"
                 class="submit-btn contact-seller-btn"
               />
+              </Link>
+
+              <Link to="/homepage">
               <input type="button" value="Home" class="submit-btn home-btn" />
+              </Link>
             </div>
           </form>
         </div>

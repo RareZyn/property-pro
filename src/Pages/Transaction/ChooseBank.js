@@ -1,4 +1,5 @@
 import "./MakePaymentPage.css";
+import { Link } from "react-router-dom";
 
 export const ChooseBank = () => {
   return (
@@ -39,7 +40,9 @@ export const ChooseBank = () => {
                 </select>
               </div>
             </div>
+            <Link to="/make-payment-success">
             <input type="submit" value="submit" className="submit-btn" />
+            </Link>
           </form>
         </div>
       </div>
