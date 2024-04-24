@@ -6,6 +6,7 @@ import { MyAccountProperty } from "./MyAccountProperty.js";
 import { MyAccountPost } from "./MyAccountPost.js";
 import { MyAccountDetails } from "./MyAccountDetails.js";
 import { MyAccountTransaction } from "./MyAccountTransaction.js";
+import { Link } from "react-router-dom";
 import { NavHeader } from "../Navigation/NavHeader.js";
 import { ProfilePicture } from "../../Cards/General Cards/ProfilePictureContainer.jsx";
 
@@ -51,12 +52,18 @@ export const MyAccountHeader = () => {
             <h1>{userDetails.username}</h1>
             <span>{userDetails.bio}</span>
           </div>
-          <a href="manage-account" id="edit-account">
-            <img
-              src={require("../../Res/image/edit-icon.png")}
-              alt="Edit icon"
-            />
-          </a>
+
+          
+            <a 
+        
+              id="edit-account" 
+              onClick={() => setCurrentPage("/manage-account")}
+            >
+              <img
+                src={require("../../Res/image/editicon.jpg")}
+                alt="Edit icon"
+              />
+            </a>
         </section>
         <hr />
         <section id="account-link-container">
