@@ -1,4 +1,5 @@
 import "./MakePaymentDebitOnline.css";
+import { Link } from "react-router-dom";
 export const MakePaymentDebitOnline = () => {
   return (
     <div className="MakePaymentDebitOnline">
@@ -42,7 +43,11 @@ export const MakePaymentDebitOnline = () => {
                 <input type="text" />
               </section>
             </div>
-            <input type="submit" text="submit" id="card-submit" />
+            <div className="sumbit-div">
+              <Link to="/make-payment-success" id="nav-submit">
+                <input type="submit" text="submit" id="card-submit" />
+              </Link>
+            </div>
           </div>
         </form>
       </div>
