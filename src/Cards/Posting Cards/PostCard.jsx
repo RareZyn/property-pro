@@ -13,6 +13,7 @@ function PostCard({name, lastSeen, postPrivacy}){
     const [liked, setLiked] = useState(false);
     const [isDiscussionClicked,setIsDiscussionClicked] = useState(true);
     const [showPopdownDiscussion,setShowPopdownDiscussion] = useState("PopdownDiscussion-hidden");
+    const [share, setShare] = useState(True)
     let likeButton;
     const like = () =>{
         setLiked(!liked)
@@ -43,6 +44,7 @@ function PostCard({name, lastSeen, postPrivacy}){
     }
 
     return(
+        <>
         <div id={styles["post-card-container"]} className="box-shadow">
             <div id={styles["user-profile"]}>
                 <div id={styles["profile-container"]} >
@@ -76,6 +78,7 @@ function PostCard({name, lastSeen, postPrivacy}){
                 {replyItems}
             </div>
         </div>
+        </>
     )
 }
 

@@ -1,9 +1,10 @@
 import "./ViewAccountAbout.css";
+import ShareCard from "../../Cards/General Cards/ShareCard";
 
 export const ViewAccountAbout = () => {
   return (
-    <div className="ViewAccountAbout ">
-      <h1>View Account About </h1>
+    <div className="acc-grid-container">
+      <ShareCard />
     </div>
   );
 };

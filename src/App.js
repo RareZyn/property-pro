@@ -47,6 +47,7 @@ import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnli
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
 
+
 export const AppContext = createContext();
 
 function NavHeaderWrapper() {
