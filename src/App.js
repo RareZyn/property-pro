@@ -45,6 +45,7 @@ import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
+import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
 
 export const AppContext = createContext();
 
@@ -113,6 +114,10 @@ function App() {
             <Route
               path="/property-details-ownerview"
               element={<PropertyDetailsOwnerView />}
+            />
+            <Route
+              path="/property-details-overview"
+              element={<PropertyDetailsOverview />}
             />
             <Route
               path="/view-account-header"

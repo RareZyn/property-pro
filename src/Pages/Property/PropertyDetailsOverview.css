@@ -1,0 +1,139 @@
+.PropertyDetailsOverview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#overview-img {
+  width: 250px;
+  height: auto;
+  border-radius: 15px;
+}
+
+.property-overview {
+  background-color: #6bead3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  margin-top: 30px;
+  border-radius: 15px;
+}
+
+.MoreThumbnails {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.MoreThumbnails img {
+  align-items: center;
+  background-color: var(--orange);
+  box-shadow: 2px 2px 5px;
+  width: 128px;
+  margin: 12px;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.MoreThumbnails img:nth-child(1) {
+  grid-area: 1/1;
+  transform: translate(10px, 10px);
+}
+
+.MoreThumbnails img:nth-child(2) {
+  grid-area: 1/1;
+  transform: translate(5px, 5px);
+}
+
+.MoreThumbnails img:nth-child(3) {
+  grid-area: 1/1;
+  transform: translate(0px, 0px);
+}
+
+.MoreThumbnails:hover img:nth-child(1) {
+  transform: translate(160px, 10px);
+}
+.MoreThumbnails:hover img:nth-child(2) {
+  transform: translate(5px, 10px);
+}
+.MoreThumbnails:hover img:nth-child(3) {
+  transform: translate(-150px, 10px);
+}
+
+.overview-first-row,
+.overview-second-row,
+.overview-third-row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.delete-button,
+.edit-button,
+.share-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  height: 60px;
+  margin-top: 30px;
+  border: 2px solid rgb(244, 159, 31);
+  background-color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 60px;
+  padding: 5px;
+}
+
+#edit-icon,
+#share-icon {
+  width: 30px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+#delete-icon {
+  width: 20px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.delete-button:hover,
+.edit-button:hover,
+.share-button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+}
+
+.share-button {
+  margin-top: 0;
+  margin-left: 20px;
+  flex-direction: row;
+  width: fit-content;
+  background-color: rgb(244, 159, 31);
+}
+
+.overview-third-row {
+  padding: 0px 80px;
+  font: "Roboto";
+  font-size: 20px;
+}
+
+.overview-fourth-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#overview-fourth-row {
+  width: 70%;
+}

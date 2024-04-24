@@ -64,13 +64,13 @@ export const Navbar = () => {
         <Link id="nav" to="/myaccount-post">
           MyAccount Post
         </Link>
-        <Link id="nav" to="myaccount-property">
+        <Link id="nav" to="/myaccount-property">
           MyAccount Property
         </Link>
-        <Link id="nav" to="myaccount-details">
+        <Link id="nav" to="/myaccount-details">
           MyAccount Details
         </Link>
-        <Link id="nav" to="manage-account">
+        <Link id="nav" to="/manage-account">
           ManageAccount
         </Link>
       </div>
@@ -79,38 +79,38 @@ export const Navbar = () => {
         <Link id="nav" to="/HomePage">
           HomePage
         </Link>
-        <Link id="nav" to="property-details">
+        <Link id="nav" to="/property-details">
           Property Details
         </Link>
-        <Link id="nav" to="publish-property">
+        <Link id="nav" to="/publish-property">
           Publish Property
         </Link>
 
-        <Link id="nav" to="property-details-overvew">
+        <Link id="nav" to="/property-details-overview">
           Property Detail overview
         </Link>
       </div>
       <div id="user">
         <h4>Azim</h4>
-        <Link id="nav" to="browser-property">
+        <Link id="nav" to="/browser-property">
           BrowserProperty
         </Link>
-        <Link id="nav" to="saved-property">
+        <Link id="nav" to="/saved-property">
           Saved Property
         </Link>
-        <Link id="nav" to="manage-property">
+        <Link id="nav" to="/manage-property">
           Manage Property
         </Link>
-        <Link id="nav" to="view-account-header">
+        <Link id="nav" to="/view-account-header">
           View Account Header
         </Link>
-        <Link id="nav" to="view-account-property">
+        <Link id="nav" to="/view-account-property">
           ViewAccountProperty
         </Link>
-        <Link id="nav" to="view-account-post">
+        <Link id="nav" to="/view-account-post">
           View Account Post
         </Link>
-        <Link id="nav" to="view-account-about">
+        <Link id="nav" to="/view-account-about">
           View Account About
         </Link>
       </div>
