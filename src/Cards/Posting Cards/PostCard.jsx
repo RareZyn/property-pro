@@ -13,7 +13,7 @@ function PostCard({name, lastSeen, postPrivacy}){
     const [liked, setLiked] = useState(false);
     const [isDiscussionClicked,setIsDiscussionClicked] = useState(true);
     const [showPopdownDiscussion,setShowPopdownDiscussion] = useState("PopdownDiscussion-hidden");
-    const [share, setShare] = useState(True)
+    const [share, setShare] = useState(True);
     let likeButton;
     const like = () =>{
         setLiked(!liked)
