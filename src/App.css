@@ -1,3 +1,17 @@
 body {
   zoom: 80%;
 }
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App-content {
+  flex: 1 0 auto;
+}
+
+.App .Footer {
+  flex-shrink: 0;
+}

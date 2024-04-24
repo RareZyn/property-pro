@@ -12,4 +12,6 @@
     row-gap: 50px;
     margin: 50px auto;
     place-content: center;
+    min-height: 60vh;
+    align-items: start;
 }

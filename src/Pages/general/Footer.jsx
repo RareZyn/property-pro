@@ -7,7 +7,7 @@ import "./Footer.css";
 
 export const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer-container">
         <div className="footer-desc">
           <h1>PROPERTY PRO</h1>
@@ -83,6 +83,6 @@ export const Footer = () => {
 
       <br></br>
       <p>&copy; 2024 Property Pro. All Rights Reserved.</p>
-    </div>
+    </footer>
   );
 };
