@@ -26,12 +26,9 @@ export const ManageAccount = () => {
   };
 
   return (
-    <div className="ManageAccount">
-      <MyAccountHeader
-        name="Username"
-        bio="new user in this website"
-        currentPage="Property"
-      />
+    <div className="acc-grid-container">
+
+<div className="ManageAccount">
       <div className="ManageAccountCard">
         <div className="InputDetails">
           <h3>EDIT YOUR PROFILE</h3>
@@ -71,6 +68,8 @@ export const ManageAccount = () => {
           <a href="/myaccount-header">SAVE</a>
         </button>
       </div>
+    </div>
+
     </div>
   );
 };
