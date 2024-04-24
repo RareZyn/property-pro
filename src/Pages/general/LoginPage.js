@@ -17,9 +17,11 @@ export const LoginPage = () => {
             password
             <input type="password" />
           </section>
-          <Link to="/Homepage">
-            <button id="login-account">Login Account</button>
-          </Link>
+          <section id="input-button">
+            <Link to="/Homepage">
+              <button id="login-account">Login Account</button>
+            </Link>
+          </section>
           <div id="dont-have-account">
             <p>
               Do not have an account?{" "}

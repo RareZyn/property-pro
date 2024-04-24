@@ -107,3 +107,8 @@ form {
   text-decoration: underline;
   cursor: pointer;
 }
+
+#input-button {
+  display: flex;
+  justify-content: center;
+}
