@@ -8,7 +8,9 @@ export const ManageProperty = () => {
   let color = 0;
 
   for (let i = 0; i < 4; i++) {
-    propertyCards.push(<PropertyDisplayCard/>);  
+    propertyCards.push(
+      <PropertyDisplayCard link={"/property-details-overview"} />
+    );
   }
 
   return (
