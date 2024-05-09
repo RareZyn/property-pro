@@ -163,10 +163,9 @@ export const RegisterPage = () => {
               />
               {errors.profilePicture && <div className="error">{errors.profilePicture}</div>}
             </section>
-            <button type="submit" id="create-account">Create Account</button>
-            {registrationSuccess && (
-              <p className="success-message">Registration successful!</p>
-            )}
+            <Link to="/Homepage">
+              <button id="create-account">Create Account</button>
+            </Link>
             <div id="have-account">
               <p>
                 Already have an account?{" "}

@@ -6,8 +6,10 @@ import { MyAccountProperty } from "./MyAccountProperty.js";
 import { MyAccountPost } from "./MyAccountPost.js";
 import { MyAccountDetails } from "./MyAccountDetails.js";
 import { MyAccountTransaction } from "./MyAccountTransaction.js";
+import { Link } from "react-router-dom";
 import { NavHeader } from "../Navigation/NavHeader.js";
 import { ProfilePicture } from "../../Cards/General Cards/ProfilePictureContainer.jsx";
+import { ManageAccount } from "./ManageAccount.js";
 
 export const MyAccountHeader = () => {
   const { userDetails } = useContext(AppContext);
@@ -32,6 +34,9 @@ export const MyAccountHeader = () => {
       break;
     case "About":
       page = <MyAccountDetails />;
+      break;    
+    case "Manage Account":
+      page = <ManageAccount />;
       break;
   }
 
@@ -51,9 +56,10 @@ export const MyAccountHeader = () => {
             <h1>{userDetails.username}</h1>
             <span>{userDetails.bio}</span>
           </div>
-          <a href="manage-account" id="edit-account">
+          
+          <a id="edit-account" onClick={() => setCurrentPage("Manage Account")}>
             <img
-              src={require("../../Res/image/edit-icon.png")}
+              src={require("../../Res/image/editicon.jpg")}
               alt="Edit icon"
             />
           </a>

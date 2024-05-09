@@ -4,7 +4,7 @@ import { MyAccountHeader } from "./MyAccountHeader";
 
 export const MyAccountDetails = () => {
   return (
-    <div className="MyAccountDetails">
+    <div className="acc-grid-container">
 
       <div className="MyAccountDetailsCard">
         <div className="MyAccountDetailsItem">

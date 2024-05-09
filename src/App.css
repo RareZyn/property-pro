@@ -1,41 +1,17 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  zoom: 80%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.box-shadow {
-  box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+.App-content {
+  flex: 1 0 auto;
 }
 
-.txt24 {
-  font-size: 1.5em;
-}
-
-.txt40 {
-  font-size: 2.5em;
-}
-
-a {
-  color: var(--f5);
-  text-decoration: none;
-  margin: 0 auto;
-}
-
-.ProfilePicture {
-  aspect-ratio: 1/1;
-  border: 1px solid var(--darkBlue);
-  margin: 1rem;
-  border-radius: 50%;
+.App .Footer {
+  flex-shrink: 0;
 }

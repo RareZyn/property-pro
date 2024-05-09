@@ -7,7 +7,7 @@ import "./Footer.css";
 
 export const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer-container">
         <div className="footer-desc">
           <h1>PROPERTY PRO</h1>
@@ -64,17 +64,17 @@ export const Footer = () => {
         </div>
 
         <div className="footer-rightcontainer">
-          <Link to="/myaccount-details">
+          <Link to="/myaccount-details" id="FooterAboutNav">
             <br></br>
             <h4>About </h4>
             <br></br>
           </Link>
 
-          <Link to="/register">
+          <Link to="/register" id="FooterTermsNav">
             <h4>Terms & Condition</h4>
           </Link>
 
-          <Link to="/forum-page">
+          <Link to="/forum-page" id="FooterHelpNav">
             <br></br>
             <h4>Help</h4>
           </Link>
@@ -83,6 +83,6 @@ export const Footer = () => {
 
       <br></br>
       <p>&copy; 2024 Property Pro. All Rights Reserved.</p>
-    </div>
+    </footer>
   );
 };

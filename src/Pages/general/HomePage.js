@@ -164,10 +164,6 @@ export const HomePage = () => {
           {suggestedItems}
         </div>
       </div>
-
-      <div className="extra-div">
-        <Footer />
-      </div>
     </div>
   );
 };

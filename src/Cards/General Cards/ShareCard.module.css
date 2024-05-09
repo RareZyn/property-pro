@@ -1,0 +1,104 @@
+#share-card{
+    background-color: var(--creamyWhite);
+    box-shadow: 0px 1px 15px 2px #c4c4c4;
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+#share-card h1{
+    text-align: end;
+    margin: 15px;
+    font-family: "Outfit";
+}
+
+#share-card hr{
+    width: 100%;
+}
+
+.row-container{
+    margin: 15px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row-container span{
+    display: block;
+    margin: 10px 0;
+    font-family: "Roboto";
+}
+
+.row-container button,
+.row-container input{
+    font-family: "Zilla Slab";
+}
+
+.row-container button{
+    font-weight: bold;
+}
+
+.span-center{
+    align-self: center;
+}
+
+#fb-button-container{
+    display: flex;
+    column-gap: 15px;
+    justify-content: center;
+}
+
+.fb-button{
+    width: 13%;
+}
+
+.category-button:hover,
+.fb-button:hover{
+    cursor: pointer;
+}
+
+#category-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-button{
+    width: 31%;
+    aspect-ratio: 2.2/1;
+    border-radius: 5px;
+    border: #e5e5e5;
+    background-color: #e5e5e5;
+}
+
+.category-button:hover{
+    background-color: #FFF2AF;
+    color: #4c4c4c;
+    box-shadow: 0px 3px 21px 3px #e5e5e5;
+}
+
+.selected-category{
+    width: 31%;
+    aspect-ratio: 2.2/1;
+    border-radius: 5px;
+    border: #FFF2AF;
+    background-color: var(--orange);
+    color: #e5e5e5;
+    opacity: 1;
+}
+
+.selected-category:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    box-shadow: 0px 3px 21px 3px #e5e5e5;
+}
+
+#comment-box{
+    background-color: #e5e5e5;
+    border: none;
+    aspect-ratio: 4.4/1;
+    width: 100%;
+    vertical-align: top;
+    text-wrap: wrap;
+}
