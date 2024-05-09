@@ -6,7 +6,7 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ensure the app fills the entire viewport height */
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
