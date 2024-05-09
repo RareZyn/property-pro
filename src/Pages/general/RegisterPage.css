@@ -8,9 +8,8 @@
   background-position: center;
   margin: 0;
   padding: 0;
-  height: 1000px;
+  min-height: 100vh;
   width: 100%;
-  /* Remove or adjust z-index */
 }
 
 .RegisterPage::before {
