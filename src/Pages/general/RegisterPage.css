@@ -27,7 +27,7 @@
 .RegisterBlock {
   display: flex;
   flex-direction: column;
-  width: 30rem; /* Adjusted width for better responsiveness */
+  width: 40%; /* Changed from width to max-width */
   z-index: 2;
   background-color: rgba(39, 160, 136, 0.8);
   border-radius: 30px;
@@ -36,8 +36,15 @@
   margin: 5rem auto; /* Center the form vertically */
 }
 
+
 form {
+  margin: 0;
+  padding: 0;
   width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .register-topic {
@@ -72,14 +79,13 @@ form {
 }
 
 #create-account {
-  margin: 2rem auto; /* Center the button */
+  margin-top: 40px;
   background-color: #f49f1f;
   border: none;
-  padding: 1rem 3rem;
+  padding: 10px 30px;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
+  font-size: 18px;
 }
 
 #create-account:hover {
@@ -104,9 +110,4 @@ form {
   color: red;
   font-size: 1rem;
   margin-top: 0.5rem;
-}
-
-#input-button {
-  display: flex;
-  justify-content: center;
 }

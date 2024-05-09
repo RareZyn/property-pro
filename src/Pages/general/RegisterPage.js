@@ -38,7 +38,7 @@ export const RegisterPage = () => {
       email: Yup.string().email("Invalid email").required("Email is required"),
       password: Yup.string()
         .min(8, "Password must be at least 8 characters")
-        .matches(/^(?=.*[A-Z].*[A-Z])(?=.*[0-9])/,"Password must have at least 2 capital letters and 1 number")
+        .matches(/^(?=.[A-Z].[A-Z])(?=.*[0-9])/,"Password must have at least 2 capital letters and 1 number")
         .required("Password is required"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -163,9 +163,10 @@ export const RegisterPage = () => {
               />
               {errors.profilePicture && <div className="error">{errors.profilePicture}</div>}
             </section>
-            <Link to="/Homepage">
-              <button id="create-account">Create Account</button>
-            </Link>
+            <button type="submit" id="create-account">Create Account</button>
+            {registrationSuccess && (
+              <p className="success-message">Registration successful!</p>
+            )}
             <div id="have-account">
               <p>
                 Already have an account?{" "}
