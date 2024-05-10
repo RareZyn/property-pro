@@ -1,8 +1,17 @@
 .launchPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
+  background-image: url("../../Res/image/launchBackground.jpg");
+  background-position: center;
+  background-size: cover;
+}
+#home {
   min-height: 100vh;
 }
-
 #website-name {
+  margin-top: 10rem;
   text-align: center;
   font-size: 80px;
   color: #284f47;
@@ -84,4 +93,7 @@
 #button-login {
   margin: 30px;
   padding: 0;
+}
+
+@media screen {
 }
