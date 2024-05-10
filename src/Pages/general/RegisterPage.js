@@ -14,7 +14,7 @@ export const RegisterPage = () => {
     confirmPassword: "",
     phoneNumber: "",
     location: "",
-    profilePicture: ""
+    profilePicture: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -24,7 +24,7 @@ export const RegisterPage = () => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -38,14 +38,19 @@ export const RegisterPage = () => {
       email: Yup.string().email("Invalid email").required("Email is required"),
       password: Yup.string()
         .min(8, "Password must be at least 8 characters")
-        .matches(/^(?=.[A-Z].[A-Z])(?=.*[0-9])/,"Password must have at least 2 capital letters and 1 number")
+        .matches(
+          /^(?=.[A-Z].[A-Z])(?=.*[0-9])/,
+          "Password must have at least 2 capital letters and 1 number"
+        )
         .required("Password is required"),
       confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match')
-        .required('Confirm Password is required'),
-      phoneNumber: Yup.string().matches(/^[0-9]+$/, "Phone Number must contain only numbers").required("Phone Number is required"),
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password is required"),
+      phoneNumber: Yup.string()
+        .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
+        .required("Phone Number is required"),
       location: Yup.string().required("Location is required"),
-      profilePicture: Yup.string().required("Profile Picture is required")
+      profilePicture: Yup.string().required("Profile Picture is required"),
     });
 
     validationSchema
@@ -58,7 +63,7 @@ export const RegisterPage = () => {
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages
         const errors = {};
-        validationErrors.inner.forEach(error => {
+        validationErrors.inner.forEach((error) => {
           errors[error.path] = error.message;
         });
         setErrors(errors);
@@ -81,7 +86,9 @@ export const RegisterPage = () => {
                 value={formValues.firstName}
                 onChange={handleChange}
               />
-              {errors.firstName && <div className="error">{errors.firstName}</div>}
+              {errors.firstName && (
+                <div className="error">{errors.firstName}</div>
+              )}
             </section>
             <section id="input-section">
               Last Name
@@ -91,7 +98,9 @@ export const RegisterPage = () => {
                 value={formValues.lastName}
                 onChange={handleChange}
               />
-              {errors.lastName && <div className="error">{errors.lastName}</div>}
+              {errors.lastName && (
+                <div className="error">{errors.lastName}</div>
+              )}
             </section>
             <section id="input-section">
               Username
@@ -101,7 +110,9 @@ export const RegisterPage = () => {
                 value={formValues.username}
                 onChange={handleChange}
               />
-              {errors.username && <div className="error">{errors.username}</div>}
+              {errors.username && (
+                <div className="error">{errors.username}</div>
+              )}
             </section>
             <section id="input-section">
               Email
@@ -121,7 +132,9 @@ export const RegisterPage = () => {
                 value={formValues.password}
                 onChange={handleChange}
               />
-              {errors.password && <div className="error">{errors.password}</div>}
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
             </section>
             <section id="input-section">
               Confirm Password
@@ -131,7 +144,9 @@ export const RegisterPage = () => {
                 value={formValues.confirmPassword}
                 onChange={handleChange}
               />
-              {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
+              {errors.confirmPassword && (
+                <div className="error">{errors.confirmPassword}</div>
+              )}
             </section>
             <section id="input-section">
               Phone Number
@@ -141,7 +156,9 @@ export const RegisterPage = () => {
                 value={formValues.phoneNumber}
                 onChange={handleChange}
               />
-              {errors.phoneNumber && <div className="error">{errors.phoneNumber}</div>}
+              {errors.phoneNumber && (
+                <div className="error">{errors.phoneNumber}</div>
+              )}
             </section>
             <section id="input-section">
               Location
@@ -151,7 +168,9 @@ export const RegisterPage = () => {
                 value={formValues.location}
                 onChange={handleChange}
               />
-              {errors.location && <div className="error">{errors.location}</div>}
+              {errors.location && (
+                <div className="error">{errors.location}</div>
+              )}
             </section>
             <section id="input-section">
               Profile Picture
@@ -161,9 +180,13 @@ export const RegisterPage = () => {
                 accept="image/*"
                 onChange={handleChange}
               />
-              {errors.profilePicture && <div className="error">{errors.profilePicture}</div>}
+              {errors.profilePicture && (
+                <div className="error">{errors.profilePicture}</div>
+              )}
             </section>
-            <button type="submit" id="create-account">Create Account</button>
+            <button type="submit" id="create-account">
+              Create Account
+            </button>
             {registrationSuccess && (
               <p className="success-message">Registration successful!</p>
             )}
