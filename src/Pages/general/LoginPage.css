@@ -88,3 +88,8 @@ form {
   background-color: #e68700;
   color: white;
 }
+
+#input-button {
+  display: flex;
+  justify-content: center;
+}
