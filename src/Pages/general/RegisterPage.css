@@ -27,7 +27,7 @@
 .RegisterBlock {
   display: flex;
   flex-direction: column;
-  width: 40%; /* Changed from width to max-width */
+  width: 40%;
   z-index: 2;
   background-color: rgba(39, 160, 136, 0.8);
   border-radius: 30px;
