@@ -1,10 +1,17 @@
 import "./PropertyDetails.css";
+import React from 'react';
+import { FaH, FaHouse } from "react-icons/fa6";
+import { FaBed,FaShower,FaLayerGroup } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 export const PropertyDetails = () => {
   return (
     <div className="PropertyDetails">
       <div className="property-image-div">
+        <img
+          id="property-image"
+          src={require("../../Res/image/image-dummy-house.png")}
+        />
         <img
           id="property-image"
           src={require("../../Res/image/image-dummy-house.png")}
@@ -19,17 +26,56 @@ export const PropertyDetails = () => {
 
         <div className="property-fist-row">
           <h1 id="title-property">Petaling Jaya House</h1>
+
           <button id="share-button">
             <img src={require("../../Res/image/share-icon-black.png")} />
             Shares
           </button>
         </div>
+        
         <div className="property-second-row">
-          <Link to={"/view-account-header"}>
-            <p id="seller-name">Seller Name: Razin</p>
-          </Link>
+        <div className="icon-with-text">
+            <div className="icon">
+                <FaBed />
+            </div>
+            <div className="text">
+                4 Bed
+            </div>
+        </div>
+
+        <div className="icon-with-text">
+            <div className="icon">
+                <FaShower />
+            </div>
+            <div className="text">
+                4 Bath
+            </div>
+        </div>
+
+        <div className="icon-with-text">
+            <div className="icon">
+                <FaLayerGroup />
+            </div>
+            <div className="text">
+                2 storey
+            </div>
+        </div>
+
+        <div className="icon-with-text">
+            <div className="icon">
+                <FaHouse />
+            </div>
+            <div className="text">
+                2120 sqft
+            </div>
+        </div>
+
+        </div>
+
+        <div className="property-desc">
+        <h3>Description of the product:</h3>
           <p>
-            Description of the product: Lorem ipsum dolor sit amet, consectetur
+           Lorem ipsum dolor sit amet, consectetur
             adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
             exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -38,7 +84,8 @@ export const PropertyDetails = () => {
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
-        </div>
+          </div>
+        
 
         <div className="property-third-row">
           <Link to="/make-payment">
@@ -51,6 +98,62 @@ export const PropertyDetails = () => {
             SAVE
           </button>
         </div>
+
+        <div className="property-fourth-row">
+
+        <div className="info-page-container">
+      <h2>Property Information</h2>
+
+      <div className="info-section">
+        <div className="info-label">Location</div>
+        <div className="info-value">Petaling Jaya, Selangor</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Property Type</div>
+        <div className="info-value">Rumah Teres 2 Tingkat Dijual</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Floor Size</div>
+        <div className="info-value">2120 sqft</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Number of bedrooms</div>
+        <div className="info-value">4 bedrooms</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Number of bathrooms</div>
+        <div className="info-value">3 bathrooms</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Furnished</div>
+        <div className="info-value">Unfurnished</div>
+      </div>
+      <div className="info-section">
+        <div className="info-label">Floors</div>
+        <div className="info-value">2 Storey</div>
+      </div>
+    </div>
+
+    <div className="seller-info">
+    <h2>Seller Info</h2>
+      <h4> Razin </h4>
+      <p>Kuala Lumpur</p>
+      <p>user@gmail.com</p>
+      <p>0123457693</p>
+      <br></br>
+
+      <Link to="/view-account-header">
+            {" "}
+            <button id="seller-infobutton">Profile</button>
+          </Link>
+
+      <Link to="/view-account-header">
+            {" "}
+            <button id="seller-infobutton">Chat</button>
+          </Link>
+    </div>
+
+    </div>
 
         <div className="comment-div">
           <h1>Comment</h1>
