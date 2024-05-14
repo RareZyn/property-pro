@@ -47,7 +47,7 @@ import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnli
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
 import { Footer } from "./Pages/general/Footer.jsx";
-
+import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
 
 export const AppContext = createContext();
 
@@ -130,6 +130,7 @@ function App() {
             <Route path="/forum-page" element={<ForumPage />} />
             <Route path="/forum-header" element={<ForumHeader />} />
             <Route path="/forum-create-post" element={<ForumCreatePost />} />
+            <Route path="/image-slideshow" element={<ImageSlideshow />} />
             <Route path="*" element={<h1>PAGE NOT FOUND</h1>} />
           </Routes>
           <Footer />

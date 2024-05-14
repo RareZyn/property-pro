@@ -1,13 +1,24 @@
 import "./PropertyDetails.css";
 import React from 'react';
-import { FaH, FaHouse } from "react-icons/fa6";
-import { FaBed,FaShower,FaLayerGroup } from "react-icons/fa";
+import { FaHouse } from "react-icons/fa6";
+import { FaBed,FaShower,FaLayerGroup, FaImages } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
+
 export const PropertyDetails = () => {
   return (
     <div className="PropertyDetails">
+
+<div className="property-image-container">
+
+      <img
+          id="mainproperty-image"
+          src={require("../../Res/image/image-dummy-house.png")}
+        />
+        
+
       <div className="property-image-div">
+      <div className="property-image-1row">
         <img
           id="property-image"
           src={require("../../Res/image/image-dummy-house.png")}
@@ -17,12 +28,32 @@ export const PropertyDetails = () => {
           src={require("../../Res/image/image-dummy-house.png")}
         />
       </div>
+      <div className="property-image-1row">
+        <img
+          id="property-image"
+          src={require("../../Res/image/image-dummy-house.png")}
+        />
+        <img
+          id="property-image"
+          src={require("../../Res/image/image-dummy-house.png")}
+        />
+      </div>
+      </div>
+      </div>
+
       <div className="property-display-card">
-        <div className="MoreThumbnailsProperty">
+      <Link to="/image-slideshow">
+            {" "}
+            <button id="imgbutton"> <FaImages /></button>
+          </Link>
+
+  
+       <div className="MoreThumbnailsProperty">
           <img src={require("../../Res/image/image icon.png")} />
           <img src={require("../../Res/image/image icon.png")} />
           <img src={require("../../Res/image/image icon.png")} />
         </div>
+       
 
         <div className="property-fist-row">
           <h1 id="title-property">Petaling Jaya House</h1>
@@ -154,6 +185,8 @@ export const PropertyDetails = () => {
     </div>
 
     </div>
+
+
 
         <div className="comment-div">
           <h1>Comment</h1>
