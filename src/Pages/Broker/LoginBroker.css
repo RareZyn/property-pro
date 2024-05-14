@@ -71,6 +71,11 @@
   border: none;
 }
 
+.input-button {
+  display: flex;
+  justify-content: center;
+}
+
 #register-broker-button:hover {
   cursor: pointer;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);

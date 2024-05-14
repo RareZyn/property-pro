@@ -1,9 +1,9 @@
 .NavHeader {
   position: sticky;
+  top: 0;
   width: 100%;
   height: 5em;
   display: flex;
-  justify-content: flex-start;
   background-color: var(--darkBlue);
   gap: 2rem;
   padding: 1em;
@@ -86,4 +86,24 @@
 #dropdown-and-title {
   display: flex;
   gap: 24px;
+}
+
+#navHeader-broker-button{
+  border-bottom: 5px solid;
+  border-color: var(--orange);
+  border-image-slice: 1;
+  animation: move 2s linear infinite;
+}
+
+#navHeader-broker-button-hiddenBorder{
+  border-bottom: 0px;
+}
+
+@keyframes move {
+  0%   { border-color: #33CCCC; }
+  20%  { border-color: #33CC36; }
+  40%  { border-color: #B8CC33; }
+  60%  { border-color: var(--orange); }
+  80%  { border-color: #33CC36; }
+  100% { border-color: #33CCCC; }
 }

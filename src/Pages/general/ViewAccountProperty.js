@@ -1,6 +1,7 @@
 import "./AccountFragmentGrid.css";
 import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
-import image from "../../Res/image/property image.png"
+import image from "../../Res/image/property image.png";
+import "./ViewAccountProperty.css";
 
 export const ViewAccountProperty = () => {
   let items = [];
@@ -9,10 +10,8 @@ export const ViewAccountProperty = () => {
   }
 
   return (
-    <div>
-      <div className="acc-grid-container">
-        {items}
-      </div>
+    <div className="ViewAccountProperty">
+      <div className="acc-grid-container">{items}</div>
     </div>
   );
 };
