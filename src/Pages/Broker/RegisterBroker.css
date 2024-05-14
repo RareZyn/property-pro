@@ -6,7 +6,7 @@
   background-position: center;
   margin: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 105vh;
 }
 
 .RegisterBrokerCard {
@@ -131,7 +131,6 @@
   color: var(--darkBlue);
   font-family: "Roboto";
   font-size: 24px;
-  width: fit-content;
   padding: 10px;
   padding-left: 60px;
   padding-right: 60px;

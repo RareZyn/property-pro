@@ -1,8 +1,11 @@
 .LoginPage {
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url("../../Res/image/launchBackground.jpg");
   background-position: center;
   background-size: cover;
+  min-height: 120vh;
 }
 
 .LoginBlock {
@@ -88,4 +91,9 @@ form {
 #login-account:hover {
   background-color: #e68700;
   color: white;
+}
+
+#input-button {
+  display: flex;
+  justify-content: center;
 }

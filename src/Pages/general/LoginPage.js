@@ -18,7 +18,7 @@ export const LoginPage = () => {
             <input type="password" />
           </section>
           <section id="input-button">
-            <Link to="/Homepage">
+            <Link to="/Homepage" id="login-button">
               <button id="login-account">Login Account</button>
             </Link>
           </section>
