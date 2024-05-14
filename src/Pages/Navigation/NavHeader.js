@@ -14,6 +14,9 @@ export const NavHeader = () => {
   const [chatPopdown, setChatPopdown] = useState("ChatPopup hidden");
   const [chatNavigation, setChatNavigation] = useState("Navigator");
 
+  const [isBrokerLogin, setIsBrokerLogin] = useState(true);
+  const [brokerBottom, setBrokerBottom] = useState("-hiddenBorder");
+
   const showMenu = () => {
     if (isMenuClicked) {
       setBurgerIcon("DropdownBar clicked");
@@ -57,7 +60,7 @@ export const NavHeader = () => {
             Chat
           </li>
           <CustomLink href="/forum-page">Community</CustomLink>
-          <CustomLink href="/register-broker">Broker</CustomLink>
+          <CustomLink id="navHeader-broker-button" href="/register-broker">Broker</CustomLink>
 
           <CustomLink href="/">Logout</CustomLink>
         </ul>
@@ -67,11 +70,11 @@ export const NavHeader = () => {
   );
 };
 
-function CustomLink({ href, children, ...props }) {
+function CustomLink({ href, children, onClick, ...props}) {
   const path = window.location.pathname;
 
   return (
-    <li className={path === href ? "active" : ""}>
+    <li className={path === href ? "active" : ""} onClick={onClick}>
       <a className="Navigator" href={href} {...props}>
         {children}
       </a>
