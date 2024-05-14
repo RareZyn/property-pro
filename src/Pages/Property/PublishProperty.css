@@ -2,45 +2,20 @@
   background-image: url("../../Res/image/sellBackground.png");
   background-size: cover;
   background-position: center;
-  width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding-top: 50px;
-  min-height: 100vh;
-}
-#selling-property {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.back-icon {
-  display: block;
-  height: 50px;
-  cursor: pointer;
-  float: left;
-  margin-left: 16%;
-}
-
-.back-icon img {
-  width: 100%;
-  height: 100%;
-}
-
-.back-icon:hover {
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .publish-section {
   background-color: #27a088;
-  padding: 20px 100px;
-  border-radius: 20px;
+  padding: 20px;
+  border-radius: 30px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  width: 45%;
+  z-index: 2;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
 }
 
 .cart-box {
@@ -48,7 +23,7 @@
   width: 150px;
   background-color: white;
   margin: auto;
-  border-radius: 75px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,67 +35,43 @@
 }
 
 .input-div,
-.section-input {
+.property-details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.add-img-files-div {
-  display: flex;
-  justify-content: center;
-}
-
-#addFile {
-  width: 80%;
-  margin: 30px 0;
-}
-
-.name-input,
-.price-input,
-.desc-input {
-  border-radius: 20px;
-  border: none;
-  padding: 10px 20px;
-  width: 100%;
-}
-
-.section-input > span {
-  margin-left: 15px;
-  margin-top: 10px;
-}
-
-.add-img-files-div {
-  text-align: center;
-  margin-top: 30px;
-}
-
-.add-img-files-btn {
-  border: 4px solid black;
-  font-size: 40px;
-  padding: 5px 17px 5px 17px;
-  border-radius: 55px;
-  background-color: #27a088;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.add-img-files-btn:hover {
-  background-color: #63c6b2;
-}
-
-.add-img-files-text {
-  font-size: 15px;
-  margin-top: 3px;
+.section-input {
   margin-bottom: 20px;
 }
 
-.files-grid {
+.section-input > span {
+  margin-bottom: 5px;
+}
+
+.input-div select,
+.input-div input[type="file"] {
+  margin-bottom: 20px;
+}
+
+.add-img-files-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.custom-file-upload {
   width: 80%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.files-grid {
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   background-color: white;
   border-radius: 10px;
-  padding: 10px 12px 20px 12px;
+  padding: 10px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -153,4 +104,10 @@
 .view-btn:active,
 .add-img-files-btn:active {
   opacity: 0.8;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }

@@ -13,7 +13,7 @@ export const RegisterPage = () => {
     password: "",
     confirmPassword: "",
     phoneNumber: "",
-    location: "",
+    location: "", // Changed to a string for the selected location
     profilePicture: "",
   });
 
@@ -162,12 +162,19 @@ export const RegisterPage = () => {
             </section>
             <section id="input-section">
               Location
-              <input
-                type="text"
+              <select
                 name="location"
                 value={formValues.location}
                 onChange={handleChange}
-              />
+              >
+                <option value="">Select Location</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Kedah">Kedah</option>
+                <option value="Sabah">Sabah</option>
+                {/* Add more options as needed */}
+              </select>
               {errors.location && (
                 <div className="error">{errors.location}</div>
               )}
@@ -204,3 +211,5 @@ export const RegisterPage = () => {
     </div>
   );
 };
+
+export default RegisterPage;
