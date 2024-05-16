@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import axios from 'axios';
 
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
+  const addUserUrl = 'http://localhost:5000/users/add'
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -68,7 +70,14 @@ export const RegisterPage = () => {
         });
         setErrors(errors);
       });
+
+      saveToDatabase();
   };
+
+  const saveToDatabase = () =>{
+    axios.post(addUserUrl, formValues)
+    .then(res => console.log(res.data))
+  }
 
   return (
     <div className="RegisterPage">
