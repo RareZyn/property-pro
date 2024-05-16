@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FileCard from "../../Cards/General Cards/FileCard";
-import * as Yup from "yup";
+import { getSchema } from "./validationSchema.js";
 import "./PublishProperty.css";
 
 export const PublishProperty = () => {
@@ -10,79 +10,7 @@ export const PublishProperty = () => {
   const [propertyDetails, setPropertyDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    size: Yup.string().when("propertyType", {
-      is: "land",
-      then: Yup.string().required("Size is required"),
-    }),
-    location: Yup.string().required("Location is required"),
-    landType: Yup.string().when("propertyType", {
-      is: "land",
-      then: Yup.string().required("Land Type is required"),
-    }),
-    ownershipType: Yup.string().when("propertyType", {
-      is: "land",
-      then: Yup.string().required("Ownership Type is required"),
-    }),
-    area: Yup.string().when("propertyType", {
-      is: "houses",
-      then: Yup.string().required("Area is required"),
-    }),
-    bedrooms: Yup.string().when("propertyType", {
-      is: "houses",
-      then: Yup.string().required("Bedrooms are required"),
-    }),
-    houseType: Yup.string().when("propertyType", {
-      is: "houses",
-      then: Yup.string().required("House Type is required"),
-    }),
-    bathrooms: Yup.string().when("propertyType", {
-      is: "houses",
-      then: Yup.string().required("Bathrooms are required"),
-    }),
-    floors: Yup.string().when("propertyType", {
-      is: "houses",
-      then: Yup.string().required("Floors are required"),
-    }),
-    vehicleType: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Vehicle Type is required"),
-    }),
-    brand: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Brand is required"),
-    }),
-    model: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Model is required"),
-    }),
-    seats: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Seats are required"),
-    }),
-    mileage: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Mileage is required"),
-    }),
-    yearOfProduction: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Year of Production is required"),
-    }),
-    cc: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("CC is required"),
-    }),
-    condition: Yup.string().when("propertyType", {
-      is: "vehicle",
-      then: Yup.string().required("Condition is required"),
-    }),
-    description: Yup.string().required("Description is required"),
-    price: Yup.string()
-      .matches(/^[0-9]+$/, "Price must contain only numbers")
-      .required("Price is required"),
-  });
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const fileList = event.target.files;
@@ -98,6 +26,7 @@ export const PublishProperty = () => {
     setPropertyType(type);
     // Reset property details when property type changes
     setPropertyDetails({});
+    setErrors({});
   };
 
   const handleInputChange = (event) => {
@@ -110,11 +39,15 @@ export const PublishProperty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationSchema = getSchema(propertyType);
+
     try {
       await validationSchema.validate(propertyDetails, { abortEarly: false });
       console.log("Form submitted with values:", propertyDetails);
       setIsSubmitted(true);
-      // Handle form submission, e.g., send data to server
+      // Redirect to property details page after successful form submission
+      navigate("/property-details"); 
     } catch (validationErrors) {
       if (validationErrors.inner && Array.isArray(validationErrors.inner)) {
         const formattedErrors = validationErrors.inner.reduce((acc, error) => {
@@ -425,25 +358,28 @@ export const PublishProperty = () => {
           </div>
 
           {propertyType && (
-            <div className="add-img-files-div">
-              <input
-                type="file"
-                id="myFile"
-                name="filename"
-                className="input-file"
-                onChange={handleFileChange}
+        <div className="add-img-files-div">
+            <input
+              type="file"
+              id="myFile"
+              name="filename"
+              className="input-file"
+              onChange={handleFileChange}
+              multiple // Allow multiple file selection
+            />
+            <label htmlFor="myFile" className="custom-file-upload" id="addFile">
+              <img
+                src={require("../../Res/image/upload.png")}
+                alt="Upload"
               />
-              <label htmlFor="myFile" className="custom-file-upload" id="addFile">
-                <img
-                  src={require("../../Res/image/upload.png")}
-                  alt="Upload"
-                />
-                <h2>Add images from files</h2>
-                <h4>or drag and drop</h4>
-              </label>
-            </div>
+              <h2>Add images from files</h2>
+              <h4>or drag and drop</h4>
+            </label>
+            {errors.images && <div className="error">{errors.images}</div>} {/* Display error message */}
+          </div>
           )}
 
+          {propertyType && (
           <div className="files-grid">
             {files.map((file, index) => (
               <FileCard
@@ -453,18 +389,13 @@ export const PublishProperty = () => {
                 filetype={file.filetype}
               />
             ))}
-          </div>
+          </div>)}
+
           {propertyType && (
-          <div className="publish-div">
-            {isSubmitted ? (
-              <Link to="/property-details">
-                <button type="button" className="publish-btn">Publish</button>
-              </Link>
-            ) : (
+            <div className="publish-div">
               <button type="submit" className="publish-btn">Publish</button>
-            )}
-          </div>
-        )}
+            </div>
+          )}
         </form>
       </div>
     </div>
