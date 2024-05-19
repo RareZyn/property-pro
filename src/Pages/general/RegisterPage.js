@@ -58,16 +58,20 @@ export const RegisterPage = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        // Form is valid, you can handle form submission here
-        console.log("Form submitted with values:", formValues);
-        setRegistrationSuccess(true);
-
-        // Save formValue into Usermodels
-        axios.post('http://localhost:5000/users/add', formValues)
-        .then(res => console.log(res.data))
-
-        // goto login page
-        navigate('/login')
+        axios.post('http://localhost:5000/users/register', formValues)
+        .then(res => {
+          const error = Object.keys(res.data.keyPattern)[0]
+          if(error === 'username'){
+            alert('Username already existed')
+          }
+          else if(error === 'email'){
+            alert('Email already existed')
+          }
+          else{
+            navigate('/login')
+            setRegistrationSuccess(true);
+          }
+        })
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages

@@ -1,18 +1,16 @@
 // Guna styling AccountHeader.css
 
 import React, { useState, useContext } from "react";
-import { AppContext } from "../../App.js";
+import { AppContext } from "../../AppProvider.js";
 import { MyAccountProperty } from "./MyAccountProperty.js";
 import { MyAccountPost } from "./MyAccountPost.js";
 import { MyAccountDetails } from "./MyAccountDetails.js";
 import { MyAccountTransaction } from "./MyAccountTransaction.js";
-import { Link } from "react-router-dom";
-import { NavHeader } from "../Navigation/NavHeader.js";
-import { ProfilePicture } from "../../Cards/General Cards/ProfilePictureContainer.jsx";
 import { ManageAccount } from "./ManageAccount.js";
 
 export const MyAccountHeader = () => {
-  const { userDetails } = useContext(AppContext);
+  const { user, userDetails } = useContext(AppContext);
+  console.log(user)
   const [selectedLink, setSelectedLink] = useState("property"); // Set initial selected link
 
   const handleLinkClick = (link) => {
@@ -48,12 +46,11 @@ export const MyAccountHeader = () => {
             <img
               src={require("../../Res/image/user profile.png")}
               alt=""
-              srcset=""
             />
           </div>
           {/* <ProfilePicture imxgSrc={require("../../Res/image/user-image.png")} size={"10%"}/> */}
           <div className="acc-desc">
-            <h1>{userDetails.username}</h1>
+            <h1>{user.firstName}</h1>
             <span>{userDetails.bio}</span>
           </div>
           

@@ -1,8 +1,4 @@
-import styles from "./ViewAccountPost.module.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import { ViewAccountHeader } from "./ViewAccountHeader";
-
-import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
 
 export const ViewAccountPost = () => {
   let items = [];
@@ -11,11 +7,6 @@ export const ViewAccountPost = () => {
   }
 
   return (
-    // <div className="ViewAccountPost">
-    //   <div id={styles["post-card-container"]}>
-    //     {items}
-    //   </div>
-    // </div>
     <div className="acc-grid-container">
       {items}
     </div>

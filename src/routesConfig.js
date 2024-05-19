@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { LaunchPage } from "./Pages/general/LaunchPage";
 import { HomePage } from "./Pages/general/HomePage.js";
 import { RegisterPage } from "./Pages/general/RegisterPage.js";
@@ -35,43 +34,6 @@ import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnli
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
-
-// const LaunchPage = lazy(() => import('./Pages/general/LaunchPage'));
-// const HomePage = lazy(() => import('./Pages/general/HomePage'));
-// const RegisterPage = lazy(() => import('./Pages/general/RegisterPage'));
-// const LoginPage = lazy(() => import('./Pages/general/LoginPage'));
-// const MakePaymentPage = lazy(() => import('./Pages/Transaction/MakePaymentPage'));
-// const ChatPopup = lazy(() => import('./Pages/Social/ChatPopup'));
-// const RegisterBroker = lazy(() => import('./Pages/Broker/RegisterBroker'));
-// const VerifyProperty = lazy(() => import('./Pages/Broker/VerifyProperty'));
-// const UpdateProgress = lazy(() => import('./Pages/Broker/UpdateProgress'));
-// const Chat = lazy(() => import('./Pages/Social/Chat'));
-// const MyAccountHeader = lazy(() => import('./Pages/general/MyAccountHeader'));
-// const MyAccountTransaction = lazy(() => import('./Pages/general/MyAccountTransaction'));
-// const MyAccountPost = lazy(() => import('./Pages/general/MyAccountPost'));
-// const MyAccountDetails = lazy(() => import('./Pages/general/MyAccountDetails'));
-// const MyAccountProperty = lazy(() => import('./Pages/general/MyAccountProperty'));
-// const ManageAccount = lazy(() => import('./Pages/general/ManageAccount'));
-// const PropertyDetails = lazy(() => import('./Pages/Property/PropertyDetails'));
-// const PropertyDetailsOwnerView = lazy(() => import('./Pages/Property/PropertyDetails-OwnerView'));
-// const PublishProperty = lazy(() => import('./Pages/Property/PublishProperty'));
-// const BrowserProperty = lazy(() => import('./Pages/Property/BrowserProperty'));
-// const SavedProperty = lazy(() => import('./Pages/Property/SavedProperty'));
-// const ManageProperty = lazy(() => import('./Pages/Property/ManageProperty'));
-// const ViewAccountHeader = lazy(() => import('./Pages/general/ViewAccountHeader'));
-// const ViewAccountProperty = lazy(() => import('./Pages/general/ViewAccountProperty'));
-// const ViewAccountPost = lazy(() => import('./Pages/general/ViewAccountPost'));
-// const ViewAccountAbout = lazy(() => import('./Pages/general/ViewAccountAbout'));
-// const ForumPage = lazy(() => import('./Pages/Social/ForumPage'));
-// const ForumHeader = lazy(() => import('./Pages/Social/ForumHeader'));
-// const ForumCreatePost = lazy(() => import('./Pages/Social/ForumCreatePost'));
-// const LoginBroker = lazy(() => import('./Pages/Broker/LoginBroker'));
-// const VerifyPropertyHome = lazy(() => import('./Pages/Broker/VerifyPropertyHome'));
-// const ChooseBank = lazy(() => import('./Pages/Transaction/ChooseBank'));
-// const MakePaymentDebitOnline = lazy(() => import('./Pages/Transaction/MakePaymentDebitOnline'));
-// const MakePaymentSuccess = lazy(() => import('./Pages/Transaction/MakePaymentSuccess'));
-// const PropertyDetailsOverview = lazy(() => import('./Pages/Property/PropertyDetailsOverview'));
-// const ImageSlideshow = lazy(() => import('./Pages/Property/ImageSlideshow'));
 
 const routes = [
   { path: '/', element: <LaunchPage /> },
