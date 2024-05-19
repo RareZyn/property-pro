@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { NavHeader } from "../Navigation/NavHeader";
-import { Footer } from "./Footer.jsx";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
-import { BsDisplay } from "react-icons/bs";
+import { AppContext } from "../../AppProvider.js";
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
+  const {user} = useContext(AppContext)
+  console.log(user)
 
   const handleBuyerHover = () => {
     setIsBuyerHovered(true);

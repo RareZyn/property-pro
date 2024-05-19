@@ -1,7 +1,7 @@
 import { NavHeader } from "../Navigation/NavHeader";
 import "./MyAccountDetails.css";
 import { MyAccountHeader } from "./MyAccountHeader";
-import { AppContext } from "../../App.js";
+import { AppContext } from "../../AppProvider.js";
 import { useContext } from "react";
 
 export const MyAccountDetails = () => {
