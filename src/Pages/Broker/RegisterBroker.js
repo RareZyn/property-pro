@@ -1,4 +1,6 @@
 import "./RegisterBroker.css";
+import axios from 'axios';
+
 import SearchBar from "../../Cards/General Cards/SearchBar";
 
 export const RegisterBroker = () => {

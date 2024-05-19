@@ -1,3 +1,5 @@
+import { MyChatBubble } from "../../Cards/Chat Cards/MyChatBubble";
+import { YourChatBubble } from "../../Cards/Chat Cards/YourChatBubble";
 import "./Chat.css";
 
 export const Chat = () => {
@@ -20,7 +22,11 @@ export const Chat = () => {
           <h1>Nama 1</h1>
         </a>
 
-        <div className="ChatContainer"></div>
+        <div className="ChatContainer">
+          <MyChatBubble></MyChatBubble>
+          <YourChatBubble></YourChatBubble>
+      
+        </div>
 
         <div className="SendChat">
           <input type="file" id="SendChatSendImg"/>
