@@ -9,11 +9,11 @@ const userSchema = new Schema({
         trim: true,
         minlength: [3, 'Username must be at least 3 characters long']
     },
-    firstname: {
+    firstName: {
         type: String,
         trim: true
     },
-    lastname: {
+    lastName: {
         type: String,
         trim: true
     },
@@ -29,7 +29,11 @@ const userSchema = new Schema({
         required: [true, 'Password is required'],
         minlength: [6, 'Password must be at least 6 characters long']
     },
-    phone: {
+    phoneNumber: {
+        type: String,
+        trim: true
+    },
+    location: {
         type: String,
         trim: true
     }

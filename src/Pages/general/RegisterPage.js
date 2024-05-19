@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from 'axios';
 
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
-  const addUserUrl = 'http://localhost:5000/users/add'
+  const navigate = useNavigate()
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -61,6 +61,13 @@ export const RegisterPage = () => {
         // Form is valid, you can handle form submission here
         console.log("Form submitted with values:", formValues);
         setRegistrationSuccess(true);
+
+        // Save formValue into Usermodels
+        axios.post('http://localhost:5000/users/add', formValues)
+        .then(res => console.log(res.data))
+
+        // goto login page
+        navigate('/login')
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages
@@ -70,14 +77,7 @@ export const RegisterPage = () => {
         });
         setErrors(errors);
       });
-
-      saveToDatabase();
   };
-
-  const saveToDatabase = () =>{
-    axios.post(addUserUrl, formValues)
-    .then(res => console.log(res.data))
-  }
 
   return (
     <div className="RegisterPage">
