@@ -1,15 +1,11 @@
+
 import "./MyChatBubble.css";
 
-
-export const MyChatBubble = () => {
+export const MyChatBubble = ({ content, time, isImage }) => {
     return (
-
-<div class="MyChatBubble">
- 
-  <p>okey</p>
-  <span class="my-time">11:05</span>
-</div>
-
-);
+        <div className="MyChatBubble">
+            {isImage ? <img src={content} alt="Uploaded content" className="chat-image" /> : <p>{content}</p>}
+            <span className="my-time">{time}</span>
+        </div>
+    );
 };
-
