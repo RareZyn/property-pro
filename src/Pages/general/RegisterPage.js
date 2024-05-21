@@ -60,6 +60,7 @@ export const RegisterPage = () => {
       .then(() => {
         axios.post('http://localhost:5000/users/register', formValues)
         .then(res => {
+          console.log(res.data)
           const error = Object.keys(res.data.keyPattern)[0]
           if(error === 'username'){
             alert('Username already existed')

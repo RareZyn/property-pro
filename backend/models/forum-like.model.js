@@ -5,7 +5,6 @@ const forumLikeSchema = new Schema({
     userID: {
         type: String,
         required: true,
-        unique: true,
         trim: true
     }
 }, {
