@@ -80,7 +80,7 @@
 }
 
 #details-container #row-3{
-    margin-top: 5px;
+    margin-top: 3px;
     color: #4c4c4c;
 }
 
@@ -94,4 +94,10 @@
 
 #seemore-button:hover{
     cursor: pointer;
+}
+
+.bedroom-bathroom{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
 }

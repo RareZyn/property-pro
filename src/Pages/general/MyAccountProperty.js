@@ -9,10 +9,6 @@ export const MyAccountProperty = () => {
 
   return (
     <div className="own-property-container">
-      {items.map((item, index) => (
-        <ItemComponentCard key={index} imgLink={item}/>
-      ))}
-
       <div className="MyAccountPropertyAdd">
         <Link to= "/publish-property">
         <button>
@@ -24,6 +20,11 @@ export const MyAccountProperty = () => {
         </button>
         </Link>
       </div>
+
+
+      {items.map((item, index) => (
+        <ItemComponentCard key={index} imgLink={item} link={"/property-details"}/>
+      ))}
       
     </div>
   );

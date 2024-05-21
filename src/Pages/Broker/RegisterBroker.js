@@ -1,59 +1,183 @@
 import "./RegisterBroker.css";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
 import axios from 'axios';
 
-import SearchBar from "../../Cards/General Cards/SearchBar";
+//import SearchBar from "../../Cards/General Cards/SearchBar";
 
 export const RegisterBroker = () => {
+  const navigate = useNavigate();
+  const [brokerFormValues, setBrokerFormValues] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    brokerIC: "",
+    brokerLicense: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setBrokerFormValues({
+      ...brokerFormValues,
+      [name] : value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationSchema = yup.object().shape({
+        fullName: yup.string().matches(/^[A-z\s]+$/, "Full Name must only contain letters").required("Full Name is required"),
+        email: yup.string().email("Invalid email").required("Email is required"),
+        phoneNumber: yup.string().matches(/^[0-9]+$/, "Phone Number must contain only numbers").required("Phone Number is required"),
+        password: yup.string().min(8, "Password must at least be 8 characters")
+        .matches(/^(?=.[A-Z].[A-Z])(?=.*[0-9])/, "Password must contain at least 2 capital letters and 1 number")
+        .required("Password is required"),
+        confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match")
+        .required("Confirm Password is required"),
+        brokerIC: yup.string().required("IC document is required"),
+        brokerLicense: yup.string().required("Real Estate Negotiator License is required")
+    });
+
+    validationSchema.validate(brokerFormValues)
+    .then(() => {
+      console.log(brokerFormValues);
+      navigate("/verify-property-homepage");
+      setBrokerRegistrationSuccess(true);
+    })
+    .catch((validationErrors) => {
+      const errors = {};
+      validationErrors.inner.forEach((error) => {
+        errors[error.path] = error.message;
+      });
+      setErrors(errors);
+    });
+  };
+
   return (
     <div className="RegisterBroker">
       <div className="RegisterBrokerCard">
-        <h3>Broker Registeration</h3>
-        <h5>In broker we trust</h5>
+        <form onSubmit={handleSubmit}>
+          <h1>Broker Registeration</h1>
+          <h3 className="h3-heading">In broker we trust</h3>
 
-        <div className="InputDetails">
-          <span>Name as in IC</span>
-          <input type="username" placeholder="Enter your Name" />
-        </div>
+          <div className="inputs">
+            <div className="input-details">
+              Full Name as in IC
+              <input type="text" 
+              placeholder="Full Name"
+              name="fullName"
+              value={brokerFormValues.fullName}
+              onChange={handleChange}
+              />
+              {errors.fullName && (
+                <div className="error">{errors.fullName}</div>
+              )}
+            </div>
 
-        <div className="InputDetails">
-          <span>Email</span>
-          <input type="email" placeholder="Enter your Email" />
-        </div>
+            <div className="input-details">
+              Email
+              <input type="email" 
+              placeholder="broker@gmail.com"
+              name="email"
+              value={brokerFormValues.email}
+              onChange={handleChange}
+              />
+              {errors.email && (
+                <div className="error">{errors.email}</div>
+              )}
+            </div>
 
-        <div className="InputDetails">
-          <span>Password</span>
-          <input type="password" placeholder="Enter your Password" />
-        </div>
+            <div className="input-details">
+              Phone Number
+              <input type="text" 
+              placeholder="012-3456789"
+              name="phoneNumber"
+              value={brokerFormValues.phoneNumber}
+              onChange={handleChange}
+              />
+              {errors.phoneNumber && (
+                <div className="error">{errors.phoneNumber}</div>
+              )}
+            </div>
 
-        <div id="RegisterBrokerUploadIC">
-          <input type="file" id="RegisterBrokerUploadIC-input" />
-          <label for="RegisterBrokerUploadIC-input">
-            <img src={require("../../Res/image/upload.png")} />
-            <h1>Choose files to upload</h1>
-            <h7 className="RegisterBrokerUploadFileInstruction">
+            <div className="input-details">
+              Password
+              <input type="password" 
+              name="password"
+              value={brokerFormValues.password}
+              onChange={handleChange}
+              />
+              {errors.password && (
+                <div className="error">{errors.password}</div>
+              )}
+            </div>
+
+            <div className="input-details">
+              Confirm Password
+              <input type="password" 
+              name="confirmPassword"
+              value={brokerFormValues.confirmPassword}
+              onChange={handleChange}
+              />
+              {errors.confirmPassword && (
+                <div className="error">{errors.confirmPassword}</div>
+              )}
+            </div>
+
+            <div className="broker-register-upload-file">
               Identification Card (IC)
-            </h7>
-          </label>
-        </div>
+              <input type="file" 
+              name="brokerIC"
+              accept="image/*"
+              onChange={handleChange}
+              />
+              <label>
+                <img src={require("../../Res/image/upload.png")} />
+                <h3>Choose files to upload</h3>
+              </label>
+              {errors.brokerIC && (
+                <div className="error">{errors.brokerIC}</div>
+              )}
+            </div>
 
-        <div id="RegisterBrokerUploadIC">
-          <input type="file" id="RegisterBrokerUploadIC-input" />
-          <label for="RegisterBrokerUploadIC-input">
-            <img src={require("../../Res/image/upload.png")} />
-            <h1>Choose files to upload</h1>
-            <h7 className="RegisterBrokerUploadFileInstruction">
-              Real Estate Negotiator Liscence
-            </h7>
-          </label>
-        </div>
+            <div className="broker-register-upload-file">
+              Real Estate Negotiator License
+              <input type="file" 
+              name="brokerLicense"
+              accept="image/*"
+              onChange={handleChange}
+              />
+              <label>
+                <img src={require("../../Res/image/upload.png")} />
+                <h3>Choose files to upload</h3>
+              </label>
+              {errors.brokerLicense && (
+                <div className="error">{errors.brokerLicense}</div>
+              )}
+            </div>
 
-        <button id="broker-button">
-          <a href="./verify-property-homepage">Create Account</a>
-        </button>
-        <div className="RegisterBrokerToLogin">
-          <p>Already have an account?</p>
-          <a href="./login-broker">Login</a>
-        </div>
+            <button type="submit" className="broker-create-account">
+              Create Account
+            </button>
+
+            {brokerRegistrationSuccess && (
+              <p className="success-message">Registration successful!</p>
+            )}
+            
+            <div className="broker-register-to-login">
+              Already have an account?
+                {/**<p className="login">Login</p>**/}
+              <Link to="./login-broker" className="login">Login</Link>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
