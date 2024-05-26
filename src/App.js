@@ -20,7 +20,6 @@ function NavHeaderWrapper() {
 function App() {
   return (
     <div className="App">
-      <AppProvider>
         <Router>
           <NavHeaderWrapper />
           <Routes>
@@ -30,7 +29,6 @@ function App() {
           </Routes>
           <Footer />
         </Router>
-      </AppProvider>
     </div>
   );
 }

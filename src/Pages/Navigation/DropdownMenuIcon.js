@@ -3,9 +3,6 @@ import React from "react";
 import "./DropdownMenuIcon.css"
 
 export const DropdownMenuIcon = ({onClick,className}) => {
-
-    console.log(className);
-
     return(
         <div className="DropdownBase" onClick={onClick}>
             <div className={className}></div>

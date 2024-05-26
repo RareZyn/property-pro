@@ -5,30 +5,30 @@ import { AppContext } from "../../AppProvider.js";
 import { useContext } from "react";
 
 export const MyAccountDetails = () => {
-  const { userDetails } = useContext(AppContext);
+  const { user, userDetails } = useContext(AppContext);
 
   return (
     <div className="acc-grid-container">
       <div className="About">
             <div className="details-column">
-                <div className="first-name">First Name</div>
+                <div className="first-name">Username: {(user !== null) ? user.username : null}</div>
                 <div className="type-of-user">Seller/Buyer</div>
 
                 <div className="details">
                     Full Name:
-                    <div className="full-name">{userDetails.username}</div>
+                    <div className="full-name">{(user === null) ? null : user.firstName + " " +user.lastName}</div>
 
                     Age:
                     <div className="age">{userDetails.age}</div>
 
                     Location:
-                    <div className="location">{userDetails.location}</div>
+                    <div className="location">{(user !== null) ? user.location : null}</div>
 
                     Email:
-                    <div className="email">{userDetails.email}</div>
+                    <div className="email">{(user !== null) ? user.email : null}</div>
 
                     Phone Number:
-                    <div className="phone-number">{userDetails.phoneNum}</div>
+                    <div className="phone-number">{(user !== null) ? user.phoneNumber : null}</div>
                 </div>
             </div>
 

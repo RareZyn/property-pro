@@ -1,5 +1,8 @@
 const router = require('express').Router()
 let User = require('../models/user.model')
+const jwt = require('jsonwebtoken')
+const Bcrypt = require('bcrypt')
+const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 
 router.route('/').get((req, res) => {
     User.find()
@@ -7,18 +10,25 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' +err))
 })
 
-router.route('/register').post((req, res) => {
-    User.create(req.body)
+router.post('/register', async(req, res) => {
+    const salt = await Bcrypt.genSalt(10)
+    const hashPassword = await Bcrypt.hash(req.body.password, salt)
+
+    await User.create({...req.body, password:hashPassword})
     .then(users => res.json(users))
     .catch(err => res.json(err))
 })
 
-router.route('/login').post((req, res) => {
+router.post('/login', async (req, res) => {
     const {username, password} = req.body
-    User.findOne({username: username})
+
+    await User.findOne({username: username})
     .then(user => {
         if(user){
-            if(user.password === password){
+            if(Bcrypt.compare(password, user.password)){
+                const token = jwt.sign({user}, process.env.MY_SECRET, {expiresIn: "1d"})
+                res.cookie("token", token)
+                delete user.password
                 res.json(user)
             }
             else{

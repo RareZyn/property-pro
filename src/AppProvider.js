@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode'
 
 export const AppContext = createContext()
 
@@ -12,11 +14,14 @@ export const AppProvider = ({children}) => {
         phoneNum: "012-3456789",
     };
 
-    const [user, setUser] = useState({
-        username: null,
-        firstName: null,
-        lastName: null
-    })
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        const token = Cookies.get('token')
+        if(token){
+            setUser(jwtDecode(token).user)   
+        }
+    }, [])
 
     return(
         <AppContext.Provider value={{userDetails, user, setUser}}>
@@ -24,3 +29,5 @@ export const AppProvider = ({children}) => {
         </AppContext.Provider>
     )
 }
+
+export const useContext = () => useContext(AppProvider)
