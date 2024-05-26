@@ -9,7 +9,7 @@
 .RegisterBlock {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
   z-index: 2;
   position: relative;
   background-color: rgba(39, 160, 136, 0.8);
@@ -91,4 +91,14 @@ form {
   color: red;
   font-size: 1rem;
   margin-top: 0.5rem;
+}
+
+#show-password {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#show-password input {
+  margin-right: 5px;
 }

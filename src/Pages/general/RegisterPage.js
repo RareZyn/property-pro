@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
+  const navigate = useNavigate(); // Hook to programmatically navigate
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -13,18 +14,19 @@ export const RegisterPage = () => {
     password: "",
     confirmPassword: "",
     phoneNumber: "",
-    location: "", // Changed to a string for the selected location
-    profilePicture: "",
+    location: "",
+    profilePicture: null, // Use null for file input
   });
 
   const [errors, setErrors] = useState({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormValues({
       ...formValues,
-      [name]: value,
+      [name]: files ? files[0] : value, // Handle file input change
     });
   };
 
@@ -39,7 +41,7 @@ export const RegisterPage = () => {
       password: Yup.string()
         .min(8, "Password must be at least 8 characters")
         .matches(
-          /^(?=.[A-Z].[A-Z])(?=.*[0-9])/,
+          /^(?=.*[A-Z].*[A-Z])(?=.*[0-9])/,
           "Password must have at least 2 capital letters and 1 number"
         )
         .required("Password is required"),
@@ -50,7 +52,7 @@ export const RegisterPage = () => {
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
         .required("Phone Number is required"),
       location: Yup.string().required("Location is required"),
-      profilePicture: Yup.string().required("Profile Picture is required"),
+      profilePicture: Yup.mixed().required("Profile Picture is required"),
     });
 
     validationSchema
@@ -59,6 +61,10 @@ export const RegisterPage = () => {
         // Form is valid, you can handle form submission here
         console.log("Form submitted with values:", formValues);
         setRegistrationSuccess(true);
+        setErrors({}); // Clear errors
+
+        // Redirect to login page after successful registration
+        navigate("/login");
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages
@@ -67,8 +73,11 @@ export const RegisterPage = () => {
           errors[error.path] = error.message;
         });
         setErrors(errors);
+        setRegistrationSuccess(false);
       });
   };
+
+  
 
   return (
     <div className="RegisterPage">
@@ -127,7 +136,7 @@ export const RegisterPage = () => {
             <section id="input-section">
               Password
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 value={formValues.password}
                 onChange={handleChange}
@@ -139,7 +148,7 @@ export const RegisterPage = () => {
             <section id="input-section">
               Confirm Password
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="confirmPassword"
                 value={formValues.confirmPassword}
                 onChange={handleChange}
@@ -148,6 +157,14 @@ export const RegisterPage = () => {
                 <div className="error">{errors.confirmPassword}</div>
               )}
             </section>
+            <div id="show-password">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              Show Password
+            </div>
             <section id="input-section">
               Phone Number
               <input

@@ -14,7 +14,7 @@ export const LoginPage = () => {
             <input type="text" />
           </section>
           <section id="login-section">
-            password
+            Password
             <input type="password" />
           </section>
           <section id="input-button">

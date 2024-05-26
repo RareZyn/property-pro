@@ -5,68 +5,36 @@
   height: 5em;
   display: flex;
   background-color: var(--darkBlue);
-  gap: 2rem;
   padding: 1em;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
   z-index: 1;
 }
 
-.NavigatorRightHeader {
-  background-color: var(--darkBlue);
-  position: relative;
-  height: 5em;
+.left-header {
   display: flex;
-  justify-content: flex-start;
-  align-self: center;
-  gap: 2rem;
-  padding: 0 1rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.NavigatorRightHeader {
+  display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 }
 
 .NavTitle {
-  position: relative;
-  left: 0;
-  text-align: left;
-  text-decoration: none;
-  align-self: center;
   font-family: "Outfit", sans-serif;
   font-size: 32px;
-  font-weight: normal;
-  font-style: normal;
   color: var(--orange);
 }
 
 .Navigator {
-  height: 100%;
-  text-decoration: none;
   color: var(--white);
   display: flex;
   align-items: center;
   padding: 0.25rem;
   cursor: pointer;
-}
-
-.NavHeader li.active {
-  align-content: center;
-  background-color: var(--orange);
-  cursor: pointer;
-}
-
-.NavHeader li.active:hover {
-  align-content: center;
-  background-color: var(--white);
-  cursor: pointer;
-}
-
-.NavHeader li:hover {
-  height: 100%;
-  background-color: var(--grey);
-}
-
-.Navigator:active {
-  color: var(--darkBlue);
 }
 
 .NavHeader ul {
@@ -79,31 +47,69 @@
 }
 
 .NavHeader li {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
 }
 
-#dropdown-and-title {
-  display: flex;
-  gap: 24px;
+.nav-item.active {
+  background-color: var(--orange);
 }
 
-#navHeader-broker-button{
+.nav-item.active .Navigator {
+  color: var(--darkBlue);
+}
+
+#navHeader-broker-button {
   border-bottom: 5px solid;
   border-color: var(--orange);
-  border-image-slice: 1;
   animation: move 2s linear infinite;
 }
 
-#navHeader-broker-button-hiddenBorder{
-  border-bottom: 0px;
+@keyframes move {
+  0% { border-color: #33CCCC; }
+  20% { border-color: #33CC36; }
+  40% { border-color: #B8CC33; }
+  60% { border-color: var(--orange); }
+  80% { border-color: #33CC36; }
+  100% { border-color: #33CCCC; }
 }
 
-@keyframes move {
-  0%   { border-color: #33CCCC; }
-  20%  { border-color: #33CC36; }
-  40%  { border-color: #B8CC33; }
-  60%  { border-color: var(--orange); }
-  80%  { border-color: #33CC36; }
-  100% { border-color: #33CCCC; }
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .NavHeader {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .NavigatorRightHeader {
+    display: none; /* Hide the nav items */
+  }
+
+  .DropdownMenu {
+    display: block; /* Show the dropdown menu */
+  }
+
+  .NavTitle {
+    font-size: 24px;
+  }
+}
+
+.DropdownMenuIcon {
+  display: none; /* Hide by default */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu.hidden {
+  display: none;
+}
+
+.menu.visible {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .DropdownMenuIcon {
+    display: block; /* Show on mobile */
+  }
 }
