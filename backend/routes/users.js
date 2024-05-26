@@ -18,12 +18,13 @@ router.post('/register', async(req, res) => {
     .catch(err => res.json(err))
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const {username, password} = req.body
-    User.findOne({username: username})
+
+    await User.findOne({username: username})
     .then(user => {
         if(user){
-            if(user.password === password){
+            if(Bcrypt.compare(password, user.password)){
                 const token = jwt.sign({username: user.username}, "jwt-secret-key", {expiresIn: "1d"})
                 res.cookie("token", token)
                 res.json(user)
