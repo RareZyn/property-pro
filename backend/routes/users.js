@@ -2,6 +2,7 @@ const router = require('express').Router()
 let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
+const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 
 router.route('/').get((req, res) => {
     User.find()
@@ -25,8 +26,9 @@ router.post('/login', async (req, res) => {
     .then(user => {
         if(user){
             if(Bcrypt.compare(password, user.password)){
-                const token = jwt.sign({username: user.username}, "jwt-secret-key", {expiresIn: "1d"})
+                const token = jwt.sign({user}, process.env.MY_SECRET, {expiresIn: "1d"})
                 res.cookie("token", token)
+                delete user.password
                 res.json(user)
             }
             else{
@@ -37,17 +39,6 @@ router.post('/login', async (req, res) => {
             res.json('The account is not existed')
         }
     })
-})
-
-
-const verifyUser = (req, res, next) => {
-    const token = req.cookies.token
-    console.log(token)
-    console.log('lalu')
-}
-
-router.route('/homepage').get(verifyUser, (req, res) => {
-    console.log('lalu sini')
 })
 
 module.exports = router

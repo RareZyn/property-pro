@@ -60,7 +60,7 @@ export const NavHeader = () => {
           <CustomLink href="/forum-page">Community</CustomLink>
           <CustomLink id="navHeader-broker-button" href="/register-broker">Broker</CustomLink>
 
-          <CustomLink href="/">Logout</CustomLink>
+          <CustomLink href="/" onClick={{}}>Logout</CustomLink>
         </ul>
       </nav>
       <ChatPopup className={chatPopdown}></ChatPopup>

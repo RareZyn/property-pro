@@ -10,7 +10,6 @@ export const LoginPage = () => {
     password: ''
   })
   const nav = useNavigate()
-  const {user, setUser} = useContext(AppContext)
 
   const handleChange = (e) => {
     const {name, value} = e.target
@@ -33,7 +32,6 @@ export const LoginPage = () => {
         alert('The password is incorrect')
       }
       else{
-        setUser(res.data)
         console.log(res)
         nav('/homepage')
       }

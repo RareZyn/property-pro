@@ -1,7 +1,15 @@
+import { useContext } from "react";
+import { AppContext } from "../../AppProvider";
 import "./DropdownMenu.css";
 
 export const DropdownMenu = ({ className }) => {
-  console.log(className);
+  const {user} = useContext(AppContext);
+  // const user = null;
+  let fullName = null;
+
+  if(user !== null){
+    fullName = `${user.firstName} ${user.lastName}`
+  }
 
   return (
     <div className={className}>
@@ -10,7 +18,7 @@ export const DropdownMenu = ({ className }) => {
           className="ProfileView"
           src={require("../../Res/image/user profile.png")}
         />
-        <h3 className="ProfileViewName">Name</h3>
+        <h3 className="ProfileViewName">{fullName}</h3>
         <p className="ProfileViewDesc">Bla bla bla</p>
       </a>
       <ul className="DropdownMenuNavigation">
