@@ -2,9 +2,8 @@ import "./AccountHeader.css";
 import { useState, useContext } from "react";
 import { ViewAccountProperty } from "./ViewAccountProperty";
 import { ViewAccountPost } from "./ViewAccountPost";
-import { ViewAccountAbout } from "./ViewAccountAbout";
 import profilePic from "../../Res/image/user profile.png";
-import { AppContext } from "../../App";
+import { AppContext } from "../../AppProvider";
 
 export const ViewAccountHeader = () => {
   const [currentPage, setCurrentPage] = useState("Property");

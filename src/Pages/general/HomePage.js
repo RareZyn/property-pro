@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { NavHeader } from "../Navigation/NavHeader";
-import { Footer } from "./Footer.jsx";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
-import { BsDisplay } from "react-icons/bs";
+import { AppContext } from "../../AppProvider.js";
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
+  const token = Cookies.get('token')
+  console.log(jwtDecode(token).user)
+
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
+  const {user} = useContext(AppContext)
+  // console.log(user)
 
   const handleBuyerHover = () => {
     setIsBuyerHovered(true);
@@ -62,10 +67,10 @@ export const HomePage = () => {
     );
   };
 
-  let suggestedItems = [];
-  for (let i = 0; i < 3; i++) {
-    suggestedItems.push(<PropertyDisplayCard />);
-  }
+  let suggestedItems = new Array(5);
+  // for (let i = 0; i < 3; i++) {
+  //   suggestedItems.push(<PropertyDisplayCard />);
+  // }
 
   return (
     <div className="HomePage">
@@ -161,7 +166,9 @@ export const HomePage = () => {
       >
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
-          {suggestedItems}
+          {suggestedItems.map((item, index) => (
+            <PropertyDisplayCard/>
+          ))}
         </div>
       </div>
     </div>

@@ -1,0 +1,17 @@
+.MyChatBubble{
+    border: 2px solid var(--creamyWhite);
+    background-color: var(--creamyWhite);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 1em;
+    width: 70%;
+    padding: 1em 2em;
+    margin: 1em 2em;
+    float: right;
+
+}
+
+.my-time{
+    float: right;
+    color: #000000;
+    margin-top: 0.5em;
+  }

@@ -49,7 +49,7 @@ export const NavHeader = () => {
     setIsMenuClicked(!isMenuClicked);
   };
 
-  const showChat = () => {
+  /*const showChat = () => {
     if (isChatClicked) {
       setChatPopdown("ChatPopup2");
       setChatNavigation("active");
@@ -58,7 +58,7 @@ export const NavHeader = () => {
       setChatNavigation("Navigator");
     }
     setIsChatClicked(!isChatClicked);
-  };
+  };*/
 
   return (
     <div className="NavHeader">
@@ -76,15 +76,19 @@ export const NavHeader = () => {
           </CustomLink>
           <CustomLink href="/browser-property">Browser</CustomLink>
           <CustomLink href="/manage-property">Sell</CustomLink>
-          <li className={chatNavigation} onClick={showChat}>
-            Chat
-          </li>
+          <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
+<<<<<<< HEAD
           <CustomLink id="navHeader-broker-button" href="/register-broker">
             Broker
           </CustomLink>
           <CustomLink href="/myaccount">My Account</CustomLink>
           <CustomLink href="/">Logout</CustomLink>
+=======
+          <CustomLink id="navHeader-broker-button" href="/register-broker">Broker</CustomLink>
+
+          <CustomLink href="/" onClick={{}}>Logout</CustomLink>
+>>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
         </ul>
       </nav>
       <ChatPopup className={chatPopdown}></ChatPopup>

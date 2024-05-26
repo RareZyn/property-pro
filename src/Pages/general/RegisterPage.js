@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import axios from 'axios';
 
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
+<<<<<<< HEAD
   const navigate = useNavigate(); // Hook to programmatically navigate
+=======
+  const navigate = useNavigate()
+>>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -58,6 +63,7 @@ export const RegisterPage = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
+<<<<<<< HEAD
         // Form is valid, you can handle form submission here
         console.log("Form submitted with values:", formValues);
         setRegistrationSuccess(true);
@@ -65,6 +71,29 @@ export const RegisterPage = () => {
 
         // Redirect to login page after successful registration
         navigate("/login");
+=======
+        axios.post('http://localhost:5000/users/register', formValues)
+        .then(res => {
+          console.log(res.data)
+          const error = res.data.keyPattern ? Object.keys(res.data.keyPattern)[0] : null
+          if(error === 'username'){
+            alert('Username already existed')
+          }
+          else if(error === 'email'){
+            alert('Email already existed')
+          }
+          else if(error !== null){
+            console.log(error)
+          }
+          else{
+            // Alert user they successfull register
+            // TODO: Buat toast component
+            alert("You successfully created your account")
+            navigate('/login')
+            setRegistrationSuccess(true);
+          }
+        })
+>>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages
