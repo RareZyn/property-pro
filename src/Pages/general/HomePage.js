@@ -1,11 +1,25 @@
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import "./HomePage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
 import { AppContext } from "../../AppProvider.js";
+import axios from "axios";
 
 export const HomePage = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios.get('http://localhost/3000/homepage')
+    .then(result => {
+      console.log(result)
+      if(result.data !== "Success"){
+        navigate('/login')
+      }
+    })
+    .catch(err => console.log(err))
+  }, [])
+
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
   const {user} = useContext(AppContext)

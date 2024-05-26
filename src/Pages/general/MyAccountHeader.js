@@ -50,7 +50,7 @@ export const MyAccountHeader = () => {
           </div>
           {/* <ProfilePicture imxgSrc={require("../../Res/image/user-image.png")} size={"10%"}/> */}
           <div className="acc-desc">
-            <h1>{user.firstName}</h1>
+            <h1>{}</h1>
             <span>{userDetails.bio}</span>
           </div>
           

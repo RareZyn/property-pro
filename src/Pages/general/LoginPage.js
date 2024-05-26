@@ -20,6 +20,7 @@ export const LoginPage = () => {
     })
   }
 
+  axios.defaults.withCredentials = true
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -32,13 +33,8 @@ export const LoginPage = () => {
         alert('The password is incorrect')
       }
       else{
-        setUser({
-          ...user,
-          username: res.data.username,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName
-        })
-        console.log(user.firstName)
+        setUser(res.data)
+        console.log(res)
         nav('/homepage')
       }
     })

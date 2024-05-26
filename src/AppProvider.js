@@ -12,11 +12,7 @@ export const AppProvider = ({children}) => {
         phoneNum: "012-3456789",
     };
 
-    const [user, setUser] = useState({
-        username: null,
-        firstName: null,
-        lastName: null
-    })
+    const [user, setUser] = useState(null)
 
     return(
         <AppContext.Provider value={{userDetails, user, setUser}}>
@@ -24,3 +20,5 @@ export const AppProvider = ({children}) => {
         </AppContext.Provider>
     )
 }
+
+export const useContext = () => useContext(AppProvider)
