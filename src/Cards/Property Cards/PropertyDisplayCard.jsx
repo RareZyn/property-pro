@@ -24,8 +24,13 @@ export const PropertyDisplayCard = ({ thumbnailImage, link }) => {
           <img src={thumbnail} alt="Image" srcset="" id="img-ph" />
         </div>
         <div id="details">
-          <span>Item name</span>
           <span style={{ fontWeight: "bold" }}>RM XX.XX</span>
+          <div className="noOf-bedroom-bathroom"> 
+            <span>Bedroom</span>
+            <span>Bathroom</span>
+          </div>
+          <span>Item name</span>
+          <span>Location</span>
         </div>
       </div>
     </Link>

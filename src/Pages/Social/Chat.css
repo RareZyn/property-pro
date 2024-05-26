@@ -1,5 +1,6 @@
 .Chat {
   display: flex;
+  height: 100vh; /* Full viewport height */
 }
 
 .ChatList {
@@ -7,6 +8,8 @@
   background-color: var(--creamyWhite);
   flex: 1;
   list-style: none;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 100vh; /* Limit the height to viewport height */
 }
 
 .ChatList li {
@@ -44,10 +47,12 @@
   flex-direction: column;
   border-left: 3px solid var(--grey);
   background-color: #27a088;
+  overflow-y: hidden; /* Prevent scrolling on the entire screen */
 }
 
 .ChatUser {
   width: 100%;
+  height: 10%;
   display: flex;
   background-color: var(--white);
   align-items: center;
@@ -68,6 +73,8 @@
 
 .ChatContainer {
   height: 100vw;
+  overflow-y: auto;
+
 }
 
 .SendChat::before,
@@ -79,7 +86,7 @@
 }
 
 .SendChat {
-  height: 90px;
+  height: 10em;
   justify-content: space-between;
   display: flex;
   align-items: center;
