@@ -6,11 +6,7 @@ import axios from 'axios';
 import "./RegisterPage.css";
 
 export const RegisterPage = () => {
-<<<<<<< HEAD
   const navigate = useNavigate(); // Hook to programmatically navigate
-=======
-  const navigate = useNavigate()
->>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
   const [formValues, setFormValues] = useState({
     firstName: "",
     lastName: "",
@@ -63,15 +59,15 @@ export const RegisterPage = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-<<<<<<< HEAD
-        // Form is valid, you can handle form submission here
-        console.log("Form submitted with values:", formValues);
-        setRegistrationSuccess(true);
-        setErrors({}); // Clear errors
 
-        // Redirect to login page after successful registration
-        navigate("/login");
-=======
+        // // Form is valid, you can handle form submission here
+        // console.log("Form submitted with values:", formValues);
+        // setRegistrationSuccess(true);
+        // setErrors({}); // Clear errors
+
+        // // Redirect to login page after successful registration
+        // navigate("/login");
+
         axios.post('http://localhost:5000/users/register', formValues)
         .then(res => {
           console.log(res.data)
@@ -93,7 +89,7 @@ export const RegisterPage = () => {
             setRegistrationSuccess(true);
           }
         })
->>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
+
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages

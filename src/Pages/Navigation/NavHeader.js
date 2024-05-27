@@ -4,6 +4,7 @@ import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
+import Cookies from 'js-cookie'
 
 export const NavHeader = () => {
   const [burgerIcon, setBurgerIcon] = useState("DropdownBar unclicked");
@@ -60,6 +61,10 @@ export const NavHeader = () => {
     setIsChatClicked(!isChatClicked);
   };*/
 
+  const logout = () => {
+    Cookies.remove('token')
+  }
+
   return (
     <div className="NavHeader">
       <div className="left-header">
@@ -78,17 +83,11 @@ export const NavHeader = () => {
           <CustomLink href="/manage-property">Sell</CustomLink>
           <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
-<<<<<<< HEAD
           <CustomLink id="navHeader-broker-button" href="/register-broker">
             Broker
           </CustomLink>
           <CustomLink href="/myaccount">My Account</CustomLink>
-          <CustomLink href="/">Logout</CustomLink>
-=======
-          <CustomLink id="navHeader-broker-button" href="/register-broker">Broker</CustomLink>
-
-          <CustomLink href="/" onClick={{}}>Logout</CustomLink>
->>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
+          <CustomLink href="/" onClick={logout}>Logout</CustomLink>
         </ul>
       </nav>
       <ChatPopup className={chatPopdown}></ChatPopup>

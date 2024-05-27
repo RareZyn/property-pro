@@ -54,17 +54,12 @@ export const LoginPage = () => {
               onChange={handleChange}/>
           </section>
           <section id="login-section">
-<<<<<<< HEAD
-            Password
-            <input type="password" />
-=======
             password
             <input 
               type="password"
               name="password"
               value={formValues.password}
               onChange={handleChange}/>
->>>>>>> b499840fe3c6944a96681aedc1d27ac88eef2f9b
           </section>
           <section id="input-button">
             <button id="login-account">Login Account</button>

@@ -17,11 +17,22 @@ export const AppProvider = ({children}) => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        const token = Cookies.get('token')
-        if(token){
-            setUser(jwtDecode(token).user)   
+        const token = Cookies.get('token');
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                if (decodedToken && decodedToken.user) {
+                    setUser(decodedToken.user);
+                } else {
+                    console.error('Invalid token structure');
+                }
+            } catch (error) {
+                console.error('Failed to decode token', error);
+                // Optionally, handle the error, e.g., remove the invalid token from cookies
+                Cookies.remove('token');
+            }
         }
-    }, [])
+    }, [setUser]);
 
     return(
         <AppContext.Provider value={{userDetails, user, setUser}}>
