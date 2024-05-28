@@ -16,8 +16,9 @@ const forumSchema = new Schema({
     },
     comments: [this],
     likes: [{
-        type: Schema.Types.ObjectId,
-        ref: 'ForumLike'
+        type: String,
+        required: [true, 'userID is required'],
+        trim: true
     }],
     likeCount: {
         type: Number,
@@ -38,3 +39,15 @@ const forumSchema = new Schema({
 const Forum = mongoose.model('Forum', forumSchema);
 
 module.exports = Forum;
+
+/*
+{
+    "userID": "",
+    "textForum": "",
+    "comments": [],
+    "likes": [],
+    "likeCount": 0,
+    "photoUrl": "",
+    "videoUrl": ""
+}
+*/
