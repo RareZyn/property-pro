@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let ChatRoom = require('../models/chat-room.model');
+let { Chat, ChatRoom } = require('../models/chat.model');
 
 router.route('/').get((req, res) => {
     ChatRoom.find()
@@ -24,19 +24,19 @@ router.route('/add-room').post((req, res) =>{
 });
 
 router.route('/:id/send-message').post((req ,res)=>{
-    const {userID , message} = req.body;
+    const {senderID , textChat} = req.body;
 
-    const newMessage = Message({
-        senderID: userID,
-        textChat: message
+    const newChat = Chat({
+        senderID: senderID,
+        textChat: textChat
     });
 
     ChatRoom.findByIdAndUpdate(
         req.params.id,
-        {$push: {chats: newMessage}},
+        {$push: {chats: newChat}},
         {new: true, useFindAndModify: false}
     )
-    .then(message => res.json(message + " send!"))
+    .then(message => res.json(textChat + " send!"))
     .catch(err => res.status(400).json("Error: "+err));
 });
 

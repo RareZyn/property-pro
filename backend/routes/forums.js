@@ -2,7 +2,7 @@ const router = require('express').Router();
 let Forum = require('../models/forum.model');
 
 router.route('/').get((req, res) => {
-    User.find()
+    Forum.find()
         .then(forums => res.json(forums))
         .catch(err => res.status(400).json('Error: ' +err))
 });
@@ -52,18 +52,6 @@ router.route('/add-comment/:id').post((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// Add a new like to id
-router.route('/add-like/:id').post((req, res) => {
-    const like = new ForumLike({ userID: req.body.userID });
-    like.save()
-        .then(() => {
-            Forum.findByIdAndUpdate(req.params.id, { $push: { likes: like }, $inc: { likeCount: 1 } })
-                .then(() => res.json('Like added!'))
-                .catch(err => res.status(400).json('Error: ' + err));
-        })
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
 // Delete a specific forum by ID
 router.route('/delete/:id').delete((req, res) => {
     Forum.findByIdAndDelete(req.params.id)
@@ -71,7 +59,69 @@ router.route('/delete/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// to add
-// delete comment & like, access comment & like, access forum by userId
+// Like or unlike by ID
+router.route('/like/:id').post((req, res) => {
+    const like = req.body.userID;
+
+    // Check if the user has already liked this post
+    Forum.findById(req.params.id) //Find the forum ID given in the params
+        .then((forumPost) => {
+            const existingLike = forumPost.likes.find((likeItem) => likeItem === req.body.userID);
+
+            if (existingLike) {
+                // User has already liked this post, so remove the like
+                forumPost.likes.pull(existingLike); // Remove the like from the array
+                forumPost.likeCount -= 1; // Decrement the likeCount
+            } else {
+                // User hasn't liked this post, so add the like
+                forumPost.likes.push(like); // Add the like to the array
+                forumPost.likeCount += 1; // Increment the likeCount
+            }
+
+            forumPost.save()
+                .then(() => res.json('Like updated!'))
+                .catch((err) => res.status(400).json('Error: ' + err));
+        })
+        .catch((err) => res.status(400).json('Error: ' + err));
+});
+
+router.route('/user-forum/:id').get((req, res) =>{
+    const userId = req.params.id 
+    Forum.find({ userID: userId })
+        .then(forums => res.json(forums))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/get-like/:id').get((req,res)=>{
+    Forum.findById(req.params.id)
+    .then(forum => res.json(forum.likes))
+    .catch(err => res.status(400).json('Error ' + err));
+});
+
+router.route('/get-comment/:id').get((req,res)=>{
+    Forum.findById(req.params.id)
+        .then(forum => res.json(forum.comments))
+        .catch(err => res.status(400).json('Error ' + err));
+});
+
+router.route('/delete-comment/:id').post((req,res)=>{
+    Forum.findById(req.params.id)
+        .then((forum) => {
+            const existingComment = forum.comments.find(comment => comment._id.toString() === req.body.forumID);
+
+            if(existingComment){
+                forum.comments.pull(existingComment); // Remove the comment from the array
+                Forum.findByIdAndDelete(req.body.forumID)
+                    .then(() => res.json('Forum deleted.'))
+                    .catch(err => res.status(400).json('Error: ' + err));
+                forum.save()
+                .then(() => res.json('Comment deleted !'))
+                .catch(err => res.status(400).json('Error '+err));
+            } else {
+                res.status(404).json('Comment not found.');
+            }
+        })
+        .catch(err => res.status(400).json('Error '+err));
+});
 
 module.exports = router;
