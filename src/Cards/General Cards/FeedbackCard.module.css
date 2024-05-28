@@ -1,4 +1,4 @@
-#share-card{
+#feedback-card{
     background-color: var(--creamyWhite);
     box-shadow: 0px 1px 15px 2px #c4c4c4;
     border-radius: 10px;
@@ -8,13 +8,13 @@
     flex-direction: column;
 }
 
-#share-card h1{
+#feedback-card h1{
     text-align: end;
     margin: 15px;
     font-family: "Outfit";
 }
 
-#share-card hr{
+#feedback-card hr{
     width: 100%;
 }
 

@@ -1,6 +1,6 @@
 // Mka esure sizing width = 35%
 
-import styles from "./ShareCard.module.css";
+import styles from "./FeedbackCard.module.css";
 import Rate1GreySvg from '../../Res/image/feedback/rate-1-grey.svg';
 import Rate2GreySvg from '../../Res/image/feedback/rate-2-grey.svg';
 import Rate3GreySvg from '../../Res/image/feedback/rate-3-grey.svg';
@@ -8,11 +8,11 @@ import Rate4GreySvg from '../../Res/image/feedback/rate-4-grey.svg';
 import Rate5GreySvg from '../../Res/image/feedback/rate-5-grey.svg';
 import { useState } from "react";
 
-function ShareCard(){
+function FeedbackCard(){
     const [category, setCategory] = useState(0);
 
     return(
-        <div id={styles["share-card"]}>
+        <div id={styles["feedback-card"]}>
             <h1>Your Feedback</h1>
             <hr />
 
@@ -56,4 +56,4 @@ function ShareCard(){
     )
 }
 
-export default ShareCard    
+export default FeedbackCard    

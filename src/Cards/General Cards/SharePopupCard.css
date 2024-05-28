@@ -1,0 +1,42 @@
+.sharepopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sharepopup-main {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .display-block {
+    display: flex;
+  }
+  
+  .display-none {
+    display: none;
+  }
+  
+  .close-button {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 10px;
+  }
+  
+  .close-button:hover {
+    background: #d32f2f;
+  }
+  

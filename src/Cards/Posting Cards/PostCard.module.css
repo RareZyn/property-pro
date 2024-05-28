@@ -2,13 +2,14 @@
     background-color: var(--creamyWhite);
     width: 100%;
     border-radius: 30px;
-    padding: 1.5% 2.5%;
+    padding:1.7em;
     margin: 0 auto;
     height: fit-content;
 }
 
 #user-profile{
     display: flex;
+     margin-bottom: 1em;
 }
 
 #profile-container{

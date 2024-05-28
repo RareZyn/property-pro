@@ -4,26 +4,57 @@
   width: 50vw;
   aspect-ratio: 15/1;
   padding: 5px;
+  height: 7vh;
+  width: 60vw;
   column-gap: 10px;
   border-radius: 10px;
   border: 1px solid #bfbfbf;
 }
 
 #search-bar img {
-  height: inherit;
+  height: 90%;
   margin: 0;
 }
 
 #search-bar input {
-  height: inherit;
+  height: 5vh;
   width: inherit;
   margin: 0;
   border: none;
+  align-self: center;
   background: none;
 }
 
 #search-bar:hover {
+  box-shadow: 0px 11px 17px 11px rgba(112, 112, 112, 0.3);
+
 }
 
 #search-bar input:hover {
 }
+
+@media (max-width:1080px){
+  #search-bar{
+    height: 6vh;
+    width: 50vw;
+  }
+  
+  #search-bar input{
+    height: 5vh;
+    width: 40vw;
+    align-self: center;
+  }
+}
+
+@media (max-width:640px){
+  #search-bar{
+    height: 5vh;
+  }
+  
+  #search-bar input{
+    height: 4vh;
+    width: 50vw;
+    align-self: center;
+  }
+}
+

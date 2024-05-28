@@ -142,7 +142,7 @@ a {
   border-radius: 24px;
   padding: 28px;
   margin: 0px;
-  background-color: var(--creamyWhite);
+  background-color: var(--grey);
   box-shadow: 1px 1px 3px;
 }
 
@@ -161,7 +161,7 @@ a {
   }
 }
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .ChatList {
     width: 100%;
     max-height: 100vh; /* Adjust height for the chat input */

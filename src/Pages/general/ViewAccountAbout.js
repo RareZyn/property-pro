@@ -1,5 +1,5 @@
 import "./ViewAccountAbout.css";
-import ShareCard from "../../Cards/General Cards/ShareCard";
+import ShareCard from "../../Cards/General Cards/FeedbackCard";
 
 export const ViewAccountAbout = () => {
   return (

@@ -15,7 +15,10 @@ const ForumPage = () => {
   return (
     <>
       <ForumHeader />
-      <ForumCreatePost />
+      <div className="CreatePostContainer">
+      <ForumCreatePost />  
+      </div>
+      
       {postCardItems}
     </>
   );
