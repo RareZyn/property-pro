@@ -1,0 +1,78 @@
+datasource db {
+  provider = "mongodb"
+  url = env("ATLAS_URI")
+}
+
+model User {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  username    String    @unique
+  firstName   String?
+  lastName    String?
+  email       String    @unique
+  password    String
+  phoneNumber String?
+  location    String?
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  properties  Property[] @relation("UserProperties")
+  brokers     Broker[]   @relation("UserBrokers")
+}
+
+model Vehicle {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  vehicleType      String
+  brand            String
+  model            String
+  seats            Int
+  mileage          Int
+  ManufacturedYear Int
+  cc               Int
+  condition        Condition
+
+  @@index([brand], name: "brand_idx")
+  @@index([model], name: "model_idx")
+}
+
+enum Condition {
+  New
+  Used
+}
+
+enum PropertyType {
+  Land
+  House
+  Condo
+}
+
+model Property {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  sellerID     String      @db.ObjectId
+  description  String
+  propertyType PropertyType
+  price        Float
+  brokerID     String      @db.ObjectId
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  seller       User        @relation(fields: [sellerID], references: [id], name: "UserProperties")
+  broker       Broker      @relation(fields: [brokerID], references: [id])
+
+  @@index([title], name: "title_idx")
+  @@index([propertyType], name: "propertyType_idx")
+}
+
+model Broker {
+  id                    String     @id @default(auto()) @map("_id") @db.ObjectId
+  userID                String     @db.ObjectId
+  icCardNumber          String
+  realEstateLicenseNumber String
+  propertiesListed      Property[]
+
+  user                  User       @relation(fields: [userID], references: [id], name: "UserBrokers")
+
+  @@index([icCardNumber], name: "icCardNumber_idx")
+  @@index([realEstateLicenseNumber], name: "realEstateLicenseNumber_idx")
+}

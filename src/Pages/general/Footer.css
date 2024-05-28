@@ -5,7 +5,7 @@
   text-align: center;
   position: relative;
   bottom: 0;
-  width: 100%;
+  
 }
 .footer-container {
   display: flex;
@@ -52,7 +52,7 @@
 
 .icon {
   margin: 0 10px;
-  font-size:10px;
+  font-size: 2em;
   color: #fff;
   transition: color 0.3s ease;
 }
@@ -70,7 +70,7 @@
 }
 
 .twitter:hover {
-  color: #112633;
+  color: #1a8acf;
 }
 
 .facebook:hover {

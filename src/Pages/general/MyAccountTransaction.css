@@ -1,114 +1,102 @@
-.MyAccountTransactions {
+.ViewAccountProperty {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-}
-
-.MyAccountTransactionCard {
+    padding: 20px;
+    margin-bottom: 30px; /* Add margin-bottom for consistency */
+  }
+  
+  .acc-grid-container {
+    display: grid;
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .TransactionCard {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--darkBlue);
-    border-radius: 25px;
-    box-shadow: 0px 3px 5px var(--darkBlue);
-    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-    padding: 30px;
-    margin-top: 30px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.MyAccountTransactionItem {
-    display: flex;
-    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
     width: 100%;
-    margin-bottom: 10px;
-
-}
-
-.MyAccountTransactionItem img {
-    margin-right: 50px; 
-    height: auto 
-}
-
-.MyAccountTransactions p {
-    flex: 1; 
-    margin: 0; 
-    margin-bottom: 10px;
-}
-
-.MyAccountTransactionItem h1 {
-    flex: 1; 
-    margin: 0; 
-    margin-bottom: 15px;
-    color: var(--creamyWhite);
-}
-
-.MyAccountTransactionItem h2 {
-    flex: 1; 
-    margin: 0; 
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: var(--creamyWhite);
-}
-
-.PriceContainer {
-    background-color: var(--orange);
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-    width: fit-content;
-}
-
-.MyAccountTransactionDone {
+  }
+  
+  .TransactionItem {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    background-color: var(--orange);
-    border-radius: 25px;
-    box-shadow: 0px 3px 5px var(--darkBlue);
-    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
-    padding: 30px;
-    margin-top: 30px;
-    margin-left: 50px;
-    margin-right: 50px;
-}
-
-.MyAccountTransactionItem-done {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 10px;
-
-}
-
-.MyAccountTransactionItem-done img {
-    margin-right: 50px; 
-    height: auto 
-}
-
-.MyAccountTransactionItem-done h1 {
-    flex: 1; 
-    margin: 0; 
-    margin-bottom: 15px;
-    color: var(--darkBlue);
-}
-
-.MyAccountTransactionItem-done h2 {
-    flex: 1; 
-    margin: 0; 
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: var(--darkBlue);
-}
-
-.PriceContainer-done {
-    background-color: var(--darkBlue);
-    padding: 5px 10px;
+    margin-bottom: 20px;
+    padding: 10px;
     border-radius: 10px;
-    margin-top: 10px;
-    color: var(--creamyWhite);
-    width: fit-content;
-}
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 100%; /* Ensure full width */
+  }
+  
+  .TransactionItem:hover {
+    transform: translateY(-5px);
+  }
+  
+  .TransactionItem img {
+    margin-right: 20px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .TransactionItem div {
+    flex: 1;
+  }
+  
+  .TransactionItem h1 {
+    margin-bottom: 5px; /* Adjusted margin */
+    font-size: 20px;
+    color: var(--darkBlue);
+  }
+  
+  .TransactionItem p {
+    margin-bottom: 5px; /* Adjusted margin */
+    font-size: 16px;
+    color: var(--gray);
+    white-space: pre-line; /* Ensures proper word wrapping */
+  }
+  
+  .PriceContainer {
+    padding: 10px; /* Adjusted padding */
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Paid Transactions */
+  .PaidTransactions {
+    background-color: var(--lightGreen); /* Set background color for paid transactions */
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    .TransactionCard {
+      padding: 15px; /* Adjusted padding */
+    }
+  
+    .TransactionItem {
+      flex-direction: column; /* Adjusted flex-direction */
+      align-items: center; /* Center items horizontally */
+      text-align: center; /* Center text */
+    }
+  
+    .TransactionItem img {
+      max-width: 100%; /* Adjusted max-width */
+      margin-bottom: 10px; /* Adjusted margin */
+    }
+  
+    .TransactionItem div {
+      width: 100%; /* Ensure text container takes full width */
+    }
+  
+    .ViewAccountProperty {
+      margin-top: 0; /* Remove margin from the top */
+      margin-bottom: 30px; /* Add margin-bottom for consistency */
+    }
+  }
+  

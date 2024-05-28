@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FaChevronLeft } from "react-icons/fa";
 import { MyChatBubble } from "../../Cards/Chat Cards/MyChatBubble";
 import { YourChatBubble } from "../../Cards/Chat Cards/YourChatBubble";
 import "./Chat.css";
@@ -6,6 +7,8 @@ import "./Chat.css";
 export const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState('');
+  const [isChatScreenActive, setIsChatScreenActive] = useState(false);
+  const [activeChatIndex, setActiveChatIndex] = useState(null);  // Track the active chat
   const chatContainerRef = useRef(null);
 
   const handleSend = () => {
@@ -34,37 +37,40 @@ export const Chat = () => {
     }
   }, [messages]);
 
+  const handleChatListClick = (index) => {
+    setIsChatScreenActive(true);
+    setActiveChatIndex(index);  // Set the active chat
+  };
+
+  const handleBackToChatList = () => {
+    setIsChatScreenActive(false);
+  };
+
   return (
     <div className="Chat">
-      <ul className="ChatList">
-        <li>
+      <ul className={`ChatList ${isChatScreenActive ? 'active' : ''}`}>
+        <li onClick={() => handleChatListClick(0)} className={activeChatIndex === 0 ? 'active' : ''}>
           <img src={require("../../Res/image/user profile.png")} alt="User profile"/>
           <div>
             <h1>Nama 1</h1>
             <p>Assalamualaikum</p>
           </div>
         </li>
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
-        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} />
-        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} />
+        <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} onClick={() => handleChatListClick(1)} isActive={activeChatIndex === 1} />
+        <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} onClick={() => handleChatListClick(2)} isActive={activeChatIndex === 2} />
+        {/* ... other list items */}
       </ul>
-      <div className="ChatScreen">
-        <a className="ChatUser" href="/view-account-header">
-          <img src={require("../../Res/image/user profile.png")} alt="User profile"/>
+      <div className={`ChatScreen ${isChatScreenActive ? 'active' : ''}`}>
+        <div className="ChatUser">
+          <div className="ChatUser-back" onClick={handleBackToChatList}>
+            <FaChevronLeft />
+          </div>
+          <img src={require("../../Res/image/user profile.png")} alt="User profile" />
           <h1>Nama 1</h1>
-        </a>
+        </div>
 
         <div className="ChatContainer" ref={chatContainerRef}>
-        <YourChatBubble></YourChatBubble>
+          <YourChatBubble />
           {messages.map((msg, index) => (
             msg.type === 'my' ? <MyChatBubble key={index} content={msg.content} time={msg.time} isImage={msg.isImage} /> : <YourChatBubble key={index} content={msg.content} />
           ))}
@@ -74,10 +80,10 @@ export const Chat = () => {
           <input type="file" id="SendChatSendImg" onChange={handleImageUpload} />
           <input type="file" id="SendChatSendVid" onChange={handleImageUpload} />
           <label htmlFor="SendChatSendImg">
-            <img src={require("../../Res/image/image-chat.png")} alt="Send image"/>
+            <img src={require("../../Res/image/image-chat.png")} alt="Send image" />
           </label>
           <label htmlFor="SendChatSendVid">
-            <img src={require("../../Res/image/video.png")} alt="Send video"/>
+            <img src={require("../../Res/image/video.png")} alt="Send video" />
           </label>
           <input 
             type="text" 
@@ -99,10 +105,10 @@ export const Chat = () => {
   );
 };
 
-function CustomChatUserList({ userName, chatContent }) {
+function CustomChatUserList({ userName, chatContent, onClick, isActive }) {
   return (
-    <li>
-      <img src={require("../../Res/image/user profile.png")} alt="User profile"/>
+    <li onClick={onClick} className={isActive ? 'active' : ''}>
+      <img src={require("../../Res/image/user profile.png")} alt="User profile" />
       <div>
         <h1>{userName}</h1>
         <p>{chatContent}</p>
