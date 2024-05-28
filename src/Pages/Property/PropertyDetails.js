@@ -66,7 +66,7 @@ export const PropertyDetails = () => {
         
         <div className="property-second-row">
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaBed />
             </div>
             <div className="text">
@@ -75,7 +75,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaShower />
             </div>
             <div className="text">
@@ -84,7 +84,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaLayerGroup />
             </div>
             <div className="text">
@@ -93,7 +93,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaHouse />
             </div>
             <div className="text">
