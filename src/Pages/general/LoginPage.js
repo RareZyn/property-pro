@@ -46,7 +46,7 @@ export const LoginPage = () => {
         </div>
         <div className="login-div">
           <section id="login-section">
-            username
+            Username
             <input 
               type="text"
               name="username"
@@ -54,7 +54,7 @@ export const LoginPage = () => {
               onChange={handleChange}/>
           </section>
           <section id="login-section">
-            password
+            Password
             <input 
               type="password"
               name="password"
