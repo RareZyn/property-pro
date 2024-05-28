@@ -1,5 +1,4 @@
-import "./App.css";
-import React, {createContext, useContext} from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,8 +7,8 @@ import {
 } from "react-router-dom";
 import { NavHeader } from "./Pages/Navigation/NavHeader.js";
 import { Footer } from "./Pages/general/Footer.jsx";
-import routes from './routesConfig.js'
-import { AppProvider } from "./AppProvider.js";
+import routes from './routesConfig.js';
+import ScrollToTop from "./Content/ScrollToTop"; // Correct the import path to ScrollToTop component
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
@@ -20,15 +19,16 @@ function NavHeaderWrapper() {
 function App() {
   return (
     <div className="App">
-        <Router>
-          <NavHeaderWrapper />
-          <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element}/>
-            ))}
-          </Routes>
-          <Footer />
-        </Router>
+      <Router>
+        <ScrollToTop />
+        <NavHeaderWrapper />
+        <Routes>
+          {routes.map((route, index) => (
+            <Route key={index} path={route.path} element={route.element}/>
+          ))}
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }

@@ -6,8 +6,8 @@
   background-color: var(--darkBlue);
   padding: 1em;
   justify-content: space-between;
-  align-items: center;
   z-index: 1;
+
 }
 
 .left-header {
@@ -38,7 +38,7 @@
 
 .NavHeader ul {
   font-family: "Outfit", sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -73,7 +73,7 @@
 }
 
 /* Media queries for responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .NavHeader {
     flex-direction: column;
     height: auto;
@@ -107,7 +107,7 @@
   flex-direction: column;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .DropdownMenuIcon {
     display: block; /* Show on mobile */
   }
