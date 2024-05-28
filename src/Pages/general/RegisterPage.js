@@ -242,9 +242,15 @@ export const RegisterPage = () => {
             <div id="have-account">
               <p>
                 Already have an account?{" "}
-                <Link to="/login" id="login-word">
-                  Login
-                </Link>
+                <Link 
+                to="/login" 
+                id="login-word" 
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+              >
+                Login
+              </Link>
               </p>
             </div>
           </div>
