@@ -1,8 +1,8 @@
 .YourChatBubble{
-    border: 2px solid var(--lightgrey);
-    background-color: var(--lightgrey);
+    border: 2px solid var(--darkGreen);
+    background-color: var(--darkGreen);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 1em;
+    border-radius: 0.5em;
     width: 70%;
     padding: 1em 2em;
     margin: 1em 2em;
