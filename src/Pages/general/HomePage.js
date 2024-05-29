@@ -68,9 +68,9 @@ export const HomePage = () => {
   };
 
   let suggestedItems = new Array(5);
-  // for (let i = 0; i < 3; i++) {
-  //   suggestedItems.push(<PropertyDisplayCard />);
-  // }
+   for (let i = 0; i < 3; i++) {
+    suggestedItems.push(<PropertyDisplayCard />);
+   }
 
   return (
     <div className="HomePage">
@@ -167,7 +167,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <PropertyDisplayCard/>
+            <PropertyDisplayCard />
           ))}
         </div>
       </div>
