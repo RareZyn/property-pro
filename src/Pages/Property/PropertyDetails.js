@@ -1,9 +1,11 @@
 import "./PropertyDetails.css";
 import React from 'react';
+import { useState } from "react";
 import { FaHouse } from "react-icons/fa6";
 import { FaBed,FaShower,FaLayerGroup, FaImages } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
+
 
 export const PropertyDetails = () => {
   return (
@@ -57,12 +59,12 @@ export const PropertyDetails = () => {
 
         <div className="property-fist-row">
           <h1 id="title-property">Petaling Jaya House</h1>
-        <Link to="/share-card">
-        <button id="share-button">
-                    <img src={require("../../Res/image/share-icon-black.png")} />
-                    Shares
-                  </button>  
-        </Link>
+      <div>
+        <button id="share-button" >
+           <img src={require("../../Res/image/share-icon-black.png")} />
+             Shares
+          </button>  
+       
           
         </div>
         
@@ -197,6 +199,7 @@ export const PropertyDetails = () => {
           <ReplyCard />
         </div>
       </div>
+    </div>
     </div>
   );
 };
