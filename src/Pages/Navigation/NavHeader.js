@@ -61,10 +61,6 @@ export const NavHeader = () => {
     setIsChatClicked(!isChatClicked);
   };*/
 
-  const logout = () => {
-    Cookies.remove('token')
-  }
-
   return (
     <div className="NavHeader">
       <div className="left-header">
