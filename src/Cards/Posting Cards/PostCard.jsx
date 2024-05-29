@@ -6,7 +6,6 @@ import likedIcon from "../../Res/image/red-heart.png";
 import commentIcon from "../../Res/image/message-square.png";
 import shareIcon from "../../Res/image/share-2.png";
 import pp from "../../Res/image/user profile.png";
-import SharePopupCard from "../General Cards/SharePopupCard";
 import { ReplyCard } from "../Property Cards/ReplyCard";
 
 function PostCard({ name, lastSeen, postPrivacy }) {
@@ -45,11 +44,6 @@ function PostCard({ name, lastSeen, postPrivacy }) {
     replyItems.push(<ReplyCard />);
   }
 
-  const [showPopup, setShowPopup] = useState(false);
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
-  };
-
 
   return (
     <>
@@ -80,12 +74,11 @@ function PostCard({ name, lastSeen, postPrivacy }) {
             <img src={commentIcon} alt="comment" />
             <span>Discuss</span>
           </div>
-          <div className={styles["engagement-button"]}onClick={togglePopup}>
+          <div className={styles["engagement-button"]}>
+  
             <img src={shareIcon} alt="Shares" />
-            <span>Shares</span>
-          </div><SharePopupCard show={showPopup} handleClose={togglePopup}>
-          </SharePopupCard>
-    
+            Shares
+          </div>
         </div>
         <div className={styles[showPopdownDiscussion]}>{replyItems}</div>
       </div>

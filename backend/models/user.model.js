@@ -40,6 +40,9 @@ const userSchema = new Schema({
     description: {
         type: String,
         trim: true
+    },
+    age: {
+        type: Number
     }
 }, {
     timestamps: true

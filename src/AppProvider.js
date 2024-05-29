@@ -15,6 +15,7 @@ export const AppProvider = ({children}) => {
     };
 
     const [user, setUser] = useState(null)
+    const [navPage, setNavPage] = useState(false)
 
     useEffect(() => {
         const token = Cookies.get('token');
@@ -32,7 +33,7 @@ export const AppProvider = ({children}) => {
                 Cookies.remove('token');
             }
         }
-    }, [setUser]);
+    }, [navPage]);
 
     return(
         <AppContext.Provider value={{userDetails, user, setUser}}>
@@ -40,5 +41,3 @@ export const AppProvider = ({children}) => {
         </AppContext.Provider>
     )
 }
-
-export const useContext = () => useContext(AppProvider)
