@@ -1,9 +1,13 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mongodb"
   url = env("ATLAS_URI")
 }
 
-model User {
+model users {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   username    String    @unique
   firstName   String?
@@ -16,8 +20,8 @@ model User {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  properties  Property[] @relation("UserProperties")
-  brokers     Broker[]   @relation("UserBrokers")
+  // properties  Property[] @relation("UserProperties")
+  // brokers     Broker[]   @relation("UserBrokers")
 }
 
 model Vehicle {
@@ -31,8 +35,7 @@ model Vehicle {
   cc               Int
   condition        Condition
 
-  @@index([brand], name: "brand_idx")
-  @@index([model], name: "model_idx")
+
 }
 
 enum Condition {
@@ -57,7 +60,7 @@ model Property {
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
 
-  seller       User        @relation(fields: [sellerID], references: [id], name: "UserProperties")
+  // seller       User        @relation(fields: [sellerID], references: [id], name: "UserProperties")
   broker       Broker      @relation(fields: [brokerID], references: [id])
 
   @@index([title], name: "title_idx")
@@ -71,8 +74,6 @@ model Broker {
   realEstateLicenseNumber String
   propertiesListed      Property[]
 
-  user                  User       @relation(fields: [userID], references: [id], name: "UserBrokers")
+  // user                  User       @relation(fields: [userID], references: [id], name: "UserBrokers")
 
-  @@index([icCardNumber], name: "icCardNumber_idx")
-  @@index([realEstateLicenseNumber], name: "realEstateLicenseNumber_idx")
 }

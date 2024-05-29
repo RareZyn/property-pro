@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { AppContext } from "../../AppProvider";
+import { logout } from "../../util";
 import "./DropdownMenu.css";
 
 export const DropdownMenu = ({ className }) => {
   const {user} = useContext(AppContext);
-  // const user = null;
   let fullName = null;
 
   if(user !== null){
@@ -59,15 +59,16 @@ export const DropdownMenu = ({ className }) => {
           href="/"
           src={require("../../Res/image/dropdownmenu-icons/logout icon.png")}
           itemName={"Logout"}
+          onClick={logout}
         ></DropdownMenuNavItem>
       </ul>
     </div>
   );
 };
 
-const DropdownMenuNavItem = ({ href, src, itemName }) => {
+const DropdownMenuNavItem = ({ href, src, itemName, onClick }) => {
   return (
-    <li className="DropdownMenuNavigationItem">
+    <li className="DropdownMenuNavigationItem" onClick={onClick}>
       <a href={href}>
         <img src={src} />
         <h1>{itemName}</h1>
