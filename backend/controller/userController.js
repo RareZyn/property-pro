@@ -6,7 +6,7 @@ const findUser = asyncHandler(async (req, res) => {
     const users = await prisma.users.findMany({
       where: {},
     });
-    console.log("Users:", users); 
+    console.log("Senarai User:", users); 
     res.status(200).json(users); 
   } catch (err) {
     console.error("Error fetching users:", err);
