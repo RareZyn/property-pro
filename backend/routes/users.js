@@ -3,6 +3,7 @@ let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
 const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
+const { findUser } = require('../controller/userController')
 
 router.route('/').get((req, res) => {
     User.find()
@@ -43,5 +44,7 @@ router.post('/login', async (req, res) => {
         res.status(500).json('Internal server error');
     }
 });
+
+router.get("/findUsername",findUser);
 
 module.exports = router
