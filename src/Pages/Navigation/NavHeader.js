@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DropdownMenuIcon } from "./DropdownMenuIcon";
 import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie'
+import { logout } from "../../util";
 
 export const NavHeader = () => {
   const [burgerIcon, setBurgerIcon] = useState("DropdownBar unclicked");
@@ -60,10 +60,6 @@ export const NavHeader = () => {
     }
     setIsChatClicked(!isChatClicked);
   };*/
-
-  const logout = () => {
-    Cookies.remove('token')
-  }
 
   return (
     <div className="NavHeader">
