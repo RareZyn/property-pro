@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DropdownMenuIcon } from "./DropdownMenuIcon";
 import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
