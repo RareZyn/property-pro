@@ -14,18 +14,33 @@ export const RegisterBroker = () => {
     phoneNumber: "",
     password: "",
     confirmPassword: "",
-    brokerIC: "",
-    brokerLicense: "",
+    brokerIC: null,
+    brokerLicense: null,
   });
 
+  const [fileNames, setFileNames] = useState({});
   const [errors, setErrors] = useState({});
   const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] = useState(false);
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value, files } = e.target;
+
+    if (files) {
+      let selectedFileName = '';
+      if (files.length > 1) {
+        selectedFileName = `${files.length} files selected`;
+      } else {
+        selectedFileName = files[0].name;
+      }
+      setFileNames({
+          ...fileNames,
+          [name]: selectedFileName,
+      });
+    }
+
     setBrokerFormValues({
       ...brokerFormValues,
-      [name] : value,
+      [name] : files ? files : value,
     });
   };
 
@@ -37,7 +52,7 @@ export const RegisterBroker = () => {
         email: yup.string().email("Invalid email").required("Email is required"),
         phoneNumber: yup.string().matches(/^[0-9]+$/, "Phone Number must contain only numbers").required("Phone Number is required"),
         password: yup.string().min(8, "Password must at least be 8 characters")
-        .matches(/^(?=.[A-Z].[A-Z])(?=.*[0-9])/, "Password must contain at least 2 capital letters and 1 number")
+        .matches(/^(?=(?:.*[A-Z]){2})(?=.*[0-9]).*$/, "Password must contain at least 2 capital letters and 1 number")
         .required("Password is required"),
         confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match")
         .required("Confirm Password is required"),
@@ -45,7 +60,7 @@ export const RegisterBroker = () => {
         brokerLicense: yup.string().required("Real Estate Negotiator License is required")
     });
 
-    validationSchema.validate(brokerFormValues)
+    validationSchema.validate(brokerFormValues,  { abortEarly: false })
     .then(() => {
       console.log(brokerFormValues);
       navigate("/verify-property-homepage");
@@ -135,12 +150,15 @@ export const RegisterBroker = () => {
               Identification Card (IC)
               <input type="file" 
               name="brokerIC"
+              id="brokerIC"
               accept="image/*"
               onChange={handleChange}
+              data-multiple-caption="{count} files selected"
+              multiple
               />
-              <label>
+              <label for="brokerIC">
                 <img src={require("../../Res/image/upload.png")} />
-                <h3>Choose files to upload</h3>
+                <h3>{fileNames.brokerIC || 'Choose files to upload'}</h3>
               </label>
               {errors.brokerIC && (
                 <div className="error">{errors.brokerIC}</div>
@@ -151,12 +169,15 @@ export const RegisterBroker = () => {
               Real Estate Negotiator License
               <input type="file" 
               name="brokerLicense"
+              id="brokerLicense"
               accept="image/*"
               onChange={handleChange}
+              data-multiple-caption="{count} files selected"
+              multiple
               />
-              <label>
+              <label for="brokerLicense">
                 <img src={require("../../Res/image/upload.png")} />
-                <h3>Choose files to upload</h3>
+                <h3>{fileNames.brokerLicense || 'Choose files to upload'}</h3>
               </label>
               {errors.brokerLicense && (
                 <div className="error">{errors.brokerLicense}</div>
@@ -173,7 +194,6 @@ export const RegisterBroker = () => {
             
             <div className="broker-register-to-login">
               Already have an account?
-                {/**<p className="login">Login</p>**/}
               <Link to="./login-broker" className="login">Login</Link>
             </div>
           </div>

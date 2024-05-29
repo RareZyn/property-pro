@@ -14,11 +14,21 @@ export const AppProvider = ({children}) => {
         phoneNum: "012-3456789",
     };
 
-    const [user, setUser] = useState(null)
-    const [navPage, setNavPage] = useState(false)
+    const [user, setUser] = useState(null);
+    const [token, setToken] = useState(Cookies.get('token'));
 
     useEffect(() => {
-        const token = Cookies.get('token');
+        const interval = setInterval(() => {
+            const newToken = Cookies.get('token');
+            if (newToken !== token) {
+                setToken(newToken);
+            }
+        }, 1000); // Poll every second
+
+        return () => clearInterval(interval);
+    }, [token]);
+
+    useEffect(() => {
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
@@ -29,11 +39,14 @@ export const AppProvider = ({children}) => {
                 }
             } catch (error) {
                 console.error('Failed to decode token', error);
-                // Optionally, handle the error, e.g., remove the invalid token from cookies
                 Cookies.remove('token');
+                setToken(null);
+                setUser(null);
             }
+        } else {
+            setUser(null);
         }
-    }, [navPage]);
+    }, [token]);
 
     return(
         <AppContext.Provider value={{userDetails, user, setUser}}>
