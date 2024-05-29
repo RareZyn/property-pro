@@ -20,25 +20,28 @@ router.post('/register', async(req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-    const {username, password} = req.body
+    const { username, password } = req.body;
 
-    await User.findOne({username: username})
-    .then(user => {
-        if(user){
-            if(Bcrypt.compare(password, user.password)){
-                const token = jwt.sign({user}, process.env.MY_SECRET, {expiresIn: "1d"})
-                res.cookie("token", token)
-                delete user.password
-                res.json(user)
+    try {
+        const user = await User.findOne({ username: username });
+        if (user) {
+            const isMatch = await Bcrypt.compare(password, user.password);
+            if (isMatch) {
+                const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
+                res.cookie("token", token);
+                const userWithoutPassword = { ...user._doc }; // Spread operator to copy the user object
+                delete userWithoutPassword.password;
+                res.json(userWithoutPassword);
+            } else {
+                res.json('The password is incorrect');
             }
-            else{
-                res.json('The password is incorrect')
-            }
+        } else {
+            res.json('The account does not exist');
         }
-        else{
-            res.json('The account is not existed')
-        }
-    })
-})
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).json('Internal server error');
+    }
+});
 
 module.exports = router
