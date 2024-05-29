@@ -1,10 +1,11 @@
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./LaunchPage.css";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 export const LaunchPage = () => {
   const [hovered, setHovered] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const nav = useNavigate();
 
   useEffect(() => {
     setLoaded(true);
@@ -12,6 +13,22 @@ export const LaunchPage = () => {
 
   const handleHover = () => {
     setHovered(!hovered);
+  };
+
+  // Scroll to top on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Scroll to top when navigating to register page
+  const handleRegisterClick = () => {
+    window.scrollTo(0, 0);
+    nav("/register");
+  };
+
+  const handleLoginClick = () => {
+    window.scrollTo(0, 0);
+    nav("/login");
   };
 
   return (
@@ -29,12 +46,20 @@ export const LaunchPage = () => {
           </h1>
 
           <div className="btn-container">
-            <Link id="button-register" to="/register">
-              <button className="btn register">Register</button>
-            </Link>
-            <Link id="button-login" to="/login">
-              <button className="btn login">Login</button>
-            </Link>
+            <button
+              id="button-register"
+              onClick={handleRegisterClick}
+              className="btn register"
+            >
+              Register
+            </button>
+            <button
+              id="button-login"
+              onClick={handleLoginClick}
+              className="btn login"
+            >
+              Login
+            </button>
           </div>
         </div>
       </section>

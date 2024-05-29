@@ -11,9 +11,9 @@ export const NavHeader = () => {
   const [dropdownMenu, setDropdownMenu] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
-  const [isChatClicked, setIsChatClicked] = useState(false);
-  const [chatPopdown, setChatPopdown] = useState("ChatPopup hidden");
-  const [chatNavigation, setChatNavigation] = useState("Navigator");
+  /*const [isChatClicked, setIsChatClicked] = useState(false);*/
+  const [chatPopdown] = useState("ChatPopup hidden");
+  /*const [chatNavigation, setChatNavigation] = useState("Navigator");*/
 
   const location = useLocation();
 

@@ -27,10 +27,12 @@ connection.once('open', () => {
 const usersRouter = require('./routes/users')
 const propertyRouter = require('./routes/property')
 const forumRouter = require('./routes/forums')
+const chatRouter = require('./routes/chats')
 
 app.use('/users', usersRouter)
 app.use('/property', propertyRouter)
 app.use('/forum', forumRouter)
+app.use('/chat',chatRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)

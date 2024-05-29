@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.CreatePostContainer{
+    z-index: 100;
+}
+/*
 .create-post {
     display: flex;
     flex-direction: column;
@@ -137,18 +141,30 @@
 }
 #img-description {
     margin-left: 5px;
-}
+}*/
 
 .PostCardContainer{
     display: flex;
     flex-direction: column;
     justify-items: center;
-    width: 50%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transform: translateX(50%);
+    align-self: center;
+    width: 80%;
+    margin-bottom: 2em;
+    
 }
 
-.PostCardContainer PostCard{
-    width: 120px;
+@media (max-width: 768px) {
+    .PostCardContainer {
+        width: 90%;
+        
+    }
 }
+
+/* Phone styles */
+@media (max-width: 480px) {
+    .PostCardContainer {
+        width: 90%;
+       
+    }
+}
+

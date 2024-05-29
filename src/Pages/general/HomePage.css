@@ -115,7 +115,6 @@
   border-radius: 35px;
   border: none;
   text-align: center;
-  font-size: 12px;
   padding: 18px;
   width: 150px;
   cursor: pointer;
@@ -211,8 +210,9 @@
 }
 
 .HomePageSuggestedPropertiesContainer {
+  padding-left: 40%;
   width: 100%;
-  margin-top: -60px;
+  margin-top: 40px;
   margin-bottom: 50px;
 }
 

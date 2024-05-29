@@ -21,6 +21,7 @@ export const ReplyCard = () => {
         <p id="last-seen">2 hours</p>
         <button id="like-button">
           <span id="like-total">7 </span> Like
+          <span>Reply</span>
         </button>
       </div>
     </div>

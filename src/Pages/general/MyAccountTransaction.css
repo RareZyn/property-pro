@@ -22,12 +22,6 @@
     width: 100%;
   }
   
-  .TransactionCard h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: var(--darkBlue);
-  }
-  
   .TransactionItem {
     display: flex;
     align-items: flex-start;
@@ -48,7 +42,6 @@
     margin-right: 20px;
     height: auto;
     border-radius: 10px;
-    max-width: 100px; /* Adjusted max-width */
   }
   
   .TransactionItem div {
@@ -75,36 +68,9 @@
     font-weight: bold;
   }
   
-  /* Unpaid Transactions */
-  .UnpaidTransactions {
-    background-color: var(--lightBlue); /* Set background color for unpaid transactions */
-  }
-  
-  .UnpaidTransactions h2,
-  .UnpaidTransactions h1,
-  .UnpaidTransactions p {
-    color: var(--darkBlue); /* Set text color for unpaid transactions */
-  }
-  
-  .UnpaidTransactions .PriceContainer {
-    background-color: var(--orange); /* Set background color for price container in unpaid transactions */
-    color: var(--white); /* Set text color for price container in unpaid transactions */
-  }
-  
   /* Paid Transactions */
   .PaidTransactions {
     background-color: var(--lightGreen); /* Set background color for paid transactions */
-  }
-  
-  .PaidTransactions h2,
-  .PaidTransactions h1,
-  .PaidTransactions p {
-    color: var(--darkBlue); /* Set text color for paid transactions */
-  }
-  
-  .PaidTransactions .PriceContainer {
-    background-color: var(--darkBlue); /* Set background color for price container in paid transactions */
-    color: var(--creamyWhite); /* Set text color for price container in paid transactions */
   }
   
   /* Media query for mobile devices */

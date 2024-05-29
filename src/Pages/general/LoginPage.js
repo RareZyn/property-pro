@@ -8,35 +8,36 @@ export const LoginPage = () => {
   const [formValues, setFormValues] = useState({
     username: '',
     password: ''
-  })
-  const nav = useNavigate()
+  });
+  const nav = useNavigate();
 
   const handleChange = (e) => {
-    const {name, value} = e.target
+    const {name, value} = e.target;
     setFormValues({
       ...formValues,
       [name]: value
-    })
-  }
+    });
+  };
 
-  axios.defaults.withCredentials = true
+  axios.defaults.withCredentials = true;
   const submitHandler = (e) => {
     e.preventDefault();
 
     axios.post('http://localhost:5000/users/login', formValues)
     .then(res => {
       if(res.data === 'The account is not existed'){
-        alert("The account is not existed")
+        alert("The account is not existed");
       }
       else if(res.data === 'The password is incorrect'){
-        alert('The password is incorrect')
+        alert('The password is incorrect');
       }
       else{
-        console.log(res)
-        nav('/homepage')
+        console.log(res);
+        window.scrollTo(0, 0);  // Scroll to top after successful login
+        nav('/homepage');
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="LoginPage">
@@ -46,7 +47,7 @@ export const LoginPage = () => {
         </div>
         <div className="login-div">
           <section id="login-section">
-            username
+            Username
             <input 
               type="text"
               name="username"
@@ -54,7 +55,7 @@ export const LoginPage = () => {
               onChange={handleChange}/>
           </section>
           <section id="login-section">
-            password
+            Password
             <input 
               type="password"
               name="password"
@@ -67,7 +68,13 @@ export const LoginPage = () => {
           <div id="dont-have-account">
             <p>
               Do not have an account?{" "}
-              <Link to="/register" id="register-word">
+              <Link 
+                to="/register" 
+                id="register-word" 
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+              >
                 Register
               </Link>
             </p>

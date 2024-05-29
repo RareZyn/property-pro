@@ -13,8 +13,8 @@
 }
 
 #icon {
-  aspect-ratio: 1/1;
+
   height: 75%;
   margin-top: calc(0.125 * 73.96vw / 14.2);
-  margin-left: 3%;
+  margin-left: 20%;
 }

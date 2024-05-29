@@ -57,16 +57,18 @@ export const PropertyDetails = () => {
 
         <div className="property-fist-row">
           <h1 id="title-property">Petaling Jaya House</h1>
-
-          <button id="share-button">
-            <img src={require("../../Res/image/share-icon-black.png")} />
-            Shares
-          </button>
+        <Link to="/share-card">
+        <button id="share-button">
+                    <img src={require("../../Res/image/share-icon-black.png")} />
+                    Shares
+                  </button>  
+        </Link>
+          
         </div>
         
         <div className="property-second-row">
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaBed />
             </div>
             <div className="text">
@@ -75,7 +77,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaShower />
             </div>
             <div className="text">
@@ -84,7 +86,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaLayerGroup />
             </div>
             <div className="text">
@@ -93,7 +95,7 @@ export const PropertyDetails = () => {
         </div>
 
         <div className="icon-with-text">
-            <div className="icon">
+            <div className="property-icon">
                 <FaHouse />
             </div>
             <div className="text">
