@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  --primary-color: #27a08a;
+  --secondary-color: #f49f1f;
+  --dark-color: #2b3d50;
+  --light-color: #ffffff;
 }
 
 body {
@@ -10,13 +14,16 @@ body {
   font-family: "Outfit", "Zilla Slab", "Roboto";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-color);
 }
 
+/* Global styles for code elements */
 code {
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+/* Font face definitions */
 @font-face {
   font-family: "Outfit";
   src: url(./Res/Outfit/Outfit-VariableFont_wght.ttf);
@@ -31,3 +38,18 @@ code {
   font-family: "Roboto";
   src: url(./Res/Roboto/Roboto-Bold.ttf);
 }
+
+/* Media queries for responsive design */
+@media screen and (max-width: 1000px) {
+  :root {
+    font-size: 14px; /* Decrease font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Adjustments for screens smaller than 480px */
+  :root {
+    font-size: 12px; /* Further decrease font size for mobile screens */
+  }
+}
+
