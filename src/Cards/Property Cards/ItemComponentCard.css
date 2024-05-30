@@ -7,17 +7,16 @@
   }
 
 #item-card{
-    width: 100%;
     aspect-ratio: 6/1;
+    width: 100%;
+    display: flex;
     background-color: #FFF2AF;
-    margin: 0 auto;
     border-radius: 20px;
     border: 0.5px solid #f2f2f2;
-    display: flex;
-    opacity: 1;
+    margin-bottom: 2%;
     transition: 
         box-shadow 0.5s ease 0.2,
-        background-color 0.5s ease 0s
+        background-color 0.5s ease 0s,
         opacity 0.5s ease 0s,
         width 1s ease 0.2s,
         height 1s ease 0.2s;
@@ -26,17 +25,19 @@
 #item-card:hover{
     box-shadow: 0px 11px 17px 11px rgba(112, 112, 112, 0.3);
     background-color: var(--orange);
-    opacity: 0.6;
+    opacity: 0.8;
     border: none;
     cursor: pointer;
     width: 101%;
     height: 101%;
+    overflow: hidden;
 }
 
 #img-container{
-    aspect-ratio: 2.5/1;
+    /*aspect-ratio: 2.5/1;
     height: 100%;
-    margin: 0;
+    margin: 0;*/
+    width: 40%;
     border-radius: 20px 0px 0px 20px;
     background-color: white;
 }
@@ -49,54 +50,95 @@
 }
 
 #details-container{
-    width: 65%;
-    margin-left: 5%;
-    margin-top: 3%;
+    flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-#details-container h1{
+    justify-content: space-around;
     font-family: "Roboto";
-    font-size: 1.2em;
     color: #333;
-    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 3% 5%;
 }
 
-#details-container span{
-    font-family: "Roboto";
+#details-container #myproperty-name, #myproperty-location, #myproperty-price{
+    width: 100%;
+    height: 100%;
     font-size: 1em;
-    color: #333;
-    margin-bottom: 2px;
 }
 
-#details-container #row-1{
+#myproperty-name {
+    font-size: 1.1em;
+}
+
+#myproperty-location {
     color: #808080;
 }
 
-#details-container #row-2{
-    font-size: 1.05em;
+#myproperty-price {
     font-weight: bold;
 }
 
-#details-container #row-3{
-    margin-top: 3px;
-    color: #4c4c4c;
+#myproperty-bedroom-bathroom {
+    display: flex;
+    font-size: 1em;
 }
 
-#seemore-button{
-    width: fit-content;
-    background-color: var(--orange);
-    text-align: center;
-    padding: 5px 15px;
-    border-radius: 15px;
+#myproperty-noOf-bedroom {
+    margin-right: 10%;
+    display: flex;
+    align-items: center;
+}
+  
+#myproperty-noOf-bedroom svg {
+    margin-right: 3px;
+    font-size: 1.2em;
 }
 
-#seemore-button:hover{
-    cursor: pointer;
+#myproperty-noOf-bedroom svg, #myproperty-noOf-bathroom svg {
+    color: #262626;
 }
 
-.bedroom-bathroom{
-    width: 40%;
-    justify-content: space-between;
+/* Media Query for Font Size Adjustment */
+
+@media (max-width: 1200px) {
+    #details-container {
+        font-size: 0.9em; 
+    }
+
+    #myproperty-name {
+        font-size: 1em;
+    }
+  }
+  
+/* Medium screens (tablets, 992px and up) */
+@media (max-width: 992px) {
+    #details-container {
+        font-size: 0.8em;
+    }
+
+    #myproperty-name {
+        font-size: 0.9em;
+    }
+}
+
+/* Small screens (landscape phones, 768px and up) */
+@media (max-width: 768px) {
+    #details-container {
+        font-size: 0.7em;
+    }
+
+    #myproperty-name {
+        font-size: 0.8em;
+    }
+}
+
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+    #details-container {
+        font-size: 0.6em;
+    }
+
+    #myproperty-name {
+        font-size: 0.7em;
+    }
 }

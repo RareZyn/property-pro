@@ -1,15 +1,54 @@
-.properties-grid{
-    display: grid;
-    grid-template-columns: repeat(5, 216px);
-    column-gap: 1.04%;
-    row-gap: 15px;
-    margin: 5% 0;
-    justify-content: center;
+/* Ensure all elements use border-box for consistent sizing */
+.property-browse-div,
+.property-browse-div::before,
+.property-browse-div::after {
+  box-sizing: border-box;
+}
+
+.property-browse-div{
+    width: 75%;
+    margin: 5% auto;
 }
 
 .property-headline{
-    grid-column: 1/6;
     font-family: "Outfit";
     font-weight: bold;
     font-size: 2.5em;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+  column-gap: 1.04%;
+  row-gap: 15px;
+  margin: 2% 0;
+  justify-content: center;
+}
+
+/* Large screens (desktops, 1200px and up) */
+@media (max-width: 1200px) {
+  .properties-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Medium screens (tablets, 992px and up) */
+@media (max-width: 992px) {
+  .properties-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small screens (landscape phones, 768px and up) */
+@media (max-width: 768px) {
+  .properties-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+  .properties-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }

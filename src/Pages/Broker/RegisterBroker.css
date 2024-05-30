@@ -140,6 +140,16 @@ form h1, .h3-heading {
   margin-top: 0.5rem;
 }
 
+.show-password {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.show-password input {
+  margin-right: 5px;
+}
+
 .broker-register-upload-file {
   align-self: center;
   align-items: center;

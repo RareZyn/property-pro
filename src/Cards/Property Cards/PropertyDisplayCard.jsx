@@ -3,6 +3,7 @@ import imgPh from "../../Res/image/image-dummy-house.png";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaShower, FaBed } from "react-icons/fa";
 
 export const PropertyDisplayCard = ({ thumbnailImage, link }) => {
   const [thumbnail, setThumbnail] = useState(imgPh);
@@ -26,8 +27,8 @@ export const PropertyDisplayCard = ({ thumbnailImage, link }) => {
         <div id="details">
           <span style={{ fontWeight: "bold" }}>RM XX.XX</span>
           <div className="noOf-bedroom-bathroom"> 
-            <span>Bedroom</span>
-            <span>Bathroom</span>
+            <div id="no-of-bedroom"><FaBed/> 2</div>
+            <div id="no-of-bathroom"><FaShower/> 2</div>
           </div>
           <span>Item name</span>
           <span>Location</span>

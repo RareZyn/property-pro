@@ -19,6 +19,7 @@ export const RegisterBroker = () => {
   });
 
   const [fileNames, setFileNames] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] = useState(false);
 
@@ -124,7 +125,7 @@ export const RegisterBroker = () => {
 
             <div className="input-details">
               Password
-              <input type="password" 
+              <input type={showPassword ? "text" : "password"} 
               name="password"
               value={brokerFormValues.password}
               onChange={handleChange}
@@ -136,7 +137,7 @@ export const RegisterBroker = () => {
 
             <div className="input-details">
               Confirm Password
-              <input type="password" 
+              <input type={showPassword ? "text" : "password"}
               name="confirmPassword"
               value={brokerFormValues.confirmPassword}
               onChange={handleChange}
@@ -144,6 +145,15 @@ export const RegisterBroker = () => {
               {errors.confirmPassword && (
                 <div className="error">{errors.confirmPassword}</div>
               )}
+            </div>
+
+            <div className="show-password">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              Show Password
             </div>
 
             <div className="broker-register-upload-file">

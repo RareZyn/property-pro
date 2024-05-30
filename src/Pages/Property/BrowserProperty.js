@@ -20,9 +20,11 @@ export const BrowserProperty = () => {
       <header id={style["header-container"]}>
         <SearchBar id={style["browse-search"]} hint="Browse Property..." />
       </header>
-      <div className="properties-grid">
-        <h1 className="property-headline">Hot Items</h1>
-        {propertyCards}
+      <div className="property-browse-div">
+        <div className="property-headline">Hot Items</div>
+        <div className="properties-grid">
+          {propertyCards}
+        </div>
       </div>
     </div>
   );
