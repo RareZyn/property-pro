@@ -46,6 +46,11 @@ export const DropdownMenu = ({ className }) => {
           itemName={"Chat"}
         ></DropdownMenuNavItem>
         <DropdownMenuNavItem
+          href="/ForumPages"
+          src={require("../../Res/image/dropdownmenu-icons/find icon dropdownmenu.png")}
+          itemName={"Community"}
+        ></DropdownMenuNavItem>
+        <DropdownMenuNavItem
           href="/saved-property"
           src={require("../../Res/image/dropdownmenu-icons/save icon.png")}
           itemName={"Saved Property"}

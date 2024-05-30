@@ -19,7 +19,7 @@ export const MyAccountDetails = () => {
                     <div className="full-name">{(user === null) ? null : user.firstName + " " +user.lastName}</div>
 
                     Age:
-                    <div className="age">{userDetails.age}</div>
+                    <div className="age">{(user === null) ? null : user.age}</div>
 
                     Location:
                     <div className="location">{(user !== null) ? user.location : null}</div>
@@ -36,7 +36,7 @@ export const MyAccountDetails = () => {
                 <div className="about-section">
                     <div className="about">About me:</div>
                     <p className="about-desc">
-                      {userDetails.bio}
+                      {(user === null) ? null : user.description}
                     </p>
                 </div>
                 <div className="badges-section">

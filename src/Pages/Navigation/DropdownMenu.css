@@ -1,12 +1,14 @@
 @import url("/src/Res/Colors.css");
 
+/* Base styles */
 .menu {
   position: absolute;
   top: 5em;
   left: 0;
   display: flex;
   flex-direction: column;
-  width: 560px;
+  width: 100%; /* Adjust width to occupy full width of the screen */
+  max-width: 560px; /* Set a maximum width to control size on larger screens */
   min-width: 240px;
   height: 30em;
   background-color: var(--orange);
@@ -26,10 +28,7 @@
   padding-bottom: 36px;
 }
 
-.ProfileViewDetailsCard:hover .ProfileViewName {
-  font-size: 32px;
-}
-
+.ProfileViewDetailsCard:hover .ProfileViewName,
 .ProfileViewDetailsCard:hover .ProfileViewDesc {
   font-size: 32px;
 }
@@ -41,17 +40,7 @@
   box-shadow: 0px 2px 12px var(--darkBlue);
 }
 
-.ProfileViewName {
-  font-family: "Zilla_Slab";
-  width: fit-content;
-  text-align: left;
-  padding: 0;
-  margin: 10px;
-  color: var(--darkBlue);
-  border-bottom: 1px solid var(--darkBlue);
-  transition: font-size 0.3s ease-in-out;
-}
-
+.ProfileViewName,
 .ProfileViewDesc {
   font-family: "Zilla_Slab";
   text-align: left;
@@ -65,7 +54,7 @@
   background-color: var(--darkBlue);
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Responsive grid columns */
   padding: 12px;
   box-shadow: 0px 3px 8px;
 }

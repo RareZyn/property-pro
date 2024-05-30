@@ -9,7 +9,8 @@ import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
   const token = Cookies.get('token')
-  console.log(jwtDecode(token).user)
+  console.log(token)
+  console.log(jwtDecode(token).userData)
 
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
@@ -68,9 +69,9 @@ export const HomePage = () => {
   };
 
   let suggestedItems = new Array(5);
-  // for (let i = 0; i < 3; i++) {
-  //   suggestedItems.push(<PropertyDisplayCard />);
-  // }
+   for (let i = 0; i < 3; i++) {
+    suggestedItems.push(<PropertyDisplayCard />);
+   }
 
   return (
     <div className="HomePage">
@@ -167,7 +168,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <PropertyDisplayCard/>
+            <PropertyDisplayCard />
           ))}
         </div>
       </div>

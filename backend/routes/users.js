@@ -2,7 +2,7 @@ const router = require('express').Router()
 let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
-const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
+const {cookieJwtAuth} = require('../middleware/cookieJwtAuth')
 const { findUser } = require('../controller/userController')
 
 router.route('/').get((req, res) => {
@@ -14,7 +14,7 @@ router.route('/').get((req, res) => {
 router.post('/register', async(req, res) => {
     const salt = await Bcrypt.genSalt(10)
     const hashPassword = await Bcrypt.hash(req.body.password, salt)
-
+//
     await User.create({...req.body, password:hashPassword})
     .then(users => res.json(users))
     .catch(err => res.json(err))
@@ -28,11 +28,10 @@ router.post('/login', async (req, res) => {
         if (user) {
             const isMatch = await Bcrypt.compare(password, user.password);
             if (isMatch) {
-                const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
+                const {password, ...userData} = user.toObject()
+                const token = jwt.sign({ userData }, process.env.MY_SECRET, { expiresIn: "1d" })
                 res.cookie("token", token);
-                const userWithoutPassword = { ...user._doc }; // Spread operator to copy the user object
-                delete userWithoutPassword.password;
-                res.json(userWithoutPassword);
+                res.json(jwt.decode(token));
             } else {
                 res.json('The password is incorrect');
             }
@@ -45,6 +44,42 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/auth', cookieJwtAuth, async (req, res) => {
+    // res.status(200).json({ message: 'This is a protected route.' })
+    res.json({"isAuthenticated": true})
+})
+
 router.get("/findUsername",findUser);
+
+router.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const {name, ...data} = req.body;
+
+    try {
+        const user = await User.findByIdAndUpdate({_id:id}, data, { new: true });
+
+        if (user) {
+            const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
+            res.cookie("token", token);
+            res.json(user)
+        } else {
+            res.status(404).json('User not found');
+        }
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.status(500).json('Internal server error');
+    }
+});
+
+router.put('/get/:id', async (req, res) => {
+    const {id} = req.params
+    // const {password, ...data} = req.body
+    const user = await User.findById(id)
+
+    const {password, ...data} = user.toObject()
+    res.json(data)
+
+    // res.json(await User.findByIdAndUpdate(id, data, {new: true}))
+});
 
 module.exports = router

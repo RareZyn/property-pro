@@ -59,15 +59,6 @@ export const RegisterPage = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-
-        // // Form is valid, you can handle form submission here
-        // console.log("Form submitted with values:", formValues);
-        // setRegistrationSuccess(true);
-        // setErrors({}); // Clear errors
-
-        // // Redirect to login page after successful registration
-        // navigate("/login");
-
         axios.post('http://localhost:5000/users/register', formValues)
         .then(res => {
           console.log(res.data)

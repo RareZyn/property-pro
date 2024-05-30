@@ -36,9 +36,26 @@
 
 .homepage-img img {
   width: 80%;
-  height: 80%;
+  height: auto;
   max-width: 80%;
   max-height: 80%;
+}
+
+/* Add media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .homepage-img-women {
+    margin-right: 50px; /* Reduce margin for smaller screens */
+  }
+
+  .homepage-img-men {
+    margin-left: 50px; /* Reduce margin for smaller screens */
+  }
+
+  .homepage-img img {
+    width: 100%; /* Set width to 100% for smaller screens */
+    max-width: none; /* Remove max-width */
+    min-width: 200px; /* Set a minimum width for the images */
+  }
 }
 
 .buyer-seller-section,
@@ -54,6 +71,24 @@
   font-weight: bold;
   font-family: "Outfit";
 }
+
+@media (max-width: 1000px) {
+  .buyer,
+  .seller {
+    font-size: 4rem;
+  }
+
+}
+
+@media (max-width: 1000px) {
+  .community-details,
+  .broker-details,
+  .ad-details {
+
+    padding: 0 2em;
+  }
+}
+
 
 .buyer {
   color: white;
@@ -108,6 +143,17 @@
 .ad-img {
   max-width: 100%;
   max-height: 100%;
+  
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 1000px) {
+  .community-img,
+  .broker-img,
+  .ad-img {
+    min-width: 100px; /* Set a minimum width for the images */
+    min-height: 100px; /* Set a minimum height for the images */
+  }
 }
 
 .homepage-btn {
@@ -157,11 +203,13 @@
 .community-details {
   text-align: center;
   margin: auto;
+  padding-right: 5em;
 }
 
 .broker-details,
 .ad-details {
   margin: auto;
+  padding-right: 5em;
 }
 
 .broker-btns {
@@ -175,6 +223,7 @@
 .ad-heading,
 .ad-desc {
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .community-grid.slide-in,
@@ -210,7 +259,7 @@
 }
 
 .HomePageSuggestedPropertiesContainer {
-  padding-left: 40%;
+  padding-left: 10%;
   width: 100%;
   margin-top: 40px;
   margin-bottom: 50px;
@@ -224,5 +273,19 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 1000px) {
+  .log-in-btn {
+    margin-right: 10px; /* Adjust margin for smaller screens */
+    margin-bottom: 10px; /* Add margin bottom for better spacing */
+  }
+
+  .broker-btns {
+    display: flex;
+    justify-content: center; /* Center-align buttons horizontally */
+    /* Allow buttons to wrap to the next line if needed */
   }
 }

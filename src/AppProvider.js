@@ -5,35 +5,16 @@ import {jwtDecode} from 'jwt-decode'
 export const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
-    const userDetails = {
-        username: "Wan Razim",
-        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
-        age: "21",
-        location: "Bangsar, KL",
-        email: "email@gmail.com",
-        phoneNum: "012-3456789",
-    };
-
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            const newToken = Cookies.get('token');
-            if (newToken !== token) {
-                setToken(newToken);
-            }
-        }, 1000); // Poll every second
-
-        return () => clearInterval(interval);
-    }, [token]);
-
-    useEffect(() => {
-        if (token) {
+        // Function to decode the token and set the user state
+        const decodeToken = (token) => {
             try {
                 const decodedToken = jwtDecode(token);
-                if (decodedToken && decodedToken.user) {
-                    setUser(decodedToken.user);
+                if (decodedToken && decodedToken.userData) {
+                    setUser(decodedToken.userData);
                 } else {
                     console.error('Invalid token structure');
                 }
@@ -43,13 +24,29 @@ export const AppProvider = ({children}) => {
                 setToken(null);
                 setUser(null);
             }
+        };
+
+        // Decode token if it exists
+        if (token) {
+            decodeToken(token);
         } else {
             setUser(null);
         }
+
+        // Set up an interval to monitor changes to the token cookie
+        const interval = setInterval(() => {
+            const newToken = Cookies.get('token');
+            if (newToken !== token) {
+                setToken(newToken);
+            }
+        }, 1000); // Check every 1 second
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
     }, [token]);
 
     return(
-        <AppContext.Provider value={{userDetails, user, setUser}}>
+        <AppContext.Provider value={{user, setUser}}>
             {children}
         </AppContext.Provider>
     )

@@ -1,93 +1,155 @@
-import { NavHeader } from "../Navigation/NavHeader";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import axios from "axios";
 import "./ManageAccount.css";
-import { MyAccountHeader } from "./MyAccountHeader";
-import React, { useState } from "react";
+import { AppContext } from "../../AppProvider";
 
 export const ManageAccount = () => {
-  const [name, setName] = useState("");
-  const [profiledesc, setProfileDesc] = useState("");
-  const [phonenumber, setPhoneNum] = useState("");
-  const [address, setAddress] = useState("");
+  const navigate = useNavigate();
+  const { user } = useContext(AppContext)
+  const [formValues, setFormValues] = useState({
+    name: user.username,
+    description: user.description,
+    phoneNumber: user.phoneNumber,
+    address: user.location,
+    profilePicture: user.profilePic,
+  });
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const [errors, setErrors] = useState({});
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: files ? files[0] : value,
+    });
   };
 
-  const handleProfileDescChange = (event) => {
-    setProfileDesc(event.target.value);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handlePhoneNumChange = (event) => {
-    setPhoneNum(event.target.value);
-  };
+    const validationSchema = Yup.object().shape({
+      name: Yup.string().required("Name is required"),
+      description: Yup.string().required("Description is required"),
+      phoneNumber: Yup.string()
+        .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
+        .required("Phone Number is required"),
+      address: Yup.string().required("Address is required"),
+      profilePicture: Yup.mixed(),
+    });
 
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
+    validationSchema
+      .validate(formValues, { abortEarly: false })
+      .then(() => {
+        // const formData = new FormData();
+        // Object.keys(formValues).forEach((key) => {
+        //   formData.append(key, formValues[key]);
+        // });
+
+        console.log(formValues)
+
+        axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
+          .then(res => {
+            console.log(res.data);
+            alert("Profile updated successfully");
+            setUpdateSuccess(true);
+            navigate("/myaccount");
+          })
+          .catch(error => {
+            console.error("There was an error updating the profile!", error);
+          });
+      })
+      .catch((validationErrors) => {
+        const errors = {};
+        validationErrors.inner.forEach((error) => {
+          errors[error.path] = error.message;
+        });
+        setErrors(errors);
+        setUpdateSuccess(false);
+      });
   };
 
   return (
-    <div className="acc-grid-container">
-
-<div className="ManageAccount">
+    <div className="ManageAccount">
       <div className="ManageAccountCard">
-        <div className="InputDetails">
-          <h3>EDIT YOUR PROFILE</h3>
-          <img
-            id="user-image"
-            src={require("../../Res/image/user profile.png")}
-          />
-          <h7>Name (As in IC)</h7>
-          <div className="Input">
-            <input
-              type="text"
-              placeholder="Enter your Name"
-              value={name}
-              onChange={handleNameChange}
+        <form onSubmit={handleSubmit}>
+          <div className="InputDetails">
+            <h3>EDIT YOUR PROFILE</h3>
+            <img
+              id="user-image"
+              src={require("../../Res/image/user profile.png")}
+              alt="User Profile"
             />
+            <section id="input-section">
+              Name (As in IC)
+              <input
+                type="text"
+                name="name"
+                value={formValues.name}
+                onChange={handleChange}
+              />
+              {errors.name && <div className="error">{errors.name}</div>}
+            </section>
+            <section id="input-section">
+              Description
+              <input
+                type="text"
+                name="description"
+                value={formValues.description}
+                onChange={handleChange}
+              />
+              {errors.description && (
+                <div className="error">{errors.description}</div>
+              )}
+            </section>
+            <section id="input-section">
+              Phone Number
+              <input
+                type="text"
+                name="phoneNumber"
+                value={formValues.phoneNumber}
+                onChange={handleChange}
+              />
+              {errors.phoneNumber && (
+                <div className="error">{errors.phoneNumber}</div>
+              )}
+            </section>
+            <section id="input-section">
+              Address
+              <input
+                type="text"
+                name="address"
+                value={formValues.address}
+                onChange={handleChange}
+              />
+              {errors.address && <div className="error">{errors.address}</div>}
+            </section>
+            <section id="input-section">
+              Profile Picture
+              <input
+                type="file"
+                name="profilePicture"
+                accept="image/*"
+                onChange={handleChange}
+              />
+              {errors.profilePicture && (
+                <div className="error">{errors.profilePicture}</div>
+              )}
+            </section>
+            <button type="submit" id="save-profile">
+              Save
+            </button>
+            
+            {updateSuccess && (
+              <p className="success-message">Profile updated successfully!</p>
+            )}
           </div>
-        </div>
-        <ManageAccountInputItem
-          inputTitle="Description"
-          inputHint=""
-          value={profiledesc}
-          onChange={handleProfileDescChange}
-        />
-        <ManageAccountInputItem
-          inputTitle="Phone Number"
-          inputHint=""
-          value={phonenumber}
-          onChange={handlePhoneNumChange}
-        />
-        <ManageAccountInputItem
-          inputTitle="Address"
-          inputHint=""
-          value={address}
-          onChange={handleAddressChange}
-        />
-        <button>
-          <a href="/myaccount-header">SAVE</a>
-        </button>
+        </form>
       </div>
-    </div>
-
     </div>
   );
 };
 
-function ManageAccountInputItem({ inputTitle, inputHint, value, onChange }) {
-  return (
-    <div className="InputDetails">
-      <h7>{inputTitle}</h7>
-      <div className="Input">
-        <input
-          type={inputTitle === "Password" ? "password" : "text"}
-          placeholder={
-            inputHint === "" ? `Enter your ${inputTitle}` : inputHint
-          }
-          value={value}
-          onChange={onChange}
-        />
-      </div>
-    </div>
-  );
-}
+export default ManageAccount;
