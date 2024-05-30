@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 export const MyAccountProperty = () => {
-  let items = new Array(10).fill(image);
+  let items = new Array(4).fill(image);
   console.log(items)
 
   return (
