@@ -83,6 +83,7 @@ export const NavHeader = () => {
             Broker
           </CustomLink>
           <CustomLink href="/myaccount">My Account</CustomLink>
+          <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>Logout</CustomLink>
         </ul>
       </nav>
