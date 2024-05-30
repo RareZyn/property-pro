@@ -14,6 +14,9 @@
     font-family: "Outfit";
     font-weight: bold;
     font-size: 2.5em;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .properties-grid {
@@ -21,12 +24,12 @@
   grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
   column-gap: 1.04%;
   row-gap: 15px;
-  margin: 2% 0;
+  margin: 20px;
   justify-content: center;
 }
 
 /* Large screens (desktops, 1200px and up) */
-@media (max-width: 1200px) {
+@media (max-width: 100px) {
   .properties-grid {
     grid-template-columns: repeat(4, 1fr);
   }

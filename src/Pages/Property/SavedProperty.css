@@ -1,24 +1,12 @@
-#title{
+#header-container {
+    aspect-ratio: 6/1;
+    width: 100%;
+    margin: 20px;
     display: flex;
     align-items: center;
-    padding-left: 10%;
-}
-
-#title img{
-    width: 4%;
-    margin: 2%;
-}
-
-#title h1{
-    font-family: Outfit;
-    font-size: 3em;
-}
-
-.Properties-grid{
-    display: grid;
-    grid-template-columns: repeat(5, 15%);
-    column-gap: 1.04%;
-    row-gap: 15px;
-    margin: 5% 0;
     justify-content: center;
-}
+    background-image: url("../../Res/image/login\ broker\ wallpaper.png");
+    background-size: cover;
+    backdrop-filter: blur(3px);
+  }
+  
