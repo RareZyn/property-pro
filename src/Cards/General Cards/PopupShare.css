@@ -3,7 +3,13 @@
     font-size: 16px;
     cursor: pointer;
     border: none;
+    width: 8em;
+    padding-left: 0px;
     background-color: #fffdef;
+    font-weight: 550;
+    font-size: 15px;
+    color: #b2b2b2;
+    border-radius: 8px;
 }
 
 /* Style for the modal overlay */
@@ -21,8 +27,8 @@
 }
 
 /* Style for the modal */
-.modal {
-    background: white;
+.sharecontent {
+    background: var(--creamyWhite);
     padding: 20px;
     border-radius: 8px;
     width: 300px;
@@ -36,15 +42,51 @@
     font-size: 18px;
 }
 
+.shareSecondRow{
+margin-top: 1em;
+padding-left: 1em;
+}
+ 
+  .shareSecondRow-icon {
+    margin: 0 10px;
+    font-size: 2em;
+    color: #000000;
+    transition: color 0.3s ease;
+  }
+  
+  .icon-text {
+    margin-left: 10px;
+  }
+  
+  .icon:hover {
+    color: #09192a;
+  }
+  
+  .instagram:hover {
+    color: #e4405f;
+  }
+  
+  .twitter:hover {
+    color: #1a8acf;
+  }
+  
+  .facebook:hover {
+    color: #1877f2;
+  }
+  
+  .whatsapp:hover {
+    color: #12993d;
+  }
+
 /* Style for the actions section inside the modal */
 .actions {
     text-align: right;
 }
 
 /* Style for the close button */
-.close-button {
+#close-button {
     padding: 8px 12px;
-    background-color: #f44336;
+    background-color: #a23b34;
     color: white;
     border: none;
     border-radius: 4px;

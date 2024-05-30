@@ -60,12 +60,7 @@ export const PropertyDetails = () => {
         <div className="property-fist-row">
           <h1 id="title-property">Petaling Jaya House</h1>
       <div>
-        <button id="share-button" >
-           <img src={require("../../Res/image/share-icon-black.png")} />
-             Shares
-          </button>  
-       
-          
+        
         </div>
         
         <div className="property-second-row">

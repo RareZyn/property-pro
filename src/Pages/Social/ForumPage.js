@@ -17,7 +17,8 @@ const ForumPage = () => {
       <ForumCreatePost />  
       </div>
       <div className="ForumContainer">
-      <PostCard/></div></div>
+      <PostCard/>
+      <PostCard></PostCard></div></div>
     </div>
   );
   // l
