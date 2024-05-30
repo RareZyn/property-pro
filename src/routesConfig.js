@@ -34,13 +34,8 @@ import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnli
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
-import { Navigate } from "react-router-dom";
 
-export const ProtectedRoute = ({ component: Component, isAuthenticated}) => (
-  isAuthenticated ? (Component) : (<Navigate to="/login" />)
-);
-
-export const routes = [
+const routes = [
   { path: '/', element: <LaunchPage /> },
   { path: '/HomePage', element: <HomePage /> },
   { path: '/register', element: <RegisterPage /> },
@@ -78,5 +73,6 @@ export const routes = [
   { path: '/property-details-overview', element: <PropertyDetailsOverview /> },
   { path: '/image-slideshow', element: <ImageSlideshow /> },
   { path: '*', element: <h1>PAGE NOT FOUND</h1> },
-]
+];
 
+export default routes

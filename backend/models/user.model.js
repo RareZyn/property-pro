@@ -37,28 +37,12 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
-    age: {
-        type: Number
-    },
     description: {
         type: String,
         trim: true
     },
-    broker: {
-        type: Boolean,
-        trim: true
-    },
-    profilePic: {
-        type: String,
-        trim: true
-    },
-    icCard: {
-        type: String,
-        trim: true
-    },
-    renLicence: {
-        type: String,
-        trim: true
+    age: {
+        type: Number
     }
 }, {
     timestamps: true

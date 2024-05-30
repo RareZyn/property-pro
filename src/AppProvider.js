@@ -32,8 +32,8 @@ export const AppProvider = ({children}) => {
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
-                if (decodedToken && decodedToken.userData) {
-                    setUser(decodedToken.userData);
+                if (decodedToken && decodedToken.user) {
+                    setUser(decodedToken.user);
                 } else {
                     console.error('Invalid token structure');
                 }

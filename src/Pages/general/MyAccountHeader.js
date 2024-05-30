@@ -51,7 +51,7 @@ export const MyAccountHeader = () => {
           {/* <ProfilePicture imxgSrc={require("../../Res/image/user-image.png")} size={"10%"}/> */}
           <div className = "acc-desc">
             <h1>{(user === null) ? null : `${user.firstName} ${user.lastName}`}</h1>
-            <span>{(user === null) ? 'null' : user.description}</span>
+            <span>{userDetails.bio}</span>
           </div>
           
           <a id="edit-account" onClick={() => setCurrentPage("Manage Account")}>

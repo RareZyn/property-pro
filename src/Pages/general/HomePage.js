@@ -9,8 +9,7 @@ import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
   const token = Cookies.get('token')
-  console.log(token)
-  console.log(jwtDecode(token).userData)
+  console.log(jwtDecode(token).user)
 
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
