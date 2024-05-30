@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import "./LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AppContext } from "../../AppProvider";
 
 export const LoginPage = () => {
   const [formValues, setFormValues] = useState({
@@ -25,7 +24,7 @@ export const LoginPage = () => {
 
     axios.post('http://localhost:5000/users/login', formValues)
     .then(res => {
-      if(res.data === 'The account is not existed'){
+      if(res.data === 'The account does not exist'){
         alert("The account is not existed");
       }
       else if(res.data === 'The password is incorrect'){
