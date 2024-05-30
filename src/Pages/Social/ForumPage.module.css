@@ -1,9 +1,15 @@
 .ForumPage {
-    display: flex;
-    flex-direction: column;
+   
     justify-content: center;
     align-items: center;
 }
+
+#ForumContent{
+display: flex;
+flex-direction: row;              
+justify-content: space-between; 
+align-items: flex-start;     
+padding: 20px;  }
 
 .CreatePostContainer{
     z-index: 100;
@@ -143,19 +149,22 @@
     margin-left: 5px;
 }*/
 
-.PostCardContainer{
+.ForumContainer{
     display: flex;
     flex-direction: column;
     justify-items: center;
-    align-self: center;
-    width: 80%;
+    align-content: center;
+    width: 50%;
+    padding: 10em;
     margin-bottom: 2em;
+    margin-left: 2em;
     
 }
 
 @media (max-width: 768px) {
     .PostCardContainer {
         width: 90%;
+        align-self: center;
         
     }
 }
@@ -164,6 +173,7 @@
 @media (max-width: 480px) {
     .PostCardContainer {
         width: 90%;
+        align-self: center;
        
     }
 }

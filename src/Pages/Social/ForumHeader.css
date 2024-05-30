@@ -1,8 +1,8 @@
 .ForumHeader {
   background-color: #27a088;
   color: white;
-  height: 33vh;
-  width: 100%;
+  height: 28vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
 }
 
 #community-title {
-  font-size: 3.5em;
+  font-size: 3em;
   margin-top: 0;
   margin-bottom: 5px;
 }
@@ -25,7 +25,7 @@
 @media only screen and (max-width: 1080px){
 
   .ForumHeader{
-    height: 30vh;
+    height: 25vh;
   }
 
   #community-title {
@@ -42,8 +42,14 @@
     height: 25vh;
   }
 
+  .ForumHeader > span{
+    font-size: 0.91em;
+  }
+
+
+
   #community-title {
-    font-size: 2em;
+    font-size: 1.5em;
     margin-top: 0;
     margin-bottom: 5px;
   }
