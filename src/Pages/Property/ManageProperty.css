@@ -1,6 +1,15 @@
-#ManagePropertyPage {
-  padding-bottom: 25%;
+#header-container {
+  aspect-ratio: 6/1;
+  width: 100%;
+  margin: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../Res/image/login\ broker\ wallpaper.png");
+  background-size: cover;
+  backdrop-filter: blur(3px);
 }
+
 
 #add-property-button {
   display: flex;

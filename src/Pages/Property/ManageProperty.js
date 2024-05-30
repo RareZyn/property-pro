@@ -1,35 +1,24 @@
-import "./ManageProperty.css";
-import backIcon from "../../Res/image/back-icon.png";
+import style from "./ManageProperty.css";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
-import { NavHeader } from "../Navigation/NavHeader";
-import { Link } from "react-router-dom";
+import "./GeneralProperty.css";
+
 
 export const ManageProperty = () => {
   const propertyCards = [];
   let color = 0;
 
-  for (let i = 0; i < 4; i++) {
-    propertyCards.push(
-      <PropertyDisplayCard link={"/property-details-overview"} />
-    );
+  for (let i = 0; i < 5; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    propertyCards.push(<PropertyDisplayCard link={"/property-details"} />);
   }
 
   return (
-    <div id="ManagePropertyPage">
-      <div className="properties-grid">
-        <h1 className="property-headline">Manage Property</h1>
-        {propertyCards}
+    <div>
+        <div className="property-headline">Manage Property</div>
+        <div className="properties-grid">
+          {propertyCards}
+        </div>
       </div>
-      <Link to={"/publish-property"}>
-        <button id="add-property-button">
-          <img
-            src={require("../../Res/image/add-icon.png")}
-            alt="addicon"
-            className="ButtonImage"
-          />
-          <span>Add More Property</span>
-        </button>
-      </Link>
-    </div>
   );
 };
