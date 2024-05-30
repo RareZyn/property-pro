@@ -14,7 +14,7 @@ router.route('/').get((req, res) => {
 router.post('/register', async(req, res) => {
     const salt = await Bcrypt.genSalt(10)
     const hashPassword = await Bcrypt.hash(req.body.password, salt)
-
+//
     await User.create({...req.body, password:hashPassword})
     .then(users => res.json(users))
     .catch(err => res.json(err))
