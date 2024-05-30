@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import "./ManageAccount.css";
+import { AppContext } from "../../AppProvider";
 
 export const ManageAccount = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AppContext)
   const [formValues, setFormValues] = useState({
-    name: "",
-    profiledesc: "",
-    phoneNumber: "",
-    address: "",
-    profilePicture: null,
+    name: user.username,
+    profiledesc: user.description,
+    phoneNumber: user.phoneNumber,
+    address: user.location,
+    profilePicture: user.profilePic,
   });
 
   const [errors, setErrors] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
-
-  useEffect(() => {
-    // Fetch the current user's data and set the form values
-    axios.get('http://localhost:5000/users/profile')
-      .then(response => {
-        const { name, profiledesc, phoneNumber, address } = response.data;
-        setFormValues({ name, profiledesc, phoneNumber, address, profilePicture: null });
-      })
-      .catch(error => {
-        console.error("There was an error fetching the user profile!", error);
-      });
-  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -58,7 +48,7 @@ export const ManageAccount = () => {
           formData.append(key, formValues[key]);
         });
 
-        axios.post('http://localhost:5000/users/update', formData)
+        axios.post(`http://localhost:5000/users/update/${user._id}`, formData)
           .then(response => {
             console.log(response.data);
             /*alert("Profile updated successfully");
