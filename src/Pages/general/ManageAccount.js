@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import "./ManageAccount.css";
@@ -138,13 +138,13 @@ export const ManageAccount = () => {
                 <div className="error">{errors.profilePicture}</div>
               )}
             </section>
+
+            <Link to="/myaccount">
             <button type="submit" id="save-profile">
               Save
             </button>
             
-            {updateSuccess && (
-              <p className="success-message">Profile updated successfully!</p>
-            )}
+          </Link>
           </div>
         </form>
       </div>

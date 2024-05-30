@@ -25,7 +25,7 @@
 }
 
 #text-box {
-  padding: 20px;
+  padding: 15px;
   margin-top: 1em;
   background-color: #e5e5e5;
   margin-top: 30px;
@@ -47,7 +47,8 @@
 
 .posting-button {
   display: flex;
-  column-gap: 20px;
+  padding-top: .001em;
+  column-gap: 8px;
   align-items: center;
 }
 
@@ -70,7 +71,7 @@
 }
 
 .vertical-line {
-  margin-top: 25px;
+  margin-top: 15px;
   height: 40px;
   border: 2px solid rgba(0, 0, 0, 0.148);
   display: flex;
@@ -163,6 +164,11 @@
     padding: 0.8em;
   }
 
+  .vertical-line {
+    margin-top: 10px;
+    height: 30px;
+  }
+
   #title-post {
     font-size: 24px;
     margin-left: 10px;
@@ -206,6 +212,7 @@
   .box {
     width: 130px;
     font-size: 12px;
+    margin-top: 10px;
   }
 }
 
@@ -241,8 +248,12 @@
 
   .box {
     width: 110px;
-    margin-top: 1em;
+    margin-top: 10px;
     font-size: 11px;
+  }
+  .vertical-line {
+    margin-top: 10px;
+    height: 30px;
   }
 
   .one {

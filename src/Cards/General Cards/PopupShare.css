@@ -1,0 +1,53 @@
+/* Style for the trigger button */
+#ShareBtn {
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #fffdef;
+}
+
+/* Style for the modal overlay */
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Style for the modal */
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Style for the content inside the modal */
+.content {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Style for the actions section inside the modal */
+.actions {
+    text-align: right;
+}
+
+/* Style for the close button */
+.close-button {
+    padding: 8px 12px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
