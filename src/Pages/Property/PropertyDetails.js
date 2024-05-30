@@ -171,6 +171,10 @@ export const PropertyDetails = () => {
 
     <div className="seller-info">
     <h2>Seller Info</h2>
+    <img
+          className="ProfileView"
+          src={require("../../Res/image/user profile.png")}
+        />
       <h4> Razin </h4>
       <p>Kuala Lumpur</p>
       <p>user@gmail.com</p>
