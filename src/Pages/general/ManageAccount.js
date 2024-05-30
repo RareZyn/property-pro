@@ -10,7 +10,7 @@ export const ManageAccount = () => {
   const { user } = useContext(AppContext)
   const [formValues, setFormValues] = useState({
     name: user.username,
-    profiledesc: user.description,
+    description: user.description,
     phoneNumber: user.phoneNumber,
     address: user.location,
     profilePicture: user.profilePic,
@@ -32,7 +32,7 @@ export const ManageAccount = () => {
 
     const validationSchema = Yup.object().shape({
       name: Yup.string().required("Name is required"),
-      profiledesc: Yup.string().required("Description is required"),
+      description: Yup.string().required("Description is required"),
       phoneNumber: Yup.string()
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
         .required("Phone Number is required"),
@@ -43,17 +43,19 @@ export const ManageAccount = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        const formData = new FormData();
-        Object.keys(formValues).forEach((key) => {
-          formData.append(key, formValues[key]);
-        });
+        // const formData = new FormData();
+        // Object.keys(formValues).forEach((key) => {
+        //   formData.append(key, formValues[key]);
+        // });
 
-        axios.post(`http://localhost:5000/users/update/${user._id}`, formData)
-          .then(response => {
-            console.log(response.data);
-            /*alert("Profile updated successfully");
-            setUpdateSuccess(true);*/
-            navigate("/MyAccountDetail");
+        console.log(formValues)
+
+        axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
+          .then(res => {
+            console.log(res.data);
+            alert("Profile updated successfully");
+            setUpdateSuccess(true);
+            navigate("/myaccount");
           })
           .catch(error => {
             console.error("There was an error updating the profile!", error);
@@ -94,12 +96,12 @@ export const ManageAccount = () => {
               Description
               <input
                 type="text"
-                name="profiledesc"
-                value={formValues.profiledesc}
+                name="description"
+                value={formValues.description}
                 onChange={handleChange}
               />
-              {errors.profiledesc && (
-                <div className="error">{errors.profiledesc}</div>
+              {errors.description && (
+                <div className="error">{errors.description}</div>
               )}
             </section>
             <section id="input-section">

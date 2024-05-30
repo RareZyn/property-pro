@@ -51,32 +51,25 @@ router.get('/auth', cookieJwtAuth, async (req, res) => {
 
 router.get("/findUsername",findUser);
 
-// router.put('/update/:id', async (req, res) => {
-//     const { id } = req.params.id;
-//     const { password, ...updateData } = req.body;
+router.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const {name, ...data} = req.body;
 
-//     try {
-//         if (password) {
-//             const salt = await Bcrypt.genSalt(10);
-//             updateFields.password = await Bcrypt.hash(password, salt);
-//         }
+    try {
+        const user = await User.findByIdAndUpdate({_id:id}, data, { new: true });
 
-//         const user = await User.findByIdAndUpdate({_id:id}, updateData, { new: true });
-
-//         if (user) {
-//             const userWithoutPassword = { ...user._doc };
-//             delete userWithoutPassword.password;
-//             res.json(userWithoutPassword);
-//             const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
-//             res.cookie("token", token);
-//         } else {
-//             res.status(404).json('User not found');
-//         }
-//     } catch (error) {
-//         console.error('Error updating user:', error);
-//         res.status(500).json('Internal server error');
-//     }
-// });safdasfasdf
+        if (user) {
+            const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
+            res.cookie("token", token);
+            res.json(user)
+        } else {
+            res.status(404).json('User not found');
+        }
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.status(500).json('Internal server error');
+    }
+});
 
 router.put('/get/:id', async (req, res) => {
     const {id} = req.params
