@@ -14,7 +14,9 @@ import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
 import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
-import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PropertyHouseDetails } from "./Pages/Property/PropertyHouseDetails.js";
+import { PropertyLandDetails } from "./Pages/Property/PropertyLandDetails.js";
+import { PropertyVehicleDetails } from "./Pages/Property/PropertyVehicleDetails.js";
 import { PropertyDetailsOwnerView } from "./Pages/Property/PropertyDetails-OwnerView.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
@@ -57,7 +59,9 @@ export const routes = [
   { path: '/myaccount-details', element: <MyAccountDetails /> },
   { path: '/myaccount-property', element: <MyAccountProperty /> },
   { path: '/manage-account', element: <ManageAccount /> },
-  { path: '/property-details', element: <PropertyDetails /> },
+  { path: '/property-house-details', element: <PropertyHouseDetails /> },
+  { path: '/property-land-details', element: <PropertyLandDetails /> },
+  { path: '/property-vehicle-details', element: <PropertyVehicleDetails /> },
   { path: '/property-details-ownerview', element: <PropertyDetailsOwnerView /> },
   { path: '/publish-property', element: <PublishProperty /> },
   { path: '/browser-property', element: <BrowserProperty /> },

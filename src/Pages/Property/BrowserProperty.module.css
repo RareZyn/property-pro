@@ -9,3 +9,6 @@
   background-size: cover;
   backdrop-filter: blur(3px);
 }
+#Property-Card-Row{
+  display: flex;
+}

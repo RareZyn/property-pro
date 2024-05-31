@@ -1,5 +1,5 @@
 import "./MyAccountProperty.css";
-import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
+import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import image from "../../Res/image/image-dummy-house.png"
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
@@ -25,7 +25,7 @@ export const MyAccountProperty = () => {
 
       <div className="myproperty-div">
         {items.map((item, index) => (
-            <ItemComponentCard key={index} imgLink={item} link={"/property-details"}/>
+            <HouseComponentCard key={index} imgLink={item} link={"/property-house-details"}/>
         ))}  
       </div>
               

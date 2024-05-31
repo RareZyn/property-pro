@@ -3,9 +3,10 @@ import imgPh from "../../Res/image/image-dummy-house.png";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaShower, FaBed } from "react-icons/fa";
+import { FaShower, FaBed,faLeftRight } from "react-icons/fa";
+import { FaLeftRight } from "react-icons/fa6";
 
-export const PropertyDisplayCard = ({ thumbnailImage, link }) => {
+export const LandDisplayCard = ({ thumbnailImage, link }) => {
   const [thumbnail, setThumbnail] = useState(imgPh);
   useEffect(() => {
     if (thumbnailImage) {
@@ -29,6 +30,7 @@ export const PropertyDisplayCard = ({ thumbnailImage, link }) => {
           <div className="noOf-bedroom-bathroom"> 
             <div id="no-of-bedroom"><FaBed/> 2</div>
             <div id="no-of-bathroom"><FaShower/> 2</div>
+            <div id="no-of-bathroom"><FaLeftRight/> 2</div>
           </div>
           <span>Item name</span>
           <span>Location</span>

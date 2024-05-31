@@ -1,5 +1,6 @@
 import style from "./ManageProperty.css";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
+import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
 import "./GeneralProperty.css";
 
 
@@ -7,11 +8,18 @@ export const ManageProperty = () => {
   const propertyCards = [];
   let color = 0;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 2; i++) {
     color = i - 6 * parseInt(i / 6);
     console.log(color);
-    propertyCards.push(<PropertyDisplayCard link={"/property-details"} />);
+    propertyCards.push(<HouseDisplayCard link={"/property-details"} />);
   }
+
+  for (let i = 0; i < 2; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    propertyCards.push(<LandDisplayCard link={"/property-house-details"} />);
+  }
+
 
   return (
     <div>

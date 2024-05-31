@@ -10,7 +10,7 @@ export default function PopupShare() {
         <div>
             <Popup trigger=
                 {<button id='ShareBtn'> <img src={shareIcon} alt="Shares" />
-                Share </button>} 
+                <span>Share</span> </button>} 
                 modal nested>
                 {
                     close => (

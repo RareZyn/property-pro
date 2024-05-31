@@ -2,7 +2,7 @@ import "./ItemComponentCard.css";
 import { Link } from "react-router-dom";
 import { FaShower, FaBed } from "react-icons/fa";
 
-function ItemComponentCard({imgLink, link}){
+function VehicleComponentCard({imgLink, link}){
     return(
         <Link to={link}>
             <div id="item-card">
@@ -10,7 +10,7 @@ function ItemComponentCard({imgLink, link}){
                     <img src={imgLink} alt="image property" srcset="" />
                 </section>
                 <div id="details-container">
-                    <div id="myproperty-name">Agriculture land at Gua Musang</div>
+                    <div id="myproperty-name">Vehicle</div>
                     <div id="myproperty-location">Gua Musang, Kelantan</div>
                     <div id="myproperty-price">Price : RM 162,300,000</div>
                     <div id="myproperty-bedroom-bathroom">
@@ -24,4 +24,4 @@ function ItemComponentCard({imgLink, link}){
     )
 }
 
-export default ItemComponentCard
+export default VehicleComponentCard

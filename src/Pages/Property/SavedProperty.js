@@ -1,5 +1,5 @@
 import style from "./SavedProperty.css";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
 import "./GeneralProperty.css";
 
 
@@ -10,7 +10,7 @@ export const SavedProperty = () => {
   for (let i = 0; i < 5; i++) {
     color = i - 6 * parseInt(i / 6);
     console.log(color);
-    propertyCards.push(<PropertyDisplayCard link={"/property-details"} />);
+    propertyCards.push(<HouseDisplayCard link={"/property-details"} />);
   }
 
   return (
