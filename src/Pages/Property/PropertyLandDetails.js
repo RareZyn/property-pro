@@ -19,27 +19,27 @@ export const PropertyLandDetails = () => {
       <div className="property-image-container">
         <img
           id="mainproperty-image"
-          src={require("../../Res/image/house.jpeg")}
+          src={require("../../Res/image/land.jpg")}
         />
         <div className="property-image-div">
           <div className="property-image-1row">
             <img
               id="property-image"
-              src={require("../../Res/image/house.jpeg")}
+              src={require("../../Res/image/land.jpg")}
             />
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
           </div>
           <div className="property-image-1row">
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
           </div>
         </div>

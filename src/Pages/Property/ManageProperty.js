@@ -4,17 +4,17 @@ import ItemComponentCardB from "../../Cards/Property Cards/HouseComponentCard";
 import ItemComponentCardC from "../../Cards/Property Cards/LandComponentCard";
 import imageA from "../../Res/image/car.jpeg";
 import imageB from "../../Res/image/house.jpeg";
-import imageC from "../../Res/image/house.jpeg";
+import imageC from "../../Res/image/land.jpg";
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 
 export const ManageProperty = () => {
   const items = [
-    { type: "A", img: imageA, link: "/property-Vehicle-Details" },
-    { type: "B", img: imageB, link: "/property-Land-Details" },
-    { type: "C", img: imageC, link: "/property-House-Details" },
-    { type: "A", img: imageA, link: "/property-Vehicle-Details" },
+    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
+    { type: "B", img: imageB, link: "/property-housedetails-overview" },
+    { type: "C", img: imageC, link: "/property-landdetails-overview" },
+    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
   ];
 
   const renderCard = (item, index) => {
