@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaHouse, FaLeftRight } from "react-icons/fa6";
-import { FaBed, FaShower, FaLayerGroup} from "react-icons/fa";
+import { FaLeftRight, FaFileCircleQuestion, FaLocationDot } from "react-icons/fa6";
+import {  FaCity, } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
@@ -59,41 +59,41 @@ export const PropertyLandDetails = () => {
             <h1 id="title-property">Damansara Land</h1>
             <div className="share-content"><PopupShare /></div>
           </div>
-
           <div className="property-second-row">
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaBed />
-              </div>
-              <div className="text">
-                4 Bed
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaShower />
-              </div>
-              <div className="text">
-                4 Bath
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaLayerGroup />
-              </div>
-              <div className="text">
-                2 storey
-              </div>
-            </div>
-
-            <div className="icon-with-text">
+          
+          <div className="icon-with-text">
               <div className="property-icon">
                 <FaLeftRight />
               </div>
               <div className="text">
-                2120 sqft
+                5000 sqft
+              </div>
+            </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaCity />
+              </div>
+              <div className="text">
+                Residential
+              </div>
+            </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaFileCircleQuestion />
+              </div>
+              <div className="text">
+                Freehold
+              </div>
+            </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaLocationDot />
+              </div>
+              <div className="text">
+                Selangor
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaLeftRight, FaHouse } from "react-icons/fa6";
-import {  FaCity } from "react-icons/fa";
+import { FaLeftRight, FaFileCircleQuestion, FaLocationDot } from "react-icons/fa6";
+import {  FaCity, } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -101,6 +101,25 @@ export const PropertyLandDetailsOverview = () => {
                 Residential
               </div>
             </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaFileCircleQuestion />
+              </div>
+              <div className="text">
+                Freehold
+              </div>
+            </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaLocationDot />
+              </div>
+              <div className="text">
+                Selangor
+              </div>
+            </div>
+
           </div>
 
           <div className="property-desc">

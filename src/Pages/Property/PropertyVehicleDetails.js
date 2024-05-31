@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaHouse } from "react-icons/fa6";
-import { FaBed, FaShower, FaLayerGroup, } from "react-icons/fa";
+import { FaCarSide, FaGauge, FaCalendarDays } from "react-icons/fa6";
+import { FaTags } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
@@ -61,39 +61,39 @@ export const PropertyVehicleDetails = () => {
           </div>
 
           <div className="property-second-row">
-            <div className="icon-with-text">
+          <div className="icon-with-text">
               <div className="property-icon">
-                <FaBed />
+                <FaGauge/>
               </div>
               <div className="text">
-                4 Bed
+                200 cc
               </div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
-                <FaShower />
+                <FaCarSide/>
               </div>
               <div className="text">
-                4 Bath
+                4 Seater
               </div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
-                <FaLayerGroup />
+                <FaCalendarDays/>
               </div>
               <div className="text">
-                2 storey
+                2023
               </div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
-                <FaHouse />
+                <FaTags />
               </div>
               <div className="text">
-                2120 sqft
+                Brand New
               </div>
             </div>
           </div>
