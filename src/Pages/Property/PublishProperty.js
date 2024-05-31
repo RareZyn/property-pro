@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FileCard from "../../Cards/General Cards/FileCard";
 import { getSchema } from "./validationSchema.js";
 import UploadCard from "../../Cards/General Cards/UploadCard";
 import "./PublishProperty.css";
 
 export const PublishProperty = () => {
-  
   const [propertyType, setPropertyType] = useState("");
   const [propertyDetails, setPropertyDetails] = useState({});
   const [errors, setErrors] = useState({});

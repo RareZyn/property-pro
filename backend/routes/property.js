@@ -1,13 +1,7 @@
-const router = require('express').Router()
-let Property = require('../models/property.model')
-let Land = require('../models/land.model')
-let House = require('../models/house.model')
-let Vehicle = require('../models/vehicle.model')
+const router = require("express").Router();
+const { addLand, addVehicle, addHouse} = require("../controller/propertyController");
+router.post("/addLand", addLand);
+router.post("/addVehicle", addVehicle);
+router.post("/addHouse", addHouse);
 
-router.route('/add').post((req, res) => {
-    Property.create(req.body)
-    .then(property => res.json(property))
-    .catch(err => res.json(err))
-})
-
-module.exports = router
+module.exports = router;

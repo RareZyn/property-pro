@@ -1,17 +1,58 @@
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcrypt");
 const { prisma } = require("../config/prismaConfig.js");
 
-const findUser = asyncHandler(async (req, res) => {
+const addUser = asyncHandler(async (req, res) => {
+  const {
+    username,
+    firstName,
+    lastName,
+    email,
+    password,
+    phoneNumber,
+    location,
+    description,
+  } = req.body;
+
   try {
-    const users = await prisma.users.findMany({
-      where: {},
+    // Check if user already exists
+    const userExist = await prisma.users.findUnique({
+      where: { username: username },
     });
-    console.log("Users:", users); 
-    res.status(200).json(users); 
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).json({ error: err.message }); 
+    if (userExist) {
+      return res.status(409).send({ message: "User already registered" });
+    }
+
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create the new user
+    const newUser = await prisma.users.create({
+      data: {
+        username,
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        phoneNumber,
+        location,
+        description,
+      },
+    });
+
+    res.status(201).send({
+      message: "User registered successfully",
+      user: newUser,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-module.exports = { findUser };
+
+const getAllUsers = asyncHandler(async (req, res) => {
+
+  
+});
+
+module.exports = { addUser };
