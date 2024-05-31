@@ -7,8 +7,10 @@
   box-sizing: border-box;
 }
 
-img {
-  vertical-align: middle;
+.mySlides > img {
+  width: 100%;
+  height: 70vh
+  
 }
 
 .Slide-container {
@@ -17,6 +19,7 @@ img {
 
 .mySlides {
   display: none;
+
 }
 
 .mySlides.active {
@@ -53,13 +56,14 @@ img {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.numbertext {
+#numbertext {
   color: #f2f2f2;
   font-size: 12px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
 }
+
 
 .caption-container {
   text-align: center;
@@ -73,11 +77,17 @@ img {
   display: table;
   clear: both;
 }
-
+.demo.cursor{
+  float: left;
+width: 14.28%;
+height: 7em;
+}
 .column {
   float: left;
-  width: 16.66%; /* Initially 1/6th of the container */
-}
+  margin: 3em;
+  width: 16.66%;
+  height: 6em;
+ }
 
 .demo {
   opacity: 0.6;

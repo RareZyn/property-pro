@@ -1,8 +1,10 @@
 import "./ItemComponentCard.css";
 import { Link } from "react-router-dom";
-import { FaShower, FaBed } from "react-icons/fa";
+import { FaShower} from "react-icons/fa";
+import { FaLeftRight} from "react-icons/fa6";
 
-function ItemComponentCard({imgLink, link}){
+
+function LandComponentCard({imgLink, link}){
     return(
         <Link to={link}>
             <div id="item-card">
@@ -14,7 +16,7 @@ function ItemComponentCard({imgLink, link}){
                     <div id="myproperty-location">Gua Musang, Kelantan</div>
                     <div id="myproperty-price">Price : RM 162,300,000</div>
                     <div id="myproperty-bedroom-bathroom">
-                        <div id="myproperty-noOf-bedroom"><FaBed/> 2</div>
+                        <div id="myproperty-noOf-bedroom"><FaLeftRight/> 2</div>
                         <div id="myproperty-noOf-bathroom"><FaShower/> 2</div>
                     </div>
                     {/**<span id="row-3">3210 ekar (Tanah) • RM X.XX PSF</span>**/}
@@ -24,4 +26,4 @@ function ItemComponentCard({imgLink, link}){
     )
 }
 
-export default ItemComponentCard
+export default LandComponentCard

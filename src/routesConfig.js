@@ -14,7 +14,9 @@ import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
 import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
-import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PropertyHouseDetails } from "./Pages/Property/PropertyHouseDetails.js";
+import { PropertyLandDetails } from "./Pages/Property/PropertyLandDetails.js";
+import { PropertyVehicleDetails } from "./Pages/Property/PropertyVehicleDetails.js";
 import { PropertyDetailsOwnerView } from "./Pages/Property/PropertyDetails-OwnerView.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
@@ -33,6 +35,9 @@ import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
+import { PropertyHouseDetailsOverview } from "./Pages/Property/PropertyHouseDetails-Overview.js";
+import { PropertyLandDetailsOverview } from "./Pages/Property/PropertyLandDetails-Overview.js";
+import { PropertyVehicleDetailsOverview } from "./Pages/Property/PropertyVehicleDetails-Overview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
 import { Navigate } from "react-router-dom";
 
@@ -80,6 +85,9 @@ export const routes = [
   { path: '/make-payment-debit-online', element: <MakePaymentDebitOnline /> },
   { path: '/make-payment-success', element: <MakePaymentSuccess /> },
   { path: '/property-details-overview', element: <PropertyDetailsOverview /> },
+  { path: '/property-housedetails-overview', element: <PropertyHouseDetailsOverview /> },
+  { path: '/property-landdetails-overview', element: <PropertyLandDetailsOverview /> },
+  { path: '/property-vehicledetails-overview', element: <PropertyVehicleDetailsOverview /> },
   { path: '/image-slideshow', element: <ImageSlideshow /> },
   { path: '*', element: <h1>PAGE NOT FOUND</h1> },
 ]

@@ -2,7 +2,10 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
+import { AppContext } from "../../AppProvider.js";
+import Cookies from 'js-cookie'
+import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
 
@@ -62,7 +65,7 @@ export const HomePage = () => {
 
   let suggestedItems = new Array(5);
    for (let i = 0; i < 3; i++) {
-    suggestedItems.push(<PropertyDisplayCard />);
+    suggestedItems.push(<HouseDisplayCard />);
    }
 
   return (
@@ -160,7 +163,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <PropertyDisplayCard />
+            <HouseDisplayCard link={"/property-house-details"}/>
           ))}
         </div>
       </div>

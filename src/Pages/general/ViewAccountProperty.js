@@ -1,12 +1,12 @@
 import "./AccountFragmentGrid.css";
-import ItemComponentCard from "../../Cards/Property Cards/ItemComponentCard";
+import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import image from "../../Res/image/property image.png";
 import "./ViewAccountProperty.css";
 
 export const ViewAccountProperty = () => {
   let items = [];
   for (let i = 0; i < 5; i++) {
-    items.push(<ItemComponentCard imgLink={image} />);
+    items.push(<HouseComponentCard imgLink={image} />);
   }
 
   return (
