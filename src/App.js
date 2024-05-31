@@ -29,7 +29,6 @@ function App() {
         const response = await axios.get('http://localhost:5000/users/auth', { withCredentials: true });
         setIsAuthenticated(response.data.isAuthenticated);
       } catch (err) {
-        // logout();
         console.log('Authentication check error:', err);
       } finally {
         setLoading(false); // Ensure loading state is set to false regardless of success or failure
@@ -56,7 +55,15 @@ function App() {
               element={
                 (route.path === '/login' || route.path === '/register' || route.path === '/') ?
                 route.element : <ProtectedRoute component={route.element} isAuthenticated={isAuthenticated} />
-              }/>
+              }>
+                {route.children && route.children.map((childRoute, childIndex) => (
+                  <Route 
+                    key={childIndex}
+                    path={childRoute.path}
+                    element={<ProtectedRoute component={childRoute.element} isAuthenticated={isAuthenticated} />}
+                  />
+                ))}
+              </Route>
           ))}
         </Routes>
         <Footer />
