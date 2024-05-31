@@ -8,20 +8,34 @@ import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
 import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
 
 export const BrowserProperty = () => {
+  const propertyCards = [];
+  let color = 0;
+
+  for (let i = 0; i < 1; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    propertyCards.push(<HouseDisplayCard link={"/property-house-details"} />);
+  }
+
+  for (let i = 0; i < 1; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    propertyCards.push(<LandDisplayCard link={"/property-land-details"} />);
+  }
+
+  for (let i = 0; i < 1; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    propertyCards.push(<VehicleDisplayCard link={"/property-vehicle-details"} />);
+  }
+
 
   return (
     <div>
-      <header id={style["header-container"]}>
-        <SearchBar id={style["browse-search"]} hint="Browse Property..." />
-      </header>
-      <div className="property-browse-div">
-        <div className="property-headline">Hot Items</div>
-        <div id="Property-Card-Row">
-        <HouseDisplayCard link={"/property-house-details"}></HouseDisplayCard>
-        <LandDisplayCard link={"/property-land-details"}></LandDisplayCard>
-        <VehicleDisplayCard link={"/property-vehicle-details"}></VehicleDisplayCard></div>
+        <div className="property-headline">Manage Property</div>
+        <div className="properties-grid">
+          {propertyCards}
         </div>
       </div>
-   
   );
 };

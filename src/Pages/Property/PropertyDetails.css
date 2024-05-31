@@ -73,6 +73,69 @@
   margin-right: 60px;
   margin-left: 20px;
 }
+.delete-button,
+.edit-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  height: 60px;
+  margin-top: 30px;
+  border: 2px solid rgb(244, 159, 31);
+  background-color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 60px;
+  padding: 5px;
+}
+
+.Overview-edit{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 30px;
+}
+#edit-icon {
+  width: 30px;
+  height: auto;
+  margin-bottom: 10px;
+}
+#delete-icon {
+  width: 20px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.delete-button:hover,
+.edit-button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 0px 0px 9px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+.overview-progressbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#overview-progressbar {
+  width: 70%;
+}
+
+.price{
+  background-color: var(--creamyWhite);
+  border: none; 
+  width: 15em;
+  height: 5em;
+  border-radius: 8px;
+  margin-top: 2em;
+}
+
 .icon-box {
 
   font-size: 100px;

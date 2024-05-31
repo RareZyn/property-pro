@@ -1,9 +1,9 @@
 .PropertyDetailsOverview {
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
 }
 
 #overview-img {
@@ -13,7 +13,7 @@
 }
 
 .property-overview {
-  background-color: #6bead3;
+  background-color: var(--darkGreen);
   display: flex;
   flex-direction: column;
   justify-content: center;

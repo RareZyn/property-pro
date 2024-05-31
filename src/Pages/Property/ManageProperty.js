@@ -11,13 +11,13 @@ export const ManageProperty = () => {
   for (let i = 0; i < 2; i++) {
     color = i - 6 * parseInt(i / 6);
     console.log(color);
-    propertyCards.push(<HouseDisplayCard link={"/property-details"} />);
+    propertyCards.push(<HouseDisplayCard link={"/property-housedetails-overview"} />);
   }
 
   for (let i = 0; i < 2; i++) {
     color = i - 6 * parseInt(i / 6);
     console.log(color);
-    propertyCards.push(<LandDisplayCard link={"/property-house-details"} />);
+    propertyCards.push(<LandDisplayCard link={"/property-details-overview"} />);
   }
 
 
