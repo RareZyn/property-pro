@@ -33,7 +33,7 @@ export const HouseDisplayCard = ({ thumbnailImage, link }) => {
                     <div id="mypropertyicon-content">
                         <div id="property-smallicon">
                             <FaHouse /> 2120 sqft
-                        </div>
+          </div>
                         <div id="property-smallicon">
                             <FaBed/> 2 
                         </div>
