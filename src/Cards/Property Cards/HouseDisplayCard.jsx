@@ -3,7 +3,8 @@ import imgPh from "../../Res/image/image-dummy-house.png";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaShower, FaBed } from "react-icons/fa";
+import { FaShower, FaBed, FaTags, FaLayerGroup } from "react-icons/fa";
+import { FaHouse, FaLocationDot } from "react-icons/fa6";
 
 export const HouseDisplayCard = ({ thumbnailImage, link }) => {
   const [thumbnail, setThumbnail] = useState(imgPh);
@@ -25,13 +26,29 @@ export const HouseDisplayCard = ({ thumbnailImage, link }) => {
           <img src={thumbnail} alt="Image" srcset="" id="img-ph" />
         </div>
         <div id="details">
-          <span style={{ fontWeight: "bold" }}>RM XX.XX</span>
-          <div className="noOf-bedroom-bathroom"> 
-            <div id="no-of-bedroom"><FaBed/> 2</div>
-            <div id="no-of-bathroom"><FaShower/> 2</div>
-          </div>
-          <span>Item name</span>
-          <span>Location</span>
+        <div id="details-container">
+                    <div id="myproperty-name"><h4>2 Storey House in Petaling Jaya</h4></div>
+                    <div id="myproperty-location"><FaLocationDot/>  Petaling Jaya, Selangor</div>
+                    <div id="myproperty-price"><FaTags/>  RM 162,300,000</div>
+                    <div id="mypropertyicon-content">
+                        <div id="property-smallicon">
+                            <FaHouse /> 2120 sqft
+                        </div>
+                        <div id="property-smallicon">
+                            <FaBed/> 2 
+                        </div>
+                    </div>
+                    <div id="mypropertyicon-content">
+                        
+                        <div id="property-smallicon">
+                            <FaLayerGroup /> 2 storey
+                        </div>
+                        <div id="property-smallicon">
+                            <FaShower/> 2 
+                        </div>
+                    </div>
+                    {/**<span id="row-3">3210 ekar (Tanah) • RM X.XX PSF</span>**/}
+                </div>
         </div>
       </div>
     </Link>

@@ -33,7 +33,6 @@ export const ManageAccount = () => {
     };
 
     getUser()
-    // setFormValues(user)
   }, []);
 
   useEffect(() => {
@@ -159,12 +158,9 @@ export const ManageAccount = () => {
               )}
             </section>
 
-            <Link to="/myaccount">
             <button type="submit" id="save-profile">
               Save
             </button>
-            
-          </Link>
           </div>
         </form>
       </div>

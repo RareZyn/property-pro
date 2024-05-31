@@ -8,6 +8,7 @@ import imageC from "../../Res/image/house.jpeg";
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 
+
 export const ManageProperty = () => {
   const items = [
     { type: "A", img: imageA, link: "/property-Vehicle-Details" },

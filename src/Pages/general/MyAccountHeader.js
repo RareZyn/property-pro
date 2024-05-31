@@ -11,6 +11,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { getUserID } from '../../util.js';
+import { Link, Outlet } from "react-router-dom";
 
 export const MyAccountHeader = () => {
   // const { user } = useContext(AppContext);
@@ -68,48 +69,22 @@ export const MyAccountHeader = () => {
             <span>{(user === null) ? 'null' : user.description}</span>
           </div>
           
-          <a id="edit-account" onClick={() => setCurrentPage("Manage Account")}>
+          <Link id="edit-account" to={'manage'}>
             <img
               src={require("../../Res/image/editicon.jpg")}
               alt="Edit icon"
             />
-          </a>
+          </Link>
         </section>
         <hr />
         <section id="account-link-container">
-          <a
-            className={`account-link ${
-              currentPage === "Property" ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage("Property")}
-          >
-            Property
-          </a>
-          <a
-            className={`account-link ${currentPage === "Post" ? "active" : ""}`}
-            onClick={() => setCurrentPage("Post")}
-          >
-            Post
-          </a>
-          <a
-            className={`account-link ${
-              currentPage === "My Transaction" ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage("My Transaction")}
-          >
-            My Transaction
-          </a>
-          <a
-            className={`account-link ${
-              currentPage === "About" ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage("About")}
-          >
-            About
-          </a>
+          <Link className="account-link" to={'property'}>Property</Link>
+          <Link className="account-link" to={'post'}>Post</Link>
+          <Link className="account-link" to={'transaction'}>My Transaction</Link>
+          <Link className="account-link" to={'about'}>About</Link>
         </section>
       </div>
-      {page}
+      <Outlet />
     </>
   );
 };
