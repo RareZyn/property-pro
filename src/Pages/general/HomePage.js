@@ -8,14 +8,9 @@ import Cookies from 'js-cookie'
 import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
-  const token = Cookies.get('token')
-  console.log(token)
-  console.log(jwtDecode(token).userData)
 
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
-  const {user} = useContext(AppContext)
-  // console.log(user)
 
   const handleBuyerHover = () => {
     setIsBuyerHovered(true);

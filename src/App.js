@@ -11,6 +11,7 @@ import { routes, ProtectedRoute } from './routesConfig.js';
 import ScrollToTop from "./Content/ScrollToTop"; // Correct the import path to ScrollToTop component
 import axios from "axios";
 import { logout } from "./util.js";
+import Cookies from 'js-cookie'
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
@@ -28,7 +29,7 @@ function App() {
         const response = await axios.get('http://localhost:5000/users/auth', { withCredentials: true });
         setIsAuthenticated(response.data.isAuthenticated);
       } catch (err) {
-        logout();
+        // logout();
         console.log('Authentication check error:', err);
       } finally {
         setLoading(false); // Ensure loading state is set to false regardless of success or failure

@@ -1,24 +1,38 @@
 // Guna styling AccountHeader.css
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../AppProvider.js";
 import { MyAccountProperty } from "./MyAccountProperty.js";
 import { MyAccountPost } from "./MyAccountPost.js";
 import { MyAccountDetails } from "./MyAccountDetails.js";
 import { MyAccountTransaction } from "./MyAccountTransaction.js";
 import { ManageAccount } from "./ManageAccount.js";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import { getUserID } from '../../util.js';
 
 export const MyAccountHeader = () => {
-  const { user, userDetails } = useContext(AppContext);
-  console.log(user)
-  const [selectedLink, setSelectedLink] = useState("property"); // Set initial selected link
-
-  const handleLinkClick = (link) => {
-    setSelectedLink(link);
-  };
-
+  // const { user } = useContext(AppContext);
+  const[user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState("Property");
   let page;
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) throw new Error('No token found');
+        const userCookie = jwtDecode(token).userData;
+        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
+        setUser(res.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    getUser()
+  }, []);
 
   switch (currentPage) {
     case "Property":

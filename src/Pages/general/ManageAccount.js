@@ -3,21 +3,45 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import "./ManageAccount.css";
-import { AppContext } from "../../AppProvider";
+import Cookies from 'js-cookie'
+import { jwtDecode } from "jwt-decode";
 
 export const ManageAccount = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext)
-  const [formValues, setFormValues] = useState({
-    name: user.username,
-    description: user.description,
-    phoneNumber: user.phoneNumber,
-    address: user.location,
-    profilePicture: user.profilePic,
-  });
-
   const [errors, setErrors] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    description: "",
+    phoneNumber: "",
+    location: "",
+    profilePicture: "",
+  });
+
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) throw new Error('No token found');
+        const userCookie = jwtDecode(token).userData;
+        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
+        setUser(res.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    getUser()
+    // setFormValues(user)
+  }, []);
+
+  useEffect(() => {
+    if(user){
+      setFormValues({...formValues, name: user.username})
+      setFormValues(user)
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -28,6 +52,7 @@ export const ManageAccount = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log('submit')
     e.preventDefault();
 
     const validationSchema = Yup.object().shape({
@@ -36,18 +61,13 @@ export const ManageAccount = () => {
       phoneNumber: Yup.string()
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
         .required("Phone Number is required"),
-      address: Yup.string().required("Address is required"),
+      location: Yup.string().required("Location is required"),
       profilePicture: Yup.mixed(),
     });
 
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        // const formData = new FormData();
-        // Object.keys(formValues).forEach((key) => {
-        //   formData.append(key, formValues[key]);
-        // });
-
         console.log(formValues)
 
         axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
@@ -117,14 +137,14 @@ export const ManageAccount = () => {
               )}
             </section>
             <section id="input-section">
-              Address
+              Location
               <input
                 type="text"
-                name="address"
-                value={formValues.address}
+                name="location"
+                value={formValues.location}
                 onChange={handleChange}
               />
-              {errors.address && <div className="error">{errors.address}</div>}
+              {errors.location && <div className="error">{errors.location}</div>}
             </section>
             <section id="input-section">
               Profile Picture

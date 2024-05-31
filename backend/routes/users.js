@@ -3,7 +3,11 @@ let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
 const {cookieJwtAuth} = require('../middleware/cookieJwtAuth')
-const { findUser } = require('../controller/userController')
+const { addUser } = require('../controller/userController')
+
+router.post("/addUser",addUser);
+
+
 
 router.route('/').get((req, res) => {
     User.find()
@@ -45,11 +49,9 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/auth', cookieJwtAuth, async (req, res) => {
-    // res.status(200).json({ message: 'This is a protected route.' })
     res.json({"isAuthenticated": true})
 })
 
-router.get("/findUsername",findUser);
 
 router.put('/update/:id', async (req, res) => {
     const { id } = req.params;
@@ -70,6 +72,13 @@ router.put('/update/:id', async (req, res) => {
         res.status(500).json('Internal server error');
     }
 });
+
+router.get('/get/:id', async (req, res) => {
+    const {id} = req.params
+    const user = await User.findById(id)
+    const {password, ...data} = user.toObject()
+    res.json(data)
+})
 
 router.put('/get/:id', async (req, res) => {
     const {id} = req.params

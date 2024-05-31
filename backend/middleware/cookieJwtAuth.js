@@ -12,7 +12,7 @@ exports.cookieJwtAuth = (req, res, next) =>{
         next()
     }
     catch(err){
-        res.clearCookie('token')
+        // res.clearCookie('token')
         res.status(400).json({message: 'invalid token'})
         return res.redirect('/')
     }
