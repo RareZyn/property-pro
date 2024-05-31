@@ -27,26 +27,26 @@ export const HouseDisplayCard = ({ thumbnailImage, link }) => {
         </div>
         <div id="details">
         <div id="details-container">
-                    <div id="myproperty-name"><h4>2 Storey House in Petaling Jaya</h4></div>
-                    <div id="myproperty-location"><FaLocationDot/>  Petaling Jaya, Selangor</div>
-                    <div id="myproperty-price"><FaTags/>  RM 162,300,000</div>
-                    <div id="mypropertyicon-content">
-                        <div id="property-smallicon">
-                            <FaHouse /> 2120 sqft
+        <div id="myproperty-name"><h4>2 Storey House in Petaling Jaya</h4></div>
+        <div id="myproperty-location"><FaLocationDot/>  Petaling Jaya, Selangor</div>
+        <div id="myproperty-price"><FaTags/>  RM 162,300,000</div>
+        <div id="mypropertyicon-content">
+          <div id="property-smallicon">
+          <FaHouse /> 2120 sqft
           </div>
-                        <div id="property-smallicon">
-                            <FaBed/> 2 
-                        </div>
-                    </div>
-                    <div id="mypropertyicon-content">
-                        
-                        <div id="property-smallicon">
-                            <FaLayerGroup /> 2 storey
-                        </div>
-                        <div id="property-smallicon">
-                            <FaShower/> 2 
-                        </div>
-                    </div>
+          <div id="property-smallicon">
+          <FaBed/> 2 
+          </div>
+          </div>
+          <div id="mypropertyicon-content">
+                                  
+          <div id="property-smallicon">
+          <FaLayerGroup /> 2 storey
+          </div>
+          <div id="property-smallicon">
+          <FaShower/> 2 
+          </div>
+        </div>
                     {/**<span id="row-3">3210 ekar (Tanah) • RM X.XX PSF</span>**/}
                 </div>
         </div>
