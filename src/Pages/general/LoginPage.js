@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from 'js-cookie'
 
 export const LoginPage = () => {
+  const [token, setToken] = useState(null);
   const [formValues, setFormValues] = useState({
     username: '',
     password: ''
@@ -33,14 +34,25 @@ export const LoginPage = () => {
         alert('The password is incorrect');
       }
       else{
-        window.scrollTo(0, 0);
-        // const authRes = await axios.get('http://localhost:5000/users/auth', { withCredentials: true });
-        // if (authRes.data.isAuthenticated) {
-        //   nav('/homepage');
-        // } else {
-        //   alert('Authentication failed');
-        // }
-        nav('/homepage')
+        // Poll for the cookie existence
+        const pollForCookie = (intervalId) => {
+          const token = Cookies.get('token');
+          if (token) {
+            clearInterval(intervalId); // Stop polling once the cookie is found
+            window.scrollTo(0, 0);
+            nav('/homepage');
+          }
+        };
+
+        const intervalId = setInterval(() => pollForCookie(intervalId), 100);
+
+        // Optional: Timeout to stop polling after a certain period
+        setTimeout(() => {
+          clearInterval(intervalId);
+          if (!Cookies.get('token')) {
+            alert('Failed to log in. Please try again.');
+          }
+        }, 5000); // Stop polling after 5 seconds
       }
     } catch(err){
       console.error('Login error', err);
