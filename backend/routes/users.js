@@ -3,7 +3,11 @@ let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
 const {cookieJwtAuth} = require('../middleware/cookieJwtAuth')
-const { findUser } = require('../controller/userController')
+const { addUser } = require('../controller/userController')
+
+router.post("/addUser",addUser);
+
+
 
 router.route('/').get((req, res) => {
     User.find()
@@ -48,7 +52,6 @@ router.get('/auth', cookieJwtAuth, async (req, res) => {
     res.json({"isAuthenticated": true})
 })
 
-router.get("/findUsername",findUser);
 
 router.put('/update/:id', async (req, res) => {
     const { id } = req.params;
