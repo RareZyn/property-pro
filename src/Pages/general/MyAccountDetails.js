@@ -2,10 +2,28 @@ import { NavHeader } from "../Navigation/NavHeader";
 import "./MyAccountDetails.css";
 import { MyAccountHeader } from "./MyAccountHeader";
 import { AppContext } from "../../AppProvider.js";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import Cookies from 'js-cookie';
 
 export const MyAccountDetails = () => {
-  const { user, userDetails } = useContext(AppContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) throw new Error('No token found');
+        const userCookie = jwtDecode(token).userData;
+        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
+        setUser(res.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    getUser()
+  }, []);
 
   return (
     <div className="acc-grid-container">

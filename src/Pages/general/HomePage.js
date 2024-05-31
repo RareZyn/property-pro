@@ -3,19 +3,11 @@ import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
-import { AppContext } from "../../AppProvider.js";
-import Cookies from 'js-cookie'
-import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
-  const token = Cookies.get('token')
-  console.log(token)
-  console.log(jwtDecode(token).userData)
 
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
-  const {user} = useContext(AppContext)
-  // console.log(user)
 
   const handleBuyerHover = () => {
     setIsBuyerHovered(true);

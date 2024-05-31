@@ -6,6 +6,7 @@ export const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [username, setUsername] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
 
     useEffect(() => {
@@ -15,14 +16,17 @@ export const AppProvider = ({children}) => {
                 const decodedToken = jwtDecode(token);
                 if (decodedToken && decodedToken.userData) {
                     setUser(decodedToken.userData);
+                    console.log('user in app provider: ', user)
+                    // setUsername(user.username);
                 } else {
                     console.error('Invalid token structure');
                 }
             } catch (error) {
                 console.error('Failed to decode token', error);
-                Cookies.remove('token');
+                // Cookies.remove('token');
                 setToken(null);
                 setUser(null);
+                setUsername(null);
             }
         };
 
@@ -31,6 +35,7 @@ export const AppProvider = ({children}) => {
             decodeToken(token);
         } else {
             setUser(null);
+            setUsername(null);
         }
 
         // Set up an interval to monitor changes to the token cookie
@@ -46,7 +51,7 @@ export const AppProvider = ({children}) => {
     }, [token]);
 
     return(
-        <AppContext.Provider value={{user, setUser}}>
+        <AppContext.Provider value={{user, username}}>
             {children}
         </AppContext.Provider>
     )

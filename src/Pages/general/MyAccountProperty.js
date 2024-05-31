@@ -6,7 +6,6 @@ import { IoAddCircleOutline } from "react-icons/io5";
 
 export const MyAccountProperty = () => {
   let items = new Array(4).fill(image);
-  console.log(items)
 
   return (
     <div className="own-property-container">
