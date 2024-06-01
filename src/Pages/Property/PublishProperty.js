@@ -1,16 +1,75 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getSchema } from "./validationSchema.js";
-import UploadCard from "../../Cards/General Cards/UploadCard";
+import * as Yup from "yup"; // Import Yup for validation
+import FileCard from "../../Cards/General Cards/FileCard";
 import "./PublishProperty.css";
 
 export const PublishProperty = () => {
+  const [files, setFiles] = useState([]);
   const [propertyType, setPropertyType] = useState("");
   const [propertyDetails, setPropertyDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
+  // Validation schema for land property
+  const landSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    size: Yup.string().required("Size is required"),
+    location: Yup.string().required("Location is required"),
+    landType: Yup.string().required("Land Type is required"),
+    ownershipType: Yup.string().required("Ownership Type is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen:Yup.string().required("Upload File is required")
+  });
+
+  // Validation schema for houses property
+  const housesSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    area: Yup.string().required("Area is required"),
+    bedrooms: Yup.string().required("Bedrooms is required"),
+    houseType: Yup.string().required("House Type is required"),
+    bathrooms: Yup.string().required("Bathrooms is required"),
+    location: Yup.string().required("Location is required"),
+    floors: Yup.string().required("Floors is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen:Yup.string().required("Upload File is required")
+  });
+
+  // Validation schema for vehicle property
+  const vehicleSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    vehicleType: Yup.string().required("Vehicle Type is required"),
+    brand: Yup.string().required("Brand is required"),
+    model: Yup.string().required("Model is required"),
+    seats: Yup.string().required("Seats is required"),
+    mileage: Yup.string().required("Mileage is required"),
+    yearOfProduction: Yup.string().required("Year of Production is required"),
+    cc: Yup.string().required("CC is required"),
+    condition: Yup.string().required("Condition is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen:Yup.string().required("Upload File is required")
+  });
+
+  const handleFileChange = (event) => {
+    const { name, value, files } = event.target;
+
+    if (files) {
+      let selectedFileName = '';
+      if (files.length > 1) {
+        selectedFileName = `${files.length} files selected`;
+      } else {
+        selectedFileName = files[0].name;
+      }
+      setFiles({
+          ...__filename,
+          [name]: selectedFileName,
+      });
+    }
+  };
 
   const handlePropertyTypeChange = (event) => {
     const type = event.target.value;
@@ -21,24 +80,32 @@ export const PublishProperty = () => {
   };
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
     setPropertyDetails({
       ...propertyDetails,
-      [name]: value,
+      [name]: files ? files[0] : value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validationSchema = getSchema(propertyType);
+    let validationSchema;
+    // Set validation schema based on property type
+    if (propertyType === "land") {
+      validationSchema = landSchema;
+    } else if (propertyType === "houses") {
+      validationSchema = housesSchema;
+    } else if (propertyType === "vehicle") {
+      validationSchema = vehicleSchema;
+    }
 
     try {
       await validationSchema.validate(propertyDetails, { abortEarly: false });
       console.log("Form submitted with values:", propertyDetails);
       setIsSubmitted(true);
       // Redirect to property details page after successful form submission
-      navigate("/property-details"); 
+      navigate("/property-details");
     } catch (validationErrors) {
       if (validationErrors.inner && Array.isArray(validationErrors.inner)) {
         const formattedErrors = validationErrors.inner.reduce((acc, error) => {
@@ -136,6 +203,24 @@ export const PublishProperty = () => {
                       />
                       {errors.ownershipType && <div className="error">{errors.ownershipType}</div>}
                     </div>
+                          <div className="broker-register-upload-file">
+                        Important Document
+                        <input type="file" 
+                        name="ImportantDocumen"
+                        id="ImportantDocumen"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        data-multiple-caption="{count} files selected"
+                        multiple
+                        />
+                        <label for="ImportantDocumen">
+                          <img src={require("../../Res/image/upload.png")} />
+                          <h3>{__filename.ImportantDocumen || 'Choose files to upload'}</h3>
+                        </label>
+                        {errors.ImportantDocumen && (
+                          <div className="error">{errors.ImportantDocumen}</div>
+                    )}
+                  </div>
                   </>
                 )}
                 {propertyType === "houses" && (
@@ -217,6 +302,24 @@ export const PublishProperty = () => {
                       />
                       {errors.floors && <div className="error">{errors.floors}</div>}
                     </div>
+                          <div className="broker-register-upload-file">
+                    Important Document
+                    <input type="file" 
+                    name="ImportantDocumen"
+                    id="ImportantDocumen"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    data-multiple-caption="{count} files selected"
+                    multiple
+                    />
+                    <label for="ImportantDocumen">
+                      <img src={require("../../Res/image/upload.png")} />
+                      <h3>{__filename.ImportantDocumen || 'Choose files to upload'}</h3>
+                    </label>
+                    {errors.ImportantDocumen && (
+                      <div className="error">{errors.ImportantDocumen}</div>
+                    )}
+            </div>
                   </>
                 )}
                 {propertyType === "vehicle" && (
@@ -320,9 +423,7 @@ export const PublishProperty = () => {
                       />
                       {errors.condition && <div className="error">{errors.condition}</div>}
                     </div>
-                  </>
-                )}
-                <div className="section-input">
+                    <div className="section-input">
                   <span>Description</span>
                   <input
                     type="text"
@@ -344,19 +445,34 @@ export const PublishProperty = () => {
                   />
                   {errors.price && <div className="error">{errors.price}</div>}
                 </div>
+                      <div className="broker-register-upload-file">
+                    Important Document
+                    <input type="file" 
+                    name="ImportantDocumen"
+                    id="ImportantDocumen"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    data-multiple-caption="{count} files selected"
+                    multiple
+                    />
+                    <label for="ImportantDocumen">
+                      <img src={require("../../Res/image/upload.png")} />
+                      <h3>{__filename.ImportantDocumen || 'Choose files to upload'}</h3>
+                    </label>
+                    {errors.ImportantDocumen && (
+                      <div className="error">{errors.ImportantDocumen}</div>
+                    )}
+                  </div>
+                  </>
+                )}
               </div>
             )}
           </div>
-
-          {propertyType && (<div >
-            <UploadCard></UploadCard>
-            {errors.images && <div className="error">{errors.images}</div>}</div>
-          )}
-
-
           {propertyType && (
             <div className="publish-div">
-              <button type="submit" className="publish-btn">Publish</button>
+              <button type="submit" className="publish-btn">
+                Publish
+              </button>
             </div>
           )}
         </form>

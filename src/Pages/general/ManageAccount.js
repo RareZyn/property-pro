@@ -1,30 +1,59 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 import "./ManageAccount.css";
-import { AppContext } from "../../AppProvider";
+import Cookies from 'js-cookie'
+import { jwtDecode } from "jwt-decode";
 
 export const ManageAccount = () => {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext)
-  const [formValues, setFormValues] = useState({
-    name: user.username,
-    description: user.description,
-    phoneNumber: user.phoneNumber,
-    address: user.location,
-    profilePicture: user.profilePic,
-  });
-
   const [errors, setErrors] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    firstname: "",
+    lastname:"",
+    description: "",
+    phoneNumber: "",
+    location: "",
+    profilePicture: "",
+  });
+
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) throw new Error('No token found');
+        const userCookie = jwtDecode(token).userData;
+        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
+        setUser(res.data);
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    getUser()
+  }, []);
+
+  useEffect(() => {
+    if(user){
+      setFormValues(prevFormValues => ({
+        ...prevFormValues,
+        name: user.username,
+        ...user
+      }));
+    }
+  }, [user]);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: files ? files[0] : value,
-    });
+    const { name, value } = e.target;
+    setFormValues((prevFormValues) => ({
+      ...prevFormValues,
+      [name]: value,
+      name: name === 'firstname' ? `${value} ${formValues.lastname}` : name === 'lastname' ? `${formValues.firstname} ${value}` : formValues.fullname,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -32,24 +61,19 @@ export const ManageAccount = () => {
 
     const validationSchema = Yup.object().shape({
       name: Yup.string().required("Name is required"),
+      firstname: Yup.string().required("Your first name is required"),
+      lastname: Yup.string().required("Your last name is required"),
       description: Yup.string().required("Description is required"),
       phoneNumber: Yup.string()
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
         .required("Phone Number is required"),
-      address: Yup.string().required("Address is required"),
+      location: Yup.string().required("Location is required"),
       profilePicture: Yup.mixed(),
     });
 
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        // const formData = new FormData();
-        // Object.keys(formValues).forEach((key) => {
-        //   formData.append(key, formValues[key]);
-        // });
-
-        console.log(formValues)
-
         axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
           .then(res => {
             console.log(res.data);
@@ -83,6 +107,26 @@ export const ManageAccount = () => {
               alt="User Profile"
             />
             <section id="input-section">
+              First Name
+              <input
+                type="text"
+                name="firstname"
+                value={formValues.firstname}
+                onChange={handleChange}
+              />
+              {errors.firstname && <div className="error">{errors.firstname}</div>}
+            </section>
+            <section id="input-section">
+              Last Name
+              <input
+                type="text"
+                name="lastname"
+                value={formValues.lastname}
+                onChange={handleChange}
+              />
+              {errors.lastname && <div className="error">{errors.lastname}</div>}
+            </section>
+            <section id="input-section">
               Name (As in IC)
               <input
                 type="text"
@@ -92,6 +136,7 @@ export const ManageAccount = () => {
               />
               {errors.name && <div className="error">{errors.name}</div>}
             </section>
+
             <section id="input-section">
               Description
               <input
@@ -117,39 +162,55 @@ export const ManageAccount = () => {
               )}
             </section>
             <section id="input-section">
-              Address
-              <input
-                type="text"
-                name="address"
-                value={formValues.address}
+              Location
+              <select
+                name="location"
+                value={formValues.location}
                 onChange={handleChange}
-              />
-              {errors.address && <div className="error">{errors.address}</div>}
-            </section>
-            <section id="input-section">
-              Profile Picture
-              <input
+              >
+                <option value="" selected disabled hidden>Select Location</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Labuan">Labuan</option>
+                <option value="Putrajaya">Putrajaya</option>
+                <option value="Johor">Johor</option>
+                <option value="Kedah">Kedah</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                <option value="Pahang">Pahang</option>
+                <option value="Perak">Perak</option>
+                <option value="Perlis">Perlis</option>
+                <option value="Pulau Pinang">Pulau Pinang</option>
+                <option value="Sabah">Sabah</option>
+                <option value="Sarawak">Sarawak</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Terengganu">Terengganu</option>
+                </select>
+                {errors.location && (
+                <div className="error">{errors.location}</div>
+                )}
+                </section>
+                <section id="input-section">
+                Profile Picture
+                <input
                 type="file"
                 name="profilePicture"
                 accept="image/*"
                 onChange={handleChange}
-              />
-              {errors.profilePicture && (
+                />
+                {errors.profilePicture && (
                 <div className="error">{errors.profilePicture}</div>
-              )}
-            </section>
+                )}
+                </section>
 
-            <Link to="/myaccount">
-            <button type="submit" id="save-profile">
-              Save
-            </button>
-            
-          </Link>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
+                <button type="submit" id="save-profile">
+                Save
+                </button>
+                </div>
+                </form>
+                </div>
+                </div>
+                );
+                };
 
-export default ManageAccount;
+                export default ManageAccount;

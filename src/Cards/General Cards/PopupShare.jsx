@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import shareIcon from "../../Res/image/share-2.png";
+import {FaCircleXmark,FaCopy } from "react-icons/fa6";
 import { FaInstagram,FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
 import "./PopupShare.css";
 
@@ -10,13 +11,21 @@ export default function PopupShare() {
         <div>
             <Popup trigger=
                 {<button id='ShareBtn'> <img src={shareIcon} alt="Shares" />
-                Share </button>} 
+                <span>Share</span> </button>} 
                 modal nested>
                 {
                     close => (
                  <div className='sharecontent'>
                  <div className='content'>
+                 <div className='shareFirstRow'>
               <h3>Share</h3>
+              <div>
+                <button id='close-button' onClick=
+                    {() => close()}>
+                    <FaCircleXmark></FaCircleXmark>
+                </button>
+                </div>
+                </div>
 
              <div className="shareSecondRow">
 
@@ -53,13 +62,12 @@ export default function PopupShare() {
                   <FaFacebook className="facebook" />
               </a>
           </div>
-                            </div>
-                        
-                            <div>
-                                <button id='close-button' onClick=
-                                    {() => close()}>
-                                        Close
-                                </button>
+
+          <div className="link-div">
+          <div className="link-box">
+          <span>http://property-housedetails-overview</span></div>
+          <div className='copy-icon'><FaCopy></FaCopy></div>
+          </div>
                             </div>
                         </div>
                     )

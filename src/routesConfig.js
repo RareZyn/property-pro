@@ -8,13 +8,15 @@ import { RegisterBroker } from "./Pages/Broker/RegisterBroker.js";
 import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
 import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
 import { Chat } from "./Pages/Social/Chat.js";
-import { MyAccountHeader } from "./Pages/general/MyAccountHeader.js";
+import { AccountHeader } from "./Pages/general/AccountHeader.js";
 import { MyAccountTransaction } from "./Pages/general/MyAccountTransaction.js";
 import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
 import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
 import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
 import { ManageAccount } from "./Pages/general/ManageAccount.js";
-import { PropertyDetails } from "./Pages/Property/PropertyDetails.js";
+import { PropertyHouseDetails } from "./Pages/Property/PropertyHouseDetails.js";
+import { PropertyLandDetails } from "./Pages/Property/PropertyLandDetails.js";
+import { PropertyVehicleDetails } from "./Pages/Property/PropertyVehicleDetails.js";
 import { PropertyDetailsOwnerView } from "./Pages/Property/PropertyDetails-OwnerView.js";
 import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
@@ -26,13 +28,16 @@ import { ViewAccountPost } from "./Pages/general/ViewAccountPost.js";
 import { ViewAccountAbout } from "./Pages/general/ViewAccountAbout.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
-import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
+import { CreatePost } from "./Pages/Social/CreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
 import { MakePaymentSuccess } from "./Pages/Transaction/MakePaymentSuccess.js";
 import { PropertyDetailsOverview } from "./Pages/Property/PropertyDetailsOverview.js";
+import { PropertyHouseDetailsOverview } from "./Pages/Property/PropertyHouseDetails-Overview.js";
+import { PropertyLandDetailsOverview } from "./Pages/Property/PropertyLandDetails-Overview.js";
+import { PropertyVehicleDetailsOverview } from "./Pages/Property/PropertyVehicleDetails-Overview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
 import { Navigate } from "react-router-dom";
 
@@ -51,13 +56,21 @@ export const routes = [
   { path: '/verify-property', element: <VerifyProperty /> },
   { path: '/update-progress', element: <UpdateProgress /> },
   { path: '/chat', element: <Chat /> },
-  { path: '/myaccount', element: <MyAccountHeader /> },
-  { path: '/myaccount-transaction', element: <MyAccountTransaction /> },
-  { path: '/myaccount-post', element: <MyAccountPost /> },
-  { path: '/myaccount-details', element: <MyAccountDetails /> },
-  { path: '/myaccount-property', element: <MyAccountProperty /> },
-  { path: '/manage-account', element: <ManageAccount /> },
-  { path: '/property-details', element: <PropertyDetails /> },
+  { path: '/view-account/:id', element: <AccountHeader />, 
+  children: [
+    { path: 'property', element: <MyAccountProperty /> },
+    { path: 'post', element: <MyAccountPost /> },
+    { path: 'transaction', element: <MyAccountTransaction /> },
+    { path: 'about', element: <MyAccountDetails /> },
+    { path: 'manage', element: <ManageAccount /> },
+    { path: '*', element: <MyAccountProperty /> },
+    // { path: '*', element: <Navigate to="/myaccount/property" /> }
+  ] },
+  // { path: '/manage-account', element: <ManageAccount /> },
+  // { path: '/property-details', element: <PropertyDetails /> },
+  { path: '/property-vehicle-details', element: <PropertyVehicleDetails /> },
+  { path: '/property-land-details', element: <PropertyLandDetails /> },
+  { path: '/property-house-details', element: <PropertyHouseDetails /> },
   { path: '/property-details-ownerview', element: <PropertyDetailsOwnerView /> },
   { path: '/publish-property', element: <PublishProperty /> },
   { path: '/browser-property', element: <BrowserProperty /> },
@@ -69,13 +82,16 @@ export const routes = [
   { path: '/view-account-about', element: <ViewAccountAbout /> },
   { path: '/forum-page', element: <ForumPage /> },
   { path: '/forum-header', element: <ForumHeader /> },
-  { path: '/forum-create-post', element: <ForumCreatePost /> },
+  { path: '/create-post', element: <CreatePost /> },
   { path: '/login-broker', element: <LoginBroker /> },
   { path: '/verify-property-homepage', element: <VerifyPropertyHome /> },
   { path: '/choose-bank', element: <ChooseBank /> },
   { path: '/make-payment-debit-online', element: <MakePaymentDebitOnline /> },
   { path: '/make-payment-success', element: <MakePaymentSuccess /> },
   { path: '/property-details-overview', element: <PropertyDetailsOverview /> },
+  { path: '/property-housedetails-overview', element: <PropertyHouseDetailsOverview /> },
+  { path: '/property-landdetails-overview', element: <PropertyLandDetailsOverview /> },
+  { path: '/property-vehicledetails-overview', element: <PropertyVehicleDetailsOverview /> },
   { path: '/image-slideshow', element: <ImageSlideshow /> },
   { path: '*', element: <h1>PAGE NOT FOUND</h1> },
 ]

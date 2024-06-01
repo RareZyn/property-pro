@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./VerifyPropertyHome.css";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
 
 export const VerifyPropertyHome = () => {
   let newPropertyToVerify = [];
   for (let i = 0; i < 5; i++) {
-    newPropertyToVerify.push(<PropertyDisplayCard link={"/verify-property"} />);
+    newPropertyToVerify.push(<HouseDisplayCard link={"/verify-property"} />);
   }
 
   return (

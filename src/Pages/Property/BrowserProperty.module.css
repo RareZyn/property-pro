@@ -9,3 +9,24 @@
   background-size: cover;
   backdrop-filter: blur(3px);
 }
+
+.properties-grid {
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flexbox;
+}
+
+
+.browserproperty-div {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.property-headline{
+  box-sizing: border-box;
+padding-bottom: 20px;
+margin-bottom: 20px;
+}

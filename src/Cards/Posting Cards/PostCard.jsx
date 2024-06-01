@@ -41,7 +41,7 @@ function PostCard({ name, lastSeen, postPrivacy }) {
   }
 
   let replyItems = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 2; i++) {
     replyItems.push(<ReplyCard />);
   }
 
