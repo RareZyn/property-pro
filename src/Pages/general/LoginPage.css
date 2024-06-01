@@ -97,3 +97,13 @@ form {
   display: flex;
   justify-content: center;
 }
+
+#show-password {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+#show-password input {
+  margin-right: 5px;
+}

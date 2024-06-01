@@ -84,3 +84,13 @@
 .RegisterBrokerToLogin {
   font-size: 16px;
 }
+
+.show-password {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.show-password input {
+  margin-right: 5px;
+}

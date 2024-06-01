@@ -1,14 +1,18 @@
 import React, { forwardRef } from "react"
 import "./PropertyRejectionCard.css"
 
-const PropertyRejectionCard = React.forwardRef((props, ref) => {
-    return(
-      <div className="PropertyRejectionCard" ref={ref}>
-        <h2>Property Rejection</h2>
-        <h4>Give reason of rejection</h4>
-        <textarea placeholder="Write your reason here..."/>
+const PropertyRejectionCard = forwardRef((props, ref) => {
+  return(
+    <div className={props.className}>
+      <h1>Property Rejection</h1>
+      <h3>Give reason of rejection</h3>
+      <textarea placeholder="Write your reason here..."/>
+      <div>
+        <h5 className="Cancel" ref={ref}>Cancel</h5>
+        <h5 className="Send">Send</h5>
       </div>
-    )
-  });
-  
-  export default PropertyRejectionCard;
+    </div>
+  )
+});
+
+export default PropertyRejectionCard;

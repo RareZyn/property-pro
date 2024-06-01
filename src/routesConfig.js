@@ -5,7 +5,9 @@ import { LoginPage } from "./Pages/general/LoginPage.js";
 import { MakePaymentPage } from "./Pages/Transaction/MakePaymentPage.js";
 import { ChatPopup } from "./Pages/Social/ChatPopup.js";
 import { RegisterBroker } from "./Pages/Broker/RegisterBroker.js";
-import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
+import { VerifyPropertyVehicle } from "./Pages/Broker/VerifyPropertyVehicle.js";
+import { VerifyPropertyLand } from "./Pages/Broker/VerifyPropertyLand.js";
+import { VerifyPropertyHouse } from "./Pages/Broker/VerifyPropertyHouse.js";
 import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
 import { Chat } from "./Pages/Social/Chat.js";
 import { AccountHeader } from "./Pages/general/AccountHeader.js";
@@ -49,7 +51,9 @@ export const routes = [
   { path: '/make-payment', element: <MakePaymentPage /> },
   { path: '/chat-popup', element: <ChatPopup /> },
   { path: '/register-broker', element: <RegisterBroker /> },
-  { path: '/verify-property', element: <VerifyProperty /> },
+  { path: '/verify-property-vehicle', element: <VerifyPropertyVehicle /> },
+  { path: '/verify-property-land', element: <VerifyPropertyLand /> },
+  { path: '/verify-property-house', element: <VerifyPropertyHouse /> },
   { path: '/update-progress', element: <UpdateProgress /> },
   { path: '/chat', element: <Chat /> },
   { path: '/view-account/:id', element: <AccountHeader />, 

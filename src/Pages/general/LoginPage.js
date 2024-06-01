@@ -9,7 +9,8 @@ export const LoginPage = () => {
     username: '',
     password: ''
   });
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const nav = useNavigate();
 
   const handleChange = (e) => {
@@ -83,11 +84,19 @@ export const LoginPage = () => {
           <section id="login-section">
             Password
             <input 
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               value={formValues.password}
               onChange={handleChange}/>
           </section>
+          <div id="show-password">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              Show Password
+            </div>
           <section id="input-button">
             <button id="login-account">Login Account</button>
           </section>

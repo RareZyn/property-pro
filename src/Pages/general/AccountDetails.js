@@ -2,6 +2,9 @@ import "./AccountDetails.css";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../util.js";
 import { useParams } from "react-router-dom";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdAlternateEmail } from "react-icons/md";
+import { FaPhoneAlt } from "react-icons/fa";
 
 export const MyAccountDetails = () => {
   const {id} = useParams();
@@ -25,19 +28,20 @@ export const MyAccountDetails = () => {
       <div className="About">
             <div className="details-column">
                 <div className="first-name">Username: {user ? user.username : null}</div>
+                <h4 className="username">@hdjskdn</h4>
                 <div className="type-of-user">Seller/Buyer</div>
 
                 <div className="details">
                     Full Name:
                     <div className="full-name">{user ? `${user.firstName} ${user.lastName}` : null}</div>
 
-                    Location:
+                    <span className="location-desc"><FaLocationDot />Location: </span>
                     <div className="location">{user ? user.location : null}</div>
 
-                    Email:
+                    <span className="email-desc"><MdAlternateEmail />Email: </span>
                     <div className="email">{user ? user.email : null}</div>
 
-                    Phone Number:
+                    <span className="phone-number-desc"><FaPhoneAlt />Phone Number:</span>
                     <div className="phone-number">{user ? user.phoneNumber : null}</div>
                 </div>
             </div>
