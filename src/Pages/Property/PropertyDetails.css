@@ -6,6 +6,13 @@
   align-items: center;
 }
 
+.PropertyDetails svg{
+  margin-top:15px;
+  align-items: center;
+  align-self: center;
+
+}
+
 .PropertyDetailsContainer {
   padding-top: 30px;
   display: flex;

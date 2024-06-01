@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Popup from 'reactjs-popup';
 import shareIcon from "../../Res/image/share-2.png";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
 import { FaInstagram,FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
 import "./PopupShare.css";
 
- 
+
+
 export default function PopupShare() {
+
+    const inputRef = useRef(null);
+
+    const handleCopy = () => {
+      const copyText = inputRef.current;
+  
+      // Select the text field
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // For mobile devices
+  
+      // Copy the text inside the text field
+      navigator.clipboard.writeText(copyText.value);
+  
+      // Alert the copied text
+      alert("Copied the text: " + copyText.value);
+    };
+   
+
     return (
         <div>
             <Popup trigger=
@@ -35,7 +54,7 @@ export default function PopupShare() {
                   rel="noopener noreferrer"
                   className="shareSecondRow-icon"
               >
-                  <FaWhatsapp className="whatsapp" />
+                  <FaWhatsapp className="whatsapp"/>
               </a>
               <a
                   href="https://www.instagram.com/"
@@ -65,8 +84,11 @@ export default function PopupShare() {
 
           <div className="link-div">
           <div className="link-box">
-          <span>http://property-housedetails-overview</span></div>
-          <div className='copy-icon'><FaCopy></FaCopy></div>
+          <input type="text" value="http://property-housedetails-overview" ref={inputRef} id="myInput" readOnly />
+          </div>
+          <div className='copy-icon'>
+          <button onClick={handleCopy}><FaCopy></FaCopy></button>
+          </div>
           </div>
                             </div>
                         </div>
