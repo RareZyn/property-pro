@@ -1,10 +1,7 @@
 import "./ForumPage.module.css";
-import { useState } from "react";
-import likeIcon from "../../Res/image/heart.png";
-import likedIcon from "../../Res/image/red-heart.png";
 import { ForumHeader } from "./ForumHeader";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import { ForumCreatePost } from "./ForumCreatePost";
+import CreatePost from "./CreatePost";
 
 const ForumPage = () => {
 
@@ -13,8 +10,8 @@ const ForumPage = () => {
     <div className="ForumPage">
       <ForumHeader />
       <div id="ForumContent">
-      <div className="CreatePostContainer">
-      <ForumCreatePost />  
+      <div className="CreatePostContainer"> 
+      <CreatePost></CreatePost>
       </div>
       <div className="ForumContainer">
       <PostCard/>

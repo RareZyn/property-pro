@@ -4,9 +4,30 @@ import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
-import { logout } from "../../util";
+import { getUser, logout } from "../../util";
+import { AppContext } from "../../AppProvider";
 
 export const NavHeader = () => {
+  const { userToken } = useContext(AppContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
+
   const [burgerIcon, setBurgerIcon] = useState("DropdownBar unclicked");
   const [dropdownMenu, setDropdownMenu] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
@@ -82,7 +103,8 @@ export const NavHeader = () => {
           <CustomLink id="navHeader-broker-button" href="/register-broker">
             Broker
           </CustomLink>
-          <CustomLink href="/myaccount">My Account</CustomLink>
+          {/* <CustomLink href="/myaccount">My Account</CustomLink> */}
+          <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>My Account</CustomLink>
           <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>Logout</CustomLink>
         </ul>

@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FileCard from "../../Cards/General Cards/FileCard";
 import { getSchema } from "./validationSchema.js";
-import UploadCard from "../../Cards/General Cards/UploadCard";
 import "./PublishProperty.css";
 
 export const PublishProperty = () => {
+  const [files, setFiles] = useState([]);
   const [propertyType, setPropertyType] = useState("");
   const [propertyDetails, setPropertyDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
+
+  const handleFileChange = (event) => {
+    const fileList = event.target.files;
+    const newFiles = Array.from(fileList).map((file) => ({
+      filename: file.name.split(".")[0],
+      filetype: file.name.split(".")[1].toLowerCase(),
+    }));
+    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  };
 
   const handlePropertyTypeChange = (event) => {
     const type = event.target.value;
@@ -21,10 +31,10 @@ export const PublishProperty = () => {
   };
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value,files } = event.target;
     setPropertyDetails({
       ...propertyDetails,
-      [name]: value,
+      [name]:files?files[0]: value,
     });
   };
 
@@ -348,11 +358,39 @@ export const PublishProperty = () => {
             )}
           </div>
 
-          {propertyType && (<div >
-            <UploadCard></UploadCard>
-            {errors.images && <div className="error">{errors.images}</div>}</div>
+           {propertyType && (
+            <div className="add-img-files-div">
+              <input
+                type="file"
+                id="myFile"
+                name="filename"
+                className="input-file"
+                onChange={handleFileChange}
+                multiple
+              />
+              <label htmlFor="myFile" className="custom-file-upload" id="addFile">
+                <img
+                  src={require("../../Res/image/upload.png")}
+                  alt="Upload"
+                />
+                <h2>Add images from files</h2>
+                <h4>or drag and drop</h4>
+              </label>
+              {errors.filename&& <div className="error">{errors.filename}</div>}
+            </div>
           )}
 
+          {propertyType && (
+          <div className="files-grid">
+            {files.map((file, index) => (
+              <FileCard
+                key={index}
+                className="files"
+                filename={file.filename}
+                filetype={file.filetype}
+              />
+            ))}{errors.files && <div className="error">{errors.files}</div>}
+          </div>)}
 
           {propertyType && (
             <div className="publish-div">
@@ -366,3 +404,4 @@ export const PublishProperty = () => {
 };
 
 export default PublishProperty;
+

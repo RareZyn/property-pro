@@ -7,6 +7,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import './PropertyDetails.css';
 
+
 export const PropertyHouseDetailsOverview = () => {
   const [isSaved, setIsSaved] = useState(false);
 

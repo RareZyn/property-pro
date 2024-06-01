@@ -7,6 +7,7 @@ export const AppContext = createContext()
 export const AppProvider = ({children}) => {
     const [userToken, setUserToken] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
+    const otherID = '665431e06992e390611a31b9';
 
     useEffect(() => {
         // Function to decode the token and set the user state
@@ -45,7 +46,7 @@ export const AppProvider = ({children}) => {
     }, [token]);
 
     return(
-        <AppContext.Provider value={{userToken}}>
+        <AppContext.Provider value={{otherID, userToken}}>
             {children}
         </AppContext.Provider>
     )

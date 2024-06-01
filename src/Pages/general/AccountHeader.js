@@ -1,30 +1,34 @@
-// Guna styling AccountHeader.css
-
-import React, { useState, useContext, useEffect } from "react";
+import "./AccountHeader.css";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { getUserById } from "../../util.js";
 import { AppContext } from "../../AppProvider.js";
-import { Link, Outlet } from "react-router-dom";
-import { getUser } from "../../util.js";
 
-export const MyAccountHeader = () => {
+export const AccountHeader = () => {
+  const {id} = useParams();
   const { userToken } = useContext(AppContext);
+  const [owner, setOwner] = useState(true);
   const[user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await getUser(userToken);
+        const userData = await getUserById(id);
         setUser(userData);
+        
+        if (userToken.id === id){
+          setOwner(true);
+        }
+        else{
+          setOwner(false);
+        }
       } catch (error) {
         // Handle the error appropriately in your UI
         console.error('Failed to fetch user data:', error);
       }
     };
 
-    if (userToken) {
-      fetchUser();
-    } else {
-      console.log('No user token');
-    }
-  }, [userToken]);
+    fetchUser()
+  }, []);
 
   return (
     <>
@@ -53,8 +57,8 @@ export const MyAccountHeader = () => {
         <section id="account-link-container">
           <Link className="account-link" to={'property'}>Property</Link>
           <Link className="account-link" to={'post'}>Post</Link>
-          <Link className="account-link" to={'transaction'}>My Transaction</Link>
-          <Link className="account-link" to={'about'}>About</Link>
+          {owner && <Link className="account-link" to={'transaction'}>My Transaction</Link>}
+          {owner && <Link className="account-link" to={'about'}>About</Link>}          
         </section>
       </div>
       <Outlet />

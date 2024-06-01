@@ -8,7 +8,7 @@ import { RegisterBroker } from "./Pages/Broker/RegisterBroker.js";
 import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
 import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
 import { Chat } from "./Pages/Social/Chat.js";
-import { MyAccountHeader } from "./Pages/general/MyAccountHeader.js";
+import { AccountHeader } from "./Pages/general/AccountHeader.js";
 import { MyAccountTransaction } from "./Pages/general/MyAccountTransaction.js";
 import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
 import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
@@ -28,7 +28,7 @@ import { ViewAccountPost } from "./Pages/general/ViewAccountPost.js";
 import { ViewAccountAbout } from "./Pages/general/ViewAccountAbout.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
-import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
+import { CreatePost } from "./Pages/Social/CreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
@@ -56,7 +56,7 @@ export const routes = [
   { path: '/verify-property', element: <VerifyProperty /> },
   { path: '/update-progress', element: <UpdateProgress /> },
   { path: '/chat', element: <Chat /> },
-  { path: '/myaccount', element: <MyAccountHeader />, 
+  { path: '/view-account/:id', element: <AccountHeader />, 
   children: [
     { path: 'property', element: <MyAccountProperty /> },
     { path: 'post', element: <MyAccountPost /> },
@@ -82,7 +82,7 @@ export const routes = [
   { path: '/view-account-about', element: <ViewAccountAbout /> },
   { path: '/forum-page', element: <ForumPage /> },
   { path: '/forum-header', element: <ForumHeader /> },
-  { path: '/forum-create-post', element: <ForumCreatePost /> },
+  { path: '/create-post', element: <CreatePost /> },
   { path: '/login-broker', element: <LoginBroker /> },
   { path: '/verify-property-homepage', element: <VerifyPropertyHome /> },
   { path: '/choose-bank', element: <ChooseBank /> },

@@ -1,56 +1,34 @@
+// UploadCard.js
 import React, { useState } from "react";
-import FileCard from "../../Cards/General Cards/FileCard";
-import "./UploadCard.css";
+import styles from "./UploadCard.module.css";
+import { FileUploader } from "react-drag-drop-files";
 
-export const UploadCard = () => {
-  const [files, setFiles] = useState([]);
-  const [errors, setErrors] = useState({});
+const fileTypes = ["JPEG", "PNG", "GIF"];
+
+const UploadCard = ({ onFileUpload }) => {
+  const [file, setFile] = useState(null);
   
-
-
-  const handleFileChange = (event) => {
-    const fileList = event.target.files;
-    const newFiles = Array.from(fileList).map((file) => ({
-      filename: file.name.split(".")[0],
-      filetype: file.name.split(".")[1],
-    }));
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+  const handleChange = (file) => {
+    setFile(file);
+    onFileUpload(file);
   };
 
-return(
-<div className="UploadCard">
-<div className="add-img-files-div">
-<input
-  type="file"
-  id="myFile"
-  name="filename"
-  className="input-file"
-  onChange={handleFileChange}
-  multiple // Allow multiple file selection
-/>
-<label htmlFor="myFile" className="custom-file-upload" id="addFile">
- <div id="upload-container"> <img id="upload-img"
-    src={require("../../Res/image/upload.png")}
-    alt="Upload"
-  /><div id="upload-text">
-  <h4>Add images from files</h4>
-  <h5>or drag and drop</h5></div></div>
-</label>
-
+  return (
+    <div className={styles["UploadCard"]}>
+  <h3>Drag & Drop Your Files Here</h3>
+  
+  <FileUploader
+    id={styles["customFileUploader"]}
+    multiple={true}
+    handleChange={handleChange}
+    name="file"
+    types={fileTypes}
+  />
+  <p>{file ? `File name: ${file[0].name}` : "no files uploaded yet"}</p>
 </div>
 
-<div className="files-grid">
-            {files.map((file, index) => (
-              <FileCard
-                key={index}
-                className="file-card"
-                filename={file.filename}
-                filetype={file.filetype}
-              />
-            ))}</div>
 
-            </div>     
-);
+  );
 };
 
 export default UploadCard;

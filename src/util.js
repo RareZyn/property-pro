@@ -25,3 +25,13 @@ export const getUser = async (userToken) => {
     throw error;
   }
 };
+
+export const getUserById = async(userID) => {
+  try{
+    const res = await axios.get(`http://localhost:5000/users/get/${userID}`, { withCredentials: true });
+    return res.data;
+  } catch(error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+}
