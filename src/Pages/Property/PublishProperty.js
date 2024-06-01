@@ -86,11 +86,11 @@ export const PublishProperty = () => {
                       <input
                         type="text"
                         name="name"
-                        value={propertyDetails.name || ""}
+                        value={propertyDetails.title || ""}
                         onChange={handleInputChange}
                         className="name-input"
                       />
-                      {errors.name && <div className="error">{errors.name}</div>}
+                      {errors.name && <div className="error">{errors.title}</div>}
                     </div>
                     <div className="section-input">
                       <span>Luas (Size)</span>
