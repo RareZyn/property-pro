@@ -29,8 +29,8 @@
 
 .title-div{
   display: flex;
-  padding-left: 1em;
-  padding-right: 2em;
+  padding-left: 3em;
+  padding-right: 3em;
   justify-content: space-between;
   margin-bottom: 1em;
 }
@@ -606,7 +606,7 @@ margin-right: 0px;
 
 
 
-@media (max-width: 500px) {
+@media (max-width: 580px) {
 
   #saved-button {
     display: flex;

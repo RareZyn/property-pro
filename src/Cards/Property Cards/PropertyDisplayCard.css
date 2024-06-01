@@ -80,21 +80,3 @@
   height: 100%;
 }
 
-.noOf-bedroom-bathroom {
-  display: flex;
-}
-
-#no-of-bedroom {
-  margin-right: 12%;
-  display: flex;
-  align-items: center;
-}
-
-#no-of-bedroom svg {
-  margin-right: 3px;
-  font-size: 1.2em;
-}
-
-#no-of-bedroom svg, #no-of-bathroom svg {
-  color: #262626;
-}

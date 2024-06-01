@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaLeftRight, FaHouse } from "react-icons/fa6";
-import {  FaCity } from "react-icons/fa";
+import { FaLeftRight, FaFileCircleQuestion, FaLocationDot } from "react-icons/fa6";
+import {  FaCity, } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -16,27 +16,27 @@ export const PropertyLandDetailsOverview = () => {
 
         <img
           id="mainproperty-image"
-          src={require("../../Res/image/house.jpeg")}
+          src={require("../../Res/image/land.jpg")}
         />
         <div className="property-image-div">
           <div className="property-image-1row">
             <img
               id="property-image"
-              src={require("../../Res/image/house.jpeg")}
+              src={require("../../Res/image/land.jpg")}
             />
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
           </div>
           <div className="property-image-1row">
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
             <img
               id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
+              src={require("../../Res/image/land.jpg")}
             />
           </div>
         </div>
@@ -47,9 +47,9 @@ export const PropertyLandDetailsOverview = () => {
           
         <Link to="/image-slideshow">
           <div className="MoreThumbnailsProperty">
-            <img src={require("../../Res/image/house.jpeg")} />
-            <img src={require("../../Res/image/image-dummy-house.png")} />
-            <img src={require("../../Res/image/house.jpeg")} />
+            <img src={require("../../Res/image/land.jpg")} />
+            <img src={require("../../Res/image/land.jpg")} />
+            <img src={require("../../Res/image/land.jpg")} />
           </div>
         </Link> 
         </div>
@@ -101,6 +101,25 @@ export const PropertyLandDetailsOverview = () => {
                 Residential
               </div>
             </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaFileCircleQuestion />
+              </div>
+              <div className="text">
+                Freehold
+              </div>
+            </div>
+
+            <div className="icon-with-text">
+              <div className="property-icon">
+                <FaLocationDot />
+              </div>
+              <div className="text">
+                Selangor
+              </div>
+            </div>
+
           </div>
 
           <div className="property-desc">
