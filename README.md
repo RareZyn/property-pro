@@ -40,20 +40,19 @@ UPDATE FRONT END
 - popup share added (icon copy tu boleh tekan untuk copy link)
 
 UPDATE FRONT END (aisyah)
-AccountDetails.js - add icons and username, add @media to make badges responsive
-VerifyPropertyHome.js - add @media for grid layout, import GeneralProperty.css
-PropertyRejectionCard.js - add confirm and cancel button
-PropertyRejectionCard.js- add @media for responsive design
-DocumentRejectionCard.js + DocumentRejectionCard.css 
-- create a separate card for document rejection popup and adjust position
-VerifyPropertyCar.js - add details 
-VerifyPropertyLand.js - add details 
-VerifyPropertyHouse.js - add details 
-Verify Property pages - make rejection card cancel button interactive
-Verify Property pages- add @media for responsive design
-NavHeader.js- change navigation so that when click "Broker" go to broker-login page
-BrokerLogin.js- added show password checkbox
-Login.js- added show password checkbox
+- AccountDetails.js - add icons and username, add @media to make badges responsive
+- VerifyPropertyHome.js - add @media for grid layout, import GeneralProperty.css
+- PropertyRejectionCard.js - add confirm and cancel button
+- PropertyRejectionCard.js- add @media for responsive design
+- DocumentRejectionCard.js + DocumentRejectionCard.css - create a separate card for document rejection popup and adjust position
+- VerifyPropertyCar.js - add details 
+- VerifyPropertyLand.js - add details 
+- VerifyPropertyHouse.js - add details 
+- Verify Property pages - make rejection card cancel button interactive
+- Verify Property pages- add @media for responsive design
+- NavHeader.js- change navigation so that when click "Broker" go to broker-login page
+- BrokerLogin.js- added show password checkbox
+- Login.js- added show password checkbox
 
 PropertyPro+ is a revolutionary property management platform designed to simplify the process of buying, selling, and renting various types of properties, including accommodation, transportation and land. Our all-in-one solution combines the functionality of multiple property-related and accommodation apps and services into a single, user-friendly platform. PropertyPro+ empowers sellers, buyers and brokers by streamlining property transactions, saving time, reducing stress, and providing a seamless experience. It transforms the dream of finding the perfect property into a hassle-free reality. PropertyPro+ is set to become the go-to choice for anyone seeking a better property transaction experience.
 
