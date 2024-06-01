@@ -14,18 +14,17 @@ import { getUserID } from '../../util.js';
 import { Link, Outlet } from "react-router-dom";
 
 export const MyAccountHeader = () => {
-  // const { user } = useContext(AppContext);
+  const { userToken } = useContext(AppContext);
   const[user, setUser] = useState(null);
-  const [currentPage, setCurrentPage] = useState("Property");
-  let page;
 
+  console.log(userToken.id)
   useEffect(() => {
     const getUser = async () => {
       try {
         const token = Cookies.get('token');
         if (!token) throw new Error('No token found');
         const userCookie = jwtDecode(token).userData;
-        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
+        const res = await axios.get(`http://localhost:5000/users/get/${userToken.id}`, { withCredentials: true });
         setUser(res.data);
       } catch (error) {
         console.error('Error fetching user:', error);
@@ -34,24 +33,6 @@ export const MyAccountHeader = () => {
 
     getUser()
   }, []);
-
-  switch (currentPage) {
-    case "Property":
-      page = <MyAccountProperty />;
-      break;
-    case "Post":
-      page = <MyAccountPost />;
-      break;
-    case "My Transaction":
-      page = <MyAccountTransaction />;
-      break;
-    case "About":
-      page = <MyAccountDetails />;
-      break;    
-    case "Manage Account":
-      page = <ManageAccount />;
-      break;
-  }
 
   return (
     <>

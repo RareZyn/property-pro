@@ -7,8 +7,6 @@ const { addUser } = require('../controller/userController')
 
 router.post("/addUser",addUser);
 
-
-
 router.route('/').get((req, res) => {
     User.find()
         .then(users => res.json(users))
@@ -18,7 +16,7 @@ router.route('/').get((req, res) => {
 router.post('/register', async(req, res) => {
     const salt = await Bcrypt.genSalt(10)
     const hashPassword = await Bcrypt.hash(req.body.password, salt)
-//
+
     await User.create({...req.body, password:hashPassword})
     .then(users => res.json(users))
     .catch(err => res.json(err))
@@ -32,8 +30,10 @@ router.post('/login', async (req, res) => {
         if (user) {
             const isMatch = await Bcrypt.compare(password, user.password);
             if (isMatch) {
-                const {password, ...userData} = user.toObject()
-                const token = jwt.sign({ userData }, process.env.MY_SECRET, { expiresIn: "1d" })
+                const {password, ...userData} = user.toObject();
+                const username = user.username;
+                const id = user._id;
+                const token = jwt.sign({id, username}, process.env.MY_SECRET, { expiresIn: "1d" })
                 res.cookie("token", token);
                 res.json(jwt.decode(token));
             } else {
