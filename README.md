@@ -3,7 +3,8 @@
 - Setiap kali user login, system akan create 1 jwt token and akan save ke dalam cookies untuk system fetch kemudian
 - Details untuk token hanyalah (user id: id, username: username) untuk security purpose
 - Untuk memudahkan system fetch details dalam token, saya buat AppProvider yang boleh return *'userToken'* yang secara automatik akan return json object yang mengandungi user id dan username.
-- Cara panggil userToken: const { userToken } = useContext(AppContext)
+- Cara panggil userToken: ```const { userToken } = useContext(AppContext)```
+- Tetapi useToken tidak sentiasa ada, ada ketika useToken mengandungi value null walaupun Cookies token tu dah ada, So, untuk guna userToken dalam code, mesti guna useEffect hook
 
 ## 2. Berkenaan utils getUser()
 - Untuk mengelakkan guna axios untuk multiple page or component just to get user details, saya create satu function dalam utils untuk fetch user daripada mongoDB
