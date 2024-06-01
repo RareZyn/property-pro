@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import { NavHeader } from "./Pages/Navigation/NavHeader.js";
 import { Footer } from "./Pages/general/Footer.jsx";
-import routes from './routesConfig.js'
-import { AppProvider } from "./AppProvider.js";
+import {routes} from './routesConfig.js'
 import { ChatProvider } from "./context/ChatContext.js";
+import axios from "axios";
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
