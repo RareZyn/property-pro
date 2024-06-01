@@ -58,7 +58,7 @@ export const AccountHeader = () => {
           <Link className="account-link" to={'property'}>Property</Link>
           <Link className="account-link" to={'post'}>Post</Link>
           {owner && <Link className="account-link" to={'transaction'}>My Transaction</Link>}
-          {owner && <Link className="account-link" to={'about'}>About</Link>}          
+          {true && <Link className="account-link" to={'about'}>About</Link>}          
         </section>
       </div>
       <Outlet />

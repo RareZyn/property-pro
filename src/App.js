@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { NavHeader } from "./Pages/Navigation/NavHeader.js";
 import { Footer } from "./Pages/general/Footer.jsx";
-import {routes} from './routesConfig.js'
+import {ProtectedRoute, routes} from './routesConfig.js'
 import { ChatProvider } from "./context/ChatContext.js";
 import axios from "axios";
 
@@ -46,10 +46,24 @@ function App() {
           <ChatProvider>
           <NavHeaderWrapper />
           <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element}/>
-            ))}
-          </Routes>
+          {routes.map((route, index) => (
+            <Route 
+              key={index} 
+              path={route.path} 
+              element={
+                (route.path === '/login' || route.path === '/register' || route.path === '/') ?
+                route.element : <ProtectedRoute component={route.element} isAuthenticated={isAuthenticated} />
+              }>
+                {route.children && route.children.map((childRoute, childIndex) => (
+                  <Route 
+                    key={childIndex}
+                    path={childRoute.path}
+                    element={<ProtectedRoute component={childRoute.element} isAuthenticated={isAuthenticated} />}
+                  />
+                ))}
+              </Route>
+          ))}
+        </Routes>
           <Footer />
           </ChatProvider>
         </Router>
