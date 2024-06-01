@@ -1,15 +1,15 @@
 import "./MyAccountDetails.css";
-import { AppContext } from "../../AppProvider.js";
-import { useContext, useEffect, useState } from "react";
-import { getUser } from "../../util.js";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../util.js";
+import { useParams } from "react-router-dom";
 
 export const MyAccountDetails = () => {
-  const {userToken} = useContext(AppContext);
+  const {id} = useParams();
   const[user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await getUser(userToken);
+        const userData = await getUserById(id);
         setUser(userData);
       } catch (error) {
         // Handle the error appropriately in your UI
@@ -17,12 +17,8 @@ export const MyAccountDetails = () => {
       }
     };
 
-    if (userToken) {
-      fetchUser();
-    } else {
-      console.log('No user token');
-    }
-  }, [userToken]);
+    fetchUser()
+  }, []);
 
   return (
     <div className="acc-grid-container">

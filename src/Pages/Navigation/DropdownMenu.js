@@ -26,7 +26,7 @@ export const DropdownMenu = ({ className }) => {
 
   return (
     <div className={className}>
-      <a className="ProfileViewDetailsCard" href="/myaccount">
+      <a className="ProfileViewDetailsCard" href={userToken ? `/view-account/${userToken.id}` : null}>
         <img
           className="ProfileView"
           src={require("../../Res/image/user profile.png")}

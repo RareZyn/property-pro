@@ -1,17 +1,15 @@
-// Guna styling AccountHeader.css
+import "./AccountHeader.css";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { getUserById } from "../../util.js";
 
-import React, { useState, useContext, useEffect } from "react";
-import { AppContext } from "../../AppProvider.js";
-import { Link, Outlet } from "react-router-dom";
-import { getUser } from "../../util.js";
-
-export const MyAccountHeader = () => {
-  const { userToken } = useContext(AppContext);
+export const AccountHeader = () => {
+  const {id} = useParams();
   const[user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await getUser(userToken);
+        const userData = await getUserById(id);
         setUser(userData);
       } catch (error) {
         // Handle the error appropriately in your UI
@@ -19,12 +17,8 @@ export const MyAccountHeader = () => {
       }
     };
 
-    if (userToken) {
-      fetchUser();
-    } else {
-      console.log('No user token');
-    }
-  }, [userToken]);
+    fetchUser()
+  }, []);
 
   return (
     <>
