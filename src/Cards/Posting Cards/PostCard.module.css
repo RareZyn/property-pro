@@ -1,14 +1,16 @@
 #post-card-container{
     background-color: var(--creamyWhite);
-    width: 100%;
+    width: 80%;
     border-radius: 30px;
-    padding: 1.5% 2.5%;
+    padding:1.7em;
     margin: 0 auto;
+    margin-bottom: 2em;
     height: fit-content;
 }
 
 #user-profile{
     display: flex;
+     margin-bottom: 1em;
 }
 
 #profile-container{
@@ -84,4 +86,22 @@
 }
 
 .PopdownDiscussion{
+}
+
+
+  @media (max-width: 768px) {
+    #post-card-container {
+        width: 90%;
+        align-self: center;
+        
+    }
+}
+
+/* Phone styles */
+@media (max-width: 480px) {
+    #post-card-container {
+        width: 90%;
+        align-self: center;
+       
+    }
 }

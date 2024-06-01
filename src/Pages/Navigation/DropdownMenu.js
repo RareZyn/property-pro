@@ -1,25 +1,38 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppProvider";
+import { getUser, logout } from "../../util";
 import "./DropdownMenu.css";
 
 export const DropdownMenu = ({ className }) => {
-  const {user} = useContext(AppContext);
-  // const user = null;
-  let fullName = null;
+  const {userToken} = useContext(AppContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
 
-  if(user !== null){
-    fullName = `${user.firstName} ${user.lastName}`
-  }
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
 
   return (
     <div className={className}>
-      <a className="ProfileViewDetailsCard" href="/myaccount">
+      <a className="ProfileViewDetailsCard" href={userToken ? `/view-account/${userToken.id}` : null}>
         <img
           className="ProfileView"
           src={require("../../Res/image/user profile.png")}
         />
-        <h3 className="ProfileViewName">{fullName}</h3>
-        <p className="ProfileViewDesc">Bla bla bla</p>
+        <h3 className="ProfileViewName">{user ? user.username : null}</h3>
+        <p className="ProfileViewDesc">{user ? user.description : null}</p>
       </a>
       <ul className="DropdownMenuNavigation">
         <li className="DropdownMenuNavigationItem">
@@ -31,7 +44,7 @@ export const DropdownMenu = ({ className }) => {
           </a>
         </li>
         <DropdownMenuNavItem
-          href="/publish-property"
+          href="/manage-property"
           src={require("../../Res/image/dropdownmenu-icons/sell icon dropdownmenu.png")}
           itemName={"Sell Property"}
         ></DropdownMenuNavItem>
@@ -46,6 +59,11 @@ export const DropdownMenu = ({ className }) => {
           itemName={"Chat"}
         ></DropdownMenuNavItem>
         <DropdownMenuNavItem
+          href="/ForumPages"
+          src={require("../../Res/image/dropdownmenu-icons/find icon dropdownmenu.png")}
+          itemName={"Community"}
+        ></DropdownMenuNavItem>
+        <DropdownMenuNavItem
           href="/saved-property"
           src={require("../../Res/image/dropdownmenu-icons/save icon.png")}
           itemName={"Saved Property"}
@@ -54,15 +72,16 @@ export const DropdownMenu = ({ className }) => {
           href="/"
           src={require("../../Res/image/dropdownmenu-icons/logout icon.png")}
           itemName={"Logout"}
+          onClick={logout}
         ></DropdownMenuNavItem>
       </ul>
     </div>
   );
 };
 
-const DropdownMenuNavItem = ({ href, src, itemName }) => {
+const DropdownMenuNavItem = ({ href, src, itemName, onClick }) => {
   return (
-    <li className="DropdownMenuNavigationItem">
+    <li className="DropdownMenuNavigationItem" onClick={onClick}>
       <a href={href}>
         <img src={src} />
         <h1>{itemName}</h1>

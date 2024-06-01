@@ -5,40 +5,49 @@ import {jwtDecode} from 'jwt-decode'
 export const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
-    const userDetails = {
-        username: "Wan Razim",
-        bio: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.",
-        age: "21",
-        location: "Bangsar, KL",
-        email: "email@gmail.com",
-        phoneNum: "012-3456789",
-    };
-
-    const [user, setUser] = useState(null)
+    const [userToken, setUserToken] = useState(null);
+    const [token, setToken] = useState(Cookies.get('token'));
+    const otherID = '665431e06992e390611a31b9';
 
     useEffect(() => {
-        const token = Cookies.get('token');
-        if (token) {
+        // Function to decode the token and set the user state
+        const decodeToken = (token) => {
             try {
                 const decodedToken = jwtDecode(token);
-                if (decodedToken && decodedToken.user) {
-                    setUser(decodedToken.user);
+                if (decodedToken && decodedToken.username) {
+                    setUserToken(decodedToken);
                 } else {
                     console.error('Invalid token structure');
                 }
             } catch (error) {
                 console.error('Failed to decode token', error);
-                // Optionally, handle the error, e.g., remove the invalid token from cookies
-                Cookies.remove('token');
+                setToken(null);
+                setUserToken(null);
             }
+        };
+
+        // Decode token if it exists
+        if (token) {
+            decodeToken(token);
+        } else {
+            setUserToken(null);
         }
-    }, [setUser]);
+
+        // Set up an interval to monitor changes to the token cookie
+        const interval = setInterval(() => {
+            const newToken = Cookies.get('token');
+            if (newToken !== token) {
+                setToken(newToken);
+            }
+        }, 1000); // Check every 1 second
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
+    }, [token]);
 
     return(
-        <AppContext.Provider value={{userDetails, user, setUser}}>
+        <AppContext.Provider value={{otherID, userToken}}>
             {children}
         </AppContext.Provider>
     )
 }
-
-export const useContext = () => useContext(AppProvider)

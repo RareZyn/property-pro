@@ -9,14 +9,14 @@
 }
 
 .publish-section {
-  background-color: #27a088;
-  padding: 20px;
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
-  z-index: 2;
-  width: 80%;
-  max-width: 800px;
+  width: 50%;
+  position: relative;
+  background-color: rgba(39, 160, 136, 0.8);
+  border-radius: 30px;
+  padding: 2rem;
+  margin-top: 5em;
   position: relative;
 }
 
@@ -40,10 +40,21 @@
 .property-details {
   display: flex;
   flex-direction: column;
+
 }
 
 .section-input {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.section-input input{
+  border-radius: 20px;
+  height: 3rem;
+  border: none;
+  padding-left: 1rem;
 }
 
 .section-input > span {
@@ -52,7 +63,10 @@
 
 .input-div select,
 .input-div input[type="file"] {
-  margin-bottom: 20px;
+  border-radius: 15px;
+  height: 2rem;
+  border: none;
+  padding-left: 1rem;
 }
 
 .add-img-files-div {
@@ -60,12 +74,62 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+.add-img-files-btn:active {
+  opacity: 0.8;
+}
+
+.input-div input[type="file"] {
+  margin-bottom: 20px;
+}
+.add-img-files-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#upload-container{
+  display: flex;
+  align-self: center
+  }
+
+#upload-img{
+  width: 30px;
+height: 30px;
+border: none;
+background-color: #f2f2f2;
+border-radius: 5px;
+transition: transform 0.3s;
+  margin-right: 2em
+}
 
 .custom-file-upload {
-  width: 80%;
+  position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+background-color: #f2f2f2;
+width: 100%;
+height: 100%;
+border-radius: 15px;
+transition: transform 0.3s;
   text-align: center;
   margin-top: 20px;
+
 }
+
+.custom-file-upload:hover {
+  opacity: 0.8;
+  transform: translateY(-10px);
+}
+
+.custom-file-upload:hover img {
+  transform: translateY(-10px);
+}
+
+.custom-file-upload h4 {
+  color: #b2b2b2;}
 
 .files-grid {
   width: 100%;
@@ -73,6 +137,7 @@
   margin: 0 auto;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
+  margin-top: 10px;
   padding: 10px;
   display: flex;
   flex-wrap: nowrap;

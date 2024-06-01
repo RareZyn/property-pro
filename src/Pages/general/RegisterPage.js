@@ -59,15 +59,6 @@ export const RegisterPage = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-
-        // // Form is valid, you can handle form submission here
-        // console.log("Form submitted with values:", formValues);
-        // setRegistrationSuccess(true);
-        // setErrors({}); // Clear errors
-
-        // // Redirect to login page after successful registration
-        // navigate("/login");
-
         axios.post('http://localhost:5000/users/register', formValues)
         .then(res => {
           console.log(res.data)
@@ -209,13 +200,23 @@ export const RegisterPage = () => {
                 value={formValues.location}
                 onChange={handleChange}
               >
-                <option value="">Select Location</option>
-                <option value="Kelantan">Kelantan</option>
+                <option value="" selected disabled hidden>Select Location</option>
                 <option value="Kuala Lumpur">Kuala Lumpur</option>
-                <option value="Melaka">Melaka</option>
+                <option value="Labuan">Labuan</option>
+                <option value="Putrajaya">Putrajaya</option>
+                <option value="Johor">Johor</option>
                 <option value="Kedah">Kedah</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                <option value="Pahang">Pahang</option>
+                <option value="Perak">Perak</option>
+                <option value="Perlis">Perlis</option>
+                <option value="Pulau Pinang">Pulau Pinang</option>
                 <option value="Sabah">Sabah</option>
-                {/* Add more options as needed */}
+                <option value="Sarawak">Sarawak</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Terengganu">Terengganu</option>
               </select>
               {errors.location && (
                 <div className="error">{errors.location}</div>

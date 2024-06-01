@@ -1,0 +1,163 @@
+.ForumCreatePost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  
+  .posting-box {
+    background-color: #fffdef;
+    width: 79%;
+    border-radius: 30px;
+    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    padding: 1.5em;
+    margin-top: 30px;
+    height: 15em;
+  }
+  
+  #title-post {
+    margin-left: 20px;
+    font-size: 28px;
+  }
+  
+
+  .posting-button {
+    display: flex;
+    padding-top: .001em;
+    column-gap: 8px;
+    align-items: center;
+  }
+  
+  
+  .three:hover {
+    cursor: pointer;
+    box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
+    -webkit-box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
+    -moz-box-shadow: 1px 0px 15px -2px rgba(161, 161, 161, 1);
+  }
+
+
+#post-card-container{
+    background-color: var(--creamyWhite);
+    width: 80%;
+    border-radius: 30px;
+    padding:1.7em;
+    margin-top: 1em;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    height: fit-content;
+}
+
+
+#engagement-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+  
+  #type-text:focus {
+    outline: none;
+  }
+  
+  #type-text {
+    border: none;
+    border-radius: 8px;
+    padding: 1em;
+    background-color: var(--e5);
+    width: 100%;
+    height: 100px;
+    font-size: 18px;
+  }
+  
+.engagement-button{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    border: none;
+    padding: 0.5em;
+    background-color: #fffdef;
+    font-weight: 550;
+    font-size: 18px;
+    color: #7e7b7b;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.engagement-button:hover{
+    cursor: pointer;
+    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -webkit-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+}
+
+.engagement-button span{
+    width: 35%;
+    margin-left: 5%;
+    padding-left: 10px;
+}
+
+.engagement-button svg{
+  font-size: 30px;
+}
+.PopdownDiscussion-hidden {
+    display: none;
+  }
+  
+  .PopdownDiscussion {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .three {
+    background-color: #f49f1f;
+    border-radius: 20px;
+    color: white;
+    width: 10em;
+    border: none;
+    height: 3.5em;
+    margin-top: 1em;
+    display: flex;
+    padding: 1em;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .three > #button-image {
+    width: 30px;
+    align-self: center;
+    margin-right: 1em;
+    height: auto;
+  }
+
+  .UploadedFile {
+    margin-top: 1em;
+    align-items: center;
+  }
+
+  .UploadedFile img{
+    width: 120px;
+    height: 120px;
+  
+  }
+
+  @media (max-width: 768px) {
+    #post-card-container {
+        width: 90%;
+        align-self: center;
+        
+    }
+}
+
+/* Phone styles */
+@media (max-width: 480px) {
+    #post-card-container {
+        width: 90%;
+        align-self: center;
+       
+    }
+}

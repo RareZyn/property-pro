@@ -1,7 +1,12 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+    id: {
+        type: String,
+        default: () => new mongoose.Types.ObjectId(),
+        alias: '_id'
+    },
     username: {
         type: String,
         required: [true, 'Username is required'],
@@ -40,11 +45,23 @@ const userSchema = new Schema({
     description: {
         type: String,
         trim: true
+    },
+    properties_owned: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Property'
+    }],
+    properties_sell: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Property'
+    }],
+    broker: {
+        type: Schema.Types.ObjectId,
+        ref: 'Broker'
     }
 }, {
-    timestamps: true
+    timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 });
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
-module.exports = User
+module.exports = User;

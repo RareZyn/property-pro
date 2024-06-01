@@ -4,9 +4,10 @@ import TruncatedText from "../General Cards/TruncatedText";
 import likeIcon from "../../Res/image/heart.png";
 import likedIcon from "../../Res/image/red-heart.png";
 import commentIcon from "../../Res/image/message-square.png";
-import shareIcon from "../../Res/image/share-2.png";
+
 import pp from "../../Res/image/user profile.png";
 import { ReplyCard } from "../Property Cards/ReplyCard";
+import PopupShare from "../General Cards/PopupShare";
 
 function PostCard({ name, lastSeen, postPrivacy }) {
   const longText =
@@ -40,9 +41,10 @@ function PostCard({ name, lastSeen, postPrivacy }) {
   }
 
   let replyItems = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 2; i++) {
     replyItems.push(<ReplyCard />);
   }
+
 
   return (
     <>
@@ -74,10 +76,11 @@ function PostCard({ name, lastSeen, postPrivacy }) {
             <span>Discuss</span>
           </div>
           <div className={styles["engagement-button"]}>
-            <img src={shareIcon} alt="Shares" />
-            <span>Shares</span>
+
+            <PopupShare></PopupShare>
           </div>
         </div>
+        
         <div className={styles[showPopdownDiscussion]}>{replyItems}</div>
       </div>
     </>

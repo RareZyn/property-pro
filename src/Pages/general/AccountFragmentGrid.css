@@ -1,10 +1,10 @@
-.own-property-container{
+/*.own-property-container{
     display: grid;
     grid-template-columns: 1008px;
     row-gap: 50px;
     margin: 50px auto;
     place-content: center;
-}
+}*/
 
 .acc-grid-container{
     display: grid;

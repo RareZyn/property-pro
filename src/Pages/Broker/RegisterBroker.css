@@ -63,7 +63,7 @@ input
   background-color: rgba(39, 160, 136, 0.8);
   border-radius: 30px;
   padding: 2rem;
-  margin: 10rem auto;
+  margin-top: 5em;
 }
 
 form {
@@ -138,6 +138,16 @@ form h1, .h3-heading {
   color: red;
   font-size: 1rem;
   margin-top: 0.5rem;
+}
+
+.show-password {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.show-password input {
+  margin-right: 5px;
 }
 
 .broker-register-upload-file {

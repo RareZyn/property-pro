@@ -1,21 +1,41 @@
-import "./SavedProperty.css";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
-import backIcon from "../../Res/image/back-icon.png";
+import style from "./SavedProperty.css";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
+import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
+import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
+import "./GeneralProperty.css";
+
 
 export const SavedProperty = () => {
-  const propertyCards = [];
+  const HousepropertyCards = [];
+  const LandpropertyCards = [];
+  const VehiclepropertyCards = [];
   let color = 0;
 
-  for (let i = 0; i < 8; i++) {
-    propertyCards.push(<PropertyDisplayCard link={"/property-details"} />);
+  for (let i = 0; i < 2; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    HousepropertyCards.push(<HouseDisplayCard link={"/property-house-details"} />);
+  }
+  for (let i = 0; i < 2; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    LandpropertyCards.push(<LandDisplayCard link={"/property-land-details"} />);
+  }
+  for (let i = 0; i < 1; i++) {
+    color = i - 6 * parseInt(i / 6);
+    console.log(color);
+    VehiclepropertyCards.push(<VehicleDisplayCard link={"/property-vehicle-details"} />);
   }
 
   return (
-    <div className="SavedProperty">
-      <div className="properties-grid">
-        <h1 className="property-headline">Saved Property</h1>
-        {propertyCards}
+    <div>
+        <div className="property-headline">Saved Property</div>
+        <div className="properties-grid">
+          {HousepropertyCards}
+          {LandpropertyCards}
+          {VehiclepropertyCards}
+        </div>
       </div>
-    </div>
   );
 };
+

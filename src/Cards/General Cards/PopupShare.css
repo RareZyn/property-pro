@@ -1,0 +1,143 @@
+/* Style for the trigger button */
+#ShareBtn {
+    display:flex;
+    cursor: pointer;
+    border: none;
+    width: 8em;
+    height: 2.5em;
+    padding-left: 0px;
+    background-color:transparent;
+    font-weight: 550;
+    font-size: 15px;
+    color: #b2b2b2;
+    border-radius: 8px;
+}
+#ShareBtn span {
+  align-self: center;
+
+}
+
+#ShareBtn img {
+  width: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Style for the modal overlay */
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Style for the modal */
+.sharecontent {
+    background: var(--creamyWhite);
+    padding: 20px;
+    border-radius: 8px;
+    width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+}
+
+/* Style for the content inside the modal */
+.content {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+.shareFirstRow{
+  display: flex;
+  margin-left: 1em;
+  justify-content: space-between;
+}
+.shareSecondRow{
+  align-self: center;
+margin-top: 1em;
+padding-left: 10%;
+}
+ 
+  .shareSecondRow-icon {
+    background-color: rgba(172, 172, 172, 0.316);
+    margin: 0 10px;
+    padding: 13px;
+    padding-bottom: 7px;
+    border-radius: 50px;
+    font-size: 2em;
+    color: #000000;
+    transition: color 0.3s ease;
+  }
+
+  .link-div{
+    display: flex;
+    margin-top: 2em;
+  }
+
+  .link-box{
+    margin-left: 30px;
+    background-color: rgba(172, 172, 172, 0.316);
+    padding: 10px;
+    color: rgb(93, 89, 89);
+    font-size: 16px;
+    border-radius: 8px;
+  }
+
+  .copy-icon{
+    font-size: 35px;
+    margin-left: 20px;
+    color:grey;
+  }
+
+  .copy-icon :hover{
+    color: green;
+  }
+  
+  .icon-text {
+    margin-left: 10px;
+  }
+  
+  .icon:hover {
+    color: #09192a;
+  }
+  
+  .instagram:hover {
+    color: #e4405f;
+  }
+  
+  .twitter:hover {
+    color: #1a8acf;
+  }
+  
+  .facebook:hover {
+    color: #1877f2;
+  }
+  
+  .whatsapp:hover {
+    color: #12993d;
+  }
+
+/* Style for the actions section inside the modal */
+.actions {
+    text-align: right;
+}
+
+/* Style for the close button */
+#close-button {
+    padding: 8px 12px;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 25px;
+}
+#close-button:hover{
+color: red;
+}

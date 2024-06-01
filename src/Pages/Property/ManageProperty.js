@@ -1,35 +1,49 @@
 import "./ManageProperty.css";
-import backIcon from "../../Res/image/back-icon.png";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard";
-import { NavHeader } from "../Navigation/NavHeader";
+import ItemComponentCardA from "../../Cards/Property Cards/VehicleComponentCard";
+import ItemComponentCardB from "../../Cards/Property Cards/HouseComponentCard";
+import ItemComponentCardC from "../../Cards/Property Cards/LandComponentCard";
+import imageA from "../../Res/image/car.jpeg";
+import imageB from "../../Res/image/house.jpeg";
+import imageC from "../../Res/image/land.jpg";
 import { Link } from "react-router-dom";
+import { IoAddCircleOutline } from "react-icons/io5";
+
 
 export const ManageProperty = () => {
-  const propertyCards = [];
-  let color = 0;
+  const items = [
+    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
+    { type: "B", img: imageB, link: "/property-housedetails-overview" },
+    { type: "C", img: imageC, link: "/property-landdetails-overview" },
+    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
+  ];
 
-  for (let i = 0; i < 4; i++) {
-    propertyCards.push(
-      <PropertyDisplayCard link={"/property-details-overview"} />
-    );
-  }
+  const renderCard = (item, index) => {
+    switch (item.type) {
+      case "A":
+        return <ItemComponentCardA key={index} imgLink={item.img} link={item.link} />;
+      case "B":
+        return <ItemComponentCardB key={index} imgLink={item.img} link={item.link} />;
+      case "C":
+        return <ItemComponentCardC key={index} imgLink={item.img} link={item.link} />;
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div id="ManagePropertyPage">
-      <div className="properties-grid">
-        <h1 className="property-headline">Manage Property</h1>
-        {propertyCards}
+    <div className="manage-property-container">
+      <div className="property-headline">Manage Property</div>
+      <div className="manageproperty-div">
+        {items.map((item, index) => renderCard(item, index))}
       </div>
-      <Link to={"/publish-property"}>
-        <button id="add-property-button">
-          <img
-            src={require("../../Res/image/add-icon.png")}
-            alt="addicon"
-            className="ButtonImage"
-          />
-          <span>Add More Property</span>
-        </button>
-      </Link>
+      <div className="manageproperty-add">
+        <Link to="/Publish-Property">
+          <button>
+            <IoAddCircleOutline className="add-icon" />
+            <span>Add More Property</span>
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

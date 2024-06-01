@@ -2,11 +2,11 @@ import styles from "./AddPostCard.module.css";
 import pp from "../../Res/image/user profile.png";
 import imageIcon from "../../Res/image/image icon.png";
 import videoIcon from "../../Res/image/video.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../AppProvider";
 
 function AddPostCard(){
-    const {user} = useContext(AppContext)
+    const {userToken} = useContext(AppContext)
 
     return(
         <div className={`${styles["add-post-card-container"]} box-shadow`}>
@@ -15,7 +15,7 @@ function AddPostCard(){
                 id={styles["user-image"]}
                 src={pp}
             />
-            <p id={styles["user-text-button"]}>{`What's on your mind ${user.firstName}?`}</p>
+            <p id={styles["user-text-button"]}>{`What's on your mind ${userToken ? userToken.username : null}?`}</p>
             </div>
             <div className={styles["img-vid-container"]}>
             <div className={styles["img-vid-btn"]}>

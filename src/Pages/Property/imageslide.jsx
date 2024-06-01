@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './imageslide.css';
 import HouseImage from '../../Res/image/house.jpeg';
+import House from '../../Res/image/image-dummy-house.png';
 
 const images = [
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
-    { src: HouseImage, alt: "House Image" },
+    { src: House, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" }
@@ -16,7 +17,7 @@ const images = [
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
-    { src: HouseImage, alt: "House Image" },
+    { src: House, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" },
     { src: HouseImage, alt: "House Image" }
@@ -49,8 +50,8 @@ const images = [
         <div className="Slide-container">
           {images.map((image, index) => (
             <div key={index} className={`mySlides ${index + 1 === imageIndex ? 'active' : ''}`}>
-              <div className="numbertext">{index + 1} / {images.length}</div>
-              <img src={image.src} alt={image.alt} style={{ width: '100%' }} />
+              <div id="numbertext">{index + 1} / {images.length}</div>
+              <img src={image.src} alt={image.alt} />
             </div>
           ))}
           <a className="prevImg" onClick={() => plusSlides(-1)}>❮</a>
@@ -60,11 +61,10 @@ const images = [
           </div>
           <div className="row">
             {thumbnails.map((thumbnail, index) => (
-              <div key={index} className="column">
+              <div key={index} classname="column">
                 <img
                   className={`demo cursor ${index + 1 === imageIndex ? 'active' : ''}`}
                   src={thumbnail.src}
-                  style={{ width: '100%' }}
                   onClick={() => currentSlide(index + 1)}
                   alt={thumbnail.alt}
                 />

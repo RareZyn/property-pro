@@ -1,33 +1,26 @@
-import styles from "./ForumPage.module.css";
-import { useState } from "react";
-import likeIcon from "../../Res/image/heart.png";
-import likedIcon from "../../Res/image/red-heart.png";
+import "./ForumPage.module.css";
 import { ForumHeader } from "./ForumHeader";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import { ForumCreatePost } from "./ForumCreatePost";
+import CreatePost from "./CreatePost";
 
 const ForumPage = () => {
-  let postCardItems = [];
-  for (let i = 0; i < 5; i++) {
-    postCardItems.push(<PostCardCommunity></PostCardCommunity>);
-  }
+
 
   return (
-    <>
+    <div className="ForumPage">
       <ForumHeader />
-      <ForumCreatePost />
-      {postCardItems}
-    </>
+      <div id="ForumContent">
+      <div className="CreatePostContainer"> 
+      <CreatePost></CreatePost>
+      </div>
+      <div className="ForumContainer">
+      <PostCard/>
+      <PostCard></PostCard></div></div>
+    </div>
   );
   // l
 };
 
 export { ForumPage };
 
-const PostCardCommunity = () => {
-  return (
-    <div className={styles["PostCardContainer"]}>
-      <PostCard></PostCard>
-    </div>
-  );
-};
+

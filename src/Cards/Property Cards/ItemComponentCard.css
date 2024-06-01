@@ -8,35 +8,30 @@
 
 #item-card{
     width: 100%;
-    aspect-ratio: 6/1;
+    display: flex;
+    height: 20vh;
     background-color: #FFF2AF;
-    margin: 0 auto;
     border-radius: 20px;
     border: 0.5px solid #f2f2f2;
-    display: flex;
-    opacity: 1;
-    transition: 
-        box-shadow 0.5s ease 0.2,
-        background-color 0.5s ease 0s
-        opacity 0.5s ease 0s,
-        width 1s ease 0.2s,
-        height 1s ease 0.2s;
+    margin-bottom: 2%;
+   
 }
 
 #item-card:hover{
     box-shadow: 0px 11px 17px 11px rgba(112, 112, 112, 0.3);
     background-color: var(--orange);
-    opacity: 0.6;
+    opacity: 0.8;
     border: none;
     cursor: pointer;
-    width: 101%;
-    height: 101%;
+    width: 105%;
+    overflow: hidden;
 }
 
 #img-container{
-    aspect-ratio: 2.5/1;
+    /*aspect-ratio: 2.5/1;
     height: 100%;
-    margin: 0;
+    margin: 0;*/
+    width: 40%;
     border-radius: 20px 0px 0px 20px;
     background-color: white;
 }
@@ -47,56 +42,102 @@
     border-radius: 20px 0px 0px 20px;
     object-fit: cover;
 }
+#mypropertyicon-content {
+    display: flex;
+    font-size: 1em;
+    justify-content: space-between;
+    margin-right: 5em;
+}
 
+#property-smallicon {
+    align-items: center;
+
+}
+  
 #details-container{
-    width: 65%;
-    margin-left: 5%;
-    margin-top: 3%;
+    flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-#details-container h1{
+    justify-content: space-around;
     font-family: "Roboto";
-    font-size: 1.2em;
     color: #333;
-    margin-bottom: 10px;
+    overflow: hidden;
+    padding: 3% 5%;
 }
 
-#details-container span{
-    font-family: "Roboto";
+#details-container #myproperty-name, #myproperty-location, #myproperty-price{
+    width: 100%;
+    height: 100%;
     font-size: 1em;
-    color: #333;
-    margin-bottom: 2px;
 }
 
-#details-container #row-1{
+#myproperty-name {
+    margin-left: 10%;
+    font-size: 1.1em;
+}
+
+#myproperty-location {
     color: #808080;
 }
 
-#details-container #row-2{
-    font-size: 1.05em;
+#myproperty-price {
     font-weight: bold;
 }
 
-#details-container #row-3{
-    margin-top: 3px;
-    color: #4c4c4c;
+
+@media (max-width: 1200px) {
+
+    #item-card{
+        height: 15vh;
+    }
+    #details-container {
+        font-size: 0.9em; 
+    }
+
+    #myproperty-name {
+        font-size: 1em;
+    }
+  }
+  
+/* Medium screens (tablets, 992px and up) */
+@media (max-width: 992px) {
+    #details-container {
+        font-size: 0.8em;
+    }
+
+    #myproperty-name {
+        font-size: 0.9em;
+    }
 }
 
-#seemore-button{
-    width: fit-content;
-    background-color: var(--orange);
-    text-align: center;
-    padding: 5px 15px;
-    border-radius: 15px;
+/* Small screens (landscape phones, 768px and up) */
+@media (max-width: 768px) {
+
+    #item-card{
+        width: 70vw;
+    }
+    #details-container {
+        font-size: 0.8em;
+    }
+
+    #myproperty-name {
+        font-size: 0.8em;
+    }
 }
 
-#seemore-button:hover{
-    cursor: pointer;
-}
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 576px) {
 
-.bedroom-bathroom{
-    width: 40%;
-    justify-content: space-between;
+    #item-card{
+        width:100%;
+        height: 13vh;
+        }
+
+    #details-container {
+        font-size: 0.7em;
+    }
+
+    #myproperty-name {
+        font-size: 0.7em;
+    }
 }

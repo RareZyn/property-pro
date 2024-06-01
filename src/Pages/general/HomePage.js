@@ -2,19 +2,14 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import { PropertyDisplayCard } from "../../Cards/Property Cards/PropertyDisplayCard.jsx";
-import { AppContext } from "../../AppProvider.js";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
+import { AppContext, AppProvider } from "../../AppProvider.js";
 import Cookies from 'js-cookie'
 import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
-  const token = Cookies.get('token')
-  console.log(jwtDecode(token).user)
-
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
-  const {user} = useContext(AppContext)
-  // console.log(user)
 
   const handleBuyerHover = () => {
     setIsBuyerHovered(true);
@@ -68,9 +63,9 @@ export const HomePage = () => {
   };
 
   let suggestedItems = new Array(5);
-  // for (let i = 0; i < 3; i++) {
-  //   suggestedItems.push(<PropertyDisplayCard />);
-  // }
+   for (let i = 0; i < 3; i++) {
+    suggestedItems.push(<HouseDisplayCard />);
+   }
 
   return (
     <div className="HomePage">
@@ -167,7 +162,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <PropertyDisplayCard/>
+            <HouseDisplayCard key={index} link={"/property-house-details"}/>
           ))}
         </div>
       </div>

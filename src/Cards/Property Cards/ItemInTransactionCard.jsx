@@ -1,5 +1,5 @@
 import styles from "./ItemInTransactionCard.module.css";
-import ItemComponentCard from "./ItemComponentCard";
+import HouseComponentCard from "./HouseComponentCard";
 
 function ItemInTransactionCard({imgLink}){
     return(
@@ -16,7 +16,7 @@ function ItemInTransactionCard({imgLink}){
         // </div>
 
         <div>
-            <ItemComponentCard imgLink={imgLink} progress="in Progress"/>
+            <HouseComponentCard imgLink={imgLink} progress="in Progress"/>
         </div>
     )
 }

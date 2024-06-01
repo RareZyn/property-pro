@@ -1,19 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DropdownMenuIcon } from "./DropdownMenuIcon";
 import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
-import Cookies from 'js-cookie'
+import { getUser, logout } from "../../util";
+import { AppContext } from "../../AppProvider";
 
 export const NavHeader = () => {
+  const { userToken } = useContext(AppContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
+
   const [burgerIcon, setBurgerIcon] = useState("DropdownBar unclicked");
   const [dropdownMenu, setDropdownMenu] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
 
-  const [isChatClicked, setIsChatClicked] = useState(false);
-  const [chatPopdown, setChatPopdown] = useState("ChatPopup hidden");
-  const [chatNavigation, setChatNavigation] = useState("Navigator");
+  /*const [isChatClicked, setIsChatClicked] = useState(false);*/
+  const [chatPopdown] = useState("ChatPopup hidden");
+  /*const [chatNavigation, setChatNavigation] = useState("Navigator");*/
 
   const location = useLocation();
 
@@ -61,10 +82,6 @@ export const NavHeader = () => {
     setIsChatClicked(!isChatClicked);
   };*/
 
-  const logout = () => {
-    Cookies.remove('token')
-  }
-
   return (
     <div className="NavHeader">
       <div className="left-header">
@@ -86,7 +103,9 @@ export const NavHeader = () => {
           <CustomLink id="navHeader-broker-button" href="/register-broker">
             Broker
           </CustomLink>
-          <CustomLink href="/myaccount">My Account</CustomLink>
+          {/* <CustomLink href="/myaccount">My Account</CustomLink> */}
+          <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>My Account</CustomLink>
+          <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>Logout</CustomLink>
         </ul>
       </nav>
