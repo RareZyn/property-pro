@@ -110,7 +110,8 @@ export const PropertyHouseDetails = () => {
 
           <div className="property-third-row">
             <Link to="/make-payment">
-              <button id="button-buy">RM 50,000</button>
+              <button id="button-buy"
+              >RM 50,000</button>
             </Link>
             <div className='save'>
             <button

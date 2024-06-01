@@ -3,16 +3,35 @@
 /* Base styles */
 .menu {
   position: absolute;
-  top: 5em;
+  top: 60px;
   left: 0;
   display: flex;
   flex-direction: column;
   width: 100%; /* Adjust width to occupy full width of the screen */
-  max-width: 560px; /* Set a maximum width to control size on larger screens */
+  max-width: 400px; /* Set a maximum width to control size on larger screens */
   min-width: 240px;
   height: 30em;
   background-color: var(--orange);
   z-index: 9999;
+}
+
+.menudiv{
+  display: flex;
+  width: 100%;
+  padding-left: 5em;
+  background-color: var(--darkBlue);
+  align-items: center;
+  font-family: "Zilla_Slab";
+  font-size: 10px;
+  color: var(--orange);
+  padding: 1.5em
+}
+
+.menudiv img{
+  height: 30px;
+  width: 30px;
+  margin-right: 2em ;
+
 }
 
 .ProfileViewDetailsCard {
@@ -60,12 +79,6 @@
   box-shadow: 0px 3px 8px;
 }
 
-.DropdownMenuNavigation h1 {
-  font-size: 16px;
-  text-align: center;
-  color: var(--orange);
-}
-
 .NavHeader .DropdownMenuNavigationItem {
   justify-content: center;
   align-content: center;
@@ -81,10 +94,10 @@
   transition: all 0.3s ease-out;
 }
 
-.NavHeader .DropdownMenuNavigationItem:hover {
+.menudiv:hover {
   transition: all 0.3s ease-out;
   align-content: center;
-  background-color: var(--white);
+  background-color: var(--creamyWhite);
 }
 
 .NavHeader .DropdownMenuNavigationItem:active {

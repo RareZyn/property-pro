@@ -63,6 +63,10 @@
 margin-top: 1em;
 padding-left: 10%;
 }
+
+.SocialMedia span{
+  margin-bottom: 10em;
+}
  
   .shareSecondRow-icon {
     background-color: rgba(172, 172, 172, 0.316);
@@ -80,19 +84,22 @@ padding-left: 10%;
     margin-top: 2em;
   }
 
-  .link-box{
+  .link-box input{
     margin-left: 30px;
     background-color: rgba(172, 172, 172, 0.316);
     padding: 10px;
+    border: none;
     color: rgb(93, 89, 89);
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 7px;
   }
 
-  .copy-icon{
+  .copy-icon button{
     font-size: 35px;
     margin-left: 20px;
+    background-color: transparent;
     color:grey;
+    border: none;
   }
 
   .copy-icon :hover{
