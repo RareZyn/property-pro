@@ -162,7 +162,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <HouseDisplayCard link={"/property-house-details"}/>
+            <HouseDisplayCard key={index} link={"/property-house-details"}/>
           ))}
         </div>
       </div>

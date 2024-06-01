@@ -5,7 +5,6 @@ import {jwtDecode} from 'jwt-decode'
 export const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
-    const [user, setUser] = useState(null);
     const [userToken, setUserToken] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
 
@@ -46,7 +45,7 @@ export const AppProvider = ({children}) => {
     }, [token]);
 
     return(
-        <AppContext.Provider value={{user, userToken}}>
+        <AppContext.Provider value={{userToken}}>
             {children}
         </AppContext.Provider>
     )

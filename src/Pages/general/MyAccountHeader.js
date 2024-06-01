@@ -2,37 +2,29 @@
 
 import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../AppProvider.js";
-import { MyAccountProperty } from "./MyAccountProperty.js";
-import { MyAccountPost } from "./MyAccountPost.js";
-import { MyAccountDetails } from "./MyAccountDetails.js";
-import { MyAccountTransaction } from "./MyAccountTransaction.js";
-import { ManageAccount } from "./ManageAccount.js";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
-import { getUserID } from '../../util.js';
 import { Link, Outlet } from "react-router-dom";
+import { getUser } from "../../util.js";
 
 export const MyAccountHeader = () => {
   const { userToken } = useContext(AppContext);
   const[user, setUser] = useState(null);
-
-  console.log(userToken.id)
   useEffect(() => {
-    const getUser = async () => {
+    const fetchUser = async () => {
       try {
-        const token = Cookies.get('token');
-        if (!token) throw new Error('No token found');
-        const userCookie = jwtDecode(token).userData;
-        const res = await axios.get(`http://localhost:5000/users/get/${userToken.id}`, { withCredentials: true });
-        setUser(res.data);
+        const userData = await getUser(userToken);
+        setUser(userData);
       } catch (error) {
-        console.error('Error fetching user:', error);
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
       }
     };
 
-    getUser()
-  }, []);
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
 
   return (
     <>

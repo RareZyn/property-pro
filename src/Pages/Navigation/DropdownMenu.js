@@ -1,15 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../AppProvider";
-import { logout } from "../../util";
+import { getUser, logout } from "../../util";
 import "./DropdownMenu.css";
 
 export const DropdownMenu = ({ className }) => {
-  const {user} = useContext(AppContext);
-  let fullName = null;
+  const {userToken} = useContext(AppContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
 
-  if(user !== null){
-    fullName = `${user.firstName} ${user.lastName}`
-  }
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
 
   return (
     <div className={className}>
@@ -18,8 +31,8 @@ export const DropdownMenu = ({ className }) => {
           className="ProfileView"
           src={require("../../Res/image/user profile.png")}
         />
-        <h3 className="ProfileViewName">{fullName}</h3>
-        <p className="ProfileViewDesc">Bla bla bla</p>
+        <h3 className="ProfileViewName">{user ? user.username : null}</h3>
+        <p className="ProfileViewDesc">{user ? user.description : null}</p>
       </a>
       <ul className="DropdownMenuNavigation">
         <li className="DropdownMenuNavigationItem">

@@ -74,21 +74,36 @@ router.put('/update/:id', async (req, res) => {
 });
 
 router.get('/get/:id', async (req, res) => {
-    const {id} = req.params
-    const user = await User.findById(id)
-    const {password, ...data} = user.toObject()
-    res.json(data)
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const { password, ...data } = user.toObject();
+        res.json(data);
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 })
 
-router.put('/get/:id', async (req, res) => {
-    const {id} = req.params
-    // const {password, ...data} = req.body
-    const user = await User.findById(id)
+router.get('/get/property-selled/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
 
-    const {password, ...data} = user.toObject()
-    res.json(data)
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
 
-    // res.json(await User.findByIdAndUpdate(id, data, {new: true}))
+        res.json(user.properties_sell);
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 module.exports = router

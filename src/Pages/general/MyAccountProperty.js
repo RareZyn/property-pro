@@ -14,10 +14,6 @@ export const MyAccountProperty = () => {
       <div className="myproperty-add">
         <Link to= "/publish-property">
           <button>
-            {/*<img 
-              src={require("../../Res/image/add-icon.png")}
-              alt="addicon"
-            className="ButtonImage"/>*/}
             <IoAddCircleOutline className="add-icon"/>
             <span>Add More Property</span>
           </button>
