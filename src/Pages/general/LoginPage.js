@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie'
 
 export const LoginPage = () => {
-  const [token, setToken] = useState(null);
   const [formValues, setFormValues] = useState({
     username: '',
     password: ''
