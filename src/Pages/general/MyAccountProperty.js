@@ -3,7 +3,7 @@ import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import VehicleComponentCard from "../../Cards/Property Cards/VehicleComponentCard";
 import image from "../../Res/image/image-dummy-house.png"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 export const MyAccountProperty = () => {
@@ -14,10 +14,6 @@ export const MyAccountProperty = () => {
       <div className="myproperty-add">
         <Link to= "/publish-property">
           <button>
-            {/*<img 
-              src={require("../../Res/image/add-icon.png")}
-              alt="addicon"
-            className="ButtonImage"/>*/}
             <IoAddCircleOutline className="add-icon"/>
             <span>Add More Property</span>
           </button>

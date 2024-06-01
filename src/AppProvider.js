@@ -5,28 +5,24 @@ import {jwtDecode} from 'jwt-decode'
 export const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
-    const [user, setUser] = useState(null);
-    const [username, setUsername] = useState(null);
+    const [userToken, setUserToken] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
+    const otherID = '665431e06992e390611a31b9';
 
     useEffect(() => {
         // Function to decode the token and set the user state
         const decodeToken = (token) => {
             try {
                 const decodedToken = jwtDecode(token);
-                if (decodedToken && decodedToken.userData) {
-                    setUser(decodedToken.userData);
-                    console.log('user in app provider: ', user)
-                    // setUsername(user.username);
+                if (decodedToken && decodedToken.username) {
+                    setUserToken(decodedToken);
                 } else {
                     console.error('Invalid token structure');
                 }
             } catch (error) {
                 console.error('Failed to decode token', error);
-                // Cookies.remove('token');
                 setToken(null);
-                setUser(null);
-                setUsername(null);
+                setUserToken(null);
             }
         };
 
@@ -34,8 +30,7 @@ export const AppProvider = ({children}) => {
         if (token) {
             decodeToken(token);
         } else {
-            setUser(null);
-            setUsername(null);
+            setUserToken(null);
         }
 
         // Set up an interval to monitor changes to the token cookie
@@ -51,7 +46,7 @@ export const AppProvider = ({children}) => {
     }, [token]);
 
     return(
-        <AppContext.Provider value={{user, username}}>
+        <AppContext.Provider value={{otherID, userToken}}>
             {children}
         </AppContext.Provider>
     )

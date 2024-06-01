@@ -10,8 +10,6 @@ import { Footer } from "./Pages/general/Footer.jsx";
 import { routes, ProtectedRoute } from './routesConfig.js';
 import ScrollToTop from "./Content/ScrollToTop"; // Correct the import path to ScrollToTop component
 import axios from "axios";
-import { logout } from "./util.js";
-import Cookies from 'js-cookie'
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();

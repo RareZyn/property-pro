@@ -1,52 +1,44 @@
-import { NavHeader } from "../Navigation/NavHeader";
 import "./MyAccountDetails.css";
-import { MyAccountHeader } from "./MyAccountHeader";
-import { AppContext } from "../../AppProvider.js";
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
+import { getUserById } from "../../util.js";
+import { useParams } from "react-router-dom";
 
 export const MyAccountDetails = () => {
+  const {id} = useParams();
   const[user, setUser] = useState(null);
   useEffect(() => {
-    const getUser = async () => {
+    const fetchUser = async () => {
       try {
-        const token = Cookies.get('token');
-        if (!token) throw new Error('No token found');
-        const userCookie = jwtDecode(token).userData;
-        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
-        setUser(res.data);
+        const userData = await getUserById(id);
+        setUser(userData);
       } catch (error) {
-        console.error('Error fetching user:', error);
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
       }
     };
 
-    getUser()
+    fetchUser()
   }, []);
 
   return (
     <div className="acc-grid-container">
       <div className="About">
             <div className="details-column">
-                <div className="first-name">Username: {(user !== null) ? user.username : null}</div>
+                <div className="first-name">Username: {user ? user.username : null}</div>
                 <div className="type-of-user">Seller/Buyer</div>
 
                 <div className="details">
                     Full Name:
-                    <div className="full-name">{(user === null) ? null : user.firstName + " " +user.lastName}</div>
-
-                    Age:
-                    <div className="age">{(user === null) ? null : user.age}</div>
+                    <div className="full-name">{user ? `${user.firstName} ${user.lastName}` : null}</div>
 
                     Location:
-                    <div className="location">{(user !== null) ? user.location : null}</div>
+                    <div className="location">{user ? user.location : null}</div>
 
                     Email:
-                    <div className="email">{(user !== null) ? user.email : null}</div>
+                    <div className="email">{user ? user.email : null}</div>
 
                     Phone Number:
-                    <div className="phone-number">{(user !== null) ? user.phoneNumber : null}</div>
+                    <div className="phone-number">{user ? user.phoneNumber : null}</div>
                 </div>
             </div>
 

@@ -74,14 +74,15 @@ export const PropertyHouseDetailsOverview = () => {
             <h1>RM 50,000</h1>
           </span>
           </button>
-        
-        <button className="edit-button" >
+          <Link to="/publish-property">
+          <button className="edit-button">
             <img
               src={require("../../Res/image/pencil icon.png")}
               id="edit-icon"
             />
             <span id="edit">EDIT</span>
-          </button>
+            </button>
+          </Link>
        </div>
 
         <div className="property-fist-row">

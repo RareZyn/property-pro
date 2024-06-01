@@ -3,12 +3,11 @@ import { useEffect } from "react";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
-import { AppContext } from "../../AppProvider.js";
+import { AppContext, AppProvider } from "../../AppProvider.js";
 import Cookies from 'js-cookie'
 import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
-
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
   const [isSellerHovered, setIsSellerHovered] = useState(false);
 
@@ -163,7 +162,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <HouseDisplayCard link={"/property-house-details"}/>
+            <HouseDisplayCard key={index} link={"/property-house-details"}/>
           ))}
         </div>
       </div>

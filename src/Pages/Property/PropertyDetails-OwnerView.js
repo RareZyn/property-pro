@@ -1,12 +1,12 @@
 import "./PropertyDetails.css";
 import "./PropertyDetails-OwnerView.css";
 import { Link } from "react-router-dom";
-import { MyAccountHeader } from "../general/MyAccountHeader";
+import { AccountHeader } from "../general/AccountHeader";
 
 export const PropertyDetailsOwnerView = () => {
   return (
     <div className="PropertyDetails-OwnerView">
-      <MyAccountHeader
+      <AccountHeader
         name="Username"
         bio="please guide me"
         currentPage="Property"
