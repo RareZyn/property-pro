@@ -67,6 +67,7 @@ export const PropertyLandDetailsOverview = () => {
             <h1>RM 50,000</h1>
           </span>
           </button>
+          <Link to="/publish-property">
         <button className="edit-button">
             <img
               src={require("../../Res/image/pencil icon.png")}
@@ -74,6 +75,7 @@ export const PropertyLandDetailsOverview = () => {
             />
             <span id="edit">EDIT</span>
           </button>
+          </Link>
        </div>
 
         <div className="property-fist-row">
