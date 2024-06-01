@@ -31,7 +31,7 @@ export const DropdownMenu = ({ className }) => {
           </a>
         </li>
         <DropdownMenuNavItem
-          href="/publish-property"
+          href="/manage-property"
           src={require("../../Res/image/dropdownmenu-icons/sell icon dropdownmenu.png")}
           itemName={"Sell Property"}
         ></DropdownMenuNavItem>
