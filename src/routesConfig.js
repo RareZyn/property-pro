@@ -28,7 +28,7 @@ import { ViewAccountPost } from "./Pages/general/ViewAccountPost.js";
 import { ViewAccountAbout } from "./Pages/general/ViewAccountAbout.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
-import { ForumCreatePost } from "./Pages/Social/ForumCreatePost.js";
+import { CreatePost } from "./Pages/Social/CreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
@@ -82,7 +82,7 @@ export const routes = [
   { path: '/view-account-about', element: <ViewAccountAbout /> },
   { path: '/forum-page', element: <ForumPage /> },
   { path: '/forum-header', element: <ForumHeader /> },
-  { path: '/forum-create-post', element: <ForumCreatePost /> },
+  { path: '/create-post', element: <CreatePost /> },
   { path: '/login-broker', element: <LoginBroker /> },
   { path: '/verify-property-homepage', element: <VerifyPropertyHome /> },
   { path: '/choose-bank', element: <ChooseBank /> },

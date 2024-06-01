@@ -7,6 +7,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import './PropertyDetails.css';
 
+
 export const PropertyHouseDetailsOverview = () => {
   const [isSaved, setIsSaved] = useState(false);
 
@@ -73,7 +74,8 @@ export const PropertyHouseDetailsOverview = () => {
             <h1>RM 50,000</h1>
           </span>
           </button>
-        <button className="edit-button">
+        
+        <button className="edit-button" >
             <img
               src={require("../../Res/image/pencil icon.png")}
               id="edit-icon"

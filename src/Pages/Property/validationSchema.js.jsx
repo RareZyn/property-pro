@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 
+
 // Common fields
 const commonFields = {
   name: Yup.string().required("Name is required"),
@@ -7,6 +8,18 @@ const commonFields = {
   price: Yup.string()
     .matches(/^[0-9]+$/, "Price must contain only numbers")
     .required("Price is required"),
+    filename: Yup.mixed().required("Images is required"),
+    files: Yup.array()
+    .of(
+      Yup.mixed().test(
+        "fileType",
+        "Only images (jpeg, jpg, png, gif) are allowed",
+        (value) => {
+          return value && ["jpeg", "jpg", "png", "gif"].includes(value.type.split("/")[1].toLowerCase());
+        }
+      )
+    )
+    .min(1, 'At least one image is required')
 };
 
 // Schema for land-specific fields
