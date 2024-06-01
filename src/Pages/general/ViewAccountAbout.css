@@ -1,8 +1,0 @@
-#ViewAccountAbout {
-  display: flex;
-  min-height: 120vh;
-}
-
-.acc-grid-container {
-  min-height: 70vh;
-}

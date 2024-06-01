@@ -1,4 +1,4 @@
-import "./MyAccountPost.css";
+import "./AccountPost.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
 import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
 import { Link } from "react-router-dom";

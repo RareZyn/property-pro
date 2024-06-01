@@ -1,6 +1,6 @@
+import "./AccountTransaction.css";
 import React from "react";
 import ItemInTransactionCard from "../../Cards/Property Cards/ItemInTransactionCard";
-import "./MyAccountTransaction.css";
 
 const TransactionCard = ({ title, transaction, cardClass }) => (
   <div className={`TransactionCard ${cardClass}`}>

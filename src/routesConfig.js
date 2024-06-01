@@ -9,11 +9,11 @@ import { VerifyProperty } from "./Pages/Broker/VerifyProperty.js";
 import { UpdateProgress } from "./Pages/Broker/UpdateProgress.js";
 import { Chat } from "./Pages/Social/Chat.js";
 import { AccountHeader } from "./Pages/general/AccountHeader.js";
-import { MyAccountTransaction } from "./Pages/general/MyAccountTransaction.js";
-import { MyAccountPost } from "./Pages/general/MyAccountPost.js";
-import { MyAccountDetails } from "./Pages/general/MyAccountDetails.js";
-import { MyAccountProperty } from "./Pages/general/MyAccountProperty.js";
-import { ManageAccount } from "./Pages/general/ManageAccount.js";
+import { MyAccountTransaction } from "./Pages/general/AccountTransaction.js";
+import { MyAccountPost } from "./Pages/general/AccountPost.js";
+import { MyAccountDetails } from "./Pages/general/AccountDetails.js";
+import { AccountProperty } from "./Pages/general/AccountProperty.js";
+import { ManageAccount } from "./Pages/general/AccountManager.js";
 import { PropertyHouseDetails } from "./Pages/Property/PropertyHouseDetails.js";
 import { PropertyLandDetails } from "./Pages/Property/PropertyLandDetails.js";
 import { PropertyVehicleDetails } from "./Pages/Property/PropertyVehicleDetails.js";
@@ -22,10 +22,6 @@ import { PublishProperty } from "./Pages/Property/PublishProperty.js";
 import { BrowserProperty } from "./Pages/Property/BrowserProperty.js";
 import { SavedProperty } from "./Pages/Property/SavedProperty.js";
 import { ManageProperty } from "./Pages/Property/ManageProperty.js";
-import { ViewAccountHeader } from "./Pages/general/ViewAccountHeader.js";
-import { ViewAccountProperty } from "./Pages/general/ViewAccountProperty.js";
-import { ViewAccountPost } from "./Pages/general/ViewAccountPost.js";
-import { ViewAccountAbout } from "./Pages/general/ViewAccountAbout.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { CreatePost } from "./Pages/Social/CreatePost.js";
@@ -58,12 +54,12 @@ export const routes = [
   { path: '/chat', element: <Chat /> },
   { path: '/view-account/:id', element: <AccountHeader />, 
   children: [
-    { path: 'property', element: <MyAccountProperty /> },
+    { path: 'property', element: <AccountProperty /> },
     { path: 'post', element: <MyAccountPost /> },
     { path: 'transaction', element: <MyAccountTransaction /> },
     { path: 'about', element: <MyAccountDetails /> },
     { path: 'manage', element: <ManageAccount /> },
-    { path: '*', element: <MyAccountProperty /> },
+    { path: '*', element: <AccountProperty /> },
     // { path: '*', element: <Navigate to="/myaccount/property" /> }
   ] },
   // { path: '/manage-account', element: <ManageAccount /> },
@@ -76,10 +72,6 @@ export const routes = [
   { path: '/browser-property', element: <BrowserProperty /> },
   { path: '/saved-property', element: <SavedProperty /> },
   { path: '/manage-property', element: <ManageProperty /> },
-  { path: '/view-account-header', element: <ViewAccountHeader /> },
-  { path: '/view-account-property', element: <ViewAccountProperty /> },
-  { path: '/view-account-post', element: <ViewAccountPost /> },
-  { path: '/view-account-about', element: <ViewAccountAbout /> },
   { path: '/forum-page', element: <ForumPage /> },
   { path: '/forum-header', element: <ForumHeader /> },
   { path: '/create-post', element: <CreatePost /> },
