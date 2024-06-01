@@ -30,7 +30,6 @@ router.post('/login', async (req, res) => {
         if (user) {
             const isMatch = await Bcrypt.compare(password, user.password);
             if (isMatch) {
-                const {password, ...userData} = user.toObject();
                 const username = user.username;
                 const id = user._id;
                 const token = jwt.sign({id, username}, process.env.MY_SECRET, { expiresIn: "1d" })

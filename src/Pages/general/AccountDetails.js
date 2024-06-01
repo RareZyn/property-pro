@@ -1,4 +1,4 @@
-import "./MyAccountDetails.css";
+import "./AccountDetails.css";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../util.js";
 import { useParams } from "react-router-dom";

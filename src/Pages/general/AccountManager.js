@@ -1,8 +1,8 @@
+import "./AccountManager.css";
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
-import "./ManageAccount.css";
 import Cookies from 'js-cookie'
 import { jwtDecode } from "jwt-decode";
 
