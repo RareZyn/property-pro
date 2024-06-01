@@ -70,3 +70,111 @@
   background-color: tomato;
   margin-left: 5px;
 }
+
+.reply-bottom{
+  display: flex;
+  justify-content: space-between;
+}
+
+.open-button{
+  height: 2em;
+  border:none;
+  width: 5em;
+  margin-top: 0.5em;
+  margin-right: 1em;
+  border-radius: 8px;
+  background-color: var(--darkGreen);  
+  cursor: pointer;
+}
+
+.reply-input{
+  margin-left: 10em;
+}
+
+#text{
+  border: none;
+  padding: 1em;
+  background-color: rgb(255, 255, 255);
+}
+
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--darkGreen);
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  border-radius: 8px;
+  min-height: 150px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/send button */
+.form-container .btn {
+  height: 2em;
+  border: none;
+  width: 5em;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--creamyWhite);
+  cursor: pointer;
+
+}
+
+.reply-first-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title{
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+/* Add a red background color to the cancel button */
+#button-cancel {
+  padding: 8px 12px;
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 25px;
+}
+#button-cancel:hover{
+color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+  background-color: var(--grey)
+  
+}

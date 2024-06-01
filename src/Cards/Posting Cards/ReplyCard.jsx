@@ -23,6 +23,8 @@ export const ReplyCard = () => {
           <span id="like-total">7 </span> Like
           <span>Reply</span>
         </button>
+
+        
       </div>
     </div>
   );

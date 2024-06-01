@@ -267,6 +267,9 @@ padding :10px;
 .seller-info{
   margin: 2rem auto;
   padding: 2rem;
+  align-items: center;
+  align-self: center;
+  align-content: center;
   border-radius: 10px;
   margin-left: 50px;
   background-color: var(--creamyWhite);
@@ -274,6 +277,12 @@ padding :10px;
 }
 .ProfileView{
  margin-left: 35%;
+}
+
+.seller-content{
+  align-items: center;
+  align-self: center;
+  align-content: center;
 }
 
  .seller-detail{
