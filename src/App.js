@@ -10,6 +10,7 @@ import { NavHeader } from "./Pages/Navigation/NavHeader.js";
 import { Footer } from "./Pages/general/Footer.jsx";
 import routes from './routesConfig.js'
 import { AppProvider } from "./AppProvider.js";
+import { ChatProvider } from "./context/ChatContext.js";
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ function App() {
   return (
     <div className="App">
         <Router>
+          <ChatProvider>
           <NavHeaderWrapper />
           <Routes>
             {routes.map((route, index) => (
@@ -28,6 +30,7 @@ function App() {
             ))}
           </Routes>
           <Footer />
+          </ChatProvider>
         </Router>
     </div>
   );
