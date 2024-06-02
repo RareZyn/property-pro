@@ -5,10 +5,10 @@ import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
 import { getUser, logout } from "../../util";
-import { AppContext } from "../../AppProvider";
+import { UserContext } from "../../context/UserContext";
 
 export const NavHeader = () => {
-  const { userToken } = useContext(AppContext);
+  const { userToken } = useContext(UserContext);
   const[user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {

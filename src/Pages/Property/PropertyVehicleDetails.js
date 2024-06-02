@@ -1,15 +1,15 @@
+import './PropertyDetails.css';
 import React, { useContext, useState } from 'react';
 import { FaCarSide, FaGauge, FaCalendarDays } from "react-icons/fa6";
 import { FaTags } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
-import './PropertyDetails.css';
-import { AppContext } from '../../AppProvider.js';
+import { UserContext } from '../../context/UserContext.js';
 
 export const PropertyVehicleDetails = () => {
   const [isSaved, setIsSaved] = useState(false);
-  const {otherID} = useContext(AppContext)
+  const {otherID} = useContext(UserContext)
 
   const handleSaveClick = () => {
     setIsSaved(!isSaved);

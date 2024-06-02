@@ -2,11 +2,11 @@ import "./AccountHeader.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { getUserById } from "../../util.js";
-import { AppContext } from "../../AppProvider.js";
+import { UserContext } from "../../context/UserContext.js";
 
 export const AccountHeader = () => {
   const {id} = useParams();
-  const { userToken } = useContext(AppContext);
+  const { userToken } = useContext(UserContext);
   const [owner, setOwner] = useState(true);
   const[user, setUser] = useState(null);
   useEffect(() => {
@@ -28,7 +28,7 @@ export const AccountHeader = () => {
     };
 
     fetchUser()
-  }, []);
+  }, [user]);
 
   return (
     <>

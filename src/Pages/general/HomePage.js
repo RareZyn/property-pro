@@ -1,11 +1,8 @@
+import "./HomePage.css";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
-import "./HomePage.css";
 import { Link } from "react-router-dom";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
-import { AppContext, AppProvider } from "../../AppProvider.js";
-import Cookies from 'js-cookie'
-import {jwtDecode} from 'jwt-decode'
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);

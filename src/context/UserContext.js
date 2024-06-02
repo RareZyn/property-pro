@@ -2,9 +2,9 @@ import { createContext, useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 import {jwtDecode} from 'jwt-decode'
 
-export const AppContext = createContext()
+export const UserContext = createContext()
 
-export const AppProvider = ({children}) => {
+export const UserProvider = ({children}) => {
     const [userToken, setUserToken] = useState(null);
     const [token, setToken] = useState(Cookies.get('token'));
     const otherID = '665431e06992e390611a31b9';
@@ -46,8 +46,8 @@ export const AppProvider = ({children}) => {
     }, [token]);
 
     return(
-        <AppContext.Provider value={{otherID, userToken}}>
+        <UserContext.Provider value={{otherID, userToken}}>
             {children}
-        </AppContext.Provider>
+        </UserContext.Provider>
     )
 }

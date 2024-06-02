@@ -1,47 +1,41 @@
 import "./AccountManager.css";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
-import Cookies from 'js-cookie'
-import { jwtDecode } from "jwt-decode";
+import { getUserById } from "../../util";
 
 export const ManageAccount = () => {
-  const navigate = useNavigate();
+  const nav = useNavigate();
   const [errors, setErrors] = useState({});
-  const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [formValues, setFormValues] = useState({
-    name: "",
-    firstname: "",
-    lastname:"",
-    description: "",
-    phoneNumber: "",
-    location: "",
-    profilePicture: "",
-  });
-
+  const {id} = useParams();
   const[user, setUser] = useState(null);
   useEffect(() => {
-    const getUser = async () => {
+    const fetchUser = async () => {
       try {
-        const token = Cookies.get('token');
-        if (!token) throw new Error('No token found');
-        const userCookie = jwtDecode(token).userData;
-        const res = await axios.get(`http://localhost:5000/users/get/${userCookie._id}`, { withCredentials: true });
-        setUser(res.data);
+        const userData = await getUserById(id);
+        setUser(userData);
       } catch (error) {
-        console.error('Error fetching user:', error);
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
       }
     };
 
-    getUser()
+    fetchUser()
   }, []);
+  const [formValues, setFormValues] = useState({
+    firstName: user ? user.firstName : null,
+    lastName: user ? user.lastName : null,
+    description: user ? user.description : null,
+    phoneNumber: user ? user.phoneNumber : null,
+    location: user ? user.location : null,
+    profilePicture: "",
+  });
 
   useEffect(() => {
     if(user){
       setFormValues(prevFormValues => ({
         ...prevFormValues,
-        name: user.username,
         ...user
       }));
     }
@@ -51,8 +45,7 @@ export const ManageAccount = () => {
     const { name, value } = e.target;
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      [name]: value,
-      name: name === 'firstname' ? `${value} ${formValues.lastname}` : name === 'lastname' ? `${formValues.firstname} ${value}` : formValues.fullname,
+      [name]: value
     }));
   };
 
@@ -60,9 +53,8 @@ export const ManageAccount = () => {
     e.preventDefault();
 
     const validationSchema = Yup.object().shape({
-      name: Yup.string().required("Name is required"),
-      firstname: Yup.string().required("Your first name is required"),
-      lastname: Yup.string().required("Your last name is required"),
+      firstName: Yup.string().required("Your first name is required"),
+      lastName: Yup.string().required("Your last name is required"),
       description: Yup.string().required("Description is required"),
       phoneNumber: Yup.string()
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
@@ -78,8 +70,8 @@ export const ManageAccount = () => {
           .then(res => {
             console.log(res.data);
             alert("Profile updated successfully");
-            setUpdateSuccess(true);
-            navigate("/myaccount");
+            // window.location.reload();
+            nav(`/view-account/${user._id}/about`);
           })
           .catch(error => {
             console.error("There was an error updating the profile!", error);
@@ -91,7 +83,6 @@ export const ManageAccount = () => {
           errors[error.path] = error.message;
         });
         setErrors(errors);
-        setUpdateSuccess(false);
       });
   };
 
@@ -110,33 +101,22 @@ export const ManageAccount = () => {
               First Name
               <input
                 type="text"
-                name="firstname"
-                value={formValues.firstname}
+                name="firstName"
+                value={formValues.firstName}
                 onChange={handleChange}
               />
-              {errors.firstname && <div className="error">{errors.firstname}</div>}
+              {errors.firstName && <div className="error">{errors.firstName}</div>}
             </section>
             <section id="input-section">
               Last Name
               <input
                 type="text"
-                name="lastname"
-                value={formValues.lastname}
+                name="lastName"
+                value={formValues.lastName}
                 onChange={handleChange}
               />
-              {errors.lastname && <div className="error">{errors.lastname}</div>}
+              {errors.lastName && <div className="error">{errors.lastName}</div>}
             </section>
-            <section id="input-section">
-              Name (As in IC)
-              <input
-                type="text"
-                name="name"
-                value={formValues.name}
-                onChange={handleChange}
-              />
-              {errors.name && <div className="error">{errors.name}</div>}
-            </section>
-
             <section id="input-section">
               Description
               <input

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../AppProvider";
 import { getUser, logout } from "../../util";
 import "./DropdownMenu.css";
 import { FaWhatsapp } from "react-icons/fa6";
+import { UserContext } from "../../context/UserContext";
 
 export const DropdownMenu = ({ className }) => {
-  const {userToken} = useContext(AppContext);
+  const {userToken} = useContext(UserContext);
   const[user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {

@@ -3,10 +3,10 @@ import pp from "../../Res/image/user profile.png";
 import imageIcon from "../../Res/image/image icon.png";
 import videoIcon from "../../Res/image/video.png";
 import { useContext, useState } from "react";
-import { AppContext } from "../../AppProvider";
+import { UserContext } from "../../context/UserContext";
 
 function AddPostCard(){
-    const {userToken} = useContext(AppContext)
+    const {userToken} = useContext(UserContext)
 
     return(
         <div className={`${styles["add-post-card-container"]} box-shadow`}>
