@@ -40,6 +40,7 @@ export const LoginPage = () => {
           if (token) {
             clearInterval(intervalId); // Stop polling once the cookie is found
             window.scrollTo(0, 0);
+            console.log('Cookie created')
             nav('/homepage');
           }
         };
@@ -61,10 +62,6 @@ export const LoginPage = () => {
       setLoading(false)
     }
   };
-
-  if (loading) {
-    return <div>Loading...</div>; // Render a loading state while checking authentication
-  }
 
   return (
     <div className="LoginPage">

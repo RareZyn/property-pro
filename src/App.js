@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -10,6 +10,7 @@ import { Footer } from "./Pages/general/Footer.jsx";
 import {ProtectedRoute, routes} from './routesConfig.js'
 import { ChatProvider } from "./context/ChatContext.js";
 import axios from "axios";
+import { UserContext } from "./context/UserContext.js";
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ function NavHeaderWrapper() {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // Add a loading state
+  const {userToken} = useContext(UserContext);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -34,7 +36,7 @@ function App() {
     };
 
     checkAuth();
-  }, []);
+  }, [userToken]);
 
   if (loading) {
     return <div>Loading...</div>; // Render a loading state while checking authentication
