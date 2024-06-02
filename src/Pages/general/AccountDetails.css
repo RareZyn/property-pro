@@ -16,22 +16,26 @@
     width: 40%;
     background-color: var(--creamyWhite);
     border-radius: 20px;
-    padding: 3%;
+    padding: 3% 3% 2% 3%; 
     display: inline-block;
     box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
 }
 
-.first-name, .type-of-user{
+.first-name, .username, .type-of-user{
     text-align: center;
 }
 
-.first-name, .about{
+.username, .about{
     margin-bottom: 5px;
     font-weight: bold;
 }
 
 .first-name{
     font-size: large;
+}
+
+.username{
+    font-weight: normal;
 }
 
 .type-of-user{
@@ -47,8 +51,30 @@
     font-weight: lighter;
 }
 
+.location-desc, .email-desc, .phone-number-desc {
+    display: flex;
+    align-items: center;
+}
+
+.location-desc svg {
+    font-size: 1.2em;
+    margin-right: 2px;
+}
+
+.email-desc svg {
+    font-size: 1.3em;
+    color: var(--orange);
+    margin-right: 2px;
+}
+
+.phone-number-desc svg {
+    font-size: 1em;
+    color: #52B3A0;
+    margin-right: 2px;
+}
+
 .about-badges-column{
-    width: 50%;
+    width: 52%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -71,18 +97,18 @@
 }
 
 .property-listed-badge, .sold-property-badge, .property-purchased-badge{
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     padding: 5%;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
     box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
 }
 
 .noOf-property-listed, .noOf-sold-propety, .noOf-property-purchased{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.9em;
 }
 
 .property-listed-badge:hover, .sold-propety-badge:hover, .property-purchased-badge:hover{
@@ -91,16 +117,65 @@
 
 .property-listed-badge{
     background-color: #52B3A0;
-    color: white;
+    color: var(--white);
 }
 
 .sold-property-badge{
-    background-color: #F49F1F;
+    background-color: var(--orange);
 }
 
 .property-purchased-badge{
     background-color: #2B3D50;
-    color: white;
+    color: var(--white);
+}
+
+
+/* Large screens (desktops, 1200px and up) */
+@media (max-width: 1200px) {
+    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
+        width: 80px;
+        height: 80px;
+        font-size: 10px;
+    }
+}
+
+/* Medium screens (tablets, 992px and up) */
+@media (max-width: 992px) {
+    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
+        width: 70px;
+        height: 70px;
+        font-size: 9px;
+    }
+
+    .badges-section{
+        padding: 0 8%;
+    }
+}
+
+/* Small screens (landscape phones, 768px and up) */
+@media (max-width: 768px) {
+    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
+        width: 60px;
+        height: 60px;
+        font-size: 8px;
+    }
+
+    .badges-section{
+        padding: 0 7%;
+    }
+}
+
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
+        width: 55px;
+        height: 55px;
+        font-size: 7px;
+    }
+
+    .badges-section{
+        padding: 0 5%;
+    }
 }
 
 /*.MyAccountDetailsCard{

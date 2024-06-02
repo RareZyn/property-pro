@@ -4,6 +4,7 @@ import shareIcon from "../../Res/image/share-2.png";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
 import { FaInstagram,FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
 import "./PopupShare.css";
+import SuccesToastify from "../../Cards/ToastifyCards/SuccesToastify";
 
 
 
@@ -83,17 +84,19 @@ export default function PopupShare() {
           </div>
 
           <div className="link-div">
-          <div className="link-box">
-          <input type="text" value="http://property-housedetails-overview" ref={inputRef} id="myInput" readOnly />
-          </div>
+                <div className="link-box">
+                <input type="text" value="http://property-housedetails-overview" ref={inputRef} id="myInput" readOnly />
+            </div>
           <div className='copy-icon'>
-          <button onClick={handleCopy}><FaCopy></FaCopy></button>
+                <button onClick={handleCopy}><FaCopy></FaCopy></button>
+            </div>
           </div>
-          </div>
-                            </div>
-                        </div>
-                    )
-                }
+
+          <SuccesToastify></SuccesToastify>
+        </div>
+        </div>
+             )
+             }
             </Popup>
         </div>
     )

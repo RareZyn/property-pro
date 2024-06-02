@@ -2,36 +2,31 @@
     font-size: 16px;
 }
 
-.visible{
-    padding: 30px;
-    width: 550px;
+.DocumentRejection{
+    background-color: var(--creamyWhite);
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;
+    align-items: center;*/
     all: none;
     position: absolute;
     top: 150%;
     left: 50%;
     transform: translate(-50%, 50%);
-    background-color: var(--creamyWhite);
+    padding: 30px;
     border-radius: 12px;
-    box-shadow: 12px 12px 12px;
-    /*transition: all 0.3s ease-out;*/
+    box-shadow: 0px 2px 5px;
+    width: 550px;
 }
 
-/*.visible:hover{
-    transition: all 0.3s ease-out;
-    padding: 30px;
-    width: 540px;
-    min-width: 120px;
-    box-shadow: 0px 6px 12px;
-}*/
-
-.visible h1{
+.DocumentRejection h1{
     text-align: right;
-    padding-bottom: 8px;
     border-bottom: 1px solid var(--grey);
     font-size: 1.9em;
+    padding-bottom: 8px;
 }
 
-.visible h3{
+.DocumentRejection h3{
     font-family: 'Roboto-Light';
     text-align: left;
     padding: 15px;
@@ -39,7 +34,7 @@
     font-size: 1.5em;
 }
 
-.visible textarea{
+.DocumentRejection textarea{
     padding: 12px;
     width: 100%;
     border-radius: 20px;
@@ -53,7 +48,7 @@
     margin-bottom: 15px;
 }
 
-.visible div{
+.DocumentRejection div{
     display: flex;
     gap: 12px;
     justify-items: flex-end;
@@ -61,7 +56,7 @@
     width: 100%;
 }
 
-.visible h5.Cancel{
+.DocumentRejection h5.Cancel{
  background-color: var(--orange);
  color: var(--white);
  padding: 12px;
@@ -69,19 +64,17 @@
  cursor: pointer;
  transition: padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
-
-.visible h5.Cancel:hover{
+.DocumentRejection h5.Cancel:hover{
     opacity: 80%;
     padding-left: 24px;
     padding-right: 24px;
 }
-
-.visible h5.Cancel:active{
+.DocumentRejection h5.Cancel:active{
     transition: background-color 0s;
     background-color: var(--white);
 }
 
-.visible h5.Send{ 
+.DocumentRejection h5.Send{ 
  background-color: var(--darkGreen);
  color: var(--white);
  padding: 12px;
@@ -89,31 +82,29 @@
  cursor: pointer;
  transition: padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
-
-.visible h5.Send:hover{
+.DocumentRejection h5.Send:hover{
     opacity: 80%;
     padding-left: 24px;
     padding-right: 24px;
 }
-
-.visible h5.Send:active{
+.DocumentRejection h5.Send:active{
     transition: background-color 0s;
     background-color: var(--white);
 }
 
-.hidden {
+.DocumentRejection-hidden{
     display: none;
 }
 
-
+/* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
     *{
         font-size: 15px;
     }
-    
-    .visible{
+
+    .DocumentRejection{
         width: 520px;
-        top: 150%;
+        top: 140%;
     }
   }
   
@@ -122,22 +113,10 @@
     *{
         font-size: 14px;
     }
-    
-    .visible{
-        width: 500px;
-        top: 130%;
-    }
-  }
-  
-  /* Small screens (landscape phones, 768px and up) */
-  @media (max-width: 795px) {
-    *{
-        font-size: 13px;
-    }
-    
-    .visible{
+
+    .DocumentRejection{
         width: 460px;
-        top: 115%;
+        top: 125%;
     }
   }
   
@@ -147,10 +126,10 @@
         font-size: 12px;
     }
 
-    .visible{
+    .DocumentRejection{
         padding: 25px;
         width: 380px;
-        top: 100%;
+        top: 95%;
     }
   }
 
@@ -158,10 +137,10 @@
     *{
         font-size: 11px;
     }
-
-    .visible{
+    
+    .DocumentRejection{
         padding: 22px;
         width: 350px;
-        top: 90%;
+        top: 85%;
     }
   }

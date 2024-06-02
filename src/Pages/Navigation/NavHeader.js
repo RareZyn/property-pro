@@ -100,7 +100,7 @@ export const NavHeader = () => {
           <CustomLink href="/manage-property">Sell</CustomLink>
           <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
-          <CustomLink id="navHeader-broker-button" href="/register-broker">
+          <CustomLink id="navHeader-broker-button" href="/login-broker">
             Broker
           </CustomLink>
           {/* <CustomLink href="/myaccount">My Account</CustomLink> */}
