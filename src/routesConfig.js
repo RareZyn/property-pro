@@ -59,8 +59,7 @@ export const routes = [
     { path: 'transaction', element: <MyAccountTransaction /> },
     { path: 'about', element: <MyAccountDetails /> },
     { path: 'manage', element: <ManageAccount /> },
-    { path: '*', element: <AccountProperty /> },
-    // { path: '*', element: <Navigate to="/myaccount/property" /> }
+    { path: '', element: <AccountProperty /> }
   ] },
   // { path: '/manage-account', element: <ManageAccount /> },
   // { path: '/property-details', element: <PropertyDetails /> },

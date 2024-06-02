@@ -51,7 +51,7 @@ export const MyAccountDetails = () => {
                 </div>
                 <div className="badges-section">
                     <div className="property-listed-badge">
-                        <div className="noOf-property-listed">5</div>
+                        <div className="noOf-property-listed">{user ? user.properties_sell.length : null}</div>
                         Property Listed
                     </div>
                     <div className="sold-property-badge">
@@ -59,30 +59,12 @@ export const MyAccountDetails = () => {
                         Sold Property
                     </div>
                     <div className="property-purchased-badge">
-                        <div className="noOf-property-purchased">0</div>
+                        <div className="noOf-property-purchased">{user ? user.properties_owned.length : null}</div>
                         Property Purchased
                     </div>
                 </div>
             </div>
         </div>
-
-      {/*<div className="MyAccountDetailsCard">
-        <div className="MyAccountDetailsItem">
-          <img src={require("../../Res/image/phoneicon.png")} alt="phone" />
-          <p>Phone Number: 0139874690</p>
-        </div>
-        <div className="MyAccountDetailsItem">
-          <img src={require("../../Res/image/houseicon.png")} alt="addres" />
-          <p>
-            Address: 825, Lingkungan Budi, 50603 Kuala Lumpur, Wilayah
-            Persekutuan Kuala Lumpur
-          </p>
-        </div>
-        <div className="MyAccountDetailsItem">
-          <img src={require("../../Res/image/emailicon.png")} alt="email" />
-          <p>Email: universitymalaya@property.com</p>
-        </div>
-      </div>*/}
     </div>
   );
 };
