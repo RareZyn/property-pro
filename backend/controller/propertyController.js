@@ -1,6 +1,25 @@
 const asyncHandler = require("express-async-handler");
 const { prisma } = require("../config/prismaConfig.js");
 
+const getAllProperties = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true, // Include seller details if necessary
+        broker: true, // Include broker details if necessary
+        buyer: true, // Include buyer details if necessary
+      },
+    });
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Failed to retrieve properties" });
+  }
+});
+
 // Function to add a property and then add it as a Land
 const addLand = asyncHandler(async (req, res) => {
   const {
@@ -159,4 +178,5 @@ module.exports = {
   addLand,
   addVehicle,
   addHouse,
+  getAllProperties
 };

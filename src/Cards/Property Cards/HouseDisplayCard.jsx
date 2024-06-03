@@ -1,54 +1,51 @@
 import "./PropertyDisplayCard.css";
-import imgPh from "../../Res/image/image-dummy-house.png";
-import { useState } from "react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaShower, FaBed, FaTags, FaLayerGroup } from "react-icons/fa";
 import { FaHouse, FaLocationDot } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
-export const HouseDisplayCard = ({ thumbnailImage, link }) => {
-  const [thumbnail, setThumbnail] = useState(imgPh);
-  useEffect(() => {
-    if (thumbnailImage) {
-      const img = new Image();
-      img.src = thumbnailImage;
-
-      img.onload = () => {
-        setThumbnail(thumbnailImage);
-      };
-    }
-  }, [thumbnailImage]);
-
+export const HouseDisplayCard = ({ card, link }) => {
+  const navigate = useNavigate();
   return (
     <Link to={link}>
-      <div id="prop-card">
+      <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
         <div id="img-placeholder">
-          <img src={thumbnail} alt="Image" srcset="" id="img-ph" />
+          <img src={card.image} alt="Image" srcset="" id="img-ph" />
         </div>
         <div id="details">
-        <div id="details-container">
-        <div id="myproperty-name"><h4>2 Storey House in Petaling Jaya</h4></div>
-        <div id="myproperty-location"><FaLocationDot/>  Petaling Jaya, Selangor</div>
-        <div id="myproperty-price"><FaTags/>  RM 162,300,000</div>
-        <div id="mypropertyicon-content">
-          <div id="property-smallicon">
-          <FaHouse /> 2120 sqft
+          <div id="details-container">
+            <div id="myproperty-type">
+              <h2>{card.propertyType}</h2>
+            </div>
+            <div id="myproperty-title">
+              <h4>{card.title}</h4>
+            </div>
+            <div id="myproperty-location">
+              <FaLocationDot />
+              {card.house?.location}
+            </div>
+            <div id="myproperty-price">
+              <FaTags />
+              {card.price}
+            </div>
+            <div id="mypropertyicon-content">
+              <div id="property-smallicon">
+                <FaHouse />
+                {card.house?.size}
+              </div>
+              <div id="property-smallicon">
+                <FaBed /> {card.house?.bedrooms}
+              </div>
+            </div>
+            <div id="mypropertyicon-content">
+              <div id="property-smallicon">
+                <FaLayerGroup /> {card.house?.rooms}
+              </div>
+              <div id="property-smallicon">
+                <FaShower /> {card.house?.bathrooms}
+              </div>
+            </div>
           </div>
-          <div id="property-smallicon">
-          <FaBed/> 2 
-          </div>
-          </div>
-          <div id="mypropertyicon-content">
-                                  
-          <div id="property-smallicon">
-          <FaLayerGroup /> 2 storey
-          </div>
-          <div id="property-smallicon">
-          <FaShower/> 2 
-          </div>
-        </div>
-                    {/**<span id="row-3">3210 ekar (Tanah) • RM X.XX PSF</span>**/}
-                </div>
         </div>
       </div>
     </Link>
