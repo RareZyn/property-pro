@@ -13,45 +13,47 @@ export const BrowserProperty = () => {
   if (isError) {
     return <span>Error while fetching the data</span>;
   }
-
   if (isLoading) {
     return (
-      <div>
+      <div className={style.loaderContainer}>
         <PuffLoader />
       </div>
     );
   }
+const renderCard = (property) => {
+  if (!property || !property.propertyType) {
+    return null;
+  }
 
-  const renderCard = (property) => {
-    switch (property.propertyType) {
-      case "Vehicle":
-        return (
-          <VehicleDisplayCard
-            key={property.property_id}
-            card={property}
-            link={`/property-Vehicle-Details/${property.property_id}`}
-          />
-        );
-      case "House":
-        return (
-          <HouseDisplayCard
-            key={property.property_id}
-            card={property}
-            link={`/property-House-Details/${property.property_id}`}
-          />
-        );
-      case "Land":
-        return (
-          <LandDisplayCard
-            key={property.property_id}
-            card={property}
-            link={`/property-Land-Details/${property.property_id}`}
-          />
-        );
-      default:
-        return null;
-    }
-  };
+  switch (property.propertyType) {
+    case "Vehicle":
+      return (
+        <VehicleDisplayCard
+          key={property.property_id}
+          card={property}
+          link={`/property-Vehicle-Details/${property.property_id}`}
+        />
+      );
+    case "House":
+      return (
+        <HouseDisplayCard
+          key={property.property_id}
+          card={property}
+          link={`/property-House-Details/${property.property_id}`}
+        />
+      );
+    case "Land":
+      return (
+        <LandDisplayCard
+          key={property.property_id}
+          card={property}
+          link={`/property-Land-Details/${property.property_id}`}
+        />
+      );
+    default:
+      return null;
+  }
+};
 
   return (
     <div>
@@ -60,7 +62,7 @@ export const BrowserProperty = () => {
       </header>
       <h1 className="property-headline">Hot Items</h1>
       <div className="properties-grid">
-        {data.map((property) => renderCard(property))}
+        {data && data.map((property) => property && renderCard(property))}
       </div>
     </div>
   );

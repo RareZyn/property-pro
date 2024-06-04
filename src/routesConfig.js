@@ -69,7 +69,7 @@ export const routes = [
   // { path: '/property-details', element: <PropertyDetails /> },
   { path: '/property-vehicle-details', element: <PropertyVehicleDetails /> },
   { path: '/property-land-details', element: <PropertyLandDetails /> },
-  { path: '/property-house-details', element: <PropertyHouseDetails /> },
+  { path: '/property-house-details/:id', element: <PropertyHouseDetails /> },
   { path: '/property-details-ownerview', element: <PropertyDetailsOwnerView /> },
   { path: '/publish-property', element: <PublishProperty /> },
   { path: '/browser-property', element: <BrowserProperty /> },

@@ -6,11 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 export const VehicleDisplayCard = ({ card, link }) => {
   const navigate = useNavigate();
+  if (!card) return null;
   return (
     <Link to={link}>
       <div id="prop-card" onClick={() => navigate("/property-Vehicle-Details")}>
         <div id="img-placeholder">
-          <img src={card.image} alt="Image" srcset="" id="img-ph" />
+          <img
+            src={card?.image}
+            alt="Image"
+            id="img-ph"
+            style={{ width: "50px", height: "50px" }}
+          />
         </div>
         <div id="details">
           <div id="details-container">
@@ -21,35 +27,25 @@ export const VehicleDisplayCard = ({ card, link }) => {
               <h4>{card.title}</h4>
             </div>
             <div id="myproperty-location">
-              <FaGauge />
-              Model:{card.vehicle?.model}
+              <FaGauge /> <strong>Model:</strong> {card.vehicle?.model}
             </div>
-            <div id="myproperty-price">
-              <FaTags /> {card.price}
+            <div id="myproperty-price"> <FaTags /> <strong>Price:</strong> RM{card.price}
             </div>
-            <div id="mypropertyicon-content">
-              <div id="property-smallicon">
-                <FaTags />
-                Condition:{card.vehicle?.condition}
-              </div>
-              <div id="property-smallicon">
-                <FaGauge />
-                CC:{card.vehicle?.cc}
-              </div>
+            <div id="property-smallicon">
+              <FaTags /> <strong>Condition:</strong> {card.vehicle?.condition}
             </div>
-            <div id="mypropertyicon-content">
-              <div id="property-smallicon">
-                <FaCalendarDays />
-                Manufactured Year:{card.vehicle?.ManufacturedYear}
-              </div>
-              <div id="property-smallicon">
-                <FaCarSide />
-                Seats: {card.vehicle?.seats}
-              </div>
-              <div id="property-smallicon">
-                <FaCarSide />
-                Seats: {card.vehicle?.mileage}
-              </div>
+            <div id="property-smallicon">
+              <FaGauge /> <strong>CC:</strong> {card.vehicle?.cc}
+            </div>
+            <div id="property-smallicon">
+              <FaCalendarDays /> <strong>Manufactured Year:</strong>{" "}
+              {card.vehicle?.ManufacturedYear}
+            </div>
+            <div id="property-smallicon">
+              <FaCarSide /> <strong>Seats:</strong> {card.vehicle?.seats}
+            </div>
+            <div id="property-smallicon">
+              <FaCarSide /> <strong>Mileage:</strong> {card.vehicle?.mileage}
             </div>
           </div>
         </div>

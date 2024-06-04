@@ -6,11 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 export const HouseDisplayCard = ({ card, link }) => {
   const navigate = useNavigate();
+  if (!card) return null;
   return (
     <Link to={link}>
       <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
         <div id="img-placeholder">
-          <img src={card.image} alt="Image" srcset="" id="img-ph" />
+          <img
+            src={card?.image}
+            alt="Image"
+            id="img-ph"
+            style={{ width: "50px", height: "50px" }}
+          />
         </div>
         <div id="details">
           <div id="details-container">
@@ -22,29 +28,24 @@ export const HouseDisplayCard = ({ card, link }) => {
             </div>
             <div id="myproperty-location">
               <FaLocationDot />
-              {card.house?.location}
+              Location:{card.house?.location}
             </div>
             <div id="myproperty-price">
-              <FaTags />
-              {card.price}
+              <FaTags /> Price:RM{card.price}
             </div>
-            <div id="mypropertyicon-content">
               <div id="property-smallicon">
-                <FaHouse />
-                {card.house?.size}
+                <FaHouse /> Size:{card.house?.size}ft
               </div>
               <div id="property-smallicon">
-                <FaBed /> {card.house?.bedrooms}
-              </div>
-            </div>
-            <div id="mypropertyicon-content">
-              <div id="property-smallicon">
-                <FaLayerGroup /> {card.house?.rooms}
+                <FaBed /> Bedrooms: {card.house?.bedrooms}
               </div>
               <div id="property-smallicon">
-                <FaShower /> {card.house?.bathrooms}
+                <FaLayerGroup /> Rooms:{card.house?.rooms}
               </div>
-            </div>
+              <div id="property-smallicon">
+                <FaShower /> Bathrooms:{card.house?.bathrooms}
+              </div>
+
           </div>
         </div>
       </div>
