@@ -2,17 +2,39 @@ import React, { useState } from 'react';
 import { FaLeftRight, FaFileCircleQuestion, FaLocationDot } from "react-icons/fa6";
 import {  FaCity, } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import './PropertyDetails.css';
+import { useQuery } from 'react-query';
+import { getProperty } from '../../utils/api.js';
+import { PuffLoader } from 'react-spinners';
 
 export const PropertyLandDetails = () => {
   const [isSaved, setIsSaved] = useState(false);
+  const { pathname } = useLocation(); //complete path of our page
+  const id = pathname.split("/").slice(-1)[0];
+  console.log(id);
+  const { data, isError, isLoading } = useQuery(["Property", id], () =>
+    getProperty(id)
+  );
+  console.log(data);
 
   const handleSaveClick = () => {
     setIsSaved(!isSaved);
     // Here you should add logic to save the property details
   };
+
+  if (isLoading) {
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div>Error while fetching the data</div>;
+  }
 
   return (
     <div className="PropertyDetailsContainer">
@@ -56,71 +78,63 @@ export const PropertyLandDetails = () => {
 
         <div className="property-fist-row">
           <div className="title-div">
-            <h1 id="title-property">Damansara Land</h1>
-            <div className="share-content"><PopupShare /></div>
+            <h1 id="title-property">{data.title}</h1>
+            <div className="share-content">
+              <PopupShare />
+            </div>
           </div>
           <div className="property-second-row">
-          
-          <div className="icon-with-text">
+            <div className="icon-with-text">
               <div className="property-icon">
                 <FaLeftRight />
               </div>
-              <div className="text">
-                5000 sqft
-              </div>
+              <div className="text">{data.land?.area} sqft</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaCity />
               </div>
-              <div className="text">
-                Residential
-              </div>
+              <div className="text">{data.land?.land_type}</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaFileCircleQuestion />
               </div>
-              <div className="text">
-                Freehold
-              </div>
+              <div className="text">{data.land?.ownership_type}</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaLocationDot />
               </div>
-              <div className="text">
-                Selangor
-              </div>
+              <div className="text">{data.land?.location}</div>
             </div>
           </div>
 
           <div className="property-desc">
-            <h3>Description of the product:</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <h3>Description of the Land:</h3>
+            <p>{data.description}</p>
           </div>
 
           <div className="property-third-row">
             <Link to="/make-payment">
-              <button id="button-buy">RM 50,000</button>
+              <button id="button-buy">RM {data.price}</button>
             </Link>
-            <div className='save'>
-            <button
-              id="saved-button"
-              style={{
-                backgroundColor: isSaved ? "orange" : "#fffdef",
-                color: isSaved ? "white" : "black",
-              }}
-              onClick={handleSaveClick}
-            >
-              <img src={require("../../Res/image/save.png")} alt="Save" />
-              {isSaved ? "SAVED" : "SAVE"}
-            </button></div>
+            <div className="save">
+              <button
+                id="saved-button"
+                style={{
+                  backgroundColor: isSaved ? "orange" : "#fffdef",
+                  color: isSaved ? "white" : "black",
+                }}
+                onClick={handleSaveClick}
+              >
+                <img src={require("../../Res/image/save.png")} alt="Save" />
+                {isSaved ? "SAVED" : "SAVE"}
+              </button>
+            </div>
           </div>
 
           <div className="property-fourth-row">
@@ -129,25 +143,20 @@ export const PropertyLandDetails = () => {
 
               <div className="info-section">
                 <div className="info-label">Location</div>
-                <div className="info-value">Damansara, Selangor</div>
+                <div className="info-value">{data.land?.location}</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Property Type</div>
-                <div className="info-value">Land For Sale</div>
+                <div className="info-value">{data.land?.land_type}</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Land Size</div>
-                <div className="info-value">2120 sqft</div>
+                <div className="info-value">{data.land?.area}</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Land Type</div>
-                <div className="info-value">Development Land</div>
+                <div className="info-value">{data.land?.ownership_type}</div>
               </div>
-              <div className="info-section">
-                <div className="info-label">Tenure</div>
-                <div className="info-value">Freeholc</div>
-              </div>
-              
             </div>
 
             <div className="seller-info">
@@ -158,10 +167,10 @@ export const PropertyLandDetails = () => {
                   src={require("../../Res/image/user profile.png")}
                 />
                 <div className="seller-detail">
-                  <h4>Razin</h4>
-                  <p>Kuala Lumpur</p>
-                  <p>user@gmail.com</p>
-                  <p>0123457693</p>
+                  <h4>{data.seller.username}</h4>
+                  <p>{data.seller.location}</p>
+                  <p>{data.seller.email}</p>
+                  <p>{data.seller.phoneNumber}</p>
                   <br />
                 </div>
               </div>
@@ -174,13 +183,6 @@ export const PropertyLandDetails = () => {
                 <button id="seller-infobutton">Chat</button>
               </Link>
             </div>
-          </div>
-
-          <div className="comment-div">
-            <h1>Comment</h1>
-            <ReplyCard />
-            <ReplyCard />
-            <ReplyCard />
           </div>
         </div>
       </div>

@@ -2,24 +2,44 @@ import React, { useState } from 'react';
 import { FaHouse } from "react-icons/fa6";
 import { FaBed, FaShower, FaLayerGroup, FaImages } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import './PropertyDetails.css';
+import { useQuery } from 'react-query';
+import { getProperty } from '../../utils/api.js';
+import { PuffLoader } from 'react-spinners';
 
 export const PropertyHouseDetails = () => {
   const [isSaved, setIsSaved] = useState(false);
+    const { pathname } = useLocation(); //complete path of our page
+    const id = pathname.split("/").slice(-1)[0];
+    console.log(id);
+    const { data, isError, isLoading } = useQuery(["Property", id], () =>
+      getProperty(id)
+    );
+    console.log(data);
 
   const handleSaveClick = () => {
     setIsSaved(!isSaved);
     // Here you should add logic to save the property details
   };
 
+    if (isLoading) {
+      return (
+        <div className="loaderContainer">
+          <PuffLoader />
+        </div>
+      );
+    }
+
+    if (isError) {
+      return <div>Error while fetching the data</div>;
+    }
+
   return (
     <div className="PropertyDetailsContainer">
-    
       <div className="property-image-container">
-
         <img
           id="mainproperty-image"
           src={require("../../Res/image/house.jpeg")}
@@ -59,8 +79,10 @@ export const PropertyHouseDetails = () => {
 
         <div className="property-fist-row">
           <div className="title-div">
-            <h1 id="title-property">Petaling Jaya House</h1>
-            <div className="share-content"><PopupShare /></div>
+            <h1 id="title-property">{data.title}</h1>
+            <div className="share-content">
+              <PopupShare />
+            </div>
           </div>
 
           <div className="property-second-row">
@@ -68,63 +90,46 @@ export const PropertyHouseDetails = () => {
               <div className="property-icon">
                 <FaBed />
               </div>
-              <div className="text">
-                4 Bed
-              </div>
+              <div className="text">{data.house?.rooms} Bed</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaShower />
               </div>
-              <div className="text">
-                4 Bath
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaLayerGroup />
-              </div>
-              <div className="text">
-                2 storey
-              </div>
+              <div className="text">{data.house?.bathrooms} Bath</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaHouse />
               </div>
-              <div className="text">
-                2120 sqft
-              </div>
+              <div className="text">{data.house?.size}</div>
             </div>
           </div>
 
           <div className="property-desc">
-            <h3>Description of the product:</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <h3>Description of the House:</h3>
+            <p>{data.description}</p>
           </div>
 
           <div className="property-third-row">
             <Link to="/make-payment">
-              <button id="button-buy"
-              >RM 50,000</button>
+              <button id="button-buy">RM {data.price}</button>
             </Link>
-            <div className='save'>
-            <button
-              id="saved-button"
-              style={{
-                backgroundColor: isSaved ? "orange" : "#fffdef",
-                color: isSaved ? "white" : "black",
-              }}
-              onClick={handleSaveClick}
-            >
-              <img src={require("../../Res/image/save.png")} alt="Save" />
-              {isSaved ? "SAVED" : "SAVE"}
-            </button></div>
+            <div className="save">
+              <button
+                id="saved-button"
+                style={{
+                  backgroundColor: isSaved ? "orange" : "#fffdef",
+                  color: isSaved ? "white" : "black",
+                }}
+                onClick={handleSaveClick}
+              >
+                <img src={require("../../Res/image/save.png")} alt="Save" />
+                {isSaved ? "SAVED" : "SAVE"}
+              </button>
+            </div>
           </div>
 
           <div className="property-fourth-row">
@@ -133,31 +138,21 @@ export const PropertyHouseDetails = () => {
 
               <div className="info-section">
                 <div className="info-label">Location</div>
-                <div className="info-value">Petaling Jaya, Selangor</div>
-              </div>
-              <div className="info-section">
-                <div className="info-label">Property Type</div>
-                <div className="info-value">Rumah Teres 2 Tingkat Dijual</div>
+                <div className="info-value">{data.house?.location}</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Floor Size</div>
-                <div className="info-value">2120 sqft</div>
+                <div className="info-value">{data.house?.size}</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Number of bedrooms</div>
-                <div className="info-value">4 bedrooms</div>
+                <div className="info-value">{data.house?.rooms} bedrooms</div>
               </div>
               <div className="info-section">
                 <div className="info-label">Number of bathrooms</div>
-                <div className="info-value">3 bathrooms</div>
-              </div>
-              <div className="info-section">
-                <div className="info-label">Furnished</div>
-                <div className="info-value">Unfurnished</div>
-              </div>
-              <div className="info-section">
-                <div className="info-label">Floors</div>
-                <div className="info-value">2 Storey</div>
+                <div className="info-value">
+                  {data.house?.bathrooms} bathrooms
+                </div>
               </div>
             </div>
 
@@ -169,10 +164,10 @@ export const PropertyHouseDetails = () => {
                   src={require("../../Res/image/user profile.png")}
                 />
                 <div className="seller-detail">
-                  <h4>Razin</h4>
-                  <p>Kuala Lumpur</p>
-                  <p>user@gmail.com</p>
-                  <p>0123457693</p>
+                  <h4>{data.seller.username}</h4>
+                  <p>{data.seller.location}</p>
+                  <p>{data.seller.email}</p>
+                  <p>{data.seller.phoneNumber}</p>
                   <br />
                 </div>
               </div>
@@ -185,13 +180,6 @@ export const PropertyHouseDetails = () => {
                 <button id="seller-infobutton">Chat</button>
               </Link>
             </div>
-          </div>
-
-          <div className="comment-div">
-            <h1>Comment</h1>
-            <ReplyCard />
-            <ReplyCard />
-            <ReplyCard />
           </div>
         </div>
       </div>

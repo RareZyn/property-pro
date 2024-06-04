@@ -1,6 +1,35 @@
 const asyncHandler = require("express-async-handler");
 const { prisma } = require("../config/prismaConfig.js");
 
+const getProperty = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const property = await prisma.property.findUnique({
+      where: { property_id: id }, // Use id directly without parsing to Int
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json(property);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve property: " + error.message });
+  }
+});
+
 const getAllProperties = asyncHandler(async (req, res) => {
   try {
     const properties = await prisma.property.findMany({
@@ -178,5 +207,6 @@ module.exports = {
   addLand,
   addVehicle,
   addHouse,
-  getAllProperties
+  getAllProperties,
+  getProperty
 };

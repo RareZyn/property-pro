@@ -188,13 +188,6 @@ export const PropertyHouseDetailsOverview = () => {
 
             
           </div>
-
-          <div className="comment-div">
-            <h1>Comment</h1>
-            <ReplyCard />
-            <ReplyCard />
-            <ReplyCard />
-          </div>
         </div>
       </div>
     </div>
