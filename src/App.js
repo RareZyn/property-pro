@@ -14,6 +14,7 @@ import { UserContext } from "./context/UserContext.js";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ForumProvider } from "./context/ForumContext.js";
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
@@ -52,6 +53,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Router>
           <ChatProvider>
+          <ForumProvider>
             <NavHeaderWrapper />
             <Routes>
               {routes.map((route, index) => (
@@ -88,6 +90,7 @@ function App() {
               ))}
             </Routes>
             <Footer />
+          </ForumProvider>
           </ChatProvider>
         </Router>
         <ToastContainer />

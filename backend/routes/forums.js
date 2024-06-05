@@ -1,12 +1,14 @@
 const router = require('express').Router();
 let Forum = require('../models/forum.model');
 
+// Get all forums
 router.route('/').get((req, res) => {
     Forum.find()
         .then(forums => res.json(forums))
         .catch(err => res.status(400).json('Error: ' +err))
 });
 
+// Create new forum
 router.route('/create').post((req, res) => {
     Forum.create(req.body)
         .then(forum => res.json(forum))

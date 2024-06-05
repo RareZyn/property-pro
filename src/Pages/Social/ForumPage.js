@@ -10,12 +10,14 @@ const ForumPage = () => {
     <div className="ForumPage">
       <ForumHeader />
       <div id="ForumContent">
-      <div className="CreatePostContainer"> 
-      <CreatePost></CreatePost>
+        <div className="CreatePostContainer"> 
+          <CreatePost></CreatePost>
+        </div>
+        <div className="ForumContainer">
+          <PostCard/>
+          <PostCard></PostCard>
+        </div>
       </div>
-      <div className="ForumContainer">
-      <PostCard/>
-      <PostCard></PostCard></div></div>
     </div>
   );
   // l

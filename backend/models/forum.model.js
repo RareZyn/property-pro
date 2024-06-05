@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ForumLike = require('./forum-like.model')
 
 const forumSchema = new Schema({
     userID: {
@@ -12,7 +11,7 @@ const forumSchema = new Schema({
         type: String,
         required: [true, 'Text forum is required'],
         trim: true,
-        minglength: [1, 'Please enter at least 1 character']
+        minlength: [1, 'Please enter at least 1 character']
     },
     comments: [this],
     likes: [{
