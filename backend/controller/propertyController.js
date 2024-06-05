@@ -203,10 +203,85 @@ const addHouse = asyncHandler(async (req, res) => {
   }
 });
 
+
+// Function to handle property purchase
+const buyProperty = asyncHandler(async (req, res) => {
+  const { id } = req.body; // Correct field name
+  const { propertyID } = req.params;
+
+  console.log(`Property ID: ${propertyID}, User ID: ${id}`); // Debugging log
+
+  try {
+    const property = await prisma.property.findUnique({
+      where: { property_id: propertyID },
+    });
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    if (property.buyerID) {
+      return res.status(400).json({ message: "Property is already sold" });
+    }
+
+    const updatedProperty = await prisma.property.update({
+      where: { property_id: propertyID },
+      data: {
+        buyerID: id,
+      },
+    });
+
+    await prisma.users.update({
+      where: { id: id },
+      data: {
+        properties_owned: {
+          connect: { property_id: propertyID },
+        },
+      },
+    });
+
+    res.status(200).json({
+      message: "Property purchased successfully",
+      property: updatedProperty,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to purchase property: " + error.message });
+  }
+});
+const availableProperties = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        buyer: null, // Filter properties where buyerID is null or undefined
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+
+    console.log("Properties:", properties); // Log properties fetched by Prisma
+
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve available properties" });
+  }
+});
+
+
 module.exports = {
   addLand,
   addVehicle,
   addHouse,
   getAllProperties,
-  getProperty
+  getProperty,
+  buyProperty,
+  availableProperties,
 };

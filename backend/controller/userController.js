@@ -50,9 +50,8 @@ const addUser = asyncHandler(async (req, res) => {
 });
 
 
-const getAllUsers = asyncHandler(async (req, res) => {
 
-  
-});
+module.exports = { addUser};
 
-module.exports = { addUser };
+
+

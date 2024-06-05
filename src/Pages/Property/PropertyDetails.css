@@ -216,29 +216,6 @@ h2 {
 }
 
 
-#saved-button {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-  border: none;
-  background: none;
-  font-weight: 600;
-  font: "Roboto";
-  height: 40px;
-  background-color: none;
-  padding: 0px 15px;
-  border-radius: 15px;
-  font-size: 12px;
-  justify-content: center;
-  margin-right: 60px;
-  margin-left: 20px;
-  cursor: pointer;  
-  transition: background-color 0.3s ease;
-}
-
-.save{
-padding :10px;
-}
 #saved-button img {
   margin-right: 5px;
   width: 30px;

@@ -250,3 +250,18 @@ form {
 #home-button {
   width: 100%;
 }
+
+#detail-property {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center horizontally */
+  text-align: left; /* Align text to the left */
+  width: 100%; /* Ensure the div takes full width */
+}
+
+#detail-property h2 {
+  margin: 0; /* Remove default margins */
+  text-align: left; /* Align text to the left */
+  width: 30%; 
+}
