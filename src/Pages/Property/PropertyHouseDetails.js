@@ -1,41 +1,57 @@
-import React, { useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import { FaHouse } from "react-icons/fa6";
-import { FaBed, FaShower, FaLayerGroup, FaImages } from "react-icons/fa";
-import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
+import { FaBed, FaShower } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import './PropertyDetails.css';
 import { useQuery } from 'react-query';
 import { getProperty } from '../../utils/api.js';
 import { PuffLoader } from 'react-spinners';
+import { UserContext } from "../../context/UserContext.js";
+import { getUser } from "../../util.js";
+import SavedButton from "../../hooks/SavedButton.jsx";
+
 
 export const PropertyHouseDetails = () => {
-  const [isSaved, setIsSaved] = useState(false);
-    const { pathname } = useLocation(); //complete path of our page
-    const id = pathname.split("/").slice(-1)[0];
-    console.log(id);
-    const { data, isError, isLoading } = useQuery(["Property", id], () =>
-      getProperty(id)
-    );
-    console.log(data);
+   const { otherID } = useContext(UserContext);
+   const { pathname } = useLocation(); //complete path of our page
+   const id = pathname.split("/")[2];
 
-  const handleSaveClick = () => {
-    setIsSaved(!isSaved);
-    // Here you should add logic to save the property details
-  };
+   const { data, isError, isLoading } = useQuery(["Property", id], () =>
+     getProperty(id)
+   );
 
-    if (isLoading) {
-      return (
-        <div className="loaderContainer">
-          <PuffLoader />
-        </div>
-      );
-    }
+   const { userToken } = useContext(UserContext);
+   const [user, setUser] = useState(null);
+   useEffect(() => {
+     const fetchUser = async () => {
+       try {
+         const userData = await getUser(userToken);
+         setUser(userData);
+       } catch (error) {
+         // Handle the error appropriately in your UI
+         console.error("Failed to fetch user data:", error);
+       }
+     };
 
-    if (isError) {
-      return <div>Error while fetching the data</div>;
-    }
+     if (userToken) {
+       fetchUser();
+     } else {
+       console.log("No user token");
+     }
+   }, [userToken]);
+
+   if (isLoading) {
+     return (
+       <div className="loaderContainer">
+         <PuffLoader />
+       </div>
+     );
+   }
+
+   if (isError) {
+     return <div>Error while fetching the data</div>;
+   }
 
   return (
     <div className="PropertyDetailsContainer">
@@ -114,21 +130,11 @@ export const PropertyHouseDetails = () => {
           </div>
 
           <div className="property-third-row">
-            <Link to="/make-payment">
+            <Link to={`/${data.house.propertyID}/make-payment`}>
               <button id="button-buy">RM {data.price}</button>
             </Link>
             <div className="save">
-              <button
-                id="saved-button"
-                style={{
-                  backgroundColor: isSaved ? "orange" : "#fffdef",
-                  color: isSaved ? "white" : "black",
-                }}
-                onClick={handleSaveClick}
-              >
-                <img src={require("../../Res/image/save.png")} alt="Save" />
-                {isSaved ? "SAVED" : "SAVE"}
-              </button>
+              <SavedButton />
             </div>
           </div>
 

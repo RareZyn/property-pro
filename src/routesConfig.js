@@ -48,7 +48,7 @@ export const routes = [
   { path: "/HomePage", element: <HomePage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/login", element: <LoginPage /> },
-  { path: "/make-payment", element: <MakePaymentPage /> },
+  { path: "/:id/make-payment", element: <MakePaymentPage /> },
   { path: "/chat-popup", element: <ChatPopup /> },
   { path: "/register-broker", element: <RegisterBroker /> },
   { path: "/verify-property-vehicle", element: <VerifyPropertyVehicle /> },
@@ -89,26 +89,27 @@ export const routes = [
   { path: "/create-post", element: <CreatePost /> },
   { path: "/login-broker", element: <LoginBroker /> },
   { path: "/verify-property-homepage", element: <VerifyPropertyHome /> },
-  { path: "/choose-bank", element: <ChooseBank /> },
-  { path: "/make-payment-debit-online", element: <MakePaymentDebitOnline /> },
-  { path: "/make-payment-success", element: <MakePaymentSuccess /> },
+  { path: "/:id/choose-bank", element: <ChooseBank /> },
+  {
+    path: "/:id/make-payment-debit-online",
+    element: <MakePaymentDebitOnline />,
+  },
+  { path: "/:id/make-payment-success", element: <MakePaymentSuccess /> },
   { path: "/property-details-overview", element: <PropertyDetailsOverview /> },
   {
-    path: "/property-housedetails-overview/:id",
+    path: "/:id/property-housedetails-overview",
     element: <PropertyHouseDetailsOverview />,
   },
   {
-    path: "/property-landdetails-overview/:id",
+    path: "/:id/property-landdetails-overview",
     element: <PropertyLandDetailsOverview />,
   },
   {
-    path: "/property-vehicledetails-overview/:id",
+    path: "/:id/property-vehicledetails-overview",
     element: <PropertyVehicleDetailsOverview />,
   },
   { path: "/image-slideshow", element: <ImageSlideshow /> },
   { path: "*", element: <h1>PAGE NOT FOUND</h1> },
-  { path: "/browser-property", element: <BrowserProperty>
-  
-  </BrowserProperty> },
+  { path: "/browser-property", element: <BrowserProperty></BrowserProperty> },
 ];
 

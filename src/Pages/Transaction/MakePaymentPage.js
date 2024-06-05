@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./MakePaymentPage.css";
 
 export const MakePaymentPage = () => {
+      const { pathname } = useLocation(); //complete path of our page
+      const id = pathname.split("/")[1];
   return (
     <div className="MakePaymentPage">
       <div className="wrapper">
@@ -28,14 +30,14 @@ export const MakePaymentPage = () => {
           </div>
 
           <div className="button-container">
-            <Link to="/choose-bank">
+            <Link to={`/${id}/choose-bank`}>
               <input
                 type="button"
                 value="Online Banking"
                 className="submit-btn vertical-button"
               />
             </Link>
-            <Link to="/make-payment-debit-online">
+            <Link to={`/${id}/make-payment-debit-online`}>
               <input
                 type="button"
                 value="Card"

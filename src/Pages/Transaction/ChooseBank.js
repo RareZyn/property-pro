@@ -1,7 +1,10 @@
 import "./MakePaymentPage.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const ChooseBank = () => {
+      const { pathname } = useLocation(); //complete path of our page
+      const id = pathname.split("/")[1];
+
   return (
     <div className="ChooseBank">
       <div className="wrapper">
@@ -40,7 +43,7 @@ export const ChooseBank = () => {
                 </select>
               </div>
             </div>
-            <Link to="/make-payment-success">
+            <Link to={`/${id}/make-payment-success`}>
               <input type="submit" value="submit" className="submit-btn" />
             </Link>
           </form>

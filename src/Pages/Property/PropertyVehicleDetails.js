@@ -1,30 +1,44 @@
 import "./PropertyDetails.css";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FaCarSide, FaGauge, FaCalendarDays } from "react-icons/fa6";
 import { FaTags } from "react-icons/fa";
-import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link, useLocation } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
-import { UserContext } from "../../context/UserContext.js";
 import { useQuery } from "react-query";
-import { getProperty } from "../../utils/api.js";
+import { buyProperty, getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
+import { UserContext } from "../../context/UserContext.js";
+import { getUser} from "../../util.js";
+import SavedButton from "../../hooks/SavedButton.jsx";
 
 export const PropertyVehicleDetails = () => {
-  const [isSaved, setIsSaved] = useState(false);
   const { otherID } = useContext(UserContext);
   const { pathname } = useLocation(); //complete path of our page
-  const id = pathname.split("/").slice(-1)[0];
-  console.log(id);
+   const id = pathname.split("/")[2];
+
   const { data, isError, isLoading } = useQuery(["Property", id], () =>
     getProperty(id)
   );
-  console.log(data);
 
-  const handleSaveClick = () => {
-    setIsSaved(!isSaved);
-    // Here you should add logic to save the property details
-  };
+  const {userToken} = useContext(UserContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
 
   if (isLoading) {
     return (
@@ -85,7 +99,6 @@ export const PropertyVehicleDetails = () => {
               <PopupShare />
             </div>
           </div>
-
           <div className="property-second-row">
             <div className="icon-with-text">
               <div className="property-icon">
@@ -115,31 +128,18 @@ export const PropertyVehicleDetails = () => {
               <div className="text">{data.vehicle?.condition}</div>
             </div>
           </div>
-
           <div className="property-desc">
             <h3>Description of the Vehicle:</h3>
             <p>{data.desc}</p>
           </div>
-
           <div className="property-third-row">
-            <Link to="/make-payment">
+            <Link to={`/${data.vehicle.propertyID}/make-payment`}>
               <button id="button-buy">RM {data.price}</button>
             </Link>
             <div className="save">
-              <button
-                id="saved-button"
-                style={{
-                  backgroundColor: isSaved ? "orange" : "#fffdef",
-                  color: isSaved ? "white" : "black",
-                }}
-                onClick={handleSaveClick}
-              >
-                <img src={require("../../Res/image/save.png")} alt="Save" />
-                {isSaved ? "SAVED" : "SAVE"}
-              </button>
+              <SavedButton />
             </div>
           </div>
-
           <div className="property-fourth-row">
             <div className="info-page-container">
               <h2>Property Information</h2>

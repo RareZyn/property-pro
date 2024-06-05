@@ -1,6 +1,12 @@
+import { useQuery } from "react-query";
 import "./MakePaymentDebitOnline.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getProperty } from "../../utils/api";
 export const MakePaymentDebitOnline = () => {
+    const { pathname } = useLocation(); //complete path of our page
+    const id = pathname.split("/")[1];
+
+
   return (
     <div className="MakePaymentDebitOnline">
       <div className="wrapper">
@@ -44,7 +50,7 @@ export const MakePaymentDebitOnline = () => {
               </section>
             </div>
             <div className="sumbit-div">
-              <Link to="/make-payment-success" id="nav-submit">
+              <Link to={`/${id}/make-payment-success`} id="nav-submit">
                 <input type="submit" text="submit" id="card-submit" />
               </Link>
             </div>

@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@mantine/core": "^7.10.1",
+    "@mantine/form": "^7.10.1",
+    "@mantine/hooks": "^7.10.1",
     "@tanstack/react-query-devtools": "^5.40.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

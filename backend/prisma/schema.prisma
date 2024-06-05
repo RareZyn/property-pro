@@ -36,23 +36,23 @@ enum PropertyType {
 }
 
 model Property {
-  property_id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  title         String      
-  sellerID      String      @db.ObjectId
-  description   String
-  propertyType  PropertyType
-  price         Float
-  brokerID      String?      @db.ObjectId
-  buyerID       String?     @db.ObjectId
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  image         String
-  seller        users       @relation(fields: [sellerID], references: [id], name: "UserProperties")
-  broker        Broker?      @relation(fields: [brokerID], references: [broker_id ])
-  buyer         users?      @relation(fields: [buyerID], references: [id], name: "UserPurchases")
-  vehicle       Vehicle?
-  land          Land?
-  house         House?
+  property_id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  title              String      
+  sellerID           String      @db.ObjectId
+  description        String
+  propertyType       PropertyType
+  price              Float
+  brokerID           String?      @db.ObjectId
+  buyerID            String?     @db.ObjectId
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  image              String
+  seller             users       @relation(fields: [sellerID], references: [id], name: "UserProperties")
+  broker             Broker?      @relation(fields: [brokerID], references: [broker_id ])
+  buyer              users?      @relation(fields: [buyerID], references: [id], name: "UserPurchases")
+  vehicle            Vehicle?
+  land               Land?
+  house              House?
 
   @@index([title], name: "title_idx")
   @@index([propertyType], name: "propertyType_idx")
