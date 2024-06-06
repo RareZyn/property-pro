@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const forumSchema = new Schema({
     userID: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: [true, 'userID is required'],
-        trim: true
     },
     textForum: {
         type: String,

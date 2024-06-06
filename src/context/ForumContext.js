@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import axios from 'axios';
 
 export const ForumContext = createContext();
@@ -6,6 +6,7 @@ export const ForumContext = createContext();
 export const ForumProvider = ({ children }) => {
     const [forums, setForums] = useState([]);
     const [currentForum, setCurrentForum] = useState(null);
+    const [ loading, setLoading ] = useState(true);
 
     const fetchForums = async () => {
         try {
@@ -19,11 +20,12 @@ export const ForumProvider = ({ children }) => {
     const createForum = async (forumData) => {
         try {
           const response = await axios.post('http://localhost:5000/forum/create', forumData);
-          setForums((prevForums) => [...prevForums, response.data]);
+          const newForum = response.data;
+          setForums((prevForums) => [...prevForums, newForum]);
           console.log(forumData);
         } catch (error) {
           console.error('Error creating forum:', error);
-        }
+        } 
     };
 
     const addComment = async (forumId, comment) => {
@@ -49,12 +51,8 @@ export const ForumProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        fetchForums();
-    }, []);
-
     return (
-        <ForumContext.Provider value={{ forums, currentForum, setCurrentForum, createForum, addComment, toggleLike }}>
+        <ForumContext.Provider value={{ forums, currentForum, fetchForums, setCurrentForum, createForum, addComment, toggleLike,loading,setLoading }}>
             {children}
         </ForumContext.Provider>
     );
