@@ -3,6 +3,7 @@ import "./LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie'
+import { Bounce, toast } from "react-toastify";
 
 export const LoginPage = () => {
   const [formValues, setFormValues] = useState({
@@ -28,10 +29,30 @@ export const LoginPage = () => {
     try{
       const res = await axios.post('http://localhost:5000/users/login', formValues, {withCredentials:true});
       if(res.data === 'The account does not exist'){
-        alert("The account is not existed");
+        toast.error('The account is not existed', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          });
       }
       else if(res.data === 'The password is incorrect'){
-        alert('The password is incorrect');
+        toast.error('The password is incorrect', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          });
       }
       else{
         // Poll for the cookie existence

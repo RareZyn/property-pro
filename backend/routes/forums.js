@@ -1,16 +1,24 @@
 const router = require('express').Router();
 let Forum = require('../models/forum.model');
 
-router.route('/').get((req, res) => {
-    Forum.find()
-        .then(forums => res.json(forums))
-        .catch(err => res.status(400).json('Error: ' +err))
+// Get all forums
+router.route('/').get(async (req, res) => {
+    try {
+        const forums = await Forum.find().populate('userID');
+        res.json(forums);
+    } catch (err) {
+        res.status(400).json('Error: ' + err);
+    }
 });
 
-router.route('/create').post((req, res) => {
-    Forum.create(req.body)
-        .then(forum => res.json(forum))
-        .catch(err => res.json(err));
+// Create new forum
+router.route('/create').post(async (req, res) => {
+    try {
+        const forum = await Forum.create(req.body);
+        res.json(forum);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
 
 // Get a specific forum by ID

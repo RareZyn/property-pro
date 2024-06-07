@@ -128,12 +128,12 @@ export const Chat = ({userID}) => {
 
         {chatRooms.map(room => (
           <li key={room._id} onClick={() => handleChatListClick(0, room)} className={currentChatRoom === room ? 'active' : ''}>
-          <img src={require("../../Res/image/user profile.png")} alt="User profile" />
-          <div>
-            <h1>{room.user1.username}</h1>
-            <p>{room.chats[room.chats.length - 1].textChat}</p>
-          </div>
-        </li>
+            <img src={require("../../Res/image/user profile.png")} alt="User profile" />
+            <div>
+              <h1>{room.user1.username}</h1>
+              <p>{room.chats[room.chats.length - 1].textChat}</p>
+            </div>
+          </li>
         ))}
 
         {/* <li onClick={() => handleChatListClick(0)} className={activeChatIndex === 0 ? 'active' : ''}>
