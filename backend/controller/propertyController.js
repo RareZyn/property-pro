@@ -34,7 +34,8 @@ const addLand = asyncHandler(async (req, res) => {
     area,
     location,
     land_type,
-    ownership_type
+    ownership_type,
+    file
   } = req.body;
 
   // Validate propertyType
@@ -56,6 +57,7 @@ const addLand = asyncHandler(async (req, res) => {
     seller: {
       connect: { id: sellerID },
     },
+    file
   };
 
   try {
@@ -97,6 +99,7 @@ const addVehicle = asyncHandler(async (req, res) => {
     ManufacturedYear,
     cc,
     condition,
+    file
   } = req.body;
 
   const propertyData = {
@@ -105,9 +108,11 @@ const addVehicle = asyncHandler(async (req, res) => {
     propertyType,
     price,
     images,
+    file,
     seller: {
       connect: { id: sellerID },
     }
+    
   };
 
   const property = await prisma.property.create({
@@ -144,6 +149,7 @@ const addHouse = asyncHandler(async (req, res) => {
     location,
     rooms,
     bathrooms,
+    file
   } = req.body;
 
   try {
@@ -160,6 +166,7 @@ const addHouse = asyncHandler(async (req, res) => {
       propertyType,
       price,
       images,
+      file,
       seller: {
         connect: { id: sellerID },
       },

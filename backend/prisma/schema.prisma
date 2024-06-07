@@ -54,6 +54,7 @@ model Property {
   vehicle            Vehicle?
   land               Land?
   house              House?
+  file               String[] 
 
   @@index([title], name: "title_idx")
   @@index([propertyType], name: "propertyType_idx")

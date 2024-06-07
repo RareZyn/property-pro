@@ -28,6 +28,7 @@ export const PublishProperty = () => {
     location: "",
     land_type: "",
     ownership_type: "",
+    file: [],
   });
 
   const [houseDetails, setHouseDetails] = useState({
@@ -41,6 +42,7 @@ export const PublishProperty = () => {
     location: "",
     rooms: "",
     bathrooms: "",
+    file: [],
   });
 
   const [vehicleDetails, setVehicleDetails] = useState({
@@ -58,6 +60,7 @@ export const PublishProperty = () => {
     ManufacturedYear: 0,
     cc: 0,
     condition: "",
+    file: [],
   });
 
   useEffect(() => {
@@ -92,53 +95,112 @@ export const PublishProperty = () => {
     }
   }, [userToken]);
 
-const uploadedImagesRef = useRef([]);
+  //handle image to upload
+  const uploadedImagesRef = useRef([]);
 
-const handleFileChange = async (event) => {
-  const selectedFiles = event.target.files;
-  if (selectedFiles.length > 0) {
-    const storageRef = firebase.storage().ref();
-    const promises = [];
+  const handleFileChange = async (event) => {
+    const selectedFiles = event.target.files;
+    if (selectedFiles.length > 0) {
+      const storageRef = firebase.storage().ref("uploaded_image");
+      const promises = [];
 
-    Array.from(selectedFiles).forEach((file) => {
-      const fileRef = storageRef.child(file.name);
-      const uploadTask = fileRef.put(file);
+      Array.from(selectedFiles).forEach((file) => {
+        const fileRef = storageRef.child(file.name);
+        const uploadTask = fileRef.put(file);
 
-      promises.push(
-        uploadTask.then((snapshot) => {
-          return snapshot.ref.getDownloadURL();
-        })
-      );
-    });
-
-    try {
-      const downloadURLs = await Promise.all(promises);
-      console.log(downloadURLs);
-
-      // Store the URLs in the ref
-      uploadedImagesRef.current = [
-        ...uploadedImagesRef.current,
-        ...downloadURLs,
-      ];
-
-      // Display uploaded images in a <div>
-      const imagesDiv = document.getElementById("uploaded-images");
-
-      downloadURLs.forEach((url) => {
-        const img = document.createElement("img");
-        img.src = url;
-        img.alt = "Uploaded Image";
-        img.style.width = "200px"; // Adjust width as needed
-        img.style.marginRight = "10px"; // Optional: Add some margin between images
-        imagesDiv.appendChild(img);
+        promises.push(
+          uploadTask.then((snapshot) => {
+            return snapshot.ref.getDownloadURL();
+          })
+        );
       });
-    } catch (error) {
-      console.error("Error uploading files:", error);
+
+      try {
+        const downloadURLs = await Promise.all(promises);
+        console.log(downloadURLs);
+
+        // Store the URLs in the ref
+        uploadedImagesRef.current = [
+          ...uploadedImagesRef.current,
+          ...downloadURLs,
+        ];
+
+        // Display uploaded images in a <div>
+        const imagesDiv = document.getElementById("uploaded-images");
+
+        downloadURLs.forEach((url) => {
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = "Uploaded Image";
+          img.style.width = "200px"; // Adjust width as needed
+          img.style.marginRight = "10px"; // Optional: Add some margin between images
+          imagesDiv.appendChild(img);
+        });
+      } catch (error) {
+        console.error("Error uploading files:", error);
+      }
+    } else {
+      toast("No files selected");
     }
-  } else {
-    toast("No files selected");
-  }
-};
+  };
+
+  //Handle File upload
+
+  const handleFileUpload = async (event) => {
+    const selectedFiles = event.target.files;
+    if (selectedFiles.length > 0) {
+      const storageRef = firebase.storage().ref("uploaded_files"); // Specify folder name here
+      const promises = [];
+
+      Array.from(selectedFiles).forEach((file) => {
+        const fileRef = storageRef.child(file.name);
+        const uploadTask = fileRef.put(file);
+
+        promises.push(
+          uploadTask.then((snapshot) => {
+            return snapshot.ref.getDownloadURL();
+          })
+        );
+      });
+
+      try {
+        const downloadURLs = await Promise.all(promises);
+        console.log("Uploaded files URLs:", downloadURLs);
+
+        // Display uploaded files in a <div>
+        const filesDiv = document.getElementById("uploaded-file");
+
+        downloadURLs.forEach((url) => {
+          const link = document.createElement("a");
+          link.href = url;
+          link.textContent = url.split("/").pop(); // Display filename
+          link.style.display = "block"; // Display each file on a new line
+          filesDiv.appendChild(link);
+        });
+
+        if (propertyType === "land") {
+          setLandDetails((prevDetails) => ({
+            ...prevDetails,
+            file: [...prevDetails.file, ...downloadURLs],
+          }));
+        } else if (propertyType === "house") {
+          setHouseDetails((prevDetails) => ({
+            ...prevDetails,
+            file: [...prevDetails.file, ...downloadURLs],
+          }));
+        } else if (propertyType === "vehicle") {
+          setVehicleDetails((prevDetails) => ({
+            ...prevDetails,
+            file: [...prevDetails.file, ...downloadURLs],
+          }));
+        }
+      } catch (error) {
+        console.error("Error uploading files:", error);
+      }
+    } else {
+      toast("No files selected");
+    }
+  };
   //CHANGE PROPERTY FORM
   const handlePropertyTypeChange = (event) => {
     const type = event.target.value;
@@ -384,12 +446,33 @@ const handleFileChange = async (event) => {
                           src={require("../../Res/image/upload.png")}
                           style={{ width: "50px", height: "50px" }}
                         />
-                        <h3>
-                          {files.ImportantDocumen || "Choose files to upload"}
-                        </h3>
+                        <h3>Choose Image To Upload</h3>
                       </label>
                       {errors.ImportantDocumen && (
                         <div className="error">{errors.ImportantDocumen}</div>
+                      )}
+                    </div>
+                    <div className="broker-register-upload-file">
+                      Upload at least 3 Files:
+                      <input
+                        type="file"
+                        name="ImportantDocuments"
+                        id="ImportantDocuments"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileUpload}
+                        data-multiple-caption="{count} files selected"
+                        multiple
+                      />
+                      <label htmlFor="ImportantDocuments">
+                        <img
+                          src={require("../../Res/image/upload.png")}
+                          style={{ width: "50px", height: "50px" }}
+                          alt="Upload Icon"
+                        />
+                        <h3>Choose Files To Upload</h3>
+                      </label>
+                      {errors.ImportantDocuments && (
+                        <div className="error">{errors.ImportantDocuments}</div>
                       )}
                     </div>
                   </>
@@ -505,13 +588,33 @@ const handleFileChange = async (event) => {
                           src={require("../../Res/image/upload.png")}
                           style={{ width: "50px", height: "50px" }}
                         />
-
-                        <h3>
-                          {files.ImportantDocumen || "Choose files to upload"}
-                        </h3>
+                        <h3>Choose Image To Upload</h3>
                       </label>
                       {errors.ImportantDocumen && (
                         <div className="error">{errors.ImportantDocumen}</div>
+                      )}
+                    </div>
+                    <div className="broker-register-upload-file">
+                      Upload at least 3 Files:
+                      <input
+                        type="file"
+                        name="ImportantDocuments"
+                        id="ImportantDocuments"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileUpload}
+                        data-multiple-caption="{count} files selected"
+                        multiple
+                      />
+                      <label htmlFor="ImportantDocuments">
+                        <img
+                          src={require("../../Res/image/upload.png")}
+                          style={{ width: "50px", height: "50px" }}
+                          alt="Upload Icon"
+                        />
+                        <h3>Choose Files To Upload</h3>
+                      </label>
+                      {errors.ImportantDocuments && (
+                        <div className="error">{errors.ImportantDocuments}</div>
                       )}
                     </div>
                   </>
@@ -664,27 +767,45 @@ const handleFileChange = async (event) => {
                       Upload at least 5 image
                       <input
                         type="file"
-                        name="ImportantDocument"
-                        id="ImportantDocument"
+                        name="ImportantDocumen"
+                        id="ImportantDocumen"
                         accept="image/*"
-                        onChange={handleFileChange} // Use handleImageFilesChange here
+                        onChange={handleFileChange}
                         data-multiple-caption="{count} files selected"
                         multiple
                       />
-                      <label htmlFor="ImportantDocument">
+                      <label htmlFor="ImportantDocumen">
                         <img
                           src={require("../../Res/image/upload.png")}
-                          alt="Upload"
                           style={{ width: "50px", height: "50px" }}
                         />
-                        <h3>
-                          {files.ImportantDocument
-                            ? files.ImportantDocument.name
-                            : "Choose files to upload"}
-                        </h3>
+                        <h3>Choose Image To Upload</h3>
                       </label>
-                      {errors.ImportantDocument && (
-                        <div className="error">{errors.ImportantDocument}</div>
+                      {errors.ImportantDocumen && (
+                        <div className="error">{errors.ImportantDocumen}</div>
+                      )}
+                    </div>
+                    <div className="broker-register-upload-file">
+                      Upload at least 3 Files:
+                      <input
+                        type="file"
+                        name="ImportantDocuments"
+                        id="ImportantDocuments"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileUpload}
+                        data-multiple-caption="{count} files selected"
+                        multiple
+                      />
+                      <label htmlFor="ImportantDocuments">
+                        <img
+                          src={require("../../Res/image/upload.png")}
+                          style={{ width: "50px", height: "50px" }}
+                          alt="Upload Icon"
+                        />
+                        <h3>Choose Files To Upload</h3>
+                      </label>
+                      {errors.ImportantDocuments && (
+                        <div className="error">{errors.ImportantDocuments}</div>
                       )}
                     </div>
                   </>
@@ -692,7 +813,10 @@ const handleFileChange = async (event) => {
               </div>
             )}
           </div>
+          <h1>Uploaded Images:</h1>
           <div id="uploaded-images"></div>
+          <h1>Uploaded Files:</h1>
+          <div id="uploaded-file"></div>
           <div id="submit-div">
             <button type="submit" id="submit-button">
               SUBMIT
