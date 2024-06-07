@@ -9,6 +9,7 @@ export const UserProvider = ({children}) => {
     const [token, setToken] = useState(Cookies.get('token'));
     const otherID = '665431e06992e390611a31b9';
 
+
     useEffect(() => {
         // Function to decode the token and set the user state
         const decodeToken = (token) => {

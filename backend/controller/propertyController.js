@@ -57,7 +57,7 @@ const addLand = asyncHandler(async (req, res) => {
     description,
     propertyType,
     price,
-    image,
+    images,
     area,
     location,
     land_type,
@@ -69,33 +69,43 @@ const addLand = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Invalid property type for Land" });
   }
 
+  // Check if sellerID is provided
+  if (!sellerID) {
+    return res.status(400).json({ message: "Seller ID is required" });
+  }
+
   const propertyData = {
     title,
     description,
     propertyType,
     price,
-    image,
+    images,
     seller: {
       connect: { id: sellerID },
     },
   };
 
-  const property = await prisma.property.create({
-    data: propertyData,
-  });
+  try {
+    const property = await prisma.property.create({
+      data: propertyData,
+    });
 
-  const land = await prisma.land.create({
-    data: {
-      propertyID: property.property_id,
-      area,
-      location,
-      land_type,
-      ownership_type,
-    },
-  });
+    const land = await prisma.land.create({
+      data: {
+        propertyID: property.property_id,
+        area,
+        location,
+        land_type,
+        ownership_type,
+      },
+    });
 
-  res.status(201).json({ property, land });
+    res.status(201).json({ property, land });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
+
 
 // Function to add a property and then add it as a Vehicle
 const addVehicle = asyncHandler(async (req, res) => {
@@ -105,7 +115,7 @@ const addVehicle = asyncHandler(async (req, res) => {
     description,
     propertyType,
     price,
-    image,
+    images,
     vehicleType,
     brand,
     model,
@@ -121,7 +131,7 @@ const addVehicle = asyncHandler(async (req, res) => {
     description,
     propertyType,
     price,
-    image,
+    images,
     seller: {
       connect: { id: sellerID },
     }
@@ -156,7 +166,7 @@ const addHouse = asyncHandler(async (req, res) => {
     description,
     propertyType,
     price,
-    image,
+    images,
     size,
     location,
     rooms,
@@ -176,7 +186,7 @@ const addHouse = asyncHandler(async (req, res) => {
       description,
       propertyType,
       price,
-      image,
+      images,
       seller: {
         connect: { id: sellerID },
       },
@@ -275,6 +285,64 @@ const availableProperties = asyncHandler(async (req, res) => {
   }
 });
 
+ const toFav = asyncHandler(async (req, res) => {
+   const { id } = req.body;
+   const { propertyID } = req.params;
+
+   try {
+     const user = await prisma.users.findUnique({
+       where: { id },
+     });
+
+     if (!user) {
+       return res.status(404).send({ message: "User not found" });
+     }
+
+     let updateUser;
+
+     if (user.favResidencieID.includes(propertyID)) {
+       updateUser = await prisma.users.update({
+         where: { id },
+         data: {
+           favResidencieID: {
+             set: user.favResidencieID.filter((id) => id !== propertyID),
+           },
+         },
+       });
+
+       res.send({ message: "Removed from favorites", user: updateUser });
+     } else {
+       updateUser = await prisma.users.update({
+         where: { id },
+         data: {
+           favResidencieID: {
+             push: propertyID,
+           },
+         },
+       });
+
+       res.send({ message: "Updated favorites", user: updateUser });
+     }
+   } catch (err) {
+     res.status(500).send({ message: err.message });
+   }
+ });
+
+ const getAllFavorites = asyncHandler(async (req, res) => {
+   const { id } = req.query;
+   try {
+     const user = await prisma.users.findUnique({
+       where: { id },
+       select: { favResidencieID: true },
+     });
+     res.status(200).send(user.favResidencieID);
+   } catch (err) {
+     res.status(500).send({ message: err.message });
+   }
+ });
+
+
+
 
 module.exports = {
   addLand,
@@ -284,4 +352,6 @@ module.exports = {
   getProperty,
   buyProperty,
   availableProperties,
+  toFav,
+  getAllFavorites
 };

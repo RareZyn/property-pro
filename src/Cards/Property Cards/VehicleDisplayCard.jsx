@@ -12,10 +12,13 @@ export const VehicleDisplayCard = ({ card, link }) => {
       <div id="prop-card" onClick={() => navigate("/property-Vehicle-Details")}>
         <div id="img-placeholder">
           <img
-            src={card?.image}
+            src={card?.images[0]}
             alt="Image"
             id="img-ph"
-            style={{ width: "50px", height: "50px" }}
+            style={{
+              width: "100%",
+              height: "100%"
+            }}
           />
         </div>
         <div id="details">
@@ -29,7 +32,9 @@ export const VehicleDisplayCard = ({ card, link }) => {
             <div id="myproperty-location">
               <FaGauge /> <strong>Model:</strong> {card.vehicle?.model}
             </div>
-            <div id="myproperty-price"> <FaTags /> <strong>Price:</strong> RM{card.price}
+            <div id="myproperty-price">
+              {" "}
+              <FaTags /> <strong>Price:</strong> RM{card.price}
             </div>
             <div id="property-smallicon">
               <FaTags /> <strong>Condition:</strong> {card.vehicle?.condition}

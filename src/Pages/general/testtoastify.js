@@ -4,7 +4,7 @@ import SuccesToastify from "../../Cards/ToastifyCards/SuccesToatify";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function toastifytest){
+function toastifytest(){
   const notify = () => toast("Wow so easy!");
 
   return (

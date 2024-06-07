@@ -37,7 +37,7 @@ function App() {
       } catch (err) {
         console.log("Authentication check error:", err);
       } finally {
-        setLoading(false); // Ensure loading state is set to false regardless of success or failure
+        setLoading(false); 
       }
     };
 
