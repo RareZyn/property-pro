@@ -98,10 +98,33 @@ export const PublishProperty = () => {
   //handle image to upload
   const uploadedImagesRef = useRef([]);
 
-  const handleFileChange = async (event) => {
+  const handleImageUpload = async (event) => {
     const selectedFiles = event.target.files;
     if (selectedFiles.length > 0) {
-      const storageRef = firebase.storage().ref("uploaded_image");
+      let storageRef;
+      switch (propertyType) {
+        case "land":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_image/land")
+            .child(landDetails.title);
+          break;
+        case "vehicle":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_image/vehicle")
+            .child(vehicleDetails.title);
+          break;
+        case "house":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_image/house")
+            .child(houseDetails.title);
+          break;
+        default:
+          storageRef = firebase.storage().ref("uploaded_image");
+      }
+
       const promises = [];
 
       Array.from(selectedFiles).forEach((file) => {
@@ -149,7 +172,30 @@ export const PublishProperty = () => {
   const handleFileUpload = async (event) => {
     const selectedFiles = event.target.files;
     if (selectedFiles.length > 0) {
-      const storageRef = firebase.storage().ref("uploaded_files"); // Specify folder name here
+      let storageRef;
+      switch (propertyType) {
+        case "land":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_file/land")
+            .child(landDetails.title);
+          break;
+        case "vehicle":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_file/vehicle")
+            .child(vehicleDetails.title);
+          break;
+        case "house":
+          storageRef = firebase
+            .storage()
+            .ref("uploaded_file/house")
+            .child(houseDetails.title);
+          break;
+        default:
+          storageRef = firebase.storage().ref("uploaded_file");
+      }
+
       const promises = [];
 
       Array.from(selectedFiles).forEach((file) => {
@@ -278,7 +324,7 @@ export const PublishProperty = () => {
             images: uploadedImagesRef.current,
           });
           break;
-        case "houses":
+        case "house":
           setHouseDetails((prevDetails) => ({
             ...prevDetails,
             images: uploadedImagesRef.current,
@@ -330,7 +376,7 @@ export const PublishProperty = () => {
               >
                 <option value="">Select Property Type</option>
                 <option value="land">Land</option>
-                <option value="houses">Houses</option>
+                <option value="house">House</option>
                 <option value="vehicle">Vehicle</option>
               </select>
             </div>
@@ -353,7 +399,7 @@ export const PublishProperty = () => {
                       )}
                     </div>
                     <div className="section-input">
-                      <span>Size (area)</span>
+                      <span>Size (acre)</span>
                       <input
                         type="text"
                         name="area"
@@ -437,7 +483,7 @@ export const PublishProperty = () => {
                         name="ImportantDocumen"
                         id="ImportantDocumen"
                         accept="image/*"
-                        onChange={handleFileChange}
+                        onChange={handleImageUpload}
                         data-multiple-caption="{count} files selected"
                         multiple
                       />
@@ -478,7 +524,7 @@ export const PublishProperty = () => {
                   </>
                 )}
 
-                {propertyType === "houses" && (
+                {propertyType === "house" && (
                   <>
                     <div className="section-input">
                       <span>House</span>
@@ -579,7 +625,7 @@ export const PublishProperty = () => {
                         name="ImportantDocumen"
                         id="ImportantDocumen"
                         accept="image/*"
-                        onChange={handleFileChange}
+                        onChange={handleImageUpload}
                         data-multiple-caption="{count} files selected"
                         multiple
                       />
@@ -770,7 +816,7 @@ export const PublishProperty = () => {
                         name="ImportantDocumen"
                         id="ImportantDocumen"
                         accept="image/*"
-                        onChange={handleFileChange}
+                        onChange={handleImageUpload}
                         data-multiple-caption="{count} files selected"
                         multiple
                       />
