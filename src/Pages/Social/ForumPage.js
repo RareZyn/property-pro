@@ -11,6 +11,7 @@ const ForumPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      console.log("Fetch Forums");
       try {
         await fetchForums();
       } catch (error) {
@@ -58,7 +59,9 @@ const ForumPage = () => {
         <div className="ForumContainer">
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
 
-            {forums.map(forum => {
+            {forums
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map(forum => {
 
               return(
                 <li key={forum._id}>
