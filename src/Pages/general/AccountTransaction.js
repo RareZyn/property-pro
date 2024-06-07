@@ -20,11 +20,11 @@ export const MyAccountTransaction = () => {
   return (
     <div className="ViewAccountProperty">
       <div className="acc-grid-container">
-        <TransactionCard
+        {/* <TransactionCard
           title="Completed Transaction"
           transaction={paidTransaction}
           cardClass="PaidTransactions"
-        />
+        /> */}
       </div>
     </div>
   );
