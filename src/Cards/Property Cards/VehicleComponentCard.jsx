@@ -1,41 +1,48 @@
 import "./ItemComponentCard.css";
 import { Link } from "react-router-dom";
 import { FaShower, FaBed, FaCarSide, FaTags } from "react-icons/fa";
-import { FaCalendarDays, FaGauge, FaHouse, FaLocationDot, FaTag } from "react-icons/fa6";
+import { FaCalendarDays, FaGauge } from "react-icons/fa6";
+import { FaCar } from "react-icons/fa";
+import { useProperties } from "../../hooks/useProperties";
 
-function VehicleComponentCard({imgLink, link}){
-    return(
-        <Link to={link}>
-            <div id="item-card">
-                <section id="img-container">
-                    <img src={imgLink} alt="image property" srcset="" />
-                </section>
-                <div id="details-container">
-                    <div id="myproperty-name"><h4>Vehicle</h4></div>
-                    <div id="myproperty-location"><FaLocationDot/>  Gua Musang, Kelantan</div>
-                    <div id="myproperty-price"><FaTags/>  RM 162,300,000</div>
-                    <div id="mypropertyicon-content">
-                        <div id="property-smallicon">
-                            <FaTags/> New
-                        </div>
-                        <div id="property-smallicon">
-                            <FaGauge/> 200cc
-                        </div>
-                    </div>
-                    <div id="mypropertyicon-content">
-                        
-                        <div id="property-smallicon">
-                            <FaCalendarDays /> 2023
-                        </div>
-                        <div id="property-smallicon">
-                            <FaCarSide/> 4 seat
-                        </div>
-                    </div>
-                    {/**<span id="row-3">3210 ekar (Tanah) • RM X.XX PSF</span>**/}
-                </div>
-            </div>
-        </Link>
-    )
+function VehicleComponentCard({ card, link }) {
+  const { data, isError, isLoading } = useProperties();
+  console.log(data);
+  return (
+    <Link to={link}>
+      <div id="item-card">
+        <section id="img-container">
+          <img src={card?.images[0]} alt="image property" srcset="" />
+        </section>
+        <div id="details-container">
+          <div id="myproperty-name">
+            <strong>{card.title}</strong>
+          </div>
+          <div id="myproperty-type">
+            <FaCar />
+            <strong> {card.propertyType}</strong>
+          </div>
+          <div id="myproperty-price">
+            <FaTags /> RM{card.price}
+          </div>
+          <div id="property-smallicon">
+            <FaTags /> <strong>Condition: </strong>
+            {card.vehicle.condition}
+          </div>
+          <div id="property-smallicon">
+            <FaGauge /> {card.vehicle.cc}cc
+          </div>
+          <div id="property-smallicon">
+            <FaCalendarDays /> <strong>ManufacturedYear: </strong>
+            {card.vehicle.ManufacturedYear}
+          </div>
+          <div id="property-smallicon">
+            <FaCarSide /> Seats: {card.vehicle.seats} seat
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
-export default VehicleComponentCard
+export default VehicleComponentCard;

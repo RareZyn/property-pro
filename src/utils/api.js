@@ -153,3 +153,21 @@ export const getAllFavorites = async (id) => {
     throw error.response?.data || error.message;
   }
 };
+
+
+export const getPropertySeller = async(id) => {
+    try {
+      const response = await api.get(`/getPropertySeller/${id}`, {
+        timeout: 10 * 1000,
+      });
+
+      if (response.status === 400 || response.status === 500) {
+        throw response.data;
+      }
+
+      return response.data;
+    } catch (error) {
+      toast.error("Something went wrong");
+      throw error;
+    }
+}
