@@ -1,41 +1,99 @@
-import style from "./SavedProperty.css";
+import { useQuery } from "react-query";
+import { getAllFavorites } from "../../utils/api.js";
+import { UserContext } from "../../context/UserContext.js";
+import { getUser } from "../../util.js";
+import React, { useContext, useEffect, useState } from "react";
+import { PuffLoader } from "react-spinners";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
-import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
 import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
-import "./GeneralProperty.css";
-
+import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
 
 export const SavedProperty = () => {
-  const HousepropertyCards = [];
-  const LandpropertyCards = [];
-  const VehiclepropertyCards = [];
-  let color = 0;
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
-  for (let i = 0; i < 2; i++) {
-    color = i - 6 * parseInt(i / 6);
-    console.log(color);
-    HousepropertyCards.push(<HouseDisplayCard link={"/property-house-details"} />);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log("No user token");
+    }
+  }, [userToken]);
+
+  const userId = user?._id;
+  console.log("UserID " + userId);
+
+  const { data, isError, isLoading } = useQuery(
+    ["getAllFavorites", userId],
+    () => getAllFavorites(userId),
+    {
+      enabled: !!userId,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  if (isError) {
+    return <span>Error while fetching the data</span>;
   }
-  for (let i = 0; i < 2; i++) {
-    color = i - 6 * parseInt(i / 6);
-    console.log(color);
-    LandpropertyCards.push(<LandDisplayCard link={"/property-land-details"} />);
+  if (isLoading) {
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
+      </div>
+    );
   }
-  for (let i = 0; i < 1; i++) {
-    color = i - 6 * parseInt(i / 6);
-    console.log(color);
-    VehiclepropertyCards.push(<VehicleDisplayCard link={"/property-vehicle-details"} />);
-  }
+  const renderCard = (property) => {
+    if (!property || !property.propertyType) {
+      return null;
+    }
+
+    switch (property.propertyType) {
+      case "Vehicle":
+        return (
+          <VehicleDisplayCard
+            key={property.property_id}
+            card={property}
+            link={`/property-Vehicle-Details/${property.property_id}`}
+          />
+        );
+      case "House":
+        return (
+          <HouseDisplayCard
+            key={property.property_id}
+            card={property}
+            link={`/property-House-Details/${property.property_id}`}
+          />
+        );
+      case "Land":
+        return (
+          <LandDisplayCard
+            key={property.property_id}
+            card={property}
+            link={`/property-Land-Details/${property.property_id}`}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  console.log(data);
 
   return (
     <div>
-        <div className="property-headline">Saved Property</div>
-        <div className="properties-grid">
-          {HousepropertyCards}
-          {LandpropertyCards}
-          {VehiclepropertyCards}
-        </div>
+      <div className="property-headline">Saved Property</div>
+      <div className="properties-grid">
+        {data && data.map((property) => property && renderCard(property))}
       </div>
+    </div>
   );
 };
-

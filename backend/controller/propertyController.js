@@ -308,18 +308,52 @@ const availableProperties = asyncHandler(async (req, res) => {
    }
  });
 
- const getAllFavorites = asyncHandler(async (req, res) => {
-   const { id } = req.query;
-   try {
-     const user = await prisma.users.findUnique({
-       where: { id },
-       select: { favResidencieID: true },
-     });
-     res.status(200).send(user.favResidencieID);
-   } catch (err) {
-     res.status(500).send({ message: err.message });
-   }
- });
+const getAllFavorites = asyncHandler(async (req, res) => {
+  const { id } = req.query; // Read from query parameters
+
+  if (!id) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const user = await prisma.users.findUnique({
+      where: { id }, // Use the id directly
+      select: { favResidencieID: true },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const favoriteProperties = await prisma.property.findMany({
+      where: {
+        property_id: {
+          in: user.favResidencieID,
+        },
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    res.status(200).json(favoriteProperties);
+  } catch (err) {
+    console.log(err.message);
+    res
+      .status(500)
+      .json({
+        message: "Failed to retrieve favorite properties: " + err.message,
+      });
+  }
+});
+
+
+
 const getPropertySeller = asyncHandler(async (req, res) => {
   const { id } = req.params;
 

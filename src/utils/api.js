@@ -146,6 +146,7 @@ export const getAllFavorites = async (id) => {
   try {
     const response = await api.get(`/getAllFavorites`, {
       params: { id },
+      timeout: 10 * 1000,
     });
     return response.data;
   } catch (error) {
@@ -171,3 +172,4 @@ export const getPropertySeller = async(id) => {
       throw error;
     }
 }
+

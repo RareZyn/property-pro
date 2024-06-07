@@ -12,6 +12,7 @@ import { getUser } from "../../util.js";
 import { getPropertySeller } from "../../utils/api";
 import "./ManageProperty.css";
 
+
 export const ManageProperty = () => {
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
@@ -37,10 +38,10 @@ export const ManageProperty = () => {
   console.log("UserID: " + sellerId);
 
   const { data, isError, isLoading } = useQuery(
-    ["getPropertySeller", sellerId],
+    ["getAllFavorites", sellerId],
     () => getPropertySeller(sellerId),
     {
-      enabled: !!sellerId, // Only run the query if sellerId is defined
+      enabled: !!sellerId,
       refetchOnWindowFocus: false,
     }
   );
