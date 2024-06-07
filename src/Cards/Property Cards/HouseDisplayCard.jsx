@@ -12,10 +12,10 @@ export const HouseDisplayCard = ({ card, link }) => {
       <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
         <div id="img-placeholder">
           <img
-            src={card?.image}
+            src={card?.images[0]}
             alt="Image"
             id="img-ph"
-            style={{ width: "50px", height: "50px" }}
+            style={{ width: "100%", height: "100%" }}
           />
         </div>
         <div id="details">
@@ -33,19 +33,18 @@ export const HouseDisplayCard = ({ card, link }) => {
             <div id="myproperty-price">
               <FaTags /> Price:RM{card.price}
             </div>
-              <div id="property-smallicon">
-                <FaHouse /> Size:{card.house?.size}ft
-              </div>
-              <div id="property-smallicon">
-                <FaBed /> Bedrooms: {card.house?.bedrooms}
-              </div>
-              <div id="property-smallicon">
-                <FaLayerGroup /> Rooms:{card.house?.rooms}
-              </div>
-              <div id="property-smallicon">
-                <FaShower /> Bathrooms:{card.house?.bathrooms}
-              </div>
-
+            <div id="property-smallicon">
+              <FaHouse /> Size:{card.house?.size}ft
+            </div>
+            <div id="property-smallicon">
+              <FaBed /> Bedrooms: {card.house?.bedrooms}
+            </div>
+            <div id="property-smallicon">
+              <FaLayerGroup /> Rooms:{card.house?.rooms}
+            </div>
+            <div id="property-smallicon">
+              <FaShower /> Bathrooms:{card.house?.bathrooms}
+            </div>
           </div>
         </div>
       </div>

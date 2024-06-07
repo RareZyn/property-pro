@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toFav, getAllFavorites } from "../utils/api";
 
-const SavedButton = () => {
+const SavedButton = ({ propertyID, userId }) => {
   const [isSaved, setIsSaved] = useState(false);
 
-  const handleSaveClick = () => {
-    setIsSaved(!isSaved);
-    // Here you should add logic to save the property details
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      try {
+        const favorites = await getAllFavorites(userId);
+        setIsSaved(favorites.includes(propertyID));
+      } catch (error) {
+        console.error("Error fetching favorites:", error);
+      }
+    };
+
+    fetchFavorites();
+  }, [propertyID, userId]);
+
+  const handleSave = async () => {
+    try {
+      await toFav(propertyID, userId);
+      setIsSaved(!isSaved);
+    } catch (error) {
+      console.error("Error saving property:", error);
+    }
   };
 
   return (
@@ -30,7 +48,7 @@ const SavedButton = () => {
         cursor: "pointer",
         transition: "background-color 0.3s ease",
       }}
-      onClick={handleSaveClick}
+      onClick={handleSave}
     >
       <img src={require("../Res/image/save.png")} alt="Save" />
       {isSaved ? "SAVED" : "SAVE"}

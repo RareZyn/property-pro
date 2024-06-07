@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import "./PublishProperty.css";
@@ -10,76 +10,24 @@ import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../util.js";
 
 export const PublishProperty = () => {
-  const { userToken } = useContext(UserContext);
-  const [user, setUser] = useState(null);
+  const [files, setFiles] = useState({});
+  const [propertyType, setPropertyType] = useState("");
+  const [landDetails, setLandDetails] = useState({});
+  const [houseDetails, setHouseDetails] = useState({});
+  const [vehicleDetails, setVehicleDetails] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
-  const [files, setFiles] = useState({});
-  const [propertyType, setPropertyType] = useState("");
-  const [landDetails, setLandDetails] = useState({
-    title: "",
-    sellerID: "",
-    description: "",
-    propertyType: "Land",
-    price: 0,
-    images: [],
-    area: "",
-    location: "",
-    land_type: "",
-    ownership_type: "",
-  });
 
-  const [houseDetails, setHouseDetails] = useState({
-    title: "",
-    sellerID: "",
-    description: "",
-    propertyType: "House",
-    price: 0,
-    images: [],
-    size: "",
-    location: "",
-    rooms: "",
-    bathrooms: "",
-  });
-
-  const [vehicleDetails, setVehicleDetails] = useState({
-    title: "",
-    sellerID: "",
-    description: "",
-    propertyType: "Vehicle",
-    price: 0,
-    images: [],
-    vehicleType: "",
-    brand: "",
-    model: "",
-    seats: 0,
-    mileage: 0,
-    ManufacturedYear: 0,
-    cc: 0,
-    condition: "",
-  });
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getUser(userToken);
         setUser(userData);
-        console.log("User ID: " + userData?._id);
-
-        // Update landDetails state with sellerID after fetching user data
-        setLandDetails((prevDetails) => ({
-          ...prevDetails,
-          sellerID: userData?._id,
-        }));
-        setHouseDetails((prevDetails) => ({
-          ...prevDetails,
-          sellerID: userData?._id,
-        }));
-        setVehicleDetails((prevDetails) => ({
-          ...prevDetails,
-          sellerID: userData?._id,
-        }));
+        console.log("User ID:" + userData?._id); // Use userData instead of user
       } catch (error) {
         console.error("Failed to fetch user data:", error);
       }
@@ -91,164 +39,197 @@ export const PublishProperty = () => {
       console.log("No user token");
     }
   }, [userToken]);
+  const userId = user?.id;
 
-const uploadedImagesRef = useRef([]);
+  const submitForm = async () => {};
 
-const handleFileChange = async (event) => {
-  const selectedFiles = event.target.files;
-  if (selectedFiles.length > 0) {
-    const storageRef = firebase.storage().ref();
-    const promises = [];
+  // Validation schema for land property
+  const landSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    size: Yup.string().required("Size is required"),
+    location: Yup.string().required("Location is required"),
+    landType: Yup.string().required("Land Type is required"),
+    ownershipType: Yup.string().required("Ownership Type is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen: Yup.string().required("Upload File is required"),
+  });
 
-    Array.from(selectedFiles).forEach((file) => {
-      const fileRef = storageRef.child(file.name);
-      const uploadTask = fileRef.put(file);
+  // Validation schema for houses property
+  const housesSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    area: Yup.string().required("Area is required"),
+    bedrooms: Yup.string().required("Bedrooms is required"),
+    houseType: Yup.string().required("House Type is required"),
+    bathrooms: Yup.string().required("Bathrooms is required"),
+    location: Yup.string().required("Location is required"),
+    floors: Yup.string().required("Floors is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen: Yup.string().required("Upload File is required"),
+  });
 
-      promises.push(
-        uploadTask.then((snapshot) => {
-          return snapshot.ref.getDownloadURL();
-        })
-      );
-    });
+  // Validation schema for vehicle property
+  const vehicleSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    vehicleType: Yup.string().required("Vehicle Type is required"),
+    brand: Yup.string().required("Brand is required"),
+    model: Yup.string().required("Model is required"),
+    seats: Yup.string().required("Seats is required"),
+    mileage: Yup.string().required("Mileage is required"),
+    yearOfProduction: Yup.string().required("Year of Production is required"),
+    cc: Yup.string().required("CC is required"),
+    condition: Yup.string().required("Condition is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.string().required("Price is required"),
+    ImportantDocumen: Yup.string().required("Upload File is required"),
+  });
 
-    try {
-      const downloadURLs = await Promise.all(promises);
-      console.log(downloadURLs);
+  const handleFileChange = (event) => {
+    const selectedFiles = event.target.files;
+    if (selectedFiles.length > 0) {
+      const storageRef = firebase.storage().ref();
+      const promises = [];
 
-      // Store the URLs in the ref
-      uploadedImagesRef.current = [
-        ...uploadedImagesRef.current,
-        ...downloadURLs,
-      ];
+      Array.from(selectedFiles).forEach((file) => {
+        const fileRef = storageRef.child(file.name);
+        const uploadTask = fileRef.put(file);
 
-      // Display uploaded images in a <div>
-      const imagesDiv = document.getElementById("uploaded-images");
-
-      downloadURLs.forEach((url) => {
-        const img = document.createElement("img");
-        img.src = url;
-        img.alt = "Uploaded Image";
-        img.style.width = "200px"; // Adjust width as needed
-        img.style.marginRight = "10px"; // Optional: Add some margin between images
-        imagesDiv.appendChild(img);
+        promises.push(
+          uploadTask.then((snapshot) => {
+            return snapshot.ref.getDownloadURL();
+          })
+        );
       });
-    } catch (error) {
-      console.error("Error uploading files:", error);
+
+      Promise.all(promises)
+        .then((downloadURLs) => {
+          console.log(downloadURLs);
+          if (propertyType === "land") {
+            landDetails.image = downloadURLs;
+          } else if (propertyType === "house") {
+            houseDetails.image = downloadURLs;
+          } else if (propertyType === "vehicle") {
+            vehicleDetails.image = downloadURLs;
+          }
+
+          // Display uploaded images in a <div>
+          const imagesDiv = document.getElementById("uploaded-images");
+
+          downloadURLs.forEach((url) => {
+            const img = document.createElement("img");
+            img.src = url;
+            img.alt = "Uploaded Image";
+            img.style.width = "200px"; // Adjust width as needed
+            img.style.marginRight = "10px"; // Optional: Add some margin between images
+            imagesDiv.appendChild(img);
+          });
+        })
+        .catch((error) => {
+          console.error("Error uploading files:", error);
+        });
+    } else {
+      toast("No files selected");
     }
-  } else {
-    toast("No files selected");
-  }
-};
-  //CHANGE PROPERTY FORM
+  };
+
   const handlePropertyTypeChange = (event) => {
     const type = event.target.value;
     setPropertyType(type);
     setErrors({});
   };
 
-  //CHANGE HERE///
-
   const handleLandChange = (event) => {
     const { name, value } = event.target;
-    // Convert value to number if necessary
-    const parsedValue = name === "price" ? parseFloat(value) : value;
-    setLandDetails({ ...landDetails, [name]: parsedValue });
+    setLandDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+
+    console.log({ name } + " " + { value });
   };
 
   const handleHouseChange = (event) => {
     const { name, value } = event.target;
+    setHouseDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
 
-    // Define fields that need to be parsed as integers
-    const integerFields = ["size", "rooms", "bathrooms"];
-
-    // Define fields that need to be parsed as floats
-    const floatFields = ["price"];
-
-    let parsedValue = value;
-
-    if (integerFields.includes(name)) {
-      parsedValue = parseInt(value, 10);
-    } else if (floatFields.includes(name)) {
-      parsedValue = parseFloat(value);
-    }
-
-    setHouseDetails((prevDetails) => ({ ...prevDetails, [name]: parsedValue }));
+    console.log({ name } + " " + { value });
   };
+
   const handleVehicleChange = (event) => {
     const { name, value } = event.target;
-
-    // Define fields that need to be parsed as integers
-    const integerFields = ["seats", "mileage", "ManufacturedYear", "cc"];
-
-    // Define fields that need to be parsed as floats
-    const floatFields = ["price"];
-
-    let parsedValue = value;
-
-    if (integerFields.includes(name)) {
-      parsedValue = parseInt(value, 10);
-    } else if (floatFields.includes(name)) {
-      parsedValue = parseFloat(value);
-    }
-
     setVehicleDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: parsedValue,
+      [name]: value,
     }));
+
+    console.log({ name } + " " + { value });
   };
 
-  //SUBMIT FORM
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let validationSchema, propertyDetails;
+    if (propertyType === "land") {
+      validationSchema = landSchema;
+      propertyDetails = landDetails;
+    } else if (propertyType === "houses") {
+      validationSchema = housesSchema;
+      propertyDetails = houseDetails;
+    } else if (propertyType === "vehicle") {
+      validationSchema = vehicleSchema;
+      propertyDetails = vehicleDetails;
+    }
+
     try {
-      let response;
-
-      // Ensure the state is updated with uploaded image URLs
-      switch (propertyType) {
-        case "land":
-          setLandDetails((prevDetails) => ({
-            ...prevDetails,
-            images: uploadedImagesRef.current,
-          }));
-          response = await addLand({
-            ...landDetails,
-            images: uploadedImagesRef.current,
-          });
-          break;
-        case "houses":
-          setHouseDetails((prevDetails) => ({
-            ...prevDetails,
-            images: uploadedImagesRef.current,
-          }));
-          response = await addHouse({
-            ...houseDetails,
-            images: uploadedImagesRef.current,
-          });
-          break;
-        case "vehicle":
-          setVehicleDetails((prevDetails) => ({
-            ...prevDetails,
-            images: uploadedImagesRef.current,
-          }));
-          response = await addVehicle({
-            ...vehicleDetails,
-            images: uploadedImagesRef.current,
-          });
-          break;
-        default:
-          throw new Error("Invalid property type");
-      }
-
-      console.log("Property published successfully:", response);
-      navigate("/browser-property");
-    } catch (error) {
-      console.error("Error publishing property:", error.message);
-      setErrors({ submit: error.message });
-    } finally {
+      await validationSchema.validate(propertyDetails, { abortEarly: false });
+      console.log("Form submitted with values:", propertyDetails);
       setIsSubmitted(true);
+      try {
+        let response;
+
+        switch (propertyType) {
+          case "Land":
+            response = await addLand(landDetails);
+            break;
+          case "House":
+            response = await addHouse(houseDetails);
+            break;
+          case "Vehicle":
+            response = await addVehicle(vehicleDetails);
+            break;
+          default:
+            throw new Error("Invalid property type");
+        }
+
+        console.log("Property published successfully:", response);
+        navigate("/browser-property");
+      } catch (error) {
+        console.error("Error publishing property:", error.message);
+        setErrors({ submit: error.message });
+      } finally {
+        setIsSubmitted(true);
+      }
+    } catch (validationErrors) {
+      if (validationErrors.inner && Array.isArray(validationErrors.inner)) {
+        const formattedErrors = validationErrors.inner.reduce((acc, error) => {
+          acc[error.path] = error.message;
+          return acc;
+        }, {});
+        setErrors(formattedErrors);
+      } else {
+        console.error(
+          "Validation errors structure is not as expected:",
+          validationErrors
+        );
+        setErrors({ form: "Validation failed, please check your inputs." });
+      }
     }
   };
+
   return (
     <div className="PublishProperty">
       <div className="publish-section">
@@ -294,13 +275,13 @@ const handleFileChange = async (event) => {
                       <span>Size (area)</span>
                       <input
                         type="text"
-                        name="area"
-                        value={landDetails.area}
+                        name="land?.area"
+                        value={landDetails.land?.area}
                         onChange={handleLandChange}
-                        className="area-input"
+                        className="land?.area-input"
                       />
                       {errors.name && (
-                        <div className="error">{errors.area}</div>
+                        <div className="error">{errors.land?.area}</div>
                       )}
                     </div>
                     <div className="section-input">
@@ -308,7 +289,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="location"
-                        value={landDetails.location}
+                        value={landDetails.location || ""}
                         onChange={handleLandChange}
                         className="location-input"
                       />
@@ -320,26 +301,28 @@ const handleFileChange = async (event) => {
                       <span>Jenis Tanah (Land Type)</span>
                       <input
                         type="text"
-                        name="land_type"
-                        value={landDetails.land_type}
+                        name="land?.land_type"
+                        value={landDetails.land?.land_type}
                         onChange={handleLandChange}
-                        className="land_type-input"
+                        className="land?.land_type-input"
                       />
                       {errors.landType && (
-                        <div className="error">{errors.land_type}</div>
+                        <div className="error">{errors.land?.land_type}</div>
                       )}
                     </div>
                     <div className="section-input">
                       <span>Hak Milik Pegangan (Ownership Type)</span>
                       <input
                         type="text"
-                        name="ownership_type"
-                        value={landDetails.ownership_type}
+                        name="land?.ownership_type"
+                        value={landDetails.land?.ownership_type}
                         onChange={handleLandChange}
-                        className="ownership_type-input"
+                        className="land?.ownership_type-input"
                       />
                       {errors.ownershipType && (
-                        <div className="error">{errors.ownership_type}</div>
+                        <div className="error">
+                          {errors.land?.ownership_type}
+                        </div>
                       )}
                     </div>
                     <div className="section-input">
@@ -360,7 +343,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="price"
-                        value={landDetails.price}
+                        value={landDetails.price || ""}
                         onChange={handleLandChange}
                         className="price-input"
                       />
@@ -369,7 +352,7 @@ const handleFileChange = async (event) => {
                       )}
                     </div>
                     <div className="broker-register-upload-file">
-                      Upload at least 5 image
+                      Important Document
                       <input
                         type="file"
                         name="ImportantDocumen"
@@ -380,10 +363,7 @@ const handleFileChange = async (event) => {
                         multiple
                       />
                       <label htmlFor="ImportantDocumen">
-                        <img
-                          src={require("../../Res/image/upload.png")}
-                          style={{ width: "50px", height: "50px" }}
-                        />
+                        <img src={require("../../Res/image/upload.png")} />
                         <h3>
                           {files.ImportantDocumen || "Choose files to upload"}
                         </h3>
@@ -402,25 +382,38 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="title"
-                        value={houseDetails.title}
+                        value={houseDetails.name || ""}
                         onChange={handleHouseChange}
-                        className="title-input"
+                        className="name-input"
                       />
-                      {errors.title && (
-                        <div className="error">{errors.title}</div>
+                      {errors.name && (
+                        <div className="error">{errors.name}</div>
                       )}
                     </div>
                     <div className="section-input">
-                      <span>Rooms</span>
+                      <span>Area</span>
                       <input
                         type="text"
-                        name="rooms"
-                        value={houseDetails.rooms || ""}
+                        name="area"
+                        value={houseDetails.area || ""}
                         onChange={handleHouseChange}
-                        className="rooms-input"
+                        className="area-input"
                       />
-                      {errors.rooms && (
-                        <div className="error">{errors.rooms}</div>
+                      {errors.area && (
+                        <div className="error">{errors.area}</div>
+                      )}
+                    </div>
+                    <div className="section-input">
+                      <span>Bedrooms</span>
+                      <input
+                        type="text"
+                        name="bedrooms"
+                        value={houseDetails.bedrooms || ""}
+                        onChange={handleHouseChange}
+                        className="bedrooms-input"
+                      />
+                      {errors.bedrooms && (
+                        <div className="error">{errors.bedrooms}</div>
                       )}
                     </div>
                     <div className="section-input">
@@ -436,7 +429,19 @@ const handleFileChange = async (event) => {
                         <div className="error">{errors.bathrooms}</div>
                       )}
                     </div>
-
+                    <div className="section-input">
+                      <span>House Type</span>
+                      <input
+                        type="text"
+                        name="houseType"
+                        value={houseDetails.houseType || ""}
+                        onChange={handleHouseChange}
+                        className="houseType-input"
+                      />
+                      {errors.houseType && (
+                        <div className="error">{errors.houseType}</div>
+                      )}
+                    </div>
                     <div className="section-input">
                       <span>Location (State, District)</span>
                       <input
@@ -451,16 +456,16 @@ const handleFileChange = async (event) => {
                       )}
                     </div>
                     <div className="section-input">
-                      <span>Size</span>
+                      <span>Floors</span>
                       <input
                         type="text"
-                        name="size"
-                        value={houseDetails.size || ""}
+                        name="floors"
+                        value={houseDetails.floors || ""}
                         onChange={handleHouseChange}
-                        className="size-input"
+                        className="floors-input"
                       />
-                      {errors.size && (
-                        <div className="error">{errors.size}</div>
+                      {errors.floors && (
+                        <div className="error">{errors.floors}</div>
                       )}
                     </div>
                     <div className="section-input">
@@ -468,7 +473,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="description"
-                        value={houseDetails.description}
+                        value={houseDetails.description || ""}
                         onChange={handleHouseChange}
                         className="desc-input"
                       />
@@ -481,7 +486,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="price"
-                        value={houseDetails.price}
+                        value={houseDetails.price || ""}
                         onChange={handleHouseChange}
                         className="price-input"
                       />
@@ -490,7 +495,7 @@ const handleFileChange = async (event) => {
                       )}
                     </div>
                     <div className="broker-register-upload-file">
-                      Upload at least 5 image
+                      Important Document
                       <input
                         type="file"
                         name="ImportantDocumen"
@@ -501,11 +506,7 @@ const handleFileChange = async (event) => {
                         multiple
                       />
                       <label htmlFor="ImportantDocumen">
-                        <img
-                          src={require("../../Res/image/upload.png")}
-                          style={{ width: "50px", height: "50px" }}
-                        />
-
+                        <img src={require("../../Res/image/upload.png")} />
                         <h3>
                           {files.ImportantDocumen || "Choose files to upload"}
                         </h3>
@@ -520,16 +521,16 @@ const handleFileChange = async (event) => {
                 {propertyType === "vehicle" && (
                   <>
                     <div className="section-input">
-                      <span>Title</span>
+                      <span>Name</span>
                       <input
                         type="text"
-                        name="title"
-                        value={vehicleDetails.title}
+                        name="name"
+                        value={vehicleDetails.name || ""}
                         onChange={handleVehicleChange}
-                        className="title-input"
+                        className="name-input"
                       />
-                      {errors.title && (
-                        <div className="error">{errors.title}</div>
+                      {errors.name && (
+                        <div className="error">{errors.name}</div>
                       )}
                     </div>
                     <div className="section-input">
@@ -576,7 +577,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="seats"
-                        value={vehicleDetails.seats}
+                        value={vehicleDetails.seats || ""}
                         onChange={handleVehicleChange}
                         className="seats-input"
                       />
@@ -589,7 +590,7 @@ const handleFileChange = async (event) => {
                       <input
                         type="text"
                         name="mileage"
-                        value={vehicleDetails.mileage}
+                        value={vehicleDetails.mileage || ""}
                         onChange={handleVehicleChange}
                         className="mileage-input"
                       />
@@ -598,16 +599,16 @@ const handleFileChange = async (event) => {
                       )}
                     </div>
                     <div className="section-input">
-                      <span>Manufactured Year</span>
+                      <span>Year of Production</span>
                       <input
                         type="text"
-                        name="ManufacturedYear"
-                        value={vehicleDetails.ManufacturedYear}
+                        name="yearOfProduction"
+                        value={vehicleDetails.yearOfProduction || ""}
                         onChange={handleVehicleChange}
-                        className="ManufacturedYear-input"
+                        className="yearOfProduction-input"
                       />
-                      {errors.ManufacturedYear && (
-                        <div className="error">{errors.ManufacturedYear}</div>
+                      {errors.yearOfProduction && (
+                        <div className="error">{errors.yearOfProduction}</div>
                       )}
                     </div>
                     <div className="section-input">
@@ -622,7 +623,7 @@ const handleFileChange = async (event) => {
                       {errors.cc && <div className="error">{errors.cc}</div>}
                     </div>
                     <div className="section-input">
-                      <span>Condition (New/Used)</span>
+                      <span>Condition</span>
                       <input
                         type="text"
                         name="condition"
@@ -661,30 +662,24 @@ const handleFileChange = async (event) => {
                       )}
                     </div>
                     <div className="broker-register-upload-file">
-                      Upload at least 5 image
+                      Important Document
                       <input
                         type="file"
                         name="ImportantDocument"
                         id="ImportantDocument"
                         accept="image/*"
-                        onChange={handleFileChange} // Use handleImageFilesChange here
+                        onChange={handleFileChange}
                         data-multiple-caption="{count} files selected"
                         multiple
                       />
                       <label htmlFor="ImportantDocument">
-                        <img
-                          src={require("../../Res/image/upload.png")}
-                          alt="Upload"
-                          style={{ width: "50px", height: "50px" }}
-                        />
+                        <img src={require("../../Res/image/upload.png")} />
                         <h3>
-                          {files.ImportantDocument
-                            ? files.ImportantDocument.name
-                            : "Choose files to upload"}
+                          {files.ImportantDocumen || "Choose files to upload"}
                         </h3>
                       </label>
                       {errors.ImportantDocument && (
-                        <div className="error">{errors.ImportantDocument}</div>
+                        <div className="error">{errors.ImportantDocumen}</div>
                       )}
                     </div>
                   </>
@@ -693,11 +688,9 @@ const handleFileChange = async (event) => {
             )}
           </div>
           <div id="uploaded-images"></div>
-          <div id="submit-div">
-            <button type="submit" id="submit-button">
-              SUBMIT
-            </button>
-          </div>
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
         </form>
       </div>
     </div>

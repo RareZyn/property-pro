@@ -8,37 +8,43 @@ import { useQuery } from "react-query";
 import { buyProperty, getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser} from "../../util.js";
+import { getUser } from "../../util.js";
 import SavedButton from "../../hooks/SavedButton.jsx";
 
 export const PropertyVehicleDetails = () => {
   const { otherID } = useContext(UserContext);
   const { pathname } = useLocation(); //complete path of our page
-   const id = pathname.split("/")[2];
+  const propertyID = pathname.split("/")[2];
 
-  const { data, isError, isLoading } = useQuery(["Property", id], () =>
-    getProperty(id)
+  const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
+    getProperty(propertyID)
   );
 
-  const {userToken} = useContext(UserContext);
-  const[user, setUser] = useState(null);
+
+
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getUser(userToken);
         setUser(userData);
+
       } catch (error) {
         // Handle the error appropriately in your UI
-        console.error('Failed to fetch user data:', error);
+        console.error("Failed to fetch user data:", error);
       }
     };
 
     if (userToken) {
       fetchUser();
     } else {
-      console.log('No user token');
+      console.log("No user token");
     }
   }, [userToken]);
+
+    const userId = user?._id;
+
 
   if (isLoading) {
     return (
@@ -55,30 +61,15 @@ export const PropertyVehicleDetails = () => {
   return (
     <div className="PropertyDetailsContainer">
       <div className="property-image-container">
-        <img
-          id="mainproperty-image"
-          src={require("../../Res/image/car.jpeg")}
-        />
+        <img id="mainproperty-image" src={data?.images[0]} />
         <div className="property-image-div">
           <div className="property-image-1row">
-            <img
-              id="property-image"
-              src={require("../../Res/image/car.jpeg")}
-            />
-            <img
-              id="property-image"
-              src={require("../../Res/image/car.jpeg")}
-            />
+            <img id="property-image" src={data?.images[1]} />
+            <img id="property-image" src={data?.images[2]} />
           </div>
           <div className="property-image-1row">
-            <img
-              id="property-image"
-              src={require("../../Res/image/car.jpeg")}
-            />
-            <img
-              id="property-image"
-              src={require("../../Res/image/car.jpeg")}
-            />
+            <img id="property-image" src={data?.images[3]} />
+            <img id="property-image" src={data?.images[4]} />
           </div>
         </div>
       </div>
@@ -86,9 +77,9 @@ export const PropertyVehicleDetails = () => {
       <div className="property-display-card">
         <Link to="/image-slideshow">
           <div className="MoreThumbnailsProperty">
-            <img src={require("../../Res/image/car.jpeg")} />
-            <img src={require("../../Res/image/car.jpeg")} />
-            <img src={require("../../Res/image/car.jpeg")} />
+            <img src={data?.images[1]} />
+            <img src={data?.images[2]} />
+            <img src={data?.images[3]} />
           </div>
         </Link>
 
@@ -137,7 +128,7 @@ export const PropertyVehicleDetails = () => {
               <button id="button-buy">RM {data.price}</button>
             </Link>
             <div className="save">
-              <SavedButton />
+              <SavedButton propertyID={propertyID} userId={userId} />
             </div>
           </div>
           <div className="property-fourth-row">
