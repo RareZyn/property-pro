@@ -2,18 +2,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { usePropertiesSeller } from "../../hooks/usePropertiesSeller";
+import { useQuery } from "react-query";
 import { PuffLoader } from "react-spinners";
 import VehicleComponentCard from "../../Cards/Property Cards/VehicleComponentCard";
 import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../util.js";
-import "./ManageProperty.css"
+import { getPropertySeller } from "../../utils/api";
+import "./ManageProperty.css";
 
 export const ManageProperty = () => {
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -30,9 +32,18 @@ export const ManageProperty = () => {
       console.log("No user token");
     }
   }, [userToken]);
+
   const sellerId = user?._id;
-  console.log("UserID: "+sellerId);
-  const { data } = usePropertiesSeller(sellerId);
+  console.log("UserID: " + sellerId);
+
+  const { data, isError, isLoading } = useQuery(
+    ["getPropertySeller", sellerId],
+    () => getPropertySeller(sellerId),
+    {
+      enabled: !!sellerId, // Only run the query if sellerId is defined
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const renderCard = (property) => {
     if (!property || !property.propertyType) {
@@ -73,7 +84,14 @@ export const ManageProperty = () => {
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
       <div className="manageproperty-div">
-        {data && data.map((property) => property && renderCard(property))}
+        {isError && <span>Error while fetching the data</span>}
+        {isLoading ? (
+          <div className="loadContainer">
+            <PuffLoader />
+          </div>
+        ) : (
+          data && data.map((property) => property && renderCard(property))
+        )}
       </div>
       <div className="manageproperty-add">
         <Link to="/Publish-Property">
@@ -86,4 +104,3 @@ export const ManageProperty = () => {
     </div>
   );
 };
-      
