@@ -19,8 +19,7 @@ function VehicleComponentCard({ card, link }) {
             <strong>{card.title}</strong>
           </div>
           <div id="myproperty-type">
-            <FaCar />
-            <strong> {card.propertyType}</strong>
+            <FaCar /><strong> {card.propertyType}</strong>
           </div>
           <div id="myproperty-price">
             <FaTags /> RM{card.price}

@@ -21,12 +21,12 @@ function LandComponentCard({card, link}){
             <div id="myproperty-price">
               <FaTags /> RM {card.price}
             </div>
-              <div id="property-smallicon">
-                <FaLeftRight /> {card.land.area} sqft
-              </div>
-              <div id="property-smallicon">
-                <FaCity /> {card.land?.land_type}
-              </div>
+            <div id="property-smallicon">
+              <FaLeftRight /> {card.land.area} sqft
+            </div>
+            <div id="property-smallicon">
+              <FaCity /> {card.land?.land_type}
+            </div>
             <div id="mypropertyicon-content">
               <div id="property-smallicon">
                 <FaFileCircleQuestion /> {card.land?.ownership_type}
