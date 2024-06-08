@@ -17,7 +17,6 @@ export const CreatePost = () => {
   const userID = "664a05f8d67e61a2cd0ad0ac"; // Must change to not hard code
 
   const handleCreateForum = async () => {
-    setLoading(true)
     try {
       await createForum({ 
         userID: userID,
@@ -31,7 +30,6 @@ export const CreatePost = () => {
     } catch (error) {
       console.error('Error creating forum:', error);
     }
-    setLoading(false);
   };
 
 

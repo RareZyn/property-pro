@@ -1,30 +1,80 @@
-import "./ManageProperty.css";
-import ItemComponentCardA from "../../Cards/Property Cards/VehicleComponentCard";
-import ItemComponentCardB from "../../Cards/Property Cards/HouseComponentCard";
-import ItemComponentCardC from "../../Cards/Property Cards/LandComponentCard";
-import imageA from "../../Res/image/car.jpeg";
-import imageB from "../../Res/image/house.jpeg";
-import imageC from "../../Res/image/land.jpg";
+// components/ManageProperty.js
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { useQuery } from "react-query";
+import { PuffLoader } from "react-spinners";
+import VehicleComponentCard from "../../Cards/Property Cards/VehicleComponentCard";
+import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
+import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
+import { UserContext } from "../../context/UserContext.js";
+import { getUser } from "../../util.js";
+import { getPropertySeller } from "../../utils/api";
+import "./ManageProperty.css";
 
 
 export const ManageProperty = () => {
-  const items = [
-    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
-    { type: "B", img: imageB, link: "/property-housedetails-overview" },
-    { type: "C", img: imageC, link: "/property-landdetails-overview" },
-    { type: "A", img: imageA, link: "/property-vehicledetails-overview" },
-  ];
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
-  const renderCard = (item, index) => {
-    switch (item.type) {
-      case "A":
-        return <ItemComponentCardA key={index} imgLink={item.img} link={item.link} />;
-      case "B":
-        return <ItemComponentCardB key={index} imgLink={item.img} link={item.link} />;
-      case "C":
-        return <ItemComponentCardC key={index} imgLink={item.img} link={item.link} />;
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log("No user token");
+    }
+  }, [userToken]);
+
+  const sellerId = user?._id;
+
+  const { data, isError, isLoading } = useQuery(
+    ["getAllFavorites", sellerId],
+    () => getPropertySeller(sellerId),
+    {
+      enabled: !!sellerId,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  const renderCard = (property) => {
+    if (!property || !property.propertyType) {
+      return null;
+    }
+
+    switch (property.propertyType) {
+      case "Vehicle":
+        return (
+          <VehicleComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-vehicledetails-overview`}
+          />
+        );
+      case "House":
+        return (
+          <HouseComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-housedetails-overview`}
+          />
+        );
+      case "Land":
+        return (
+          <LandComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-landdetails-overview`}
+          />
+        );
       default:
         return null;
     }
@@ -34,7 +84,14 @@ export const ManageProperty = () => {
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
       <div className="manageproperty-div">
-        {items.map((item, index) => renderCard(item, index))}
+        {isError && <span>Error while fetching the data</span>}
+        {isLoading ? (
+          <div className="loadContainer">
+            <PuffLoader />
+          </div>
+        ) : (
+          data && data.map((property) => property && renderCard(property))
+        )}
       </div>
       <div className="manageproperty-add">
         <Link to="/Publish-Property">

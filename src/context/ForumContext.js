@@ -18,10 +18,15 @@ export const ForumProvider = ({ children }) => {
     };
 
     const createForum = async (forumData) => {
+      setLoading(true);
         try {
           const response = await axios.post('http://localhost:5000/forum/create', forumData);
           const newForum = response.data;
-          setForums((prevForums) => [...prevForums, newForum]);
+          setLoading(false);
+          //setForums((prevForums) => [...prevForums, newForum]);
+          if(!loading){
+            fetchForums();
+          }
           console.log(forumData);
         } catch (error) {
           console.error('Error creating forum:', error);

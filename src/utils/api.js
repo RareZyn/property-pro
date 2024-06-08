@@ -24,6 +24,25 @@ export const addLand = async (landDetails) => {
   }
 };
 
+// Function to update land
+export const updateLand = async (landDetails) => {
+  try {
+    const response = await api.put("/updateLand", landDetails, {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    toast.success("Land updated successfully");
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error.response?.data || error.message;
+  }
+};
+
 // Function to add house
 export const addHouse = async (houseDetails) => {
   try {
@@ -36,6 +55,24 @@ export const addHouse = async (houseDetails) => {
     }
 
     toast.success("House added successfully");
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error.response?.data || error.message;
+  }
+};
+//update House
+export const updateHouse = async (houseDetails) => {
+  try {
+    const response = await api.put("/updateHouse", houseDetails, {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    toast.success("House updated successfully");
     return response.data;
   } catch (error) {
     toast.error("Something went wrong");
@@ -61,7 +98,24 @@ export const addVehicle = async (vehicleDetails) => {
     throw error.response?.data || error.message;
   }
 };
+//update Vehicle
+export const updateVehicle = async (vehicleDetails) => {
+  try {
+    const response = await api.put("/updateVehicle", vehicleDetails, {
+      timeout: 10 * 1000,
+    });
 
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    toast.success("Vehicle updated successfully");
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error.response?.data || error.message;
+  }
+};
 // Existing functions
 export const getAllProperties = async () => {
   try {
@@ -146,10 +200,29 @@ export const getAllFavorites = async (id) => {
   try {
     const response = await api.get(`/getAllFavorites`, {
       params: { id },
+      timeout: 10 * 1000,
     });
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
     throw error.response?.data || error.message;
   }
 };
+
+
+export const getPropertySeller = async(id) => {
+    try {
+      const response = await api.get(`/getPropertySeller/${id}`, {
+        timeout: 10 * 1000,
+      });
+
+      if (response.status === 400 || response.status === 500) {
+        throw response.data;
+      }
+
+      return response.data;
+    } catch (error) {
+      toast.error("Something went wrong");
+      throw error;
+    }
+}
+

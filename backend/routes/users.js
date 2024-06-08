@@ -5,7 +5,8 @@ const Bcrypt = require('bcrypt')
 const {cookieJwtAuth} = require('../middleware/cookieJwtAuth')
 const { addUser } = require('../controller/userController')
 
-router.post("/addUser",addUser);
+router.post("/addUser", addUser);
+
 
 
 router.route('/').get((req, res) => {

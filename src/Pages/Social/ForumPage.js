@@ -7,10 +7,12 @@ import { ForumContext } from "../../context/ForumContext";
 
 const ForumPage = () => {
   const { forums,fetchForums,loading,setLoading } = useContext(ForumContext);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      console.log("Fetch Forums");
       try {
         await fetchForums();
       } catch (error) {
@@ -20,6 +22,8 @@ const ForumPage = () => {
     };
     fetchData();
   }, []);
+
+  const displayedForums = searchResults.length > 0 ? searchResults : forums;
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -37,7 +41,7 @@ const ForumPage = () => {
   if (loading ) {
     return (
       <div className="ForumPage">
-      <ForumHeader />
+      <ForumHeader setSearchResults={setSearchResults}/>
         <div id="ForumContent">
           <div className="CreatePostContainer"> 
             <CreatePost></CreatePost>
@@ -50,7 +54,7 @@ const ForumPage = () => {
 
   return (
     <div className="ForumPage">
-      <ForumHeader />
+      <ForumHeader setSearchResults={setSearchResults}/>
       <div id="ForumContent">
         <div className="CreatePostContainer"> 
           <CreatePost></CreatePost>
@@ -58,7 +62,9 @@ const ForumPage = () => {
         <div className="ForumContainer">
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
 
-            {forums.map(forum => {
+            {displayedForums
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map(forum => {
 
               return(
                 <li key={forum._id}>

@@ -164,7 +164,7 @@ export const PropertyHouseDetails = () => {
                 </div>
               </div>
 
-              <Link to="/view-account-header">
+              <Link to={`/view-account/${data?.sellerID}/about`}>
                 <button id="seller-infobutton">Profile</button>
               </Link>
 

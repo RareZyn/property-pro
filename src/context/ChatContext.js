@@ -16,6 +16,35 @@ export const ChatProvider = ({ children }) => {
     }
   };
 
+  const createRoom = async (currentUserID, chatUserID) => {
+    try{
+      const existingRoomResponse = await axios.get('http://localhost:5000/chat/check-room', {
+        params: {
+          user1: currentUserID,
+          user2: chatUserID
+        }
+      });
+
+      const existingRoom = existingRoomResponse.data;
+
+      if (existingRoom) {
+        console.log('Chat room already exists:', existingRoom);
+        fetchChatRooms(currentUserID);
+      } else {
+        // If no existing chat room, create a new one
+        const chatRoom = {
+          user1: currentUserID,
+          user2: chatUserID,
+          chats: []
+        };
+        const response = await axios.post('http://localhost:5000/chat/add-room', chatRoom);
+        fetchChatRooms(currentUserID);
+      }
+    } catch (error) {
+      console.error("Error creating room: ",error);
+    }
+  }
+
   const addMessageToRoom = async (roomID, message) => {
     try {
       const response = await axios.post(`http://localhost:5000/chat/${roomID}/send-message`, message);

@@ -5,7 +5,7 @@ import { FaTags } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import { useQuery } from "react-query";
-import { buyProperty, getProperty } from "../../utils/api.js";
+import { getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
@@ -13,25 +13,22 @@ import SavedButton from "../../hooks/SavedButton.jsx";
 
 export const PropertyVehicleDetails = () => {
   const { otherID } = useContext(UserContext);
-  const { pathname } = useLocation(); //complete path of our page
+  const { pathname } = useLocation();
   const propertyID = pathname.split("/")[2];
 
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
   );
 
-
-
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getUser(userToken);
         setUser(userData);
-
       } catch (error) {
-        // Handle the error appropriately in your UI
         console.error("Failed to fetch user data:", error);
       }
     };
@@ -43,8 +40,7 @@ export const PropertyVehicleDetails = () => {
     }
   }, [userToken]);
 
-    const userId = user?._id;
-
+  const userId = user?._id;
 
   if (isLoading) {
     return (
@@ -57,19 +53,22 @@ export const PropertyVehicleDetails = () => {
   if (isError) {
     return <div>Error while fetching the data</div>;
   }
-
   return (
     <div className="PropertyDetailsContainer">
       <div className="property-image-container">
-        <img id="mainproperty-image" src={data?.images[0]} />
+        <img
+          id="mainproperty-image"
+          srcSet={data?.images[0]}
+          alt="VehicleImage"
+        />
         <div className="property-image-div">
           <div className="property-image-1row">
-            <img id="property-image" src={data?.images[1]} />
-            <img id="property-image" src={data?.images[2]} />
+            <img id="property-image" srcSet={data?.images[1]} alt="VehicleImage" />
+            <img id="property-image" src={data?.images[2]} alt="VehicleImage" />
           </div>
           <div className="property-image-1row">
-            <img id="property-image" src={data?.images[3]} />
-            <img id="property-image" src={data?.images[4]} />
+            <img id="property-image" src={data?.images[3]} alt="VehicleImage" />
+            <img id="property-image" src={data?.images[4]} alt="VehicleImage" />
           </div>
         </div>
       </div>
@@ -187,7 +186,7 @@ export const PropertyVehicleDetails = () => {
                 </div>
               </div>
 
-              <Link to={`/view-account/${otherID}`}>
+              <Link to={`/view-account/${data?.sellerID}/about`}>
                 <button id="seller-infobutton">Profile</button>
               </Link>
 
