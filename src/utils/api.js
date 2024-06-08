@@ -204,7 +204,6 @@ export const getAllFavorites = async (id) => {
     });
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
     throw error.response?.data || error.message;
   }
 };

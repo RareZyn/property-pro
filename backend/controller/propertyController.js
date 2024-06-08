@@ -309,7 +309,7 @@ const availableProperties = asyncHandler(async (req, res) => {
  });
 
 const getAllFavorites = asyncHandler(async (req, res) => {
-  const { id } = req.query; // Read from query parameters
+  const { id } = req.query; 
 
   if (!id) {
     return res.status(400).json({ message: "User ID is required" });
