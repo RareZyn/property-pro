@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { getAllFavorites } from "../../utils/api.js";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
+import { getUser } from "../../utils/userAPI.js";
 import React, { useContext, useEffect, useState } from "react";
 import { PuffLoader } from "react-spinners";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
