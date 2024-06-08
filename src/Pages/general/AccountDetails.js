@@ -1,6 +1,6 @@
 import "./AccountDetails.css";
 import { useEffect, useState } from "react";
-import { getUserById } from "../../util.js";
+import { getUserById } from "../../utils/userAPI";
 import { useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdAlternateEmail } from "react-icons/md";

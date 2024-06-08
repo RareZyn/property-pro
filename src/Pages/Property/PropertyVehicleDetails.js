@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import { buyProperty, getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
+import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 
 export const PropertyVehicleDetails = () => {

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { getUser, logout } from "../../util";
+import { getUser, logout } from "../../utils/userAPI";
 import "./DropdownMenu.css";
-import { FaWhatsapp } from "react-icons/fa6";
 import { UserContext } from "../../context/UserContext";
 
 export const DropdownMenu = ({ className }) => {
