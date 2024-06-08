@@ -1,7 +1,7 @@
 import "./AccountHeader.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
-import { getUserById } from "../../util.js";
+import { getUserById } from "../../utils/userAPI";
 import { UserContext } from "../../context/UserContext.js";
 
 export const AccountHeader = () => {

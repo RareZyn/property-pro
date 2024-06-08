@@ -7,7 +7,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
+import { getUser } from "../../utils/userAPI";
 
 export const PublishProperty = () => {
   const { userToken } = useContext(UserContext);

@@ -14,7 +14,6 @@ import { AccountHeader } from "./Pages/general/AccountHeader.js";
 import { MyAccountTransaction } from "./Pages/general/AccountTransaction.js";
 import { MyAccountPost } from "./Pages/general/AccountPost.js";
 import { MyAccountDetails } from "./Pages/general/AccountDetails.js";
-import { AccountProperty } from "./Pages/general/AccountProperty.js";
 import { ManageAccount } from "./Pages/general/AccountManager.js";
 import { PropertyHouseDetails } from "./Pages/Property/PropertyHouseDetails.js";
 import { PropertyLandDetails } from "./Pages/Property/PropertyLandDetails.js";
@@ -60,12 +59,12 @@ export const routes = [
     path: "/view-account/:id",
     element: <AccountHeader />,
     children: [
-      { path: "property", element: <AccountProperty /> },
+      { path: "property", element: <ManageProperty /> },
       { path: "post", element: <MyAccountPost /> },
       { path: "transaction", element: <MyAccountTransaction /> },
       { path: "about", element: <MyAccountDetails /> },
       { path: "manage", element: <ManageAccount /> },
-      { path: "", element: <AccountProperty /> },
+      { path: "", element: <Navigate to={'property'} /> },
     ],
   },
   // { path: '/manage-account', element: <ManageAccount /> },

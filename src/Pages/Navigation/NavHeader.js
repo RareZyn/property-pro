@@ -4,7 +4,7 @@ import { DropdownMenu } from "./DropdownMenu";
 import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
-import { getUser, logout } from "../../util";
+import { getUser, logout } from "../../utils/userAPI";
 import { UserContext } from "../../context/UserContext";
 
 export const NavHeader = () => {

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getProperty, buyProperty } from "../../utils/api";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
+import { getUser } from "../../utils/userAPI";
 import { toast } from "react-toastify";
 import { PuffLoader } from "react-spinners";
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
-import { getUserById } from "../../util";
+import { getUserById } from "../../utils/userAPI";
 
 export const ManageAccount = () => {
   const nav = useNavigate();

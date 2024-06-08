@@ -13,7 +13,7 @@ import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
+import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 
 export const PropertyLandDetails = () => {
@@ -172,7 +172,7 @@ export const PropertyLandDetails = () => {
                 </div>
               </div>
 
-              <Link to="/view-account-header">
+              <Link to={`/view-account/${data?.sellerID}/about`}>
                 <button id="seller-infobutton">Profile</button>
               </Link>
 
