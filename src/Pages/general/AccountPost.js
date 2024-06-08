@@ -2,12 +2,26 @@ import "./AccountPost.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
 import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { ForumContext } from "../../context/ForumContext";
 
 export const MyAccountPost = () => {
-  const { forums } = useContext(ForumContext);
+  const { forums,fetchForums,setLoading } = useContext(ForumContext);
   const userID = "664a05f8d67e61a2cd0ad0ac"; // Need to fix not hard coded
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      console.log("Fetch Forums");
+      try {
+        await fetchForums();
+      } catch (error) {
+        console.error('Error fetching forums:', error);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
 
   let items = [];
   for (let i = 0; i < 3; i++) {
