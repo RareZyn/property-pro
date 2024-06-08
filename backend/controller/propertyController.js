@@ -1,34 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { prisma } = require("../config/prismaConfig.js");
 
-const getProperty = asyncHandler(async (req, res) => {
-  const { id } = req.params;
 
-  try {
-    const property = await prisma.property.findUnique({
-      where: { property_id: id }, // Use id directly without parsing to Int
-      include: {
-        vehicle: true,
-        land: true,
-        house: true,
-        seller: true,
-        broker: true,
-        buyer: true,
-      },
-    });
-
-    if (!property) {
-      return res.status(404).json({ message: "Property not found" });
-    }
-
-    res.status(200).json(property);
-  } catch (error) {
-    console.log(error.message);
-    res
-      .status(500)
-      .json({ message: "Failed to retrieve property: " + error.message });
-  }
-});
 
 const getAllProperties = asyncHandler(async (req, res) => {
   try {
@@ -61,7 +34,8 @@ const addLand = asyncHandler(async (req, res) => {
     area,
     location,
     land_type,
-    ownership_type
+    ownership_type,
+    file
   } = req.body;
 
   // Validate propertyType
@@ -83,6 +57,7 @@ const addLand = asyncHandler(async (req, res) => {
     seller: {
       connect: { id: sellerID },
     },
+    file
   };
 
   try {
@@ -124,6 +99,7 @@ const addVehicle = asyncHandler(async (req, res) => {
     ManufacturedYear,
     cc,
     condition,
+    file
   } = req.body;
 
   const propertyData = {
@@ -132,9 +108,11 @@ const addVehicle = asyncHandler(async (req, res) => {
     propertyType,
     price,
     images,
+    file,
     seller: {
       connect: { id: sellerID },
     }
+    
   };
 
   const property = await prisma.property.create({
@@ -171,6 +149,7 @@ const addHouse = asyncHandler(async (req, res) => {
     location,
     rooms,
     bathrooms,
+    file
   } = req.body;
 
   try {
@@ -187,6 +166,7 @@ const addHouse = asyncHandler(async (req, res) => {
       propertyType,
       price,
       images,
+      file,
       seller: {
         connect: { id: sellerID },
       },
@@ -328,18 +308,315 @@ const availableProperties = asyncHandler(async (req, res) => {
    }
  });
 
- const getAllFavorites = asyncHandler(async (req, res) => {
-   const { id } = req.query;
-   try {
-     const user = await prisma.users.findUnique({
-       where: { id },
-       select: { favResidencieID: true },
-     });
-     res.status(200).send(user.favResidencieID);
-   } catch (err) {
-     res.status(500).send({ message: err.message });
-   }
- });
+const getAllFavorites = asyncHandler(async (req, res) => {
+  const { id } = req.query; // Read from query parameters
+
+  if (!id) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const user = await prisma.users.findUnique({
+      where: { id }, // Use the id directly
+      select: { favResidencieID: true },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const favoriteProperties = await prisma.property.findMany({
+      where: {
+        property_id: {
+          in: user.favResidencieID,
+        },
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    res.status(200).json(favoriteProperties);
+  } catch (err) {
+    console.log(err.message);
+    res
+      .status(500)
+      .json({
+        message: "Failed to retrieve favorite properties: " + err.message,
+      });
+  }
+});
+
+
+
+const getPropertySeller = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const properties = await prisma.property.findMany({
+      where: { sellerID: id },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log("Error retrieving properties:", error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve properties: " + error.message });
+  }
+});
+
+const getProperty = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const property = await prisma.property.findUnique({
+      where: { property_id: id }, // Use id directly without parsing to Int
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json(property);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve property: " + error.message });
+  }
+});
+
+const updateLand = asyncHandler(async (req, res) => {
+  const {
+    property_id, // The property ID
+    title,
+    description,
+    price,
+    area,
+    location,
+    land_type,
+    ownership_type,
+  } = req.body;
+
+  // Validate required fields
+  if (!property_id) {
+    return res.status(400).json({ message: "Property ID is required" });
+  }
+
+  // Build property update data
+  const propertyData = {
+    title,
+    description,
+    price,
+  };
+
+  // Remove undefined values from propertyData
+  Object.keys(propertyData).forEach((key) => {
+    if (propertyData[key] === undefined) {
+      delete propertyData[key];
+    }
+  });
+
+  try {
+    // Update property
+    const property = await prisma.property.update({
+      where: { property_id },
+      data: propertyData,
+    });
+
+    // Check if land details exist and need to be updated
+    const landData = {
+      area,
+      location,
+      land_type,
+      ownership_type,
+    };
+
+    // Remove undefined values from landData
+    Object.keys(landData).forEach((key) => {
+      if (landData[key] === undefined) {
+        delete landData[key];
+      }
+    });
+
+    const land = await prisma.land.update({
+      where: { propertyID: property_id },
+      data: landData,
+    });
+
+    res.status(200).json({ property, land });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+const updateVehicle = asyncHandler(async (req, res) => {
+  const {
+    property_id, // Align with client-side naming
+    title,
+    description,
+    price,
+    vehicleType,
+    brand,
+    model,
+    seats,
+    mileage,
+    ManufacturedYear,
+    cc,
+    condition,
+  } = req.body;
+
+  // Validate required fields
+  if (!property_id) {
+    return res.status(400).json({ message: "Property ID is required" });
+  }
+
+  // Build property update data
+  const propertyData = {
+    title,
+    description,
+    price,
+  };
+
+  // Remove undefined values from propertyData
+  Object.keys(propertyData).forEach((key) => {
+    if (propertyData[key] === undefined) {
+      delete propertyData[key];
+    }
+  });
+
+  // Build vehicle update data
+  const vehicleData = {
+    vehicleType,
+    brand,
+    model,
+    seats,
+    mileage,
+    ManufacturedYear,
+    cc,
+    condition,
+  };
+
+  // Remove undefined values from vehicleData
+  Object.keys(vehicleData).forEach((key) => {
+    if (vehicleData[key] === undefined) {
+      delete vehicleData[key];
+    }
+  });
+
+  try {
+    // Update property using `property_id`
+    const property = await prisma.property.update({
+      where: { property_id }, // Use `property_id` here
+      data: propertyData,
+    });
+
+    // Check if there are vehicle details to update
+    if (Object.keys(vehicleData).length > 0) {
+      // Update vehicle using the relationship with property
+      const vehicle = await prisma.vehicle.update({
+        where: { propertyID: property_id }, // Use `propertyID` here
+        data: vehicleData,
+      });
+      res.status(200).json({ property, vehicle });
+    } else {
+      res.status(200).json({ property });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+const updateHouse = asyncHandler(async (req, res) => {
+  const {
+    property_id,
+    title,
+    description,
+    propertyType,
+    price,
+    size,
+    location,
+    rooms,
+    bathrooms,
+  } = req.body;
+
+  // Validate required fields
+  if (!property_id) {
+    return res.status(400).json({ message: "Property ID is required" });
+  }
+
+  // Validate propertyType
+  if (propertyType && propertyType !== "House") {
+    return res.status(400).json({ message: "Invalid property type for House" });
+  }
+
+  // Build property update data
+  const propertyData = {
+    title,
+    description,
+    price,
+  };
+
+  // Remove undefined values from propertyData
+  Object.keys(propertyData).forEach((key) => {
+    if (propertyData[key] === undefined) {
+      delete propertyData[key];
+    }
+  });
+
+  try {
+    // Update property
+    const property = await prisma.property.update({
+      where: { property_id },
+      data: propertyData,
+    });
+
+    // Check if house details exist and need to be updated
+    const houseData = {
+      size,
+      location,
+      rooms,
+      bathrooms,
+    };
+
+    // Remove undefined values from houseData
+    Object.keys(houseData).forEach((key) => {
+      if (houseData[key] === undefined) {
+        delete houseData[key];
+      }
+    });
+
+    const house = await prisma.house.update({
+      where: { propertyID: property_id },
+      data: houseData,
+    });
+
+    res.status(200).json({ property, house });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 
 
 
@@ -353,5 +630,11 @@ module.exports = {
   buyProperty,
   availableProperties,
   toFav,
-  getAllFavorites
+  getAllFavorites,
+  getPropertySeller,
+  updateLand,
+  updateVehicle,
+  updateHouse
+
+  
 };

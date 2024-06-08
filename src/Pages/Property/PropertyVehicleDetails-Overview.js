@@ -1,198 +1,252 @@
-import React, { useState } from 'react';
-import { FaCarSide, FaGauge, FaCalendarDays } from "react-icons/fa6";
-import { FaTags } from "react-icons/fa";
-import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
-import './PropertyDetails.css';
+import "./PropertyDetails.css";
+import { useQuery } from "react-query";
+import { getProperty, updateVehicle } from "../../utils/api.js";
+
 
 export const PropertyVehicleDetailsOverview = () => {
+  const { pathname } = useLocation();
+  const propertyID = pathname.split("/")[1];
+  const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
+    getProperty(propertyID)
+  );
+
+  const [propertyDetails, setPropertyDetails] = useState({
+    property_id: propertyID,
+    price: 0,
+    title: "",
+    description: "",
+    propertyType: "vehicle",
+    vehicle: {
+      vehicleType: "",
+      brand: "",
+      model: "",
+      seats: 0,
+      mileage: 0,
+      ManufacturedYear: 0,
+      cc: 0,
+      condition: "",
+    },
+  });
+
+  useEffect(() => {
+    if (data) {
+      setPropertyDetails((prevDetails) => ({
+        ...prevDetails,
+        property_id: propertyID,
+        price: data.price || 0,
+        title: data.title || "",
+        description: data.description || "",
+        propertyType: data.propertyType || "vehicle",
+        vehicle: {
+          vehicleType: data.vehicle?.vehicleType || "",
+          brand: data.vehicle?.brand || "",
+          model: data.vehicle?.model || "",
+          seats: data.vehicle?.seats || 0, // Ensure it's a string or null, not undefined
+          mileage: data.vehicle?.mileage || 0,
+          ManufacturedYear: data.vehicle?.ManufacturedYear || 0,
+          cc: data.vehicle?.cc || 0,
+          condition: data.vehicle?.condition || "",
+        },
+      }));
+    }
+  }, [data, propertyID]);
+
+const handleChange = (event) => {
+  const { name, value } = event.target;
+  const integerFields = ["seats", "mileage", "ManufacturedYear", "cc"];
+  const floatFields = ["price"];
+
+  let parsedValue = value;
+
+  if (integerFields.includes(name)) {
+    parsedValue = parseInt(value, 10) || 0; // Set to 0 if parsing fails or value is empty
+  } else if (floatFields.includes(name)) {
+    parsedValue = parseFloat(value);
+  }
+  setPropertyDetails((prevDetails) => ({
+    ...prevDetails,
+    vehicle: {
+      ...prevDetails.vehicle,
+      [name]: parsedValue,
+    },
+  }));
+};
+
+  const handleSubmit = async () => {
+    try {
+      const updatedVehicle = {
+        ...propertyDetails.vehicle,
+        property_id: propertyDetails.property_id,
+      };
+      await updateVehicle(updatedVehicle);
+    } catch (error) {
+      console.error("Error updating vehicle:", error);
+    }
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
 
   return (
     <div className="PropertyDetailsContainer">
-    
       <div className="property-image-container">
-
-        <img
-          id="mainproperty-image"
-          src={require("../../Res/image/car.jpeg")}
-        />
+        <img id="mainproperty-image" src={data?.images[0]} alt="Property" />
         <div className="property-image-div">
           <div className="property-image-1row">
-            <img
-              id="property-image"
-              src={require("../../Res/image/car.jpeg")}
-            />
-            <img
-              id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
-            />
+            <img id="property-image" src={data?.images[1]} alt="Property" />
+            <img id="property-image" src={data?.images[2]} alt="Property" />
           </div>
           <div className="property-image-1row">
-            <img
-              id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
-            />
-            <img
-              id="property-image"
-              src={require("../../Res/image/image-dummy-house.png")}
-            />
+            <img id="property-image" src={data?.images[3]} alt="Property" />
+            <img id="property-image" src={data?.images[4]} alt="Property" />
           </div>
         </div>
       </div>
 
       <div className="property-display-card">
-      <div className="overview-first-row">
-          
-        <Link to="/image-slideshow">
-          <div className="MoreThumbnailsProperty">
-            <img src={require("../../Res/image/car.jpeg")} />
-            <img src={require("../../Res/image/image-dummy-house.png")} />
-            <img src={require("../../Res/image/car.jpeg")} />
-          </div>
-        </Link> 
+        <div className="overview-first-row">
+          <Link to="/image-slideshow">
+            <div className="MoreThumbnailsProperty">
+              <img src={data?.images[0]} alt="Property" />
+              <img src={data?.images[1]} alt="Property" />
+              <img src={data?.images[2]} alt="Property" />
+            </div>
+          </Link>
         </div>
 
         <div className="Overview-edit">
-        <button className="delete-button">
-            <img
-              src={require("../../Res/image/trash icon.png")}
-              id="delete-icon"
-            />
-            <span id="delete">DELETE</span>
-          </button>
-          <button className="price" >
-            <span>
-            <h1>RM 5000,000</h1>
-          </span>
-          </button>
-          <Link to="/publish-property">
-          <button className="edit-button">
-            <img
-              src={require("../../Res/image/pencil icon.png")}
-              id="edit-icon"
-            />
-            <span id="edit">EDIT</span>
-            </button>
-          </Link>
-
-       </div>
-
+          <input
+            id="input-section"
+            name="price"
+            type="text"
+            value={propertyDetails.price}
+            onChange={(e) =>
+              setPropertyDetails({ ...propertyDetails, price: e.target.value })
+            }
+          />
+        </div>
         <div className="property-fist-row">
           <div className="title-div">
-            <h1 id="title-property">Brand New Car For Sale</h1>
-            <div className="share-content"><PopupShare /></div>
-          </div>
-
-          <div className="property-second-row">
-          
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaGauge/>
-              </div>
-              <div className="text">
-                200 cc
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaCarSide/>
-              </div>
-              <div className="text">
-                4 Seater
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaCalendarDays/>
-              </div>
-              <div className="text">
-                2023
-              </div>
-            </div>
-
-            <div className="icon-with-text">
-              <div className="property-icon">
-                <FaTags />
-              </div>
-              <div className="text">
-                Brand New
-              </div>
+            <input
+              id="input-section"
+              name="title"
+              type="text"
+              value={propertyDetails.title}
+              onChange={(e) =>
+                setPropertyDetails({
+                  ...propertyDetails,
+                  title: e.target.value,
+                })
+              }
+            />
+            <div className="share-content">
+              <PopupShare />
             </div>
           </div>
 
           <div className="property-desc">
             <h3>Description of the product:</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-
-          <div className="overview-progressbar">
-          <div className="ProgressBar">
-            <p>A section</p>
-            <p>B section</p>
-            <p>C section</p>
-          </div>
-          <div className="ProgressBarLabel">
-            <p>Upload property</p>
-            <p>Document verification</p>
-            <p>null</p>
-            <p>Broker verification</p>
-            <p>Property verified</p>
-          </div>
+            <textarea
+              id="input-section"
+              name="description"
+              value={propertyDetails.description}
+              onChange={(e) =>
+                setPropertyDetails({
+                  ...propertyDetails,
+                  description: e.target.value,
+                })
+              }
+            />
           </div>
 
           <div className="property-fourth-row">
             <div className="info-page-container">
               <h2>Property Information</h2>
-
-             <div className="info-section">
-                <div className="info-label">Vehicle Type</div>
-                <div className="info-value">Lorem ipsum sudfbv</div>
-              </div>
               <div className="info-section">
                 <div className="info-label">Vehicle Brand</div>
-                <div className="info-value">Perodua</div>
+                <input
+                  id="input-section"
+                  name="brand"
+                  type="text"
+                  value={propertyDetails.vehicle.brand}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="info-section">
+                <div className="info-label">Vehicle Type (Sedan/MPV...)</div>
+                <input
+                  id="input-section"
+                  name="vehicleType"
+                  type="text"
+                  value={propertyDetails.vehicle.vehicleType}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">Model</div>
-                <div className="info-value">Bezza 2023</div>
+                <input
+                  id="input-section"
+                  name="model"
+                  type="text"
+                  value={propertyDetails.vehicle.model}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">Number of seats</div>
-                <div className="info-value">4 seater</div>
+                <input
+                  id="input-section"
+                  name="seats"
+                  type="text"
+                  value={propertyDetails.vehicle.seats}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">Mileage</div>
-                <div className="info-value">10 </div>
+                <input
+                  id="input-section"
+                  name="mileage"
+                  type="text"
+                  value={propertyDetails.vehicle.mileage}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">Year of Production</div>
-                <div className="info-value">2023</div>
+                <input
+                  id="input-section"
+                  name="ManufacturedYear"
+                  type="text"
+                  value={propertyDetails.vehicle.ManufacturedYear}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">CC</div>
-                <div className="info-value">200</div>
+                <input
+                  id="input-section"
+                  name="cc"
+                  type="text"
+                  value={propertyDetails.vehicle.cc}
+                  onChange={handleChange}
+                />
               </div>
               <div className="info-section">
                 <div className="info-label">Usage</div>
-                <div className="info-value">Brand New</div>
-              
+                <input
+                  id="input-section"
+                  name="condition"
+                  type="text"
+                  value={propertyDetails.vehicle.condition}
+                  onChange={handleChange}
+                />
+              </div>
+              <button onClick={handleSubmit}>Submit</button>
             </div>
-            </div>
-
-            
-          </div>
-
-          <div className="comment-div">
-            <h1>Comment</h1>
-            <ReplyCard />
-            <ReplyCard />
-            <ReplyCard />
           </div>
         </div>
       </div>

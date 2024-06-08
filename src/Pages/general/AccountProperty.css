@@ -4,7 +4,7 @@
 }
 
 .myproperty-add{
-    width: fit-content;
+    width: 100%;
     display: flex;
     margin: 0 auto 3%;
     background-color: var(--creamyWhite);

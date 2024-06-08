@@ -8,7 +8,6 @@ import { PuffLoader } from "react-spinners";
 
 export const BrowserProperty = () => {
   const { data, isError, isLoading } = useProperties();
-  console.log(data);
 
   if (isError) {
     return <span>Error while fetching the data</span>;
@@ -60,10 +59,12 @@ const renderCard = (property) => {
       <header id={style["header-container"]}>
         <SearchBar id={style["browse-search"]} hint="Browse Property..." />
       </header>
-      <h1 className="property-headline">Hot Items</h1>
+      <h1 className="property-headline">Unverified Property</h1>
       <div className="properties-grid">
         {data && data.map((property) => property && renderCard(property))}
       </div>
+       <h1 className="property-headline">Verified Property</h1>
+      <div className="properties-grid"></div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const HouseDisplayCard = ({ card, link }) => {
       <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
         <div id="img-placeholder">
           <img
-            src={card?.images[0]}
+            srcSet={card?.images[0]}
             alt="Image"
             id="img-ph"
             style={{ width: "100%", height: "100%" }}
