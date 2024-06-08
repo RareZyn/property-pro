@@ -12,6 +12,7 @@ router.route('/:userID').get((req, res) => {
     const userID = req.params.userID;
     ChatRoom.find({ user1: userID })
         .populate('user1')
+        .populate('user2')
         .then(chatRooms => res.json(chatRooms))
         .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -54,6 +55,25 @@ router.route('/:roomID/send-message').post(async (req ,res)=>{
         console.error('Error sending message:', error);
         res.status(400).json('Error sending message');
       }
+});
+
+// Check if room with user1 and user2 exist
+router.route('/check-room').get(async (req,res)=>{
+  const { user1, user2 } = req.query;
+
+  try{
+    const chatRoom = await ChatRoom.findOne({
+      $or: [
+        { user1: user1, user2: user2 },
+        { user1: user2, user2: user1 }
+      ]
+    });
+
+    res.json(chatRoom)
+  } catch (error){
+    console.error("Error checking chat room: ", error);
+    res.status(500).send("Internal server error");
+  }
 });
 
 module.exports = router;

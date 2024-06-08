@@ -17,7 +17,7 @@ export const Chat = ({userID}) => {
   const [chats, setChats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  userID = "664a05f8d67e61a2cd0ad0ac"
+  userID = "664a05f8d67e61a2cd0ad0ac"// must be change to not Hard coded
 
   useEffect(() => {
     fetchChatRooms(userID);// id must be userID
@@ -121,6 +121,10 @@ export const Chat = ({userID}) => {
     setIsChatScreenActive(false);
   };
 
+  const renderUsername = (room, userID) => {
+    return room.user1._id === userID ? room.user2.username : room.user1.username;
+  };
+
   return (
     <div className="Chat">
 
@@ -130,7 +134,7 @@ export const Chat = ({userID}) => {
           <li key={room._id} onClick={() => handleChatListClick(0, room)} className={currentChatRoom === room ? 'active' : ''}>
             <img src={require("../../Res/image/user profile.png")} alt="User profile" />
             <div>
-              <h1>{room.user1.username}</h1>
+              <h1>{renderUsername(room,userID)}</h1>
               <p>{room.chats[room.chats.length - 1].textChat}</p>
             </div>
           </li>
@@ -178,7 +182,7 @@ export const Chat = ({userID}) => {
             </div>
             <img src={require("../../Res/image/user profile.png")} alt="User profile" />
             <h1>{
-              currentChatRoom.user1.username
+              renderUsername(currentChatRoom,userID)
             }</h1>
           </div>
 
@@ -191,7 +195,7 @@ export const Chat = ({userID}) => {
               console.log('Sender ID:', chat.senderID);
               console.log('Current User ID:', currentChatRoom.user1._id);
              return(
-                chat.senderID === currentChatRoom.user1._id ?  
+                chat.senderID === userID ?  
                 <MyChatBubble key={chat._id} content={chat.textChat} time={chat.createdAt}/> : // if true
                 <YourChatBubble key={chat._id} content={chat.textChat} /> // if false
               )}

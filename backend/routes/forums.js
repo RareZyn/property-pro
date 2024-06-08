@@ -11,6 +11,23 @@ router.route('/').get(async (req, res) => {
     }
 });
 
+// Search forums based on textForum value
+router.route('/search').get(async (req, res) => {
+    const searchQuery = req.query.q; // Get the search term from query parameters
+
+    if (!searchQuery) {
+        return res.status(400).json({ error: 'Search term is required' });
+    }
+
+    try {
+        const regex = new RegExp(searchQuery, 'i');
+        const forums = await Forum.find({ textForum: { $regex: regex } });
+        res.json(forums);
+    } catch (err) {
+        res.status(400).json('Error: ' + err);
+    }
+});
+
 // Create new forum
 router.route('/create').post(async (req, res) => {
     try {
