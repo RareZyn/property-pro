@@ -8,8 +8,8 @@ import VehicleComponentCard from "../../Cards/Property Cards/VehicleComponentCar
 import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import { UserContext } from "../../context/UserContext.js";
-import { getUser } from "../../util.js";
-import { getPropertySeller } from "../../utils/api";
+import { getUser } from "../../utils/userAPI.js";
+import { getPropertySeller } from "../../utils/api.js"
 import "./ManageProperty.css";
 
 
