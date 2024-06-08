@@ -30,6 +30,7 @@ export const SavedProperty = () => {
   }, [userToken]);
 
   const userId = user?._id;
+  console.log("UserID " + userId);
 
   const { data, isError, isLoading } = useQuery(
     ["getAllFavorites", userId],

@@ -12,7 +12,7 @@ import { ChatProvider } from "./context/ChatContext.js";
 import axios from "axios";
 import { UserContext } from "./context/UserContext.js";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ForumProvider } from "./context/ForumContext.js";
 
@@ -93,7 +93,19 @@ function App() {
           </ForumProvider>
           </ChatProvider>
         </Router>
-        <ToastContainer />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="light"
+          transition={Bounce}
+        />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
