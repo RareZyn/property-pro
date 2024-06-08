@@ -8,7 +8,6 @@ import { PuffLoader } from "react-spinners";
 
 export const BrowserProperty = () => {
   const { data, isError, isLoading } = useProperties();
-  console.log(data);
 
   if (isError) {
     return <span>Error while fetching the data</span>;

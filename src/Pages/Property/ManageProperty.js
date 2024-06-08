@@ -35,7 +35,6 @@ export const ManageProperty = () => {
   }, [userToken]);
 
   const sellerId = user?._id;
-  console.log("UserID: " + sellerId);
 
   const { data, isError, isLoading } = useQuery(
     ["getAllFavorites", sellerId],

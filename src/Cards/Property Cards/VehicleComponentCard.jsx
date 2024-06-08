@@ -7,19 +7,19 @@ import { useProperties } from "../../hooks/useProperties";
 
 function VehicleComponentCard({ card, link }) {
   const { data, isError, isLoading } = useProperties();
-  console.log(data);
   return (
     <Link to={link}>
       <div id="item-card">
         <section id="img-container">
-          <img src={card?.images[0]} alt="image property" srcset="" />
+          <img srcSet={card?.images[0]} alt="image property" />
         </section>
         <div id="details-container">
           <div id="myproperty-name">
             <strong>{card.title}</strong>
           </div>
           <div id="myproperty-type">
-            <FaCar /><strong> {card.propertyType}</strong>
+            <FaCar />
+            <strong> {card.propertyType}</strong>
           </div>
           <div id="myproperty-price">
             <FaTags /> RM{card.price}

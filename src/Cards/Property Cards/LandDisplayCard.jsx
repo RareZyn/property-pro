@@ -20,7 +20,7 @@ export const LandDisplayCard = ({ link, card }) => {
           onClick={() => navigate("/property-Land-Details")}
         >
           <img
-            src={card?.images[0]}
+            srcSet={card?.images[0]}
             alt="Image"
             id="img-ph"
             style={{ width: "100%", height: "100%" }}

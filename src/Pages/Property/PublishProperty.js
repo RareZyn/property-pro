@@ -63,6 +63,8 @@ export const PublishProperty = () => {
     file: [],
   });
 
+  
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -284,11 +286,7 @@ export const PublishProperty = () => {
   };
   const handleVehicleChange = (event) => {
     const { name, value } = event.target;
-
-    // Define fields that need to be parsed as integers
     const integerFields = ["seats", "mileage", "ManufacturedYear", "cc"];
-
-    // Define fields that need to be parsed as floats
     const floatFields = ["price"];
 
     let parsedValue = value;

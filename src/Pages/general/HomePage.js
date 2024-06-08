@@ -1,6 +1,5 @@
 import "./HomePage.css";
-import React, { useContext, useState } from "react";
-import { useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
 
@@ -60,9 +59,9 @@ export const HomePage = () => {
   };
 
   let suggestedItems = new Array(5);
-   for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i++) {
     suggestedItems.push(<HouseDisplayCard />);
-   }
+  }
 
   return (
     <div className="HomePage">
@@ -74,17 +73,16 @@ export const HomePage = () => {
           onMouseEnter={handleBuyerHover}
           onMouseLeave={() => setIsBuyerHovered(false)}
         >
-          <img src={require("../../Res/image/men-image1.png")} />
+          <img src={require("../../Res/image/men-image1.png")} alt="Buyer" />
         </div>
         <div
           className={`homepage-img homepage-img-men ${
             isSellerHovered ? "enlarged" : ""
           }`}
-          a
           onMouseEnter={handleSellerHover}
           onMouseLeave={() => setIsSellerHovered(false)}
         >
-          <img src={require("../../Res/image/women-image.png")} />
+          <img src={require("../../Res/image/women-image.png")} alt="Seller" />
         </div>
       </div>
 
@@ -99,7 +97,7 @@ export const HomePage = () => {
             BUYER
           </Link>
           <Link
-            to="/manage-property"
+            to="/publish-property"
             className={`seller ${isSellerHovered ? "enlarged" : ""}`}
             onMouseEnter={handleSellerHover}
             onMouseLeave={() => setIsSellerHovered(false)}
@@ -113,7 +111,8 @@ export const HomePage = () => {
         <div className="img-div1">
           <img
             src={require("../../Res/image/community-image.png")}
-            class="community-img"
+            className="community-img"
+            alt="Community"
           />
         </div>
         <div className="community-details">
@@ -132,6 +131,7 @@ export const HomePage = () => {
           <img
             src={require("../../Res/image/broker-image.png")}
             className="broker-img"
+            alt="Broker"
           />
         </div>
         <div className="broker-details">
@@ -159,7 +159,7 @@ export const HomePage = () => {
         <div className="properties-grid">
           <h1 className="property-headline">Hot Items</h1>
           {suggestedItems.map((item, index) => (
-            <HouseDisplayCard key={index} link={"/property-house-details"}/>
+            <HouseDisplayCard key={index} link={"/property-house-details"} />
           ))}
         </div>
       </div>

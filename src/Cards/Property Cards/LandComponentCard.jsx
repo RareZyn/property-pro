@@ -9,7 +9,7 @@ function LandComponentCard({card, link}){
       <Link to={link}>
         <div id="item-card">
           <section id="img-container">
-            <img src={card?.images[0]} alt="image property" srcset="" />
+            <img srcSet={card?.images[0]} alt="image property"/>
           </section>
           <div id="details-container">
             <div id="myproperty-name">
