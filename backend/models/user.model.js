@@ -57,6 +57,10 @@ const userSchema = new Schema({
     broker: {
         type: Schema.Types.ObjectId,
         ref: 'Broker'
+    },
+    profilePicture: {
+        type: String,
+        trim: true
     }
 }, {
     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }

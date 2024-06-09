@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
-import { getUserById } from "../../utils/userAPI";
+import { getUserById, addProfile} from "../../utils/userAPI";
+import { toast } from "react-toastify";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture";
 
 export const ManageAccount = () => {
   const nav = useNavigate();
@@ -31,6 +33,7 @@ export const ManageAccount = () => {
     location: user ? user.location : null,
     profilePicture: "",
   });
+  const [profileFile, setProfileFile] = useState('')
 
   useEffect(() => {
     if(user){
@@ -66,16 +69,22 @@ export const ManageAccount = () => {
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
-          .then(res => {
-            console.log(res.data);
-            alert("Profile updated successfully");
-            // window.location.reload();
-            nav(`/view-account/${user._id}/about`);
+        // Save file to database
+        addProfile(profileFile)
+          .then((result) => {
+            formValues.profilePicture = result;
+            console.log('formValues: ', formValues)
+            axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
+              .then(res => {
+                console.log(res.data);
+                toast.info("Profile updated successfully");
+                // window.location.reload();
+                nav(`/view-account/${user._id}/about`);
+              })
+              .catch(error => {
+                console.error("There was an error updating the profile!", error);
+              });
           })
-          .catch(error => {
-            console.error("There was an error updating the profile!", error);
-          });
       })
       .catch((validationErrors) => {
         const errors = {};
@@ -92,15 +101,13 @@ export const ManageAccount = () => {
         <form onSubmit={handleSubmit}>
           <div className="InputDetails">
             <h3>EDIT YOUR PROFILE</h3>
-            <img
-              id="user-image"
-              src={require("../../Res/image/user profile.png")}
-              alt="User Profile"
-            />
+            <ProfilePicture imgLink={user ? user.profilePicture : null}/>
+            
             <section id="input-section">
               First Name
               <input
                 type="text"
+                id="firstName"
                 name="firstName"
                 value={formValues.firstName}
                 onChange={handleChange}
@@ -176,7 +183,7 @@ export const ManageAccount = () => {
                 type="file"
                 name="profilePicture"
                 accept="image/*"
-                onChange={handleChange}
+                onChange={(e) => {setProfileFile(e.target.files[0])}}
                 />
                 {errors.profilePicture && (
                 <div className="error">{errors.profilePicture}</div>
@@ -193,4 +200,4 @@ export const ManageAccount = () => {
                 );
                 };
 
-                export default ManageAccount;
+export default ManageAccount;

@@ -56,14 +56,14 @@ router.get('/auth', cookieJwtAuth, async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
     const { id } = req.params;
-    const {name, ...data} = req.body;
+    const {name, ...data} = req.body
+    console.log(id)
 
     try {
         const user = await User.findByIdAndUpdate({_id:id}, data, { new: true });
 
         if (user) {
-            const token = jwt.sign({ user }, process.env.MY_SECRET, { expiresIn: "1d" });
-            res.cookie("token", token);
+            console.log('User updated')
             res.json(user)
         } else {
             res.status(404).json('User not found');

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { getUser, logout } from "../../utils/userAPI";
 import "./DropdownMenu.css";
 import { UserContext } from "../../context/UserContext";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture";
 
 export const DropdownMenu = ({ className }) => {
   const {userToken} = useContext(UserContext);
@@ -27,10 +28,7 @@ export const DropdownMenu = ({ className }) => {
   return (
     <div className={className}>
       <a className="ProfileViewDetailsCard" href={userToken ? `/view-account/${userToken.id}` : null}>
-        <img
-          className="ProfileView"
-          src={require("../../Res/image/user profile.png")}
-        />
+        <ProfilePicture imgLink={user ? user.profilePicture : null} size='85px'/>
         <h3 className="ProfileViewName">{user ? user.username : null}</h3>
         <p className="ProfileViewDesc">{user ? user.description : null}</p>
       </a>
