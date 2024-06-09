@@ -1,9 +1,8 @@
 import "./AccountPost.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
-import { Link } from "react-router-dom";
 import { useContext,useEffect } from "react";
 import { ForumContext } from "../../context/ForumContext";
+import CreatePost from "../../Cards/Posting Cards/CreatePost";
 
 export const MyAccountPost = () => {
   const { forums,fetchForums,setLoading } = useContext(ForumContext);
@@ -21,19 +20,11 @@ export const MyAccountPost = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
-
-  let items = [];
-  for (let i = 0; i < 3; i++) {
-    items.push(<PostCard />);
-  }
+  }, []);  
 
   return (
     <div className="acc-grid-container">
-      <Link to="/forum-page" id="acc-grid">
-        <AddPostCard />
-      </Link>
-
+      <CreatePost />
       <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
         {forums
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -46,8 +37,6 @@ export const MyAccountPost = () => {
             )
           })}
       </ul>
-
-      {/* {items} */}
     </div>
   );
 };

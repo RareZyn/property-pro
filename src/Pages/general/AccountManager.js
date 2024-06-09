@@ -73,7 +73,6 @@ export const ManageAccount = () => {
         addProfile(profileFile)
           .then((result) => {
             formValues.profilePicture = result;
-            console.log('formValues: ', formValues)
             axios.put(`http://localhost:5000/users/update/${user._id}`, formValues)
               .then(res => {
                 console.log(res.data);
