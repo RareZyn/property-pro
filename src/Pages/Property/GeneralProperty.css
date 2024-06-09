@@ -21,7 +21,7 @@
 
 .properties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(216px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5, 1fr));
   column-gap: 1.04%;
   row-gap: 15px;
   margin: 20px;
