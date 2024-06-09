@@ -1,11 +1,10 @@
 import "./AccountPost.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
-import { Link } from "react-router-dom";
 import { useContext,useEffect,useState } from "react";
 import { ForumContext } from "../../context/ForumContext";
 import { getUser } from "../../utils/userAPI.js";
 import { UserContext } from "../../context/UserContext";
+import CreatePost from "../../Cards/Posting Cards/CreatePost.js";
 
 export const MyAccountPost = () => {
   const { forums,fetchForums,setLoading } = useContext(ForumContext);
