@@ -616,6 +616,37 @@ const updateHouse = asyncHandler(async (req, res) => {
   }
 });
 
+const getPropertyBought = asyncHandler(async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).send({ message: "User ID is required" });
+  }
+
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        buyerID: userId,
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+
+    if (properties.length === 0) {
+      return res
+        .status(404)
+        .send({ message: "No properties found for this user" });
+    }
+
+    res.status(200).send(properties);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
 
 
@@ -634,7 +665,6 @@ module.exports = {
   getPropertySeller,
   updateLand,
   updateVehicle,
-  updateHouse
-
-  
+  updateHouse,
+  getPropertyBought,
 };
