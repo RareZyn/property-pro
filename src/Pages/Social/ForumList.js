@@ -1,11 +1,10 @@
 import "./ForumPage.module.css";
-import { ForumHeader } from "./ForumHeader";
 import PostCard from "../../Cards/Posting Cards/PostCard";
 import CreatePost from "../../Cards/Posting Cards/CreatePost";
 import { useContext,useState,useEffect } from "react";
 import { ForumContext } from "../../context/ForumContext";
 
-const ForumPage = () => {
+const ForumList = () => {
   const { forums,fetchForums,loading,setLoading } = useContext(ForumContext);
   const [searchResults, setSearchResults] = useState([]);
 
@@ -27,46 +26,43 @@ const ForumPage = () => {
 
   if (loading ) {
     return (
-      <div className="ForumPage">
-      <ForumHeader setSearchResults={setSearchResults}/>
+      <>
         <div id="ForumContent">
           <div className="CreatePostContainer"> 
             <CreatePost></CreatePost>
           </div>
         </div>
         <div>Loading...</div> {/* Display a loading message or spinner*/}
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="ForumPage">
-      <ForumHeader setSearchResults={setSearchResults}/>
-      <div id="ForumContent">
-        <div className="CreatePostContainer"> 
-          <CreatePost></CreatePost>
-        </div>
-        <div className="ForumContainer">
-          <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
-
-            {displayedForums
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map(forum => {
-
-              return(
-                <li key={forum._id}>
-                  <PostCard name={forum.userID.username} textForum={forum.textForum} forumID={forum._id}/>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </div>
+    <>
+    <div id="ForumContent">
+    <div className="CreatePostContainer"> 
+        <CreatePost></CreatePost>
     </div>
+    <div className="ForumContainer">
+        <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+
+        {displayedForums
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map(forum => {
+
+            return(
+            <li key={forum._id}>
+                <PostCard name={forum.userID.username} textForum={forum.textForum} forumID={forum._id}/>
+            </li>
+            )
+        })}
+        </ul>
+    </div>
+    </div>
+    </>
   );
-  // l
 };
 
-export { ForumPage };
+export { ForumList };
 
 

@@ -25,7 +25,7 @@ import { SavedProperty } from "./Pages/Property/SavedProperty.js";
 import { ManageProperty } from "./Pages/Property/ManageProperty.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
-import { CreatePost } from "./Pages/Social/CreatePost.js";
+import { CreatePost } from "./Cards/Posting Cards/CreatePost.js";
 import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";

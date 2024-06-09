@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const { prisma } = require("../config/prismaConfig.js");
-
+const { toast } = require("react-toastify");
 
 
 const getAllProperties = asyncHandler(async (req, res) => {
@@ -196,7 +196,7 @@ const addHouse = asyncHandler(async (req, res) => {
 
 // Function to handle property purchase
 const buyProperty = asyncHandler(async (req, res) => {
-  const { id } = req.body; // Correct field name
+  const { id } = req.body; // Assuming id is the buyer's user ID
   const { propertyID } = req.params;
 
   console.log(`Property ID: ${propertyID}, User ID: ${id}`); // Debugging log
@@ -212,6 +212,13 @@ const buyProperty = asyncHandler(async (req, res) => {
 
     if (property.buyerID) {
       return res.status(400).json({ message: "Property is already sold" });
+    }
+
+    if (property.sellerID === id) {
+      toast.error("You cannot buy your own property");
+      return res
+        .status(400)
+        .json({ message: "You cannot buy your own property" });
     }
 
     const updatedProperty = await prisma.property.update({
@@ -241,6 +248,8 @@ const buyProperty = asyncHandler(async (req, res) => {
       .json({ message: "Failed to purchase property: " + error.message });
   }
 });
+
+
 const availableProperties = asyncHandler(async (req, res) => {
   try {
     const properties = await prisma.property.findMany({
@@ -647,6 +656,8 @@ const getPropertyBought = asyncHandler(async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 });
+
+
 
 
 

@@ -129,6 +129,11 @@
     color: var(--white);
 }
 
+.acc-grid-container{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {

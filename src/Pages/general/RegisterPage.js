@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import axios from 'axios';
 
 import "./RegisterPage.css";
+import { addProfile } from "../../utils/userAPI";
+import { toast } from "react-toastify";
 
 export const RegisterPage = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate
@@ -16,8 +18,9 @@ export const RegisterPage = () => {
     confirmPassword: "",
     phoneNumber: "",
     location: "",
-    profilePicture: null, // Use null for file input
+    profilePicture: '', // Use null for file input
   });
+  const [profileFile, setProfileFile] = useState('')
 
   const [errors, setErrors] = useState({});
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
@@ -53,34 +56,38 @@ export const RegisterPage = () => {
         .matches(/^[0-9]+$/, "Phone Number must contain only numbers")
         .required("Phone Number is required"),
       location: Yup.string().required("Location is required"),
-      profilePicture: Yup.mixed().required("Profile Picture is required"),
+      profilePicture: Yup.mixed(),
     });
 
     validationSchema
       .validate(formValues, { abortEarly: false })
       .then(() => {
-        axios.post('http://localhost:5000/users/register', formValues)
-        .then(res => {
-          console.log(res.data)
-          const error = res.data.keyPattern ? Object.keys(res.data.keyPattern)[0] : null
-          if(error === 'username'){
-            alert('Username already existed')
-          }
-          else if(error === 'email'){
-            alert('Email already existed')
-          }
-          else if(error !== null){
-            console.log(error)
-          }
-          else{
-            // Alert user they successfull register
-            // TODO: Buat toast component
-            alert("You successfully created your account")
-            navigate('/login')
-            setRegistrationSuccess(true);
-          }
-        })
-
+        addProfile(profileFile)
+          .then((result) => {
+            formValues.profilePicture = result;
+            console.log(formValues)
+            axios.post('http://localhost:5000/users/register', formValues)
+            .then(res => {
+              console.log(res.data)
+              const error = res.data.keyPattern ? Object.keys(res.data.keyPattern)[0] : null
+              if(error === 'username'){
+                toast.error('Username already existed')
+              }
+              else if(error === 'email'){
+                toast.error('Email already existed')
+              }
+              else if(error !== null){
+                console.log(error)
+              }
+              else{
+                // Alert user they successfull register
+                // TODO: Buat toast component
+                toast.info("You successfully created your account")
+                navigate('/login')
+                setRegistrationSuccess(true);
+              }
+            });
+          })
       })
       .catch((validationErrors) => {
         // Form is invalid, set errors state to display error messages
@@ -228,7 +235,7 @@ export const RegisterPage = () => {
                 type="file"
                 name="profilePicture"
                 accept="image/*"
-                onChange={handleChange}
+                onChange={(e) => {setProfileFile(e.target.files[0])}}
               />
               {errors.profilePicture && (
                 <div className="error">{errors.profilePicture}</div>

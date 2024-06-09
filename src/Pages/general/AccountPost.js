@@ -1,11 +1,10 @@
 import "./AccountPost.css";
 import PostCard from "../../Cards/Posting Cards/PostCard";
-import AddPostCard from "../../Cards/Posting Cards/AddPostCard";
-import { Link } from "react-router-dom";
 import { useContext,useEffect,useState } from "react";
 import { ForumContext } from "../../context/ForumContext";
 import { getUser } from "../../utils/userAPI.js";
 import { UserContext } from "../../context/UserContext";
+import CreatePost from "../../Cards/Posting Cards/CreatePost.js";
 
 export const MyAccountPost = () => {
   const { forums,fetchForums,setLoading } = useContext(ForumContext);
@@ -43,19 +42,11 @@ export const MyAccountPost = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
-
-  let items = [];
-  for (let i = 0; i < 3; i++) {
-    items.push(<PostCard />);
-  }
+  }, []);  
 
   return (
     <div className="acc-grid-container">
-      <Link to="/forum-page" id="acc-grid">
-        <AddPostCard />
-      </Link>
-
+      <CreatePost />
       <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
         {forums
         .filter(forum => forum.userID._id === userID)
@@ -69,8 +60,6 @@ export const MyAccountPost = () => {
             )
           })}
       </ul>
-
-      {/* {items} */}
     </div>
   );
 };
