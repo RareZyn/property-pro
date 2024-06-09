@@ -9,8 +9,10 @@ import pp from "../../Res/image/user profile.png";
 import { ReplyCard } from "../Property Cards/ReplyCard";
 import PopupShare from "../General Cards/PopupShare";
 import { ForumContext } from "../../context/ForumContext";
+import ProfilePicture from "../Image Placeholder/ProfilePicture";
 
-function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
+
+function PostCard({ name, lastSeen, postPrivacy, textForum, forumID, profilePicture }) {
   const longText =
     textForum;
   const [liked, setLiked] = useState(false);
@@ -57,7 +59,7 @@ function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
       <div id={styles["post-card-container"]} className="box-shadow">
         <div id={styles["user-profile"]}>
           <div id={styles["profile-container"]}>
-            <img src={pp} alt="Profile" srcset="" />
+            <ProfilePicture imgLink={profilePicture} size='50px'/>
           </div>
           <div id={styles["user-details"]}>
             <span id={styles["user-name"]}>{name}</span>

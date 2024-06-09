@@ -52,10 +52,10 @@ export const MyAccountPost = () => {
         .filter(forum => forum.userID._id === userID)
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(forum => {
-            
+            console.log('user?', forum.userID)
             return(
             <li key={forum._id}>
-              <PostCard name={forum.userID.username} textForum={forum.textForum} forumID={forum._id} />
+              <PostCard name={forum.userID.username} textForum={forum.textForum} forumID={forum._id} profilePicture={forum.userID.profilePicture}/>
             </li>
             )
           })}
