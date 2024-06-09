@@ -49,5 +49,84 @@ const addUser = asyncHandler(async (req, res) => {
   }
 });
 
+const countSellProperty = asyncHandler(async (req, res) => {
+  const { userId } = req.query;
 
-module.exports = { addUser };
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const count = await prisma.property.count({
+      where: {
+        sellerID: userId,
+      },
+    });
+
+    res.status(200).json({ count });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to count properties: " + error.message });
+  }
+});
+
+const countPurchaseProperty = asyncHandler(async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const count = await prisma.property.count({
+      where: {
+        buyerID: userId,
+      },
+    });
+
+    res.status(200).json({ count });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to count properties: " + error.message });
+  }
+});
+
+const countOtherUserPurchase = asyncHandler(async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const count = await prisma.property.count({
+      where: {
+        sellerID: userId,
+        buyerID: {
+          not: userId,
+
+        },
+      },
+    });
+
+    res.status(200).json({ count });
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to count properties: " + error.message });
+  }
+});
+
+
+
+module.exports = {
+  addUser,
+  countSellProperty,
+  countPurchaseProperty,
+  countOtherUserPurchase,
+};

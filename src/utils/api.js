@@ -5,6 +5,10 @@ export const api = axios.create({
   baseURL: "http://localhost:5000/property",
 });
 
+export const userApi = axios.create({
+  baseURL: "http://localhost:5000/users",
+});
+
 // Function to add land
 export const addLand = async (landDetails) => {
   try {
@@ -225,4 +229,72 @@ export const getPropertySeller = async(id) => {
       throw error;
     }
 }
+
+
+export const getPropertyBought = async (userId) => {
+  try {
+    const response = await api.get(`/getPropertyBought`, {
+      params: { userId },
+      timeout: 10 * 1000,
+    });
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error.response?.data || error.message;
+  }
+};
+
+export const countSellProperty = async (userId) => {
+  try {
+    const response = await userApi.get(`/countSellProperty`, {
+      params: { userId },
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
+
+export const countPurchaseProperty = async (userId) => {
+  try {
+    const response = await userApi.get(`/countPurchaseProperty`, {
+      params: { userId },
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
+
+export const countOtherUserPurchase = async (userId) => {
+  try {
+    const response = await userApi.get(`/countOtherUserPurchase`, {
+      params: { userId },
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
 
