@@ -4,6 +4,8 @@ import { MyChatBubble } from "../../Cards/Chat Cards/MyChatBubble";
 import { YourChatBubble } from "../../Cards/Chat Cards/YourChatBubble";
 import ChatContext from '../../context/ChatContext';
 import "./Chat.css";
+import { UserContext } from '../../context/UserContext';
+import { getUser } from '../../utils/userAPI';
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -16,8 +18,27 @@ export const Chat = ({userID}) => {
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
-  userID = "664a05f8d67e61a2cd0ad0ac"// must be change to not Hard coded
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log("No user token");
+    }
+  }, [userToken]);
+
+  userID = user?._id;
 
   useEffect(() => {
     fetchChatRooms(userID);// id must be userID
@@ -125,6 +146,14 @@ export const Chat = ({userID}) => {
     return room.user1._id === userID ? room.user2.username : room.user1.username;
   };
 
+  if(isLoading){
+    return(
+      <div>
+        Loading...
+      </div>
+    )
+  }
+
   return (
     <div className="Chat">
 
@@ -135,7 +164,9 @@ export const Chat = ({userID}) => {
             <img src={require("../../Res/image/user profile.png")} alt="User profile" />
             <div>
               <h1>{renderUsername(room,userID)}</h1>
+              {room.chats.length > 0 ? (
               <p>{room.chats[room.chats.length - 1].textChat}</p>
+              ) : null}
             </div>
           </li>
         ))}
@@ -191,7 +222,8 @@ export const Chat = ({userID}) => {
             {/* {messages.map((msg, index) => (
               msg.type === 'my' ? <MyChatBubble key={index} content={msg.content} time={msg.time} isImage={msg.isImage} /> : <YourChatBubble key={index} content={msg.content} />
             ))} */}
-            {currentChatRoom.chats.map((chat) =>{
+            {currentChatRoom.chats.length > 0 &&
+            currentChatRoom.chats.map((chat) =>{
               console.log('Sender ID:', chat.senderID);
               console.log('Current User ID:', currentChatRoom.user1._id);
              return(
