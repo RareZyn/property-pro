@@ -13,10 +13,6 @@ const TransactionCard = ({ title, transaction, cardClass }) => (
 );
 
 export const MyAccountTransaction = () => {
-  const paidTransaction = {
-    imgLink: require("../../Res/image/image-dummy-house.png")
-  };
-
   return (
     <div className="ViewAccountProperty">
       <div className="acc-grid-container">

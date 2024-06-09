@@ -1,6 +1,5 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import firebase from "firebase/compat/app";
 
 export function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -36,33 +35,3 @@ export const getUserById = async(userID) => {
     throw error;
   }
 }
-
-export const addProfile = async (file) => {
-  const validFileTypes = ['image/png', 'image/jpeg'];
-
-  if (file) {
-    if (validFileTypes.includes(file.type)) {
-      const storageRef = firebase.storage().ref();
-      const fileRef = storageRef.child(file.name);
-      const uploadTask = fileRef.put(file);
-
-      try {
-        const snapshot = await uploadTask;
-        const result = await snapshot.ref.getDownloadURL();
-        
-        // Check URL either uploaded or not
-        console.log(result);
-
-        // Return the URL
-        return(result)
-      } catch (error) {
-        // Distinguish between different error types if needed
-        console.error("Error uploading file:", error);
-      }
-    } else {
-      console.error("Invalid file type:", file.type);
-    }
-  } else {
-    console.error("No file selected");
-  }
-};

@@ -55,7 +55,7 @@
 
 .ProfileView {
   margin-top: 10px;
-  height: fit-content;
+  height: 85px;
   border-radius: 50%;
   box-shadow: 0px 2px 12px var(--darkBlue);
 }
