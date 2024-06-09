@@ -29,7 +29,7 @@
 }
 
 /* Large screens (desktops, 1200px and up) */
-@media (max-width: 100px) {
+@media (max-width: 1200px) {
   .properties-grid {
     grid-template-columns: repeat(4, 1fr);
   }
