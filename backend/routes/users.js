@@ -3,9 +3,12 @@ let User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const Bcrypt = require('bcrypt')
 const {cookieJwtAuth} = require('../middleware/cookieJwtAuth')
-const { addUser } = require('../controller/userController')
+const { addUser, countSellProperty, countPurchaseProperty, countOtherUserPurchase } = require('../controller/userController')
 
 router.post("/addUser", addUser);
+router.get("/countSellProperty",countSellProperty);
+router.get("/countPurchaseProperty", countPurchaseProperty);
+router.get("/countOtherUserPurchase",countOtherUserPurchase);
 
 
 
