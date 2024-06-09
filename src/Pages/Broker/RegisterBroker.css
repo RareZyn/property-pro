@@ -58,7 +58,7 @@ input
 .RegisterBrokerCard {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 650px;
   position: relative;
   background-color: rgba(39, 160, 136, 0.8);
   border-radius: 30px;
@@ -183,6 +183,26 @@ form h1, .h3-heading {
 
 .broker-register-upload-file:hover{
   width: 102%;
+}
+
+/* Small screens (landscape phones, 768px and up) */
+@media (max-width: 795px) {
+  .RegisterBrokerCard{
+      width: 550px;
+  }
+}
+
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 680px) {
+  .RegisterBrokerCard{
+    width: 500px;
+}
+}
+
+@media (max-width: 570px) {
+  .RegisterBrokerCard{
+    width: 450px;
+}
 }
 
 /**.RegisterBrokerCard button {
