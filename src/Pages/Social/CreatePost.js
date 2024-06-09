@@ -5,6 +5,8 @@ import pp from "../../Res/image/user profile.png";
 import UploadCard from "../../Cards/General Cards/UploadCard";
 import { ForumContext } from '../../context/ForumContext';
 import axios from "axios";
+import { UserContext } from "../../context/UserContext.js";
+import { getUser } from "../../utils/userAPI.js";
 
 export const CreatePost = () => {
   const [files, setFiles] = useState([]);
@@ -13,8 +15,27 @@ export const CreatePost = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const { createForum,loading,setLoading } = useContext(ForumContext);
   const [newForumText, setNewForumText] = useState('');
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
 
-  const userID = "664a05f8d67e61a2cd0ad0ac"; // Must change to not hard code
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log("No user token");
+    }
+  }, [userToken]);
+
+  const userID = user?._id;
 
   const handleCreateForum = async () => {
     try {
@@ -55,7 +76,7 @@ export const CreatePost = () => {
             className="textarea-style"
             rows="4"
             cols="50"
-            placeholder="What’s on your mind <username>?"
+            placeholder={`What’s on your mind ${user ? user.username : ''}?`}
             value={newForumText}
             onChange={(e) => setNewForumText(e.target.value)}
           ></textarea>
