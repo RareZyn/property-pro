@@ -2,13 +2,13 @@ import "./YourChatBubble.css";
 
 
 
-export const YourChatBubble = () => {
+export const YourChatBubble = ({ content, time, isImage }) => {
     return (
 
 <div class="YourChatBubble">
  
-  <p>Payment must be done before 6 july</p>
-  <span class="your-time">11:05</span>
+{isImage ? <img src={content} alt="Uploaded content" className="chat-image" /> : <p>{content}</p>}
+  <span class="your-time">{time}</span>
 </div>
 
 );
