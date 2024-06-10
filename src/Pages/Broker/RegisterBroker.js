@@ -44,8 +44,6 @@ export const RegisterBroker = () => {
     }
   }, [userToken]);
 
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] =
     useState(false);
@@ -61,9 +59,7 @@ export const RegisterBroker = () => {
     }));
   };
 
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+
 
   const handleFileUpload = async (event) => {
     const selectedFile = event.target.files[0];
@@ -108,18 +104,6 @@ export const RegisterBroker = () => {
         .string()
         .matches(/^[A-z\s]+$/, "Full Name must only contain letters")
         .required("Full Name is required"),
-      password: yup
-        .string()
-        .min(8, "Password must at least be 8 characters")
-        .matches(
-          /^(?=(?:.*[A-Z]){2})(?=.*[0-9]).*$/,
-          "Password must contain at least 2 capital letters and 1 number"
-        )
-        .required("Password is required"),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref("password"), null], "Passwords must match")
-        .required("Confirm Password is required"),
       brokerIC: yup.string().required("IC document is required"),
       brokerLicense: yup
         .string()
@@ -127,12 +111,9 @@ export const RegisterBroker = () => {
     });
 
     validationSchema
-      .validate({ ...brokerDetails, confirmPassword }, { abortEarly: false })
+      .validate(brokerDetails, { abortEarly: false })
       .then(() => {
-        // Exclude confirmPassword before sending brokerDetails to the backend
-        const { confirmPassword, ...detailsToSend } = brokerDetails;
-
-        addBroker(detailsToSend)
+        addBroker(brokerDetails)
           .then((data) => {
             console.log(data);
             toast.success("You successfully registered as Broker");
@@ -141,7 +122,7 @@ export const RegisterBroker = () => {
           })
           .catch((error) => {
             console.error(error);
-            toast.success("You already registered as Broker please use login");
+            toast.error("You already registered as Broker, please use login");
             setBrokerRegistrationSuccess(false);
           });
       })
@@ -153,6 +134,7 @@ export const RegisterBroker = () => {
         setErrors(errors);
       });
   };
+
 
   return (
     <div className="RegisterBroker">
@@ -204,40 +186,6 @@ export const RegisterBroker = () => {
               )}
             </div>
 
-            <div className="input-details">
-              Password
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={brokerDetails.password}
-                onChange={handleChange}
-              />
-              {errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-
-            <div className="input-details">
-              Confirm Password
-              <input
-                type={showPassword ? "text" : "password"}
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-              />
-              {errors.confirmPassword && (
-                <div className="error">{errors.confirmPassword}</div>
-              )}
-            </div>
-
-            <div className="show-password">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword(!showPassword)}
-              />
-              Show Password
-            </div>
 
             <div className="broker-register-upload-file">
               Identification Card (IC)
@@ -296,12 +244,6 @@ export const RegisterBroker = () => {
               <p className="success-message">Registration successful!</p>
             )} 
 
-            <div className="broker-register-to-login">
-              Already have an account?
-              <Link to="/login-broker" className="login">
-                Login
-              </Link>
-            </div>
           </div>
         </form>
       </div>
