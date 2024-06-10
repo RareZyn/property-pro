@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { FaCarSide, FaGauge, FaCalendarDays } from "react-icons/fa6";
 import { FaTags } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
@@ -86,7 +86,7 @@ export const PropertyVehicleDetails = () => {
           <div className="title-div">
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
-              <PopupShare />
+              <PopupShareProperty />
             </div>
           </div>
           <div className="property-second-row">

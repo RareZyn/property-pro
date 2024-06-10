@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import {jwtDecode} from 'jwt-decode'
 import firebase from "firebase/compat/app";
 
 export function getCookie(name) {
@@ -10,6 +11,11 @@ export function getCookie(name) {
 
 export const logout = () => {
   Cookies.remove('token')
+}
+
+export const getToken = () => {
+  const token = Cookies.get('token');
+  console.log(token);
 }
 
 export const getUser = async (userToken) => {
@@ -37,12 +43,12 @@ export const getUserById = async(userID) => {
   }
 }
 
-export const addProfile = async (file) => {
+export const addProfile = async (file, username) => {
   const validFileTypes = ['image/png', 'image/jpeg'];
 
   if (file) {
     if (validFileTypes.includes(file.type)) {
-      const storageRef = firebase.storage().ref();
+      const storageRef = firebase.storage().ref('/profilePicture').child(`/${username}`);
       const fileRef = storageRef.child(file.name);
       const uploadTask = fileRef.put(file);
 

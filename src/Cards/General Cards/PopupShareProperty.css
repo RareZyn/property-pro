@@ -1,7 +1,6 @@
 /* Style for the trigger button */
 #ShareBtn {
     display:flex;
-    cursor: pointer;
     border: none;
     width: 8em;
     height: 2.5em;
@@ -9,18 +8,23 @@
     background-color:transparent;
     font-weight: 550;
     font-size: 15px;
-    color: #b2b2b2;
+    color: #000000;
     border-radius: 8px;
 }
+
 #ShareBtn span {
   align-self: center;
+  margin-left: 0.5em;
+  font-size: 1.3em;
 
 }
 
-#ShareBtn img {
-  width: 40px;
-  margin-right: 10px;
-  margin-left: 10px;
+#ShareBtn svg{
+  align-self: center;
+  margin-left: 1em;
+  width: 2em;
+  height: 2em;
+
 }
 
 /* Style for the modal overlay */

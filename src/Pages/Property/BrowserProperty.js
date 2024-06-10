@@ -14,7 +14,7 @@ export const BrowserProperty = () => {
   }
   if (isLoading) {
     return (
-      <div className={style.loaderContainer}>
+      <div className="loaderContainer">
         <PuffLoader />
       </div>
     );

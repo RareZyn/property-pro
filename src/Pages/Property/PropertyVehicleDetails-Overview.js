@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import "./PropertyDetails.css";
 import { useQuery } from "react-query";
 import { getProperty, updateVehicle } from "../../utils/api.js";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 
 
 export const PropertyVehicleDetailsOverview = () => {
@@ -143,7 +143,7 @@ const handleChange = (event) => {
               }
             />
             <div className="share-content">
-              <PopupShare />
+              <PopupShareProperty />
             </div>
           </div>
 

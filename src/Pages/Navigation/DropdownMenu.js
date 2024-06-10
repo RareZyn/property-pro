@@ -33,49 +33,48 @@ export const DropdownMenu = ({ className }) => {
         <p className="ProfileViewDesc">{user ? user.description : null}</p>
       </a>
 
-      <div className="DropdownMenuNavigationItem">
       <a href="/homepage">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/house icon dropdownmenu.png")}/>
             <h1>Home</h1>
           </div>
       </a>
       <a href="/manage-property">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/sell icon dropdownmenu.png")}/>
             <h1> Sell Property</h1>
           </div>
       </a>
       <a href="/browser-property">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/find icon dropdownmenu.png")}/>
             <h1>Find Property</h1>
           </div>
       </a>
       <a href="/chat">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/chat icon.png")}/>
             <h1>Chat</h1>
           </div>
       </a>
       <a href="/forum-page">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/community icon.png")}/>
             <h1>Community</h1>
           </div>
       </a>
       <a href="/homepage">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/save icon.png")}/>
             <h1>Saved Property</h1>
           </div>
       </a>
       <a href="/">
-      <div className="menudiv">
+      <div id="menudiv">
             <img src={require("../../Res/image/dropdownmenu-icons/logout icon.png")}/>
             <h1>Log Out</h1>
           </div>
       </a></div>
-      </div>        
+           
   );
 };

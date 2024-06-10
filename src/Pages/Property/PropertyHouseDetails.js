@@ -10,6 +10,7 @@ import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 
 export const PropertyHouseDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -87,7 +88,7 @@ export const PropertyHouseDetails = () => {
           <div className="title-div">
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
-              <PopupShare />
+              <PopupShareProperty />
             </div>
           </div>
 

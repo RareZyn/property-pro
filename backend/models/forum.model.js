@@ -23,6 +23,10 @@ const forumSchema = new Schema({
         type: Number,
         default: 0
     },
+    // isComment: {
+    //     type: Boolean,
+    //     default: false
+    // },
     photoUrl: {
         type: String,
         trim: true

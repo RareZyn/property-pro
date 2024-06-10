@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie'
 import { Bounce, toast } from "react-toastify";
+import { PuffLoader } from "react-spinners";
 
 export const LoginPage = () => {
   const [formValues, setFormValues] = useState({
@@ -61,7 +62,7 @@ export const LoginPage = () => {
           if (token) {
             clearInterval(intervalId); // Stop polling once the cookie is found
             window.scrollTo(0, 0);
-            console.log('Cookie created')
+            console.log('Cookie created');
             nav('/homepage');
           }
         };
@@ -84,6 +85,13 @@ export const LoginPage = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
+      </div>
+    );
+  }
   return (
     <div className="LoginPage">
       <form className="LoginBlock" onSubmit={submitHandler}>
