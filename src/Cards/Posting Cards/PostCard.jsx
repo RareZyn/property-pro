@@ -128,9 +128,10 @@ function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, p
             {forumObj.comments
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map(comment => {
+              console.log(comment);
               return(
                 <li key={comment._id}>
-                  <ReplyCard username={comment.userID.username} textForum={comment.textForum}/>
+                  <ReplyCard commentObj={comment}/>
                 </li>
               )
             })}
