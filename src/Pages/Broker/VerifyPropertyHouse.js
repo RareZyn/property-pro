@@ -56,6 +56,7 @@ export const VerifyPropertyHouse = () => {
   let rejectPdf2Ref = useRef();
   let rejectPdf3Ref = useRef();
   let cancelDocumentRejectionRef = useRef();
+  const [verify,setVerify] = useState({})
 
   const BrokerRejectProperty = () => {
     const newRejectClickedState = !isRejectClicked;
