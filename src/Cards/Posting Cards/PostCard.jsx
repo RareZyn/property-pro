@@ -1,16 +1,19 @@
 import styles from "./PostCard.module.css";
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import TruncatedText from "../General Cards/TruncatedText";
 import likeIcon from "../../Res/image/heart.png";
 import likedIcon from "../../Res/image/red-heart.png";
 import commentIcon from "../../Res/image/message-square.png";
-
+import { UserContext } from "../../context/UserContext";
+import { getUser } from "../../utils/userAPI";
 import pp from "../../Res/image/user profile.png";
 import { ReplyCard } from "../Property Cards/ReplyCard";
 import PopupShare from "../General Cards/PopupShare";
 import { ForumContext } from "../../context/ForumContext";
+import ProfilePicture from "../Image Placeholder/ProfilePicture";
 
-function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
+
+function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, profilePicture }) {
   const longText =
     textForum;
   const [liked, setLiked] = useState(false);
@@ -20,24 +23,56 @@ function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
   );
   const [share, setShare] = useState(true);
   let likeButton;
-  const { toggleLike } = useContext(ForumContext);
-  
-  const userID = "6652b177b44d392bb3bc1990"; // Need to change, no hardcode
+  const { toggleLike,fetchComments,currentForum,fetchForumById } = useContext(ForumContext);
+  const [comments, setComments] = useState([]);
+  const [ loading,setLoading ] = useState(false);
+  const {userToken} = useContext(UserContext);
+  const[user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+      } catch (error) {
+        // Handle the error appropriately in your UI
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    } else {
+      console.log('No user token');
+    }
+  }, [userToken]);
+
+  const userID = user?._id;
+
+  // useEffect(() => {
+  //   const fetchForum = async () => {
+  //     try{
+  //       await fetchForumById(forumID);
+  //     }catch (error) {
+  //       console.error('Failed to fetch current forum {PostCard}:', error);
+  //     }
+  //   }
+  // },[])
 
   const like = () => {
     toggleLike( forumID,userID );
     setLiked(!liked);
   };
 
-  const popdownDiscussion = () => {
+  const popdownDiscussion =  () => {
     console.log("Clicked");
-    if (isDiscussionClicked) {
-      setShowPopdownDiscussion("PopdownDiscussion");
-      setIsDiscussionClicked(false);
-    } else {
-      setShowPopdownDiscussion("PopdownDiscussion-hidden");
-      setIsDiscussionClicked(true);
-    }
+    console.log(forumObj.comments);
+      if (isDiscussionClicked) {
+        setShowPopdownDiscussion("PopdownDiscussion");
+        setIsDiscussionClicked(false);
+      } else {
+        setShowPopdownDiscussion("PopdownDiscussion-hidden");
+        setIsDiscussionClicked(true);
+      }
   };
 
   if (liked) {
@@ -51,13 +86,12 @@ function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
     replyItems.push(<ReplyCard />);
   }
 
-
   return (
     <>
       <div id={styles["post-card-container"]} className="box-shadow">
         <div id={styles["user-profile"]}>
           <div id={styles["profile-container"]}>
-            <img src={pp} alt="Profile" srcset="" />
+            <ProfilePicture imgLink={profilePicture} size='50px'/>
           </div>
           <div id={styles["user-details"]}>
             <span id={styles["user-name"]}>{name}</span>
@@ -87,7 +121,25 @@ function PostCard({ name, lastSeen, postPrivacy, textForum, forumID }) {
           </div>
         </div>
         
-        <div className={styles[showPopdownDiscussion]}>{replyItems}</div>
+        <div className={styles[showPopdownDiscussion]}>
+          {/* {replyItems} */}
+
+          <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+            {forumObj.comments
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map(comment => {
+              return(
+                <li key={comment._id}>
+                  <ReplyCard username={comment.userID.username} textForum={comment.textForum}/>
+                </li>
+              )
+            })}
+          </ul>
+
+        </div>
+
+        
+
       </div>
     </>
   );

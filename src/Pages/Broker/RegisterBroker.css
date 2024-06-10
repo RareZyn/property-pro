@@ -13,7 +13,7 @@
 .RegisterBrokerCard {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 650px;
   position: relative;
   background-color: rgba(39, 160, 136, 0.8);
   border-radius: 30px;

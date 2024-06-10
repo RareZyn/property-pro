@@ -4,7 +4,12 @@ let Forum = require('../models/forum.model');
 // Get all forums
 router.route('/').get(async (req, res) => {
     try {
-        const forums = await Forum.find().populate('userID','username');
+        const forums = await Forum.find()
+        .populate('userID','username profilePicture')
+        .populate({
+            path: 'comments',
+            populate: { path: 'userID', select: 'username' }
+        });
         res.json(forums);
     } catch (err) {
         res.status(400).json('Error: ' + err);
@@ -21,7 +26,7 @@ router.route('/search').get(async (req, res) => {
 
     try {
         const regex = new RegExp(searchQuery, 'i');
-        const forums = await Forum.find({ textForum: { $regex: regex } });
+        const forums = await Forum.find({ textForum: { $regex: regex } }).populate('userID','username profilePicture');
         res.json(forums);
     } catch (err) {
         res.status(400).json('Error: ' + err);

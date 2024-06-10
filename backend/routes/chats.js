@@ -10,7 +10,7 @@ router.route('/').get((req, res) => {
 // get userID chatRoom for chatRoom list
 router.route('/:userID').get((req, res) => {
     const userID = req.params.userID;
-    ChatRoom.find({ user1: userID })
+    ChatRoom.find({ $or: [{ user1: userID }, { user2: userID }] })
         .populate('user1')
         .populate('user2')
         .then(chatRooms => res.json(chatRooms))
