@@ -1,11 +1,9 @@
 import "./PropertyDisplayCard.css";
 import { Link } from "react-router-dom";
-import { FaShower, FaBed, FaTags, FaCarSide } from "react-icons/fa";
-import { FaCalendarDays, FaGauge, FaMapLocationDot } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { FaTags, FaCarSide } from "react-icons/fa";
+import { FaCalendarDays, FaGauge } from "react-icons/fa6";
 
 export const VehicleDisplayCard = ({ card, link }) => {
-  const navigate = useNavigate();
   if (!card) return null;
   return (
     <Link to={link}>

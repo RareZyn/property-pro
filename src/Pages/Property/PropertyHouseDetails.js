@@ -57,8 +57,7 @@ export const PropertyHouseDetails = () => {
     return <div>Error while fetching the data</div>;
   }
 
-
-
+  console.log(data?.seller)
 
   return (
     <div className="PropertyDetailsContainer">
@@ -160,10 +159,11 @@ export const PropertyHouseDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
+                {/* <img
                   className="ProfileView"
                   src={require("../../Res/image/user profile.png")}
-                />
+                /> */}
+                <ProfilePicture imgLink={data?.seller.profilePicture} size={'85px'}/>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>

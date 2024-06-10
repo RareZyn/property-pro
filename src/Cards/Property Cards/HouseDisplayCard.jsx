@@ -2,10 +2,8 @@ import "./PropertyDisplayCard.css";
 import { Link } from "react-router-dom";
 import { FaShower, FaBed, FaTags, FaLayerGroup } from "react-icons/fa";
 import { FaHouse, FaLocationDot } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
 export const HouseDisplayCard = ({ card, link }) => {
-  const navigate = useNavigate();
   console.log(link)
   if (!card) return null;
   return (

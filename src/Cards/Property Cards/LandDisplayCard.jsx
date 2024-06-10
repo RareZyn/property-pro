@@ -7,10 +7,8 @@ import {
   FaCity,
   FaFileCircleQuestion,
 } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
 export const LandDisplayCard = ({ link, card }) => {
-  const navigate = useNavigate();
   if (!card) return null;
   return (
     <Link to={link}>
