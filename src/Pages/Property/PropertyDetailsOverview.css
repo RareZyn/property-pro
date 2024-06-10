@@ -63,15 +63,6 @@
   transform: translate(-150px, 10px);
 }
 
-.overview-first-row,
-.overview-second-row,
-.overview-third-row {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 100%;
-  margin-bottom: 30px;
-}
 
 .delete-button,
 .edit-button,
@@ -120,6 +111,18 @@
   background-color: rgb(244, 159, 31);
 }
 
+/*------------------------*/
+
+.overview-first-row,
+.overview-second-row,
+.overview-third-row {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
 .overview-third-row {
   padding: 0px 80px;
   font: "Roboto";
@@ -135,4 +138,96 @@
 
 #overview-fourth-row {
   width: 70%;
+}
+
+.title-share{
+  display:flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.title-input, .price-input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-input .info-label, .price-input .info-label{
+  font-size: 2rem;
+  width: fit-content;
+}
+
+.title-input input, .price-input input{
+  height: 3rem;
+  padding-left: 1rem;
+  border-radius: 20px;
+  border: none;
+}
+
+.info-page-container{
+  margin-top: 30px;
+  width: 60%;
+}
+
+.info-page-container input{
+  height: 3rem;
+  padding-left: 1rem;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.info-page-container button{
+  width: 150px;
+  background-color: var(--orange);
+  border: none;
+  height: 3rem;
+  border-radius: 25px;
+  display: block;
+  margin: 10px auto;
+}
+
+.info-page-container button:hover {
+  background-color: #e68700;
+  color: white;
+}
+
+.property-desc textarea{
+  min-height: 120px;
+}
+
+@media (max-width: 1050px) {
+  .info-page-container{
+    width: 70%;
+  }
+
+  .info-page-container input{
+    width: 200px;
+  }
+}
+
+@media (max-width: 820px) {
+  .info-page-container{
+    width: 85%;
+  }
+}
+
+@media (max-width: 700px) {
+  .info-page-container{
+    width: 90%;
+  }
+}
+
+@media (max-width: 570px) {
+  .info-page-container{
+    width: 98%;
+  }
+
+  .title-share{
+    width: 100%;
+  }
+
+  .title-input input, .info-page-container input{
+    width: 170px;
+  }
 }
