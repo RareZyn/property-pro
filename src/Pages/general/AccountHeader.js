@@ -1,9 +1,10 @@
 import "./AccountHeader.css";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
-import { getUserById } from "../../utils/userAPI";
+import { getUserById, getToken } from "../../utils/userAPI";
 import { UserContext } from "../../context/UserContext.js";
 import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
+import { PuffLoader } from "react-spinners";
 
 
 export const AccountHeader = () => {
@@ -11,10 +12,12 @@ export const AccountHeader = () => {
   const { userToken } = useContext(UserContext);
   const [owner, setOwner] = useState(true);
   const[user, setUser] = useState(null);
+  const[loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const userData = await getUserById(id);
+        console.log('user fetched in AccountHeader.js:', userData)
         setUser(userData);
         
         if (userToken.id === id){
@@ -23,14 +26,25 @@ export const AccountHeader = () => {
         else{
           setOwner(false);
         }
+
+        setLoading(false);
       } catch (error) {
         // Handle the error appropriately in your UI
         console.error('Failed to fetch user data:', error);
+        setLoading(false)
       }
     };
 
+    setLoading(true);
     fetchUser()
-  }, [user]);
+  }, [userToken]);
+  // if (loading) {
+  //   return (
+  //     <div className="loaderContainer">
+  //       <PuffLoader />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -38,8 +52,8 @@ export const AccountHeader = () => {
         <section className="flex" id="details-vah">
           <ProfilePicture imgLink={user ? user.profilePicture : null}/>
           <div className = "acc-desc">
-            <h1>{(user === null) ? null : `${user.firstName} ${user.lastName}`}</h1>
-            <span>{(user === null) ? 'null' : user.description}</span>
+            <h1>{user ? `${user.firstName} ${user.lastName}` : null}</h1>
+            <span>{user ? user.description : null}</span>
           </div>
           
           <Link id="edit-account" to={'manage'}>
