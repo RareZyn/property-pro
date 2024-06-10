@@ -91,13 +91,13 @@ function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, p
   const addNewComment = async () => {
     setLoading(true);
     try{
-      const response = await axios.post(`http://localhost:5000/forum/add-comment/6666e52fc1a93c8aa96db6e7`,{
+      const response = await axios.post(`http://localhost:5000/forum/add-comment/${forumObj._id}`,{
         userID: user? user._id : null,
         textForum: newComment,
         comments: [],
         likes: [],
         likeCount: 0,
-        // isComment: true
+        isComment: true
       });
       const updatedForum = { ...currentForum };
       updatedForum.comments.push(response.data); 
