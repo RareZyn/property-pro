@@ -33,7 +33,7 @@ export const CreatePost = () => {
     }
   }, [userToken]);
 
-  const userID = "664a05f8d67e61a2cd0ad0ac"; // Must change to not hard code
+  const userID = user?._id; // Must change to not hard code
 
   const handleCreateForum = async () => {
     try {

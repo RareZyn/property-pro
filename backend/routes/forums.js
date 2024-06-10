@@ -4,7 +4,12 @@ let Forum = require('../models/forum.model');
 // Get all forums
 router.route('/').get(async (req, res) => {
     try {
-        const forums = await Forum.find().populate('userID','username profilePicture');
+        const forums = await Forum.find()
+        .populate('userID','username profilePicture')
+        .populate({
+            path: 'comments',
+            populate: { path: 'userID', select: 'username' }
+        });
         res.json(forums);
     } catch (err) {
         res.status(400).json('Error: ' + err);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./ReplyCard.css";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
 
-export const ReplyCard = () => {
+export const ReplyCard = ({ commentObj,username,textForum }) => {
   const [isReplying, setIsReplying] = useState(false);
 
   const handleReplyClick = () => {
@@ -31,12 +31,9 @@ export const ReplyCard = () => {
           <img src={require("../../Res/image/user-image.png")} alt="User" />
         </div>
         <div id="comment">
-          <p id="comment-user">Ahmad</p>
+          <p id="comment-user">{username}</p>
           <p id="comment-reply">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore et
-            assumenda cupiditate nam ea suscipit pariatur, est sequi, libero ut
-            ipsum, quae repudiandae aliquam doloribus beatae rerum dolores
-            deleniti praesentium?
+            {textForum}
           </p>
         </div>
       </div>
