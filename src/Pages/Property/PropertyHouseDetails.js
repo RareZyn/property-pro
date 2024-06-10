@@ -158,7 +158,7 @@ export const PropertyHouseDetails = () => {
               <div className="seller-content">
                 <img
                   className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
+                  src={data?.seller.profilePicture}
                 />
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>

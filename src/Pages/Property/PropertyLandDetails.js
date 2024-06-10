@@ -24,6 +24,8 @@ export const PropertyLandDetails = () => {
     getProperty(propertyID)
   );
 
+  
+
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -56,6 +58,7 @@ export const PropertyLandDetails = () => {
     return <div>Error while fetching the data</div>;
   }
   const userId = user?._id;
+
 
   return (
     <div className="PropertyDetailsContainer">
@@ -160,7 +163,7 @@ export const PropertyLandDetails = () => {
               <div className="seller-content">
                 <img
                   className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
+                  src={data?.seller.profilePicture}
                 />
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
