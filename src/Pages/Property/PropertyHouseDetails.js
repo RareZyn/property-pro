@@ -12,6 +12,7 @@ import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
+import ChatContext from "../../context/ChatContext.js";
 
 export const PropertyHouseDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -44,6 +45,18 @@ export const PropertyHouseDetails = () => {
   }, [userToken]);
 
   const userId = user?._id;
+
+  // To handle chat vv
+  const { createRoom } = useContext(ChatContext);
+
+  const createChatRoom = async () => {
+    try{
+      await createRoom(userId,data.seller.id);
+    } catch(error){
+      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error);
+    }
+  };
+  // End handle chat ^^
 
   if (isLoading) {
     return (
@@ -176,8 +189,8 @@ export const PropertyHouseDetails = () => {
                   <button>Profile</button>
                 </Link>
 
-                <Link to="/view-account-header">
-                  <button>Chat</button>
+                <Link to="/chat">
+                  <button onClick={createChatRoom}>Chat</button>
                 </Link>
               </div>
               

@@ -51,7 +51,7 @@ export const PropertyVehicleDetails = () => {
     try{
       await createRoom(userId,data.seller.id);
     } catch(error){
-      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error.message);
+      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error);
     }
   };
   // End handle chat ^^
