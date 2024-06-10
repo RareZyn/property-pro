@@ -10,6 +10,7 @@ import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
 
 export const PropertyVehicleDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -184,10 +185,9 @@ export const PropertyVehicleDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
-                  className="ProfileView"
-                  src={data?.seller.profilePicture}
-                />
+                <div style={{display:'flex', width:'100%'}}>
+                  <ProfilePicture imgLink={data?.seller.profilePicture} size={'85px'}/>
+                </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>

@@ -26,7 +26,6 @@ import { ManageProperty } from "./Pages/Property/ManageProperty.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { CreatePost } from "./Cards/Posting Cards/CreatePost.js";
-import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
@@ -86,7 +85,6 @@ export const routes = [
   { path: "/forum-page", element: <ForumPage /> },
   { path: "/forum-header", element: <ForumHeader /> },
   { path: "/create-post", element: <CreatePost /> },
-  { path: "/login-broker", element: <LoginBroker /> },
   { path: "/verify-property-homepage", element: <VerifyPropertyHome /> },
   { path: "/:id/choose-bank", element: <ChooseBank /> },
   {
