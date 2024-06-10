@@ -45,7 +45,7 @@ export const MyAccountPost = () => {
   }, []);  
 
   return (
-    <div className="acc-grid-container">
+    <div className="MyAccountPost">
       <CreatePost />
       <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
         {forums

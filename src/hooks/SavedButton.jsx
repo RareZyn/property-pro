@@ -43,8 +43,6 @@ const SavedButton = ({ propertyID, userId }) => {
         borderRadius: "15px",
         fontSize: "12px",
         justifyContent: "center",
-        marginRight: "60px",
-        marginLeft: "20px",
         cursor: "pointer",
         transition: "background-color 0.3s ease",
       }}

@@ -6,8 +6,8 @@
 }
 
 .About{
-    width: 70%;
-    margin: auto;
+    width: 70vw;
+    margin: 6rem auto;
     display: flex;
     justify-content: space-between;
 }
@@ -130,6 +130,8 @@
 }
 
 .acc-grid-container{
+    align-content: center;
+    margin-left: 20%;
     margin-top: 30px;
     margin-bottom: 20px;
 }

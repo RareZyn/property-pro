@@ -316,3 +316,26 @@ export const addBroker = async (brokerDetails) => {
     throw error;
   }
 };
+
+
+export const verifyProperty = async (propertyID, verificationResults) => {
+  try {
+    const response = await brokerApi.post(
+      "/verifyProperty",
+      propertyID,
+      verificationResults,
+      {
+        timeout: 10 * 1000,
+      }
+    );
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+    toast.success("You successfully registered as Broker");
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+};

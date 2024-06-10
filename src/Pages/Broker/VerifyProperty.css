@@ -403,9 +403,7 @@
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
-    *{
-        font-size: 15px;
-    }
+    
     #mainproperty-image {
         width: 400px;
         max-width: 400px;
@@ -441,9 +439,7 @@
   
   /* Medium screens (tablets, 992px and up) */
   @media (max-width: 992px) {
-    *{
-        font-size: 14px;
-    }
+    
     #mainproperty-image {
         width: 370px;
         max-width: 370px;
@@ -479,9 +475,7 @@
   
   /* Small screens (landscape phones, 768px and up) */
   @media (max-width: 795px) {
-    *{
-        font-size: 13px;
-    }
+    
     #mainproperty-image {
         width: 320px;
         max-width: 320px;
@@ -517,9 +511,7 @@
   
   /* Extra small screens (portrait phones, less than 576px) */
   @media (max-width: 680px) {
-    *{
-        font-size: 12px;
-    }
+    
     #mainproperty-image {
         width: 300px;
         max-width: 300px;
@@ -558,9 +550,7 @@
   }
 
 @media (max-width: 570px) {
-    *{
-        font-size: 11px;
-    }
+    
     #mainproperty-image {
         width: 270px;
         max-width: 270px;
