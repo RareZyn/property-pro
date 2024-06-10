@@ -50,9 +50,9 @@ export const routes = [
   { path: "/:id/make-payment", element: <MakePaymentPage /> },
   { path: "/chat-popup", element: <ChatPopup /> },
   { path: "/register-broker", element: <RegisterBroker /> },
-  { path: "/verify-property-vehicle", element: <VerifyPropertyVehicle /> },
-  { path: "/verify-property-land", element: <VerifyPropertyLand /> },
-  { path: "/verify-property-house", element: <VerifyPropertyHouse /> },
+  { path: "/verify-property-vehicle/:id", element: <VerifyPropertyVehicle /> },
+  { path: "/verify-property-land/:id", element: <VerifyPropertyLand /> },
+  { path: "/verify-property-house/:id", element: <VerifyPropertyHouse /> },
   { path: "/update-progress", element: <UpdateProgress /> },
   { path: "/chat", element: <Chat /> },
   {

@@ -55,7 +55,7 @@ model Property {
   land                Land?
   house               House?
   file                String[]
-  supportingDocuments Json?         @db.Json
+  supportingDocuments Json?        @db.Json
 
   @@index([title], name: "title_idx")
   @@index([propertyType], name: "propertyType_idx")
@@ -97,10 +97,14 @@ model House {
 }
 
 model Broker {
-  broker_id               String     @id @default(auto()) @map("_id") @db.ObjectId
-  userID                  String     @unique @db.ObjectId
-  icCardNumber            String
-  realEstateLicenseNumber String
-  propertiesListed        Property[]
-  user                    users      @relation(fields: [userID], references: [id], name: "UserBroker")
+  broker_id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  userID           String     @unique @db.ObjectId
+  fullName         String
+  brokerLicense    String
+  brokerIC         String
+  fileIC           String
+  fileBrokerLicense    String
+  propertiesListed Property[]
+
+  user users @relation(fields: [userID], references: [id], name: "UserBroker")
 }

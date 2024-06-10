@@ -9,6 +9,10 @@ export const userApi = axios.create({
   baseURL: "http://localhost:5000/users",
 });
 
+export const brokerApi = axios.create({
+  baseURL: "http://localhost:5000/broker",
+});
+
 // Function to add land
 export const addLand = async (landDetails) => {
   try {
@@ -212,24 +216,22 @@ export const getAllFavorites = async (id) => {
   }
 };
 
+export const getPropertySeller = async (id) => {
+  try {
+    const response = await api.get(`/getPropertySeller/${id}`, {
+      timeout: 10 * 1000,
+    });
 
-export const getPropertySeller = async(id) => {
-    try {
-      const response = await api.get(`/getPropertySeller/${id}`, {
-        timeout: 10 * 1000,
-      });
-
-      if (response.status === 400 || response.status === 500) {
-        throw response.data;
-      }
-
-      return response.data;
-    } catch (error) {
-      toast.error("Something went wrong");
-      throw error;
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
     }
-}
 
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
 
 export const getPropertyBought = async (userId) => {
   try {
@@ -298,3 +300,19 @@ export const countOtherUserPurchase = async (userId) => {
   }
 };
 
+export const addBroker = async (brokerDetails) => {
+  try {
+    const response = await brokerApi.post("/addBroker", brokerDetails, {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+   toast.success("You successfully registered as Broker");
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+    throw error;
+  }
+};

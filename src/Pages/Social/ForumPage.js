@@ -55,7 +55,7 @@ const ForumPage = () => {
 
               return(
                 <li key={forum._id}>
-                  <PostCard name={forum.userID.username} textForum={forum.textForum} forumID={forum._id} profilePicture={forum.userID.profilePicture}/>
+                  <PostCard forumObj={forum} name={forum.userID.username} textForum={forum.textForum} forumID={forum._id} profilePicture={forum.userID.profilePicture}/>
                 </li>
               )
             })}

@@ -1,96 +1,157 @@
 import "./RegisterBroker.css";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import {axios} from 'axios';
-
-//import SearchBar from "../../Cards/General Cards/SearchBar";
+import axios from "axios";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import { toast } from "react-toastify";
+import { addBroker } from "../../utils/api";
+import { UserContext } from "../../context/UserContext.js";
+import { getUser } from "../../utils/userAPI";
 
 export const RegisterBroker = () => {
+  const { userToken } = useContext(UserContext);
+  const [user, setUser] = useState(null);
+
   const navigate = useNavigate();
-  const [brokerFormValues, setBrokerFormValues] = useState({
+  const [brokerDetails, setBrokerDetails] = useState({
     fullName: "",
-    email: "",
-    phoneNumber: "",
+    brokerLicense: "",
     password: "",
-    confirmPassword: "",
-    brokerIC: null,
-    brokerLicense: null,
+    brokerIC: "",
+    fileIC: "",
+    fileBrokerLicense: "",
+    userID: "",
   });
 
-  const [fileNames, setFileNames] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUser(userToken);
+        setUser(userData);
+        setBrokerDetails((prevDetails) => ({
+          ...prevDetails,
+          userID: userData?._id,
+        }));
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    if (userToken) {
+      fetchUser();
+    }
+  }, [userToken]);
+
   const [errors, setErrors] = useState({});
-  const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] = useState(false);
+  const [brokerRegistrationSuccess, setBrokerRegistrationSuccess] =
+    useState(false);
+  const [uploadedFileIC, setUploadedFileIC] = useState("");
+  const [uploadedFileBrokerLicense, setUploadedFileBrokerLicense] =
+    useState("");
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
+    setBrokerDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
 
-    if (files) {
-      let selectedFileName = '';
-      if (files.length > 1) {
-        selectedFileName = `${files.length} files selected`;
-      } else {
-        selectedFileName = files[0].name;
+
+
+  const handleFileUpload = async (event) => {
+    const selectedFile = event.target.files[0];
+    const { name } = event.target; // fileIC or fileBrokerLicense
+
+    if (selectedFile) {
+      try {
+        const storageRef = firebase
+          .storage()
+          .ref("uploaded_image/broker")
+          .child(`/${brokerDetails.fullName}`);
+        const fileRef = storageRef.child(selectedFile.name);
+
+        const snapshot = await fileRef.put(selectedFile);
+        const downloadURL = await snapshot.ref.getDownloadURL();
+
+        console.log(downloadURL);
+        setBrokerDetails((prevDetails) => ({
+          ...prevDetails,
+          [name]: downloadURL,
+        }));
+
+        if (name === "fileIC") {
+          setUploadedFileIC(downloadURL);
+        } else if (name === "fileBrokerLicense") {
+          setUploadedFileBrokerLicense(downloadURL);
+        }
+      } catch (error) {
+        console.error("Upload failed", error);
+        toast.error("File upload failed. Please try again.");
       }
-      setFileNames({
-          ...fileNames,
-          [name]: selectedFileName,
-      });
+    } else {
+      console.log("No File Selected");
     }
-
-    setBrokerFormValues({
-      ...brokerFormValues,
-      [name] : files ? files : value,
-    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const validationSchema = yup.object().shape({
-        fullName: yup.string().matches(/^[A-z\s]+$/, "Full Name must only contain letters").required("Full Name is required"),
-        email: yup.string().email("Invalid email").required("Email is required"),
-        phoneNumber: yup.string().matches(/^[0-9]+$/, "Phone Number must contain only numbers").required("Phone Number is required"),
-        password: yup.string().min(8, "Password must at least be 8 characters")
-        .matches(/^(?=(?:.*[A-Z]){2})(?=.*[0-9]).*$/, "Password must contain at least 2 capital letters and 1 number")
-        .required("Password is required"),
-        confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Passwords must match")
-        .required("Confirm Password is required"),
-        brokerIC: yup.string().required("IC document is required"),
-        brokerLicense: yup.string().required("Real Estate Negotiator License is required")
+      fullName: yup
+        .string()
+        .matches(/^[A-z\s]+$/, "Full Name must only contain letters")
+        .required("Full Name is required"),
+      brokerIC: yup.string().required("IC document is required"),
+      brokerLicense: yup
+        .string()
+        .required("Real Estate Negotiator License is required"),
     });
 
-    validationSchema.validate(brokerFormValues,  { abortEarly: false })
-    .then(() => {
-      console.log(brokerFormValues);
-      navigate("/verify-property-homepage");
-      setBrokerRegistrationSuccess(true);
-    })
-    .catch((validationErrors) => {
-      const errors = {};
-      validationErrors.inner.forEach((error) => {
-        errors[error.path] = error.message;
+    validationSchema
+      .validate(brokerDetails, { abortEarly: false })
+      .then(() => {
+        addBroker(brokerDetails)
+          .then((data) => {
+            console.log(data);
+            toast.success("You successfully registered as Broker");
+            setBrokerRegistrationSuccess(true);
+            navigate("/verify-property-homepage");
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error("You already registered as Broker, please use login");
+            setBrokerRegistrationSuccess(false);
+          });
+      })
+      .catch((validationErrors) => {
+        const errors = {};
+        validationErrors.inner.forEach((error) => {
+          errors[error.path] = error.message;
+        });
+        setErrors(errors);
       });
-      setErrors(errors);
-    });
   };
+
 
   return (
     <div className="RegisterBroker">
       <div className="RegisterBrokerCard">
         <form onSubmit={handleSubmit}>
-          <h1>Broker Registeration</h1>
+          <h1>Broker Registration</h1>
           <h3 className="h3-heading">In broker we trust</h3>
 
           <div className="inputs">
             <div className="input-details">
               Full Name as in IC
-              <input type="text" 
-              placeholder="Full Name"
-              name="fullName"
-              value={brokerFormValues.fullName}
-              onChange={handleChange}
+              <input
+                type="text"
+                placeholder="Full Name"
+                name="fullName"
+                value={brokerDetails.fullName}
+                onChange={handleChange}
               />
               {errors.fullName && (
                 <div className="error">{errors.fullName}</div>
@@ -98,99 +159,80 @@ export const RegisterBroker = () => {
             </div>
 
             <div className="input-details">
-              Email
-              <input type="email" 
-              placeholder="broker@gmail.com"
-              name="email"
-              value={brokerFormValues.email}
-              onChange={handleChange}
-              />
-              {errors.email && (
-                <div className="error">{errors.email}</div>
-              )}
-            </div>
-
-            <div className="input-details">
-              Phone Number
-              <input type="text" 
-              placeholder="012-3456789"
-              name="phoneNumber"
-              value={brokerFormValues.phoneNumber}
-              onChange={handleChange}
-              />
-              {errors.phoneNumber && (
-                <div className="error">{errors.phoneNumber}</div>
-              )}
-            </div>
-
-            <div className="input-details">
-              Password
-              <input type={showPassword ? "text" : "password"} 
-              name="password"
-              value={brokerFormValues.password}
-              onChange={handleChange}
-              />
-              {errors.password && (
-                <div className="error">{errors.password}</div>
-              )}
-            </div>
-
-            <div className="input-details">
-              Confirm Password
-              <input type={showPassword ? "text" : "password"}
-              name="confirmPassword"
-              value={brokerFormValues.confirmPassword}
-              onChange={handleChange}
-              />
-              {errors.confirmPassword && (
-                <div className="error">{errors.confirmPassword}</div>
-              )}
-            </div>
-
-            <div className="show-password">
+              Broker License
               <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={() => setShowPassword(!showPassword)}
+                type="text"
+                placeholder="Broker License"
+                name="brokerLicense"
+                value={brokerDetails.brokerLicense}
+                onChange={handleChange}
               />
-              Show Password
+              {errors.brokerLicense && (
+                <div className="error">{errors.brokerLicense}</div>
+              )}
             </div>
 
-            <div className="broker-register-upload-file">
-              Identification Card (IC)
-              <input type="file" 
-              name="brokerIC"
-              id="brokerIC"
-              accept="image/*"
-              onChange={handleChange}
-              data-multiple-caption="{count} files selected"
-              multiple
+            <div className="input-details">
+              Identification card
+              <input
+                type="text"
+                placeholder="Identification card"
+                name="brokerIC"
+                value={brokerDetails.brokerIC}
+                onChange={handleChange}
               />
-              <label for="brokerIC">
-                <img src={require("../../Res/image/upload.png")} />
-                <h3>{fileNames.brokerIC || 'Choose files to upload'}</h3>
-              </label>
               {errors.brokerIC && (
                 <div className="error">{errors.brokerIC}</div>
               )}
             </div>
 
+
+            <div className="broker-register-upload-file">
+              Identification Card (IC)
+              <input
+                type="file"
+                name="fileIC"
+                id="brokerIC"
+                accept="image/*"
+                onChange={handleFileUpload}
+              />
+              <label htmlFor="brokerIC">
+                <img src={require("../../Res/image/upload.png")} alt="" />
+                <h3>
+                  {uploadedFileIC ? "File uploaded" : "Choose files to upload"}
+                </h3>
+              </label>
+              {errors.fileIC && <div className="error">{errors.fileIC}</div>}
+            </div>
+            <div className="show-file-ic">
+              {uploadedFileIC && <img src={uploadedFileIC} alt="IC" />}
+            </div>
+
             <div className="broker-register-upload-file">
               Real Estate Negotiator License
-              <input type="file" 
-              name="brokerLicense"
-              id="brokerLicense"
-              accept="image/*"
-              onChange={handleChange}
-              data-multiple-caption="{count} files selected"
-              multiple
+              <input
+                type="file"
+                name="fileBrokerLicense"
+                id="brokerLicense"
+                accept="image/*"
+                onChange={handleFileUpload}
               />
-              <label for="brokerLicense">
-                <img src={require("../../Res/image/upload.png")} />
-                <h3>{fileNames.brokerLicense || 'Choose files to upload'}</h3>
+              <label htmlFor="brokerLicense">
+                <img src={require("../../Res/image/upload.png")} alt="" />
+                <h3>
+                  {uploadedFileBrokerLicense
+                    ? "File uploaded"
+                    : "Choose files to upload"}
+                </h3>
               </label>
-              {errors.brokerLicense && (
-                <div className="error">{errors.brokerLicense}</div>
+              {errors.fileBrokerLicense && (
+                <div className="error">{errors.fileBrokerLicense}</div>
+              )}
+            </div>
+
+            <div className="show-file-license">
+              {uploadedFileBrokerLicense && (
+                <img src={uploadedFileBrokerLicense} alt="Broker License" />
               )}
             </div>
 
@@ -200,26 +242,11 @@ export const RegisterBroker = () => {
 
             {brokerRegistrationSuccess && (
               <p className="success-message">Registration successful!</p>
-            )}
-            
-            <div className="broker-register-to-login">
-              Already have an account?
-              <Link to="./login-broker" className="login">Login</Link>
-            </div>
+            )} 
+
           </div>
         </form>
       </div>
     </div>
   );
 };
-
-function RegisterBrokerInputItem({ inputTitle, inputHint }) {
-  return (
-    <div className="InputDetails">
-      <h7>{inputTitle}</h7>
-      <div className="Input">
-        {inputHint === "" ? "Enter your " + inputTitle : { inputHint }}
-      </div>
-    </div>
-  );
-}
