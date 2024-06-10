@@ -45,6 +45,7 @@ export const LoginBroker = () => {
             type="checkbox"
             checked={showPassword}
             onChange={() => setShowPassword(!showPassword)}
+            id="show-password-checkbox"
           />
           Show Password
         </div>

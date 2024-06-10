@@ -157,8 +157,8 @@ export const PublishProperty = () => {
           const img = document.createElement("img");
           img.src = url;
           img.alt = "Uploaded Image";
-          img.style.width = "200px"; // Adjust width as needed
-          img.style.marginRight = "10px"; // Optional: Add some margin between images
+          img.style.width = "200px"; 
+          img.style.marginRight = "10px"; 
           imagesDiv.appendChild(img);
         });
       } catch (error) {
