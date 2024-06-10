@@ -10,11 +10,8 @@
     font-weight: 550;
     font-size: 15px;
     color: #b2b2b2;
-    border-radius: 8px;
-}
-#ShareBtn span {
-  align-self: center;
-
+    border-radius: 15px;
+    align-items: center;
 }
 
 #ShareBtn img {

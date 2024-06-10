@@ -6,8 +6,8 @@
 }
 
 .About{
-    width: 70%;
-    margin: auto;
+    width: 70vw;
+    margin: 6rem auto;
     display: flex;
     justify-content: space-between;
 }

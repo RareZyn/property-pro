@@ -73,7 +73,7 @@ export const MyAccountDetails = () => {
     );
 
   return (
-    <div className="acc-grid-container">
+    <div className="MyAccountDetails">
       <div className="About">
         <div className="details-column">
           <div className="first-name">
