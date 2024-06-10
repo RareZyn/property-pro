@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
+import ChatContext from '../../context/ChatContext';
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 
@@ -41,6 +42,18 @@ export const PropertyVehicleDetails = () => {
   }, [userToken]);
 
   const userId = user?._id;
+
+  // To handle chat vv
+  const { createRoom } = useContext(ChatContext);
+
+  const createChatRoom = async () => {
+    try{
+      await createRoom(userId,data.seller.id);
+    } catch(error){
+      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error.message);
+    }
+  };
+  // End handle chat ^^
 
   if (isLoading) {
     return (
@@ -198,8 +211,8 @@ export const PropertyVehicleDetails = () => {
                   <button>Profile</button>
                 </Link>
 
-                <Link to={`/view-account/${otherID}`}>
-                  <button>Chat</button>
+                <Link to={'/chat'}>
+                  <button onClick={createChatRoom}>Chat</button>
                 </Link>
               </div>
               
