@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
 
 export const PropertyHouseDetails = () => {
   const { otherID } = useContext(UserContext);
