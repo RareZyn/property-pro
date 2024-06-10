@@ -24,7 +24,6 @@ const addBroker = asyncHandler(async (req, res) => {
         .json({ message: "Broker with this user ID already exists" });
     }
 
-
     // Create the broker
     const newBroker = await prisma.broker.create({
       data: {
@@ -35,6 +34,12 @@ const addBroker = asyncHandler(async (req, res) => {
         fileBrokerLicense,
         userID,
       },
+    });
+
+    // Update the user's brokerID field
+    await prisma.users.update({
+      where: { id: userID },
+      data: { brokerID: newBroker.broker_id },
     });
 
     // Fetch the associated user details after creating the broker
