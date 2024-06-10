@@ -318,12 +318,11 @@ export const addBroker = async (brokerDetails) => {
 };
 
 
-export const verifyProperty = async (propertyID, verificationResults) => {
+export const verifyProperty = async (propertyID, verificationResults, brokerID) => {
   try {
     const response = await brokerApi.post(
       "/verifyProperty",
-      propertyID,
-      verificationResults,
+      { propertyID, verificationResults,brokerID}, // Pass data as an object
       {
         timeout: 10 * 1000,
       }
@@ -332,7 +331,8 @@ export const verifyProperty = async (propertyID, verificationResults) => {
     if (response.status === 400 || response.status === 500) {
       throw response.data;
     }
-    toast.success("You successfully registered as Broker");
+    toast.success("Property verified status updated");
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error.message);
