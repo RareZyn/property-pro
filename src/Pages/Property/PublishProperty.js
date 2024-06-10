@@ -260,7 +260,6 @@ export const PublishProperty = () => {
 
   const handleLandChange = (event) => {
     const { name, value } = event.target;
-    // Convert value to number if necessary
     const parsedValue = name === "price" ? parseFloat(value) : value;
     setLandDetails({ ...landDetails, [name]: parsedValue });
   };

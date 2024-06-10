@@ -24,6 +24,8 @@ model users {
   broker           Broker?    @relation(name: "UserBroker")
   favResidencieID  String[]   @db.ObjectId
   brokerID         String?    @db.ObjectId 
+  profilePicture   String
+
 }
 
 enum Condition {
@@ -55,7 +57,7 @@ model Property {
   vehicle             Vehicle?
   land                Land?
   house               House?
-  file                String[]
+  file                String[]  
   isVerified          Boolean      @default(false)
   verificationStatus  Json?        @db.Json // Retain this line
 

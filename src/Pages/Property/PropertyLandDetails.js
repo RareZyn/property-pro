@@ -14,6 +14,7 @@ import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
 
 export const PropertyLandDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -23,6 +24,8 @@ export const PropertyLandDetails = () => {
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
   );
+
+  
 
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
@@ -56,6 +59,7 @@ export const PropertyLandDetails = () => {
     return <div>Error while fetching the data</div>;
   }
   const userId = user?._id;
+
 
   return (
     <div className="PropertyDetailsContainer">
@@ -162,10 +166,9 @@ export const PropertyLandDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
-                  className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
-                />
+                <div style={{display:'flex', width:'100%'}}>
+                  <ProfilePicture imgLink={data?.seller.profilePicture} size={'85px'}/>
+                </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>

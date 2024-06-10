@@ -64,7 +64,7 @@ const addBroker = asyncHandler(async (req, res) => {
 
 
 const verifyProperty = asyncHandler(async (req, res) => {
-  const { propertyID, verificationResults } = req.body;
+  const { propertyID, verificationResults, brokerID } = req.body; // Added brokerID
 
   try {
     // Fetch the property
@@ -102,12 +102,13 @@ const verifyProperty = asyncHandler(async (req, res) => {
       }
     }
 
-    // Update the property with the verification status and isVerified flag
+    // Update the property with the verification status, isVerified flag, and brokerID
     await prisma.property.update({
       where: { property_id: propertyID },
       data: {
         verificationStatus,
         isVerified,
+        brokerID, // Added brokerID
       },
     });
 
@@ -127,7 +128,6 @@ const verifyProperty = asyncHandler(async (req, res) => {
     console.log(error.message);
   }
 });
-
 
 
 

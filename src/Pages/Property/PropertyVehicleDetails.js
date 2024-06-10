@@ -11,6 +11,7 @@ import { UserContext } from "../../context/UserContext.js";
 import ChatContext from '../../context/ChatContext';
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
 
 export const PropertyVehicleDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -76,7 +77,11 @@ export const PropertyVehicleDetails = () => {
         />
         <div className="property-image-div">
           <div className="property-image-1row">
-            <img id="property-image" srcSet={data?.images[1]} alt="VehicleImage" />
+            <img
+              id="property-image"
+              srcSet={data?.images[1]}
+              alt="VehicleImage"
+            />
             <img id="property-image" src={data?.images[2]} alt="VehicleImage" />
           </div>
           <div className="property-image-1row">
@@ -193,10 +198,9 @@ export const PropertyVehicleDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
-                  className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
-                />
+                <div style={{display:'flex', width:'100%'}}>
+                  <ProfilePicture imgLink={data?.seller.profilePicture} size={'85px'}/>
+                </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>

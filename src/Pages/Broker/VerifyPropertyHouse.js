@@ -1,25 +1,26 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import "./VerifyProperty.css";
-import PropertyRejectionCard from "./PropertyRejectionCard.js";
-import DocumentRejectionCard from "./DocumentRejectionCard.js";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getProperty } from "../../utils/api.js";
+import { getProperty, verifyProperty } from "../../utils/api.js";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 
 export const VerifyPropertyHouse = () => {
-  const [isRejectClicked, setIsRejectClicked] = useState(false);
-  const [rejectionCard, setRejectionCard] = useState("hidden");
-  const [supportingPdf1, setSupportingPdf1] = useState("");
-  const [supportingPdf2, setSupportingPdf2] = useState("");
-  const [supportingPdf3, setSupportingPdf3] = useState("");
-  const [documentRejectionPopup, setDocumentRejectionPopup] = useState(
-    "DocumentRejection-hidden"
-  );
-  const { pathname } = useLocation(); //complete path of our page
+  const [supportingPdf1, setSupportingPdf1] = useState();
+  const [supportingPdf2, setSupportingPdf2] = useState();
+  const [supportingPdf3, setSupportingPdf3] = useState();
+  const [supportingPdf1Message, setSupportingPdf1Message] = useState("");
+  const [supportingPdf2Message, setSupportingPdf2Message] = useState("");
+  const [supportingPdf3Message, setSupportingPdf3Message] = useState("");
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const propertyID = pathname.split("/")[2];
-
+  const [activeButton, setActiveButton] = useState({
+    pdf1: null,
+    pdf2: null,
+    pdf3: null,
+  });
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
   );
@@ -44,100 +45,72 @@ export const VerifyPropertyHouse = () => {
     }
   }, [userToken]);
 
-  const userId = user?._id;
+  const handleAcceptClick = (pdf) => {
+    setActiveButton((prev) => ({
+      ...prev,
+      [pdf]: prev[pdf] === "accept" ? null : "accept",
+    }));
 
-  console.log(data);
-
-  let cancelRejectionCardRef = useRef();
-  let verifyPdf1 = useRef();
-  let verifyPdf2 = useRef();
-  let verifyPdf3 = useRef();
-  let rejectPdf1Ref = useRef();
-  let rejectPdf2Ref = useRef();
-  let rejectPdf3Ref = useRef();
-  let cancelDocumentRejectionRef = useRef();
-  const [verify,setVerify] = useState({})
-
-  const BrokerRejectProperty = () => {
-    const newRejectClickedState = !isRejectClicked;
-    setIsRejectClicked(!isRejectClicked);
-    setRejectionCard(newRejectClickedState ? "visible" : "hidden");
+    switch (pdf) {
+      case "pdf1":
+        setSupportingPdf1((prev) => !prev);
+        break;
+      case "pdf2":
+        setSupportingPdf2((prev) => !prev);
+        break;
+      case "pdf3":
+        setSupportingPdf3((prev) => !prev);
+        break;
+      default:
+        break;
+    }
   };
 
- useEffect(() => {
-   let handler = (e) => {
-     if (
-       cancelRejectionCardRef.current &&
-       cancelRejectionCardRef.current.contains(e.target)
-     ) {
-       if (rejectionCard === "visible") {
-         setRejectionCard("hidden");
-         setIsRejectClicked(false);
-       }
-     }
+  const handleRejectClick = (pdf) => {
+    setActiveButton((prev) => ({
+      ...prev,
+      [pdf]: prev[pdf] === "reject" ? null : "reject",
+    }));
 
-     if (verifyPdf1.current && verifyPdf1.current.contains(e.target)) {
-       if (supportingPdf1 === "Verified") {
-         setSupportingPdf1("");
-       } else {
-         setSupportingPdf1("Verified");
-       }
-     } else if (verifyPdf2.current && verifyPdf2.current.contains(e.target)) {
-       if (supportingPdf2 === "Verified") {
-         setSupportingPdf2("");
-       } else {
-         setSupportingPdf2("Verified");
-       }
-     } else if (verifyPdf3.current && verifyPdf3.current.contains(e.target)) {
-       if (supportingPdf3 === "Verified") {
-         setSupportingPdf3("");
-       } else {
-         setSupportingPdf3("Verified");
-       }
-     }
+    switch (pdf) {
+      case "pdf1":
+        setSupportingPdf1(false);
+        break;
+      case "pdf2":
+        setSupportingPdf2(false);
+        break;
+      case "pdf3":
+        setSupportingPdf3(false);
+        break;
+      default:
+        break;
+    }
+  };
 
-     if (rejectPdf1Ref.current && rejectPdf1Ref.current.contains(e.target)) {
-       if (documentRejectionPopup === "DocumentRejection-hidden") {
-         setDocumentRejectionPopup("DocumentRejection");
-       }
-     } else if (
-       rejectPdf2Ref.current &&
-       rejectPdf2Ref.current.contains(e.target)
-     ) {
-       if (documentRejectionPopup === "DocumentRejection-hidden") {
-         setDocumentRejectionPopup("DocumentRejection");
-       }
-     } else if (
-       rejectPdf3Ref.current &&
-       rejectPdf3Ref.current.contains(e.target)
-     ) {
-       if (documentRejectionPopup === "DocumentRejection-hidden") {
-         setDocumentRejectionPopup("DocumentRejection");
-       }
-     }
+  const handleSubmit = async () => {
+    try {
+      await verifyProperty(propertyID, getVerificationResults(), user.id);
+      navigate("/verify-property-homepage");
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
-     if (
-       cancelDocumentRejectionRef.current &&
-       cancelDocumentRejectionRef.current.contains(e.target)
-     ) {
-       if (documentRejectionPopup === "DocumentRejection") {
-         setDocumentRejectionPopup("DocumentRejection-hidden");
-       }
-     }
-   };
-
-   document.addEventListener("mousedown", handler);
-
-   return () => {
-     document.removeEventListener("mousedown", handler);
-   };
- }, [
-   rejectionCard,
-   supportingPdf1,
-   supportingPdf2,
-   supportingPdf3,
-   documentRejectionPopup,
- ]);
+  // Helper function to get verification results
+  const getVerificationResults = () => [
+    {
+      message: supportingPdf1Message,
+      status: supportingPdf1,
+    },
+    {
+      message: supportingPdf2Message,
+      status: supportingPdf2,
+    },
+    {
+      message: supportingPdf3Message,
+      status: supportingPdf3,
+    },
+  ];
   return (
     <div className="VerifyProperty">
       <div className="property-image-container">
@@ -156,19 +129,14 @@ export const VerifyPropertyHouse = () => {
 
       <div className="PropertyDetailsCard">
         <div className="MoreThumbnails">
+          <img src={data?.images[0]} />
           <img src={data?.images[1]} />
           <img src={data?.images[2]} />
-          <img src={data?.images[3]} />
         </div>
 
-        <PropertyRejectionCard
-          className={rejectionCard}
-          ref={cancelRejectionCardRef}
-        ></PropertyRejectionCard>
-
-        <div className="house-title-price">
-          <h1 className="house-title">{data?.title}</h1>
-          <div className="house-price">RM {data?.price}</div>
+        <div className="land-title-price">
+          <h1 className="land-title">{data?.title}</h1>
+          <div className="land-price">RM {data?.price}</div>
         </div>
 
         <div className="seller-details-div">
@@ -219,19 +187,26 @@ export const VerifyPropertyHouse = () => {
         <div className="SupportingDocumentCard">
           <h2>Supporting document</h2>
           <div className="supporting-doc-grid">
-            <div className={supportingPdf1}>
+            <div className={`SupportingDocument ${activeButton.pdf1}`}>
               <img
                 src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
               />
               <div className="verify-reject-doc">
                 <button
-                  className="SupportingDocumentButton"
-                  ref={rejectPdf1Ref}
+                  className={`RejectButton ${
+                    activeButton.pdf1 === "reject" ? "active" : ""
+                  }`}
+                  onClick={() => handleRejectClick("pdf1")}
                 >
                   Reject
                 </button>
-                <button className="SupportingDocumentButton" ref={verifyPdf1}>
-                  {supportingPdf1 === "Verified" ? "Unverify" : "Verify"}
+                <button
+                  className={`AcceptButton ${
+                    activeButton.pdf1 === "accept" ? "active" : ""
+                  }`}
+                  onClick={() => handleAcceptClick("pdf1")}
+                >
+                  Verify
                 </button>
               </div>
               <div className="view-doc">
@@ -242,21 +217,37 @@ export const VerifyPropertyHouse = () => {
                   </a>
                 </button>
               </div>
+              <div id="changeMessage">
+                <input
+                  type="text"
+                  onChange={(event) =>
+                    setSupportingPdf1Message(event.target.value)
+                  }
+                  id="reason1"
+                />
+              </div>
             </div>
 
-            <div className={supportingPdf2}>
+            <div className={`SupportingDocument ${activeButton.pdf2}`}>
               <img
                 src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
               />
               <div className="verify-reject-doc">
                 <button
-                  className="SupportingDocumentButton"
-                  ref={rejectPdf2Ref}
+                  className={`RejectButton ${
+                    activeButton.pdf2 === "reject" ? "active" : ""
+                  }`}
+                  onClick={() => handleRejectClick("pdf2")}
                 >
                   Reject
                 </button>
-                <button className="SupportingDocumentButton" ref={verifyPdf2}>
-                  {supportingPdf2 === "Verified" ? "Unverify" : "Verify"}
+                <button
+                  className={`AcceptButton ${
+                    activeButton.pdf2 === "accept" ? "active" : ""
+                  }`}
+                  onClick={() => handleAcceptClick("pdf2")}
+                >
+                  Verify
                 </button>
               </div>
               <div className="view-doc">
@@ -267,21 +258,37 @@ export const VerifyPropertyHouse = () => {
                   </a>
                 </button>
               </div>
+              <div id="changeMessage">
+                <input
+                  type="text"
+                  onChange={(event) =>
+                    setSupportingPdf2Message(event.target.value)
+                  }
+                  id="reason2"
+                />
+              </div>
             </div>
 
-            <div className={supportingPdf3}>
+            <div className={`SupportingDocument ${activeButton.pdf3}`}>
               <img
                 src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
               />
               <div className="verify-reject-doc">
                 <button
-                  className="SupportingDocumentButton"
-                  ref={rejectPdf3Ref}
+                  className={`RejectButton ${
+                    activeButton.pdf3 === "reject" ? "active" : ""
+                  }`}
+                  onClick={() => handleRejectClick("pdf3")}
                 >
                   Reject
                 </button>
-                <button className="SupportingDocumentButton" ref={verifyPdf3}>
-                  {supportingPdf3 === "Verified" ? "Unverify" : "Verify"}
+                <button
+                  className={`AcceptButton ${
+                    activeButton.pdf3 === "accept" ? "active" : ""
+                  }`}
+                  onClick={() => handleAcceptClick("pdf3")}
+                >
+                  Verify
                 </button>
               </div>
               <div className="view-doc">
@@ -292,18 +299,21 @@ export const VerifyPropertyHouse = () => {
                   </a>
                 </button>
               </div>
+              <div id="changeMessage">
+                <input
+                  type="text"
+                  onChange={(event) =>
+                    setSupportingPdf3Message(event.target.value)
+                  }
+                  id="reason3"
+                />
+              </div>
             </div>
           </div>
         </div>
-
-        <DocumentRejectionCard
-          className={documentRejectionPopup}
-          ref={cancelDocumentRejectionRef}
-        ></DocumentRejectionCard>
-        <div className="RejectVerify">
-          <h3 onClick={BrokerRejectProperty}>Reject</h3>
-          <h3>Verify</h3>
-        </div>
+        <button id="submitButton" onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
     </div>
   );
