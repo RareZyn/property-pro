@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Bounce, ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ForumProvider } from "./context/ForumContext.js";
+import Cookie from 'js-cookie'
 
 function NavHeaderWrapper() {
   const { pathname } = useLocation();
