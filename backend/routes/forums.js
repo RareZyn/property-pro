@@ -72,7 +72,7 @@ router.route('/add-comment/:id').post((req, res) => {
     comment.save()
     .then(() => {
         Forum.findByIdAndUpdate(req.params.id, { $push: { comments: comment } })
-            .then(() => res.json('Comment added!'))
+            .then(() => res.json(req.body))
             .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

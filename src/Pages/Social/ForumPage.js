@@ -50,6 +50,7 @@ const ForumPage = () => {
           <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
 
             {displayedForums
+            .filter(forum => !forum.isComment)
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map(forum => {
 
