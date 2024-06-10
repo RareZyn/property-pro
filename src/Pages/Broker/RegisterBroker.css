@@ -9,51 +9,6 @@
   min-height: 105vh;
 }
 
-/**.RegisterBrokerCard {
-  width: 55%;
-  background-color: rgb(39, 160, 136, 0.8);
-  display: flex;
-  flex-direction: column;
-  color: var(--darkBlue);
-  box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
-  margin: 64px;
-  margin-top: 80px;
-  padding: 24px;
-  border-radius: 50px;
-  height: 820px;
-}
-
-.RegisterBrokerCard input {
-  position: relative;
-  text-align: center;
-  background-color: var(--white);
-  border-radius: 50px;
-  width: 100%;
-  color: var(--grey);
-  text-align: left;
-  padding: 10px;
-  cursor: text;
-  box-shadow: 0px 2px 5px var(--darkBlue);
-  border: 0px;
-}
-heading
-  color: var(--white);
-
-input
-    background-color: var(--white);
-    box-shadow: 0px 2px 5px var(--darkBlue);
-
-#RegisterBrokerUploadIC
-  background-color: var(--white);
-
-  .RegisterBrokerUploadFileInstruction {
-  font-family: "Roboto";
-  font-size: 12px;
-  font-weight: bold;
-  margin-top: 16px;
-  margin-left: 32px;
-}
-**/
 
 .RegisterBrokerCard {
   display: flex;
@@ -184,47 +139,12 @@ form h1, .h3-heading {
 .broker-register-upload-file:hover{
   width: 102%;
 }
-
-/* Small screens (landscape phones, 768px and up) */
-@media (max-width: 795px) {
-  .RegisterBrokerCard{
-      width: 550px;
-  }
-}
-
-/* Extra small screens (portrait phones, less than 576px) */
-@media (max-width: 680px) {
-  .RegisterBrokerCard{
-    width: 500px;
-}
-}
-
-@media (max-width: 570px) {
-  .RegisterBrokerCard{
-    width: 450px;
-}
-}
-
-/**.RegisterBrokerCard button {
-  border: 0px;
-  align-self: center;
-  background-color: var(--orange);
-  color: var(--darkBlue);
-  font-family: "Roboto";
-  font-size: 24px;
-  padding: 10px;
-  padding-left: 60px;
-  padding-right: 60px;
-  border-radius: 50px;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  box-shadow: 0px 3px 5px var(--darkBlue);
-}**/
-
-/**.RegisterBrokerToLogin {
-  font-family: "Roboto";
-  font-size: 20px;
+.show-file-ic, .show-file-license{
   display: flex;
   justify-content: center;
-  color: var(--darkBlue);
-}**/
+  align-items: center;
+  
+}
+.show-file-ic img,.show-file-license img{
+width: 100px;
+}

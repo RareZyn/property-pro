@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaHouse } from "react-icons/fa6";
 import { FaBed, FaShower } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
@@ -15,6 +15,7 @@ export const PropertyHouseDetails = () => {
   const { otherID } = useContext(UserContext);
   const { pathname } = useLocation(); //complete path of our page
   const propertyID = pathname.split("/")[2];
+  
 
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
@@ -53,6 +54,9 @@ export const PropertyHouseDetails = () => {
   if (isError) {
     return <div>Error while fetching the data</div>;
   }
+
+
+
 
   return (
     <div className="PropertyDetailsContainer">
