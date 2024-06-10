@@ -72,13 +72,8 @@ export const NavHeader = () => {
   };
 
   const brokerCheck = () => {
-    if (!user) {
-      return '/register-broker';
-    }
-    return user.brokerID ? "/verify-property-homepage" : "/register-broker";
+    return user?.brokerID ? "/verify-property-homepage" : "/register-broker";
   }
-
-  console.log(user?.brokerID);
 
   return (
     <div className="NavHeader">

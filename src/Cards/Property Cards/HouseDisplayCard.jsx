@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 export const HouseDisplayCard = ({ card, link }) => {
   const navigate = useNavigate();
+  console.log(link)
   if (!card) return null;
   return (
     <Link to={link}>
-      <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
+      <div id="prop-card">
         <div id="img-placeholder">
           <img
             srcSet={card?.images[0]}

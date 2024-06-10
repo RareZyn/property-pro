@@ -113,36 +113,44 @@ export const PropertyLandDetailsOverview = () => {
         </div>
 
         <div className="Overview-edit">
-          <input
-            id="input-section"
-            name="price"
-            type="text"
-            value={propertyDetails.price}
-            onChange={(e) =>
-              setPropertyDetails({ ...propertyDetails, price: e.target.value })
-            }
-          />
+          <div className="price-input">
+            <div className="info-label">Price</div>
+                <input
+                id="input-section"
+                name="price"
+                type="text"
+                value={propertyDetails.price}
+                onChange={(e) =>
+                  setPropertyDetails({ ...propertyDetails, price: e.target.value })
+                }
+              />
+          </div>
         </div>
+
         <div className="property-fist-row">
-          <div className="title-div">
-            <input
-              id="input-section"
-              name="title"
-              type="text"
-              value={propertyDetails.title}
-              onChange={(e) =>
-                setPropertyDetails({
-                  ...propertyDetails,
-                  title: e.target.value,
-                })
-              }
-            />
+          <div className="title-share">
+            <div className="title-input">
+                <div className="info-label">Title</div>
+                <input
+                  id="input-section"
+                  name="title"
+                  type="text"
+                  value={propertyDetails.title}
+                  onChange={(e) =>
+                    setPropertyDetails({
+                      ...propertyDetails,
+                      title: e.target.value,
+                    })
+                  }
+                />
+            </div>
             <div className="share-content">
               <PopupShareProperty />
             </div>
           </div>
+
           <div className="property-desc">
-            <h3>Description of the product:</h3>
+            <h3>Description of the product</h3>
             <textarea
               id="input-section"
               name="description"

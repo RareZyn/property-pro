@@ -9,7 +9,7 @@ export const VehicleDisplayCard = ({ card, link }) => {
   if (!card) return null;
   return (
     <Link to={link}>
-      <div id="prop-card" onClick={() => navigate("/property-Vehicle-Details")}>
+      <div id="prop-card">
         <div id="img-placeholder">
           <img
             srcSet={card?.images[0]}

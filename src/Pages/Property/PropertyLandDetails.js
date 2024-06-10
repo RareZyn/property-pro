@@ -87,11 +87,13 @@ export const PropertyLandDetails = () => {
 
         <div className="property-fist-row">
           <div className="title-div">
+            <div className="empty-div"></div>
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
               <PopupShareProperty />
             </div>
           </div>
+
           <div className="property-second-row">
             <div className="icon-with-text">
               <div className="property-icon">
@@ -123,7 +125,7 @@ export const PropertyLandDetails = () => {
           </div>
 
           <div className="property-desc">
-            <h3>Description of the Land:</h3>
+            <h3>Description of the Land</h3>
             <p>{data.description}</p>
           </div>
 
@@ -132,7 +134,9 @@ export const PropertyLandDetails = () => {
               <button id="button-buy">RM {data.price}</button>
             </Link>
             <div className="save">
-              <SavedButton propertyID={propertyID} userId={userId} />
+              <div>
+                <SavedButton propertyID={propertyID} userId={userId} />
+              </div>
             </div>
           </div>
 
@@ -174,13 +178,16 @@ export const PropertyLandDetails = () => {
                 </div>
               </div>
 
-              <Link to={`/view-account/${data?.sellerID}/about`}>
-                <button id="seller-infobutton">Profile</button>
-              </Link>
+              <div id="seller-infobutton">
+                <Link to={`/view-account/${data?.sellerID}/about`}>
+                  <button>Profile</button>
+                </Link>
 
-              <Link to="/view-account-header">
-                <button id="seller-infobutton">Chat</button>
-              </Link>
+                <Link to="/view-account-header">
+                  <button>Chat</button>
+                </Link>
+              </div>
+              
             </div>
           </div>
         </div>

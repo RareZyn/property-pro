@@ -15,10 +15,7 @@ export const LandDisplayCard = ({ link, card }) => {
   return (
     <Link to={link}>
       <div id="prop-card">
-        <div
-          id="img-placeholder"
-          onClick={() => navigate("/property-Land-Details")}
-        >
+        <div id="img-placeholder">
           <img
             srcSet={card?.images[0]}
             alt="Image"

@@ -386,22 +386,20 @@
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
-  * {
-    font-size: 15px;
-  }
-  #mainproperty-image {
-    width: 400px;
-    max-width: 400px;
-    height: 320px;
-    max-height: 320px;
-  }
-
-  #property-image {
-    width: 240px;
-    max-width: 240px;
-    height: 160px;
-    max-height: 160px;
-  }
+    
+    #mainproperty-image {
+        width: 400px;
+        max-width: 400px;
+        height: 320px;
+        max-height: 320px;  
+    }
+    
+    #property-image {
+        width: 240px;
+        max-width: 240px;
+        height: 160px; 
+        max-height: 160px;
+    }
 
   .PropertyDetailsCard {
     max-width: 750px;
@@ -411,48 +409,33 @@
     width: 220px;
   }
 
-  .MoreThumbnails:hover img:nth-child(1) {
-    transform: translate(230px, 10px);
+    .MoreThumbnails:hover img:nth-child(1){
+        transform: translate(230px,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(2){
+        transform: translate(0,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(3){
+        transform: translate(-230px,10px);
+    }
   }
-  .MoreThumbnails:hover img:nth-child(2) {
-    transform: translate(0, 10px);
-  }
-  .MoreThumbnails:hover img:nth-child(3) {
-    transform: translate(-230px, 10px);
-  }
-}
-
-#reason1,
-#reason2,
-#reason3 {
-  width: 80%;
-  justify-self: center;
-}
-
-#changeMessage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-@media (max-width: 992px) {
-  * {
-    font-size: 14px;
-  }
-  #mainproperty-image {
-    width: 370px;
-    max-width: 370px;
-    height: 290px;
-    max-height: 290px;
-  }
-
-  #property-image {
-    width: 190px;
-    max-width: 190px;
-    height: 145px;
-    max-height: 145px;
-  }
+  
+  /* Medium screens (tablets, 992px and up) */
+  @media (max-width: 992px) {
+    
+    #mainproperty-image {
+        width: 370px;
+        max-width: 370px;
+        height: 290px;
+        max-height: 290px;  
+    }
+    
+    #property-image {
+        width: 190px;
+        max-width: 190px;
+        height: 145px; 
+        max-height: 145px;
+    }
 
   .PropertyDetailsCard {
     max-width: 650px;
@@ -462,35 +445,33 @@
     width: 190px;
   }
 
-  .MoreThumbnails:hover img:nth-child(1) {
-    transform: translate(200px, 10px);
+    .MoreThumbnails:hover img:nth-child(1){
+        transform: translate(200px,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(2){
+        transform: translate(0,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(3){
+        transform: translate(-200px,10px);
+    }
   }
-  .MoreThumbnails:hover img:nth-child(2) {
-    transform: translate(0, 10px);
-  }
-  .MoreThumbnails:hover img:nth-child(3) {
-    transform: translate(-200px, 10px);
-  }
-}
-
-/* Small screens (landscape phones, 768px and up) */
-@media (max-width: 795px) {
-  * {
-    font-size: 13px;
-  }
-  #mainproperty-image {
-    width: 320px;
-    max-width: 320px;
-    height: 250px;
-    max-height: 250px;
-  }
-
-  #property-image {
-    width: 160px;
-    max-width: 160px;
-    height: 125px;
-    max-height: 125px;
-  }
+  
+  /* Small screens (landscape phones, 768px and up) */
+  @media (max-width: 795px) {
+    
+    #mainproperty-image {
+        width: 320px;
+        max-width: 320px;
+        height: 250px;
+        max-height: 250px;  
+    }
+    
+    #property-image {
+        width: 160px;
+        max-width: 160px;
+        height: 125px; 
+        max-height: 125px;
+    }
 
   .PropertyDetailsCard {
     max-width: 550px;
@@ -500,35 +481,33 @@
     width: 160px;
   }
 
-  .MoreThumbnails:hover img:nth-child(1) {
-    transform: translate(170px, 10px);
+    .MoreThumbnails:hover img:nth-child(1){
+        transform: translate(170px,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(2){
+        transform: translate(0,10px);
+    }
+    .MoreThumbnails:hover img:nth-child(3){
+        transform: translate(-170px,10px);
+    }
   }
-  .MoreThumbnails:hover img:nth-child(2) {
-    transform: translate(0, 10px);
-  }
-  .MoreThumbnails:hover img:nth-child(3) {
-    transform: translate(-170px, 10px);
-  }
-}
-
-/* Extra small screens (portrait phones, less than 576px) */
-@media (max-width: 680px) {
-  * {
-    font-size: 12px;
-  }
-  #mainproperty-image {
-    width: 300px;
-    max-width: 300px;
-    height: 220px;
-    max-height: 220px;
-  }
-
-  #property-image {
-    width: 140px;
-    max-width: 140px;
-    height: 110px;
-    max-height: 110px;
-  }
+  
+  /* Extra small screens (portrait phones, less than 576px) */
+  @media (max-width: 680px) {
+    
+    #mainproperty-image {
+        width: 300px;
+        max-width: 300px;
+        height: 220px;
+        max-height: 220px;  
+    }
+    
+    #property-image {
+        width: 140px;
+        max-width: 140px;
+        height: 110px; 
+        max-height: 110px;
+    }
 
   .PropertyDetailsCard {
     max-width: 450px;
@@ -554,22 +533,20 @@
 }
 
 @media (max-width: 570px) {
-  * {
-    font-size: 11px;
-  }
-  #mainproperty-image {
-    width: 270px;
-    max-width: 270px;
-    height: 200px;
-    max-height: 200px;
-  }
-
-  #property-image {
-    width: 120px;
-    max-width: 120px;
-    height: 100px;
-    max-height: 100px;
-  }
+    
+    #mainproperty-image {
+        width: 270px;
+        max-width: 270px;
+        height: 200px;
+        max-height: 200px;  
+    }
+    
+    #property-image {
+        width: 120px;
+        max-width: 120px;
+        height: 100px; 
+        max-height: 100px;
+    }
 
   .PropertyDetailsCard {
     max-width: 400px;

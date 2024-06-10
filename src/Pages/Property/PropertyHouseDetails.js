@@ -86,6 +86,7 @@ export const PropertyHouseDetails = () => {
 
         <div className="property-fist-row">
           <div className="title-div">
+            <div className="empty-div"></div>
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
               <PopupShareProperty />
@@ -97,14 +98,14 @@ export const PropertyHouseDetails = () => {
               <div className="property-icon">
                 <FaBed />
               </div>
-              <div className="text">{data.house?.rooms} Bed</div>
+              <div className="text">{data.house?.rooms} Bedroom</div>
             </div>
 
             <div className="icon-with-text">
               <div className="property-icon">
                 <FaShower />
               </div>
-              <div className="text">{data.house?.bathrooms} Bath</div>
+              <div className="text">{data.house?.bathrooms} Bathroom</div>
             </div>
 
             <div className="icon-with-text">
@@ -116,7 +117,7 @@ export const PropertyHouseDetails = () => {
           </div>
 
           <div className="property-desc">
-            <h3>Description of the House:</h3>
+            <h3>Description of the House</h3>
             <p>{data.description}</p>
           </div>
 
@@ -125,7 +126,9 @@ export const PropertyHouseDetails = () => {
               <button id="button-buy">RM {data.price}</button>
             </Link>
             <div className="save">
-              <SavedButton propertyID={propertyID} userId={userId} />
+              <div>              
+                <SavedButton propertyID={propertyID} userId={userId} />
+              </div>
             </div>
           </div>
 
@@ -169,13 +172,16 @@ export const PropertyHouseDetails = () => {
                 </div>
               </div>
 
-              <Link to={`/view-account/${data?.sellerID}/about`}>
-                <button id="seller-infobutton">Profile</button>
-              </Link>
+              <div id="seller-infobutton">
+                <Link to={`/view-account/${data?.sellerID}/about`}>
+                  <button>Profile</button>
+                </Link>
 
-              <Link to="/view-account-header">
-                <button id="seller-infobutton">Chat</button>
-              </Link>
+                <Link to="/view-account-header">
+                  <button>Chat</button>
+                </Link>
+              </div>
+              
             </div>
           </div>
         </div>

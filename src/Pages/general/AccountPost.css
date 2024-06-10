@@ -1,7 +1,9 @@
 .MyAccountPost {
+  margin: 5rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 800px;
 }
 
 .MyAccountPost-page {
@@ -146,4 +148,17 @@
 
 #acc-grid {
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .MyAccountPost{
+    width: 600px;
+  }
+}
+
+/* Extra small screens (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+  .MyAccountPost{
+    width: 425px;
+  }
 }
