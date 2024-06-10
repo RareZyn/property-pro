@@ -1,12 +1,10 @@
 const asyncHandler = require("express-async-handler");
 const { prisma } = require("../config/prismaConfig.js");
-const bcrypt = require("bcrypt");
 
 const addBroker = asyncHandler(async (req, res) => {
   const {
     fullName,
     brokerLicense,
-    password,
     brokerIC,
     fileIC,
     fileBrokerLicense,
@@ -25,14 +23,12 @@ const addBroker = asyncHandler(async (req, res) => {
         .json({ message: "Broker with this user ID already exists" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the broker
     const newBroker = await prisma.broker.create({
       data: {
         fullName,
         brokerLicense,
-        password: hashedPassword,
         brokerIC,
         fileIC,
         fileBrokerLicense,

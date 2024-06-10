@@ -86,7 +86,10 @@ export const NavHeader = () => {
           PropertyPro
         </Link>
       </div>
-      <DropdownMenu className={dropdownMenu} setDropdownMenu={setDropdownMenu} />
+      <DropdownMenu
+        className={dropdownMenu}
+        setDropdownMenu={setDropdownMenu}
+      />
       <nav className="NavigatorRightHeader">
         <ul>
           <CustomLink href="/HomePage" defaultActive>
@@ -99,7 +102,9 @@ export const NavHeader = () => {
           <CustomLink id="navHeader-broker-button" href={brokerCheck()}> Broker </CustomLink>
           <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>My Account</CustomLink>
           <CustomLink href="/saved-property">Saved Property</CustomLink>
-          <CustomLink href="/" onClick={logout}>Logout</CustomLink>
+          <CustomLink href="/" onClick={logout}>
+            Logout
+          </CustomLink>
         </ul>
       </nav>
       <ChatPopup className={chatPopdown}></ChatPopup>

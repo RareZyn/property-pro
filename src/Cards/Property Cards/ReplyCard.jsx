@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ReplyCard.css";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
+import axios from "axios";
 
-export const ReplyCard = ({ commentObj,username,textForum }) => {
+export const ReplyCard = ({ commentObj }) => {
   const [isReplying, setIsReplying] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [ username,setUsername ] = useState('');
+
+  useEffect(() =>{
+    const getUsername = async () =>{
+      setLoading(true);
+      try{
+        const response = await axios.get(`http://localhost:5000/users/get/${commentObj.userID}`);
+        setUsername(response.data.username);
+      } catch(error){
+        console.error('Error get username from userID {ReplyCard}:',error);
+      } finally{
+        setLoading(false);
+      }
+    };
+
+    getUsername(commentObj);
+
+  },[commentObj.userID]);
 
   const handleReplyClick = () => {
     setIsReplying(true);
@@ -23,6 +43,12 @@ export const ReplyCard = ({ commentObj,username,textForum }) => {
       setIsOpen(false);
     };
 
+  if(isLoading){
+    return(
+      <div>Loading...</div>
+    )
+  }
+
   return (
     <div className="ReplyCard">
     
@@ -33,7 +59,7 @@ export const ReplyCard = ({ commentObj,username,textForum }) => {
         <div id="comment">
           <p id="comment-user">{username}</p>
           <p id="comment-reply">
-            {textForum}
+            {commentObj.textForum}
           </p>
         </div>
       </div>
@@ -41,7 +67,7 @@ export const ReplyCard = ({ commentObj,username,textForum }) => {
       <div className="reply-bottom">
       <div className="second-div">
         <p id="last-seen">2 hours</p>
-        <span id="like-total">7 </span>
+        <span id="like-total">{commentObj.likeCount} </span>
         <button id="like-button">Like</button></div>
         <button className="open-button" onClick={openForm}>Reply</button>
       </div>
