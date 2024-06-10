@@ -1,7 +1,7 @@
+import "./NavHeader.css";
 import React, { useState, useEffect, useContext } from "react";
 import { DropdownMenuIcon } from "./DropdownMenuIcon";
 import { DropdownMenu } from "./DropdownMenu";
-import "./NavHeader.css";
 import { ChatPopup } from "../Social/ChatPopup";
 import { Link, useLocation } from "react-router-dom";
 import { getUser, logout } from "../../utils/userAPI";
@@ -71,16 +71,14 @@ export const NavHeader = () => {
     setIsMenuClicked(!isMenuClicked);
   };
 
-  /*const showChat = () => {
-    if (isChatClicked) {
-      setChatPopdown("ChatPopup2");
-      setChatNavigation("active");
-    } else {
-      setChatPopdown("ChatPopup2 hidden");
-      setChatNavigation("Navigator");
+  const brokerCheck = () => {
+    if (!user) {
+      return '/register-broker';
     }
-    setIsChatClicked(!isChatClicked);
-  };*/
+    return user.brokerID ? "/verify-property-homepage" : "/register-broker";
+  }
+
+  console.log(user?.brokerID);
 
   return (
     <div className="NavHeader">
@@ -103,13 +101,8 @@ export const NavHeader = () => {
           <CustomLink href="/manage-property">Sell</CustomLink>
           <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
-          <CustomLink id="navHeader-broker-button" href="/register-broker">
-            Broker
-          </CustomLink>
-          {/* <CustomLink href="/myaccount">My Account</CustomLink> */}
-          <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>
-            My Account
-          </CustomLink>
+          <CustomLink id="navHeader-broker-button" href={brokerCheck()}> Broker </CustomLink>
+          <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>My Account</CustomLink>
           <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>
             Logout

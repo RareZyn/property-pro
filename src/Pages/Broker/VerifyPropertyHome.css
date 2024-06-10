@@ -1,39 +1,73 @@
-.VerifyPropertyHome{
-    margin-left: 64px;
-    margin-right: 64px;
+.VerifyProperty {
+  margin-left: 64px;
+  margin-right: 64px;
 }
 
-.VerifyPropertyTitle{
-    font-family: 'Roboto';
-    width: 100%;
-    text-align: left;
-    margin-bottom: 12px;
+.VerifyPropertyTitle {
+  font-family: 'Roboto';
+  width: 100%;
+  text-align: left;
+  margin-bottom: 12px;
 }
 
-.VerifyPropertyHomeItemsGrid{
-    display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-    grid-auto-rows: 240px;
-    grid-auto-columns: 240px;
+.VerifyPropertyItemsGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-auto-rows: 240px;
+  grid-auto-columns: 240px;
 }
 
-.VerifyPropertyHomeItem{
-    cursor: pointer;
-    background-color: var(--orange);
-    align-content: center;
-    width: 100%;
-    text-align: center;
-    color: var(--darkBlue);
-    transition: all 0.3s ease-out;
+.VerifyPropertyItem {
+  cursor: pointer;
+  background-color: var(--orange);
+  align-content: center;
+  width: 100%;
+  text-align: center;
+  color: var(--darkBlue);
+  transition: all 0.3s ease-out;
 }
 
-.VerifyPropertyHomeItem:hover{
-    transition: all 0.3s ease-out;
-    background-color: var(--white);
+.VerifyPropertyItem:hover {
+  transition: all 0.3s ease-out;
+  background-color: var(--white);
 }
 
-.VerifyPropertyHomeItem:active{
-    transition: all 0s;
-    background-color: var(--darkBlue);
+.VerifyPropertyItem:active {
+  transition: all 0s;
+  background-color: var(--darkBlue);
+}
+.progress-bar-container {
+  width: 100%;
+  height: 20px; /* Reduce height for better appearance */
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 20px;
+  overflow: hidden; /* Hide overflow to round corners */
+  background-color: red;
+  border: 10px red solid;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #6fa3ef; /* Default color */
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Define different colors based on progress */
+.progress-bar.progress-25 {
+  background-color: #ff6961; /* Red color for 25% */
+}
+
+.progress-bar.progress-50 {
+  background-color: #ffa500; /* Orange color for 50% */
+}
+
+.progress-bar.progress-75 {
+  background-color: #ffef96; /* Yellow color for 75% */
+}
+
+.progress-bar.progress-100 {
+  background-color: #77dd77; /* Green color for 100% */
 }

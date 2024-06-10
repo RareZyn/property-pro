@@ -5,11 +5,7 @@ let Forum = require('../models/forum.model');
 router.route('/').get(async (req, res) => {
     try {
         const forums = await Forum.find()
-        .populate('userID','username profilePicture')
-        .populate({
-            path: 'comments',
-            populate: { path: 'userID', select: 'username' }
-        });
+        .populate('userID','username profilePicture');
         res.json(forums);
     } catch (err) {
         res.status(400).json('Error: ' + err);
@@ -76,7 +72,7 @@ router.route('/add-comment/:id').post((req, res) => {
     comment.save()
     .then(() => {
         Forum.findByIdAndUpdate(req.params.id, { $push: { comments: comment } })
-            .then(() => res.json('Comment added!'))
+            .then(() => res.json(req.body))
             .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

@@ -6,6 +6,7 @@ import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import "./PropertyDetails.css";
 import { useQuery } from "react-query";
 import { getProperty, updateHouse } from "../../utils/api.js";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 
 export const PropertyHouseDetailsOverview = () => {
   const { pathname } = useLocation();
@@ -133,7 +134,7 @@ export const PropertyHouseDetailsOverview = () => {
               }
             />
             <div className="share-content">
-              <PopupShare />
+              <PopupShareProperty />
             </div>
           </div>
 

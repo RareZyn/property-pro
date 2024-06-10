@@ -1,14 +1,13 @@
 import React, { useRef } from 'react';
 import Popup from 'reactjs-popup';
-import shareIcon from "../../Res/image/share-2.png";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
-import { FaInstagram,FaWhatsapp, FaTwitter, FaFacebook } from "react-icons/fa";
-import "./PopupShare.css";
-import SuccesToastify from "../../Cards/ToastifyCards/SuccesToastify";
+import { FaInstagram,FaWhatsapp, FaTwitter, FaFacebook, FaShareAlt } from "react-icons/fa";
+import "./PopupShareProperty.css";
+import SuccesToastify from "../ToastifyCards/SuccesToastify";
 
 
 
-export default function PopupShare() {
+export default function PopupShareProperty() {
 
     const inputRef = useRef(null);
 
@@ -30,8 +29,8 @@ export default function PopupShare() {
     return (
         <div>
             <Popup trigger=
-                {<button id='ShareBtn'> <img src={shareIcon} alt="Shares" />
-                <span>Share</span> </button>} 
+                {<div id='ShareBtn'> <FaShareAlt></FaShareAlt>
+                <span>Share</span> </div>} 
                 modal nested>
                 {
                     close => (

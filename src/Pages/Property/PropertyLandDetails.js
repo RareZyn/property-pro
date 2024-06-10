@@ -2,12 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import {
   FaLeftRight,
   FaFileCircleQuestion,
-  FaLocationDot,
-} from "react-icons/fa6";
+  FaLocationDot,} from "react-icons/fa6";
 import { FaCity } from "react-icons/fa";
 import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link, useLocation } from "react-router-dom";
-import PopupShare from "../../Cards/General Cards/PopupShare.jsx";
 import "./PropertyDetails.css";
 import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
@@ -15,6 +13,7 @@ import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 
 export const PropertyLandDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -88,7 +87,7 @@ export const PropertyLandDetails = () => {
             <div className="empty-div"></div>
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
-              <div><PopupShare /></div>
+              <PopupShareProperty />
             </div>
           </div>
 

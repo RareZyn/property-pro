@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { FaHouse } from "react-icons/fa6";
 import { FaBed, FaShower } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
@@ -10,11 +10,13 @@ import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
 
 export const PropertyHouseDetails = () => {
   const { otherID } = useContext(UserContext);
   const { pathname } = useLocation(); //complete path of our page
   const propertyID = pathname.split("/")[2];
+  
 
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
@@ -54,6 +56,9 @@ export const PropertyHouseDetails = () => {
     return <div>Error while fetching the data</div>;
   }
 
+
+
+
   return (
     <div className="PropertyDetailsContainer">
       <div className="property-image-container">
@@ -84,7 +89,7 @@ export const PropertyHouseDetails = () => {
             <div className="empty-div"></div>
             <h1 id="title-property">{data.title}</h1>
             <div className="share-content">
-              <div><PopupShare /></div>
+              <PopupShareProperty />
             </div>
           </div>
 
