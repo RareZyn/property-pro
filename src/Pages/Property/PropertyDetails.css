@@ -52,12 +52,21 @@
   align-items: center;
 }
 
-.share-content{
-  background-color: var(--creamyWhite);
-  width: 9em;
-  height: 3em;
-  border-radius: 8px;
+.share-content{  
+  background-color: none;
+  width: 8em;
+  height: 2em;
+  border-radius: 15px;
+  margin-right: 0.5em;
+  cursor: pointer;
+  
 }
+
+.share-content :hover{
+  transition: all;
+  background-color: rgba(250, 235, 215, 0.24);
+}
+
 
 #property-image {
   width: 300px; /* Set the width to 100% to make it responsive */
@@ -192,7 +201,7 @@ h2 {
 }
 
 .text {
-  font-size: 1em; 
+  font-size: 2em; 
   color: #333; 
 }  
 
@@ -501,7 +510,7 @@ h1 {
 font-size: 1.5em;
 }
 .text {
-font-size: 1.2em; 
+font-size: 1.5em; 
 color: #333; 
 }
 .property-icon {

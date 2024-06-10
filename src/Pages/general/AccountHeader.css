@@ -81,3 +81,12 @@ hr{
     box-shadow: 9px 11px 12px 0px rgba(0, 0, 0, 0.3);
 
 }
+
+@media (max-width:1000px){
+    .acc-desc h1{
+        font-family: "Outfit";
+        font-size: 1.5em;
+        width: 50%;
+    }
+    
+}
