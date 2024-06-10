@@ -6,8 +6,9 @@
 }
 
 .property-browse-div{
-    width: 75%;
-    margin: 5% auto;
+    width: 91%;
+    margin: 2rem auto;
+    /* padding: 0; */
 }
 
 .property-headline{
@@ -25,6 +26,6 @@
   column-gap: 1.04%;
   row-gap: 1rem;
   margin: 1.5rem;
-  justify-content: center;
+  justify-content: start;
 }
 
