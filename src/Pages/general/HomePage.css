@@ -274,8 +274,9 @@
 }
 
 .property-headline{
-  color: rgb(206, 6, 6);
+  color: rgb(44, 160, 96);
   font-size: 40px;
+  text-align: center;
 }
 
 @keyframes slideInFromLeft {

@@ -95,21 +95,23 @@ export const ManageProperty = () => {
   return (
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
-      <div className="manageproperty-add">
-        <Link to="/Publish-Property">
-          <button id="button-add">
-            <IoAddCircleOutline className="add-icon" />
-            <span>Add More Property</span>
-          </button>
-        </Link>
-      </div>
-      <div className="manageproperty-add">
-        <Link to="/broker-list">
-          <button id="button-add">
-            <IoAddCircleOutline className="add-icon" />
-            <span>Find a broker</span>
-          </button>
-        </Link>
+      <div id="manage-div">
+        <div className="manageproperty-add">
+          <Link to="/Publish-Property">
+            <button id="button-add">
+              <IoAddCircleOutline className="add-icon" />
+              <span>Add More Property</span>
+            </button>
+          </Link>
+        </div>
+        <div className="manageproperty-add">
+          <Link to="/broker-list">
+            <button id="button-add">
+              <IoAddCircleOutline className="add-icon" />
+              <span>Find a broker</span>
+            </button>
+          </Link>
+        </div>
       </div>
       <div className="manageproperty-div">
         {data && data.map((data) => data && renderCard(data))}
