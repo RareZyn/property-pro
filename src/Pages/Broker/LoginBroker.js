@@ -22,7 +22,7 @@ export const LoginBroker = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e);
-    navigate("/verify-property-house");
+    navigate("verify-property-homepage");
   };
 
   return (

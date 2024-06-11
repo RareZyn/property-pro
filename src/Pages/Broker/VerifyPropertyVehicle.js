@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import "./VerifyProperty.css";
 import PropertyRejectionCard from "./PropertyRejectionCard.js";
 import DocumentRejectionCard from "./DocumentRejectionCard.js";
 import { useLocation } from "react-router-dom";
@@ -7,6 +6,7 @@ import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
+import "./VerifyProperty.css";
 
 export const VerifyPropertyVehicle = () => {
   const [isRejectClicked, setIsRejectClicked] = useState(false);

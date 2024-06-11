@@ -10,7 +10,7 @@
     align-items: center;*/
     all: none;
     position: absolute;
-    top: 150%;
+    top: 170%;
     left: 50%;
     transform: translate(-50%, 50%);
     padding: 30px;
@@ -98,49 +98,41 @@
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
-    *{
-        font-size: 15px;
+    .DocumentRejection{
+        top: 150%;
     }
+  }
+  
+  /* Medium screens (tablets, 992px and up) */
+  @media (max-width: 992px) {
 
     .DocumentRejection{
         width: 520px;
         top: 140%;
     }
   }
-  
-  /* Medium screens (tablets, 992px and up) */
-  @media (max-width: 992px) {
-    *{
-        font-size: 14px;
-    }
+
+  /* Small screens (landscape phones, 768px and up) */
+  @media (max-width: 795px) {
 
     .DocumentRejection{
-        width: 460px;
-        top: 125%;
+        width: 500px;
+        top: 130%;
     }
   }
   
   /* Extra small screens (portrait phones, less than 576px) */
   @media (max-width: 680px) {
-    *{
-        font-size: 12px;
-    }
 
     .DocumentRejection{
-        padding: 25px;
-        width: 380px;
-        top: 95%;
+        width: 450px;
     }
   }
 
 @media (max-width: 570px) {
-    *{
-        font-size: 11px;
-    }
-    
+
     .DocumentRejection{
-        padding: 22px;
-        width: 350px;
-        top: 85%;
+        width: 400px;
+        top: 135%;
     }
   }
