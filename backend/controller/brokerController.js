@@ -196,4 +196,4 @@ const getAllBroker = asyncHandler(async(req, res) => {
 });
 
 
-module.exports = { addBroker,verifyProperty, getAllBroker };
+module.exports = { addBroker,verifyProperty, getAllBroker,unverifiedProperty,verifiedProperty };
