@@ -4,7 +4,6 @@ import { FaShower, FaBed, FaTags, FaLayerGroup } from "react-icons/fa";
 import { FaHouse, FaLocationDot } from "react-icons/fa6";
 
 export const HouseDisplayCard = ({ card, link }) => {
-  console.log(link)
   if (!card) return null;
   return (
     <Link to={link}>

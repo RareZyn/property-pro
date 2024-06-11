@@ -218,7 +218,8 @@ export const getAllFavorites = async (id) => {
 
 export const getPropertySeller = async (id) => {
   try {
-    const response = await api.get(`/getPropertySeller/${id}`, {
+    const response = await api.get(`/getPropertySeller/${id}`,
+       {
       timeout: 10 * 1000,
     });
 

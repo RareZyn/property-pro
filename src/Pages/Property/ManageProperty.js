@@ -9,9 +9,8 @@ import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI.js";
-import { getPropertySeller } from "../../utils/api.js"
+import { getPropertySeller } from "../../utils/api.js";
 import "./ManageProperty.css";
-
 
 export const ManageProperty = () => {
   const { userToken } = useContext(UserContext);
@@ -36,8 +35,8 @@ export const ManageProperty = () => {
 
   const sellerId = user?._id;
 
-  const { data :unverifiedData, isError:unverifiedError, isLoading:unverifiedLoading } = useQuery(
-    ["getAllFavorites", sellerId],
+  const { data, isError, isLoading } = useQuery(
+    ["getPropertySeller", sellerId],
     () => getPropertySeller(sellerId),
     {
       enabled: !!sellerId,
@@ -45,36 +44,47 @@ export const ManageProperty = () => {
     }
   );
 
-  
+  console.log(data);
 
-  const renderCard = (unverifiedData) => {
-    if (!unverifiedData || !unverifiedData.propertyType) {
+  if (isError) {
+    return <span>Error while fetching the data</span>;
+  }
+  if (isLoading) {
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
+      </div>
+    );
+  }
+
+  const renderCard = (data) => {
+    if (!data || !data.propertyType) {
       return null;
     }
 
-    switch (unverifiedData.propertyType) {
+    switch (data.propertyType) {
       case "Vehicle":
         return (
           <VehicleComponentCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/${unverifiedData.property_id}/property-vehicledetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-vehicledetails-overview`}
           />
         );
       case "House":
         return (
           <HouseComponentCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/${unverifiedData.property_id}/property-housedetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-housedetails-overview`}
           />
         );
       case "Land":
         return (
           <LandComponentCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/${unverifiedData.property_id}/property-landdetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-landdetails-overview`}
           />
         );
       default:
@@ -85,20 +95,9 @@ export const ManageProperty = () => {
   return (
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
-      <div className="manageproperty-div">
-        {unverifiedError && <span>Error while fetching the data</span>}
-        {unverifiedLoading ? (
-          <div className="loadContainer">
-            <PuffLoader />
-          </div>
-        ) : (
-          unverifiedData &&
-          unverifiedData.map((property) => property && renderCard(property))
-        )}
-      </div>
       <div className="manageproperty-add">
         <Link to="/Publish-Property">
-          <button>
+          <button id="button-add">
             <IoAddCircleOutline className="add-icon" />
             <span>Add More Property</span>
           </button>
@@ -106,11 +105,14 @@ export const ManageProperty = () => {
       </div>
       <div className="manageproperty-add">
         <Link to="/broker-list">
-          <button>
+          <button id="button-add">
             <IoAddCircleOutline className="add-icon" />
             <span>Find a broker</span>
           </button>
         </Link>
+      </div>
+      <div className="manageproperty-div">
+        {data && data.map((data) => data && renderCard(data))}
       </div>
     </div>
   );
