@@ -76,6 +76,11 @@
   
   /* Media query for mobile devices */
   @media (max-width: 768px) {
+
+    .acc-grid-container {
+      width: 70%;
+    }
+
     .TransactionCard {
       padding: 15px; /* Adjusted padding */
     }

@@ -34,7 +34,7 @@
   align-items: center;
   background-color: var(--orange);
   box-shadow: 2px 2px 5px;
-  width: 270px;
+  width: 260px;
   aspect-ratio: 1.5/1;
   margin: 12px;
   justify-content: center;
@@ -57,13 +57,13 @@
 }
 
 .MoreThumbnails:hover img:nth-child(1) {
-  transform: translate(290px, 10px);
+  transform: translate(280px, 10px);
 }
 .MoreThumbnails:hover img:nth-child(2) {
   transform: translate(0px, 10px);
 }
 .MoreThumbnails:hover img:nth-child(3) {
-  transform: translate(-290px, 10px);
+  transform: translate(-280px, 10px);
 }
 
 /*----------------------*/
