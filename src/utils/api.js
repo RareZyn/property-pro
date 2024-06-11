@@ -409,3 +409,21 @@ export const getVerifyPropertyDetail = async (propertyID) => {
     throw error;
   }
 };
+
+export const getHotItemsProperty = async () => {
+  try {
+    const response = await api.get("/getHotItemsProperty", {
+      timeout: 100 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    console.log(error.message);
+    throw error;
+  }
+
+}

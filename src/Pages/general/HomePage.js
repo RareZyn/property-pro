@@ -1,7 +1,14 @@
 import "./HomePage.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
+import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
+import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
+import { useMostHotProperty } from "../../hooks/useMostHotProperty.jsx";
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
@@ -57,12 +64,56 @@ export const HomePage = () => {
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   };
+  
+ const { data, isLoading, isError } = useMostHotProperty();
 
-  let suggestedItems = new Array(5);
-  for (let i = 0; i < 3; i++) {
-    suggestedItems.push(<HouseDisplayCard />);
-  }
+  const renderCard = (data) => {
+    if (!data.propertyType) {
+      return null;
+    }
 
+    switch (data.propertyType) {
+      case "Vehicle":
+        return (
+          <VehicleDisplayCard
+            key={data.property_id}
+            card={data}
+            link={`/property-Vehicle-Details/${data.property_id}`}
+          />
+        );
+      case "House":
+        return (
+          <HouseDisplayCard
+            key={data.property_id}
+            card={data}
+            link={`/property-House-Details/${data.property_id}`}
+          />
+        );
+      case "Land":
+        return (
+          <LandDisplayCard
+            key={data.property_id}
+            card={data}
+            link={`/property-Land-Details/${data.property_id}`}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+
+ if (isLoading) {
+   return <div>Loading...</div>;
+ }
+
+ if (isError) {
+   return <div>Error fetching data</div>;
+ }
+
+ if (!data || data.length === 0) {
+   return <div>No hot items available</div>;
+ }
   return (
     <div className="HomePage">
       <div className="homepage-img-grid">
@@ -107,8 +158,10 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <Link to={'/forum-page'}>
-        <div className={`community-grid ${isCommunityVisible ? "slide-in" : ""}`}>
+      <Link to={"/forum-page"}>
+        <div
+          className={`community-grid ${isCommunityVisible ? "slide-in" : ""}`}
+        >
           <div className="img-div1">
             <img
               src={require("../../Res/image/community-image.png")}
@@ -146,18 +199,22 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
-
-      <div
-        className={`HomePageSuggestedPropertiesContainer ${
-          isSuggestVisible ? "slide-in" : ""
-        }`}
-      >
-        <div className="properties-grid">
-          <h1 className="property-headline">Hot Items</h1>
-          {suggestedItems.map((item, index) => (
-            <HouseDisplayCard key={index} link={"/property-house-details"} />
+      <div className="HomePageSuggestedPropertiesContainer">
+        <h1 className="property-headline" >Hot Items</h1>
+        <Swiper
+          id="swiper"
+          slidesPerView={4}
+          spaceBetween={10}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {data.map((item) => (
+            <SwiperSlide key={item.property_id}>{renderCard(item)}</SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   );

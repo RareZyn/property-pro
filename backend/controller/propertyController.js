@@ -657,6 +657,40 @@ const getPropertyBought = asyncHandler(async (req, res) => {
   }
 });
 
+const getHotItemsProperty = asyncHandler(async (req, res) => {
+  try {
+    // Fetch all users with their favorite properties
+    const users = await prisma.users.findMany({
+      select: {
+        favResidencieID: true,
+      },
+    });
+
+    // Extract all favorite property IDs into a single array
+    const favoritePropertyIds = users
+      .flatMap((user) => user.favResidencieID)
+      .filter(Boolean); // Filter out any undefined or null values
+
+    // Remove duplicate property IDs
+    const uniqueFavoritePropertyIds = [...new Set(favoritePropertyIds)];
+
+    // Fetch details of the favorite properties
+    const favoriteProperties = await prisma.property.findMany({
+      where: {
+        property_id: {
+          in: uniqueFavoritePropertyIds,
+        },
+      },
+    });
+
+    // Send the response with the favorite properties
+    res.json(favoriteProperties);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 
 
 
@@ -678,4 +712,5 @@ module.exports = {
   updateVehicle,
   updateHouse,
   getPropertyBought,
+  getHotItemsProperty
 };
