@@ -339,3 +339,20 @@ export const verifyProperty = async (propertyID, verificationResults, brokerID) 
     throw error;
   }
 };
+
+export const getAllBrokers = async () => {
+  try {
+    const response = await brokerApi.get("/getAllBroker", {
+      timeout: 100 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};

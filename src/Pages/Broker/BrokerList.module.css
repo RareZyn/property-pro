@@ -1,0 +1,26 @@
+.broker-list-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.broker-list-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    width: 95%;
+
+    h1{
+        font-size: 3rem;
+    }
+}
+
+.broker-list{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    width: fit-content;
+}

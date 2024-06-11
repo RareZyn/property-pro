@@ -4,7 +4,6 @@ import {
   FaFileCircleQuestion,
   FaLocationDot,} from "react-icons/fa6";
 import { FaCity } from "react-icons/fa";
-import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link, useLocation } from "react-router-dom";
 import "./PropertyDetails.css";
 import { useQuery } from "react-query";

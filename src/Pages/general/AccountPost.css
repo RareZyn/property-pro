@@ -1,9 +1,8 @@
 .MyAccountPost {
-  margin: 5rem auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 800px;
 }
 
 .MyAccountPost-page {

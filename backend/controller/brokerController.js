@@ -130,5 +130,15 @@ const verifyProperty = asyncHandler(async (req, res) => {
 });
 
 
+const getAllBroker = asyncHandler(async(req, res) => {
+  console.log('lalu')
+  const brokers = await prisma.broker.findMany({
+    include: {
+      user: true,
+    },
+  });
+  res.json(brokers);
+});
 
-module.exports = { addBroker,verifyProperty };
+
+module.exports = { addBroker,verifyProperty, getAllBroker };

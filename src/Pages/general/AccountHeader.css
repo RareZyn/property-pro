@@ -68,7 +68,7 @@ hr{
     color: var(--orange);
 }
 
-.AccountHeader-active{
+.active-link{
     color: var(--orange);
     font-weight: bold;
 }

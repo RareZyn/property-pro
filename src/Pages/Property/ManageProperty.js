@@ -101,6 +101,14 @@ export const ManageProperty = () => {
           </button>
         </Link>
       </div>
+      <div className="manageproperty-add">
+        <Link to="/broker-list">
+          <button>
+            <IoAddCircleOutline className="add-icon" />
+            <span>Find a broker</span>
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
