@@ -31,7 +31,7 @@ function BrokerList(){
             <div className={`${styles['broker-list']}`}>
                 {brokers?.map((broker) => (
                     <Link>
-                        <BrokerCard name={broker.fullName} location={broker.user.location}/>
+                        <BrokerCard name={broker.fullName} location={broker.user.location} image={broker.user.profilePicture} />
                     </Link>
                 ))}
             </div>

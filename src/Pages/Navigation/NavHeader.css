@@ -8,7 +8,6 @@
   padding: 1em;
   justify-content: space-between;
   z-index: 1;
-
 }
 
 .left-header {
@@ -61,16 +60,34 @@
 #navHeader-broker-button {
   border-bottom: 5px solid;
   border-color: var(--orange);
+  
+}
+
+#navHeader-broker-button-animated {
+  border-bottom: 5px solid;
+  border-color: var(--orange);
   animation: move 2s linear infinite;
 }
 
 @keyframes move {
-  0% { border-color: #33CCCC; }
-  20% { border-color: #33CC36; }
-  40% { border-color: #B8CC33; }
-  60% { border-color: var(--orange); }
-  80% { border-color: #33CC36; }
-  100% { border-color: #33CCCC; }
+  0% {
+    border-color: #33cccc;
+  }
+  20% {
+    border-color: #33cc36;
+  }
+  40% {
+    border-color: #b8cc33;
+  }
+  60% {
+    border-color: var(--orange);
+  }
+  80% {
+    border-color: #33cc36;
+  }
+  100% {
+    border-color: #33cccc;
+  }
 }
 
 /* Media queries for responsiveness */
@@ -98,7 +115,6 @@
   font-size: 24px;
   cursor: pointer;
 }
-
 
 @media (max-width: 1000px) {
   .DropdownMenuIcon {

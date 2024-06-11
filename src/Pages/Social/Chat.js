@@ -6,7 +6,10 @@ import ChatContext from '../../context/ChatContext';
 import "./Chat.css";
 import { UserContext } from '../../context/UserContext';
 import { getUser } from '../../utils/userAPI';
-import ProfilePicture from '../../Cards/Image Placeholder/ProfilePicture';
+import { PuffLoader } from "react-spinners";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import { toast } from "react-toastify";
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -19,6 +22,8 @@ export const Chat = ({userID}) => {
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [uploadImage, setUploadImage] = useState(null);
+  const [url, setUrl] = useState("");
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
 
@@ -40,6 +45,7 @@ export const Chat = ({userID}) => {
   }, [userToken]);
 
   userID = user?._id;
+  
 
   useEffect(() => {
     fetchChatRooms(userID);// id must be userID
@@ -112,10 +118,52 @@ export const Chat = ({userID}) => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const newMessage = { type: 'my', content: e.target.result, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), isImage: true };
+        const newMessage = { 
+          type: 'my', 
+          content: e.target.result, 
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), 
+          isImage: true 
+        };
         setMessages([...messages, newMessage]);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  // const handleImageChange = (e) => {
+  //   if (e.target.files[0]) {
+  //     setUploadImage(e.target.files[0]);
+  //   }
+  // };
+
+  const handleUpload = async (e) => {
+    if(e.target.files[0]){
+      const image = e.target.files[0];
+      setUploadImage(image);
+      console.log(image);
+      try{
+        const storageRef = firebase
+            .storage()
+            .ref("chats/")
+            .child(`/${userID}`);
+          const fileRef = storageRef.child(image.name);
+
+          const snapshot = await fileRef.put(image);
+          const downloadURL = await snapshot.ref.getDownloadURL();
+
+          console.log(downloadURL);
+          if (currentChatRoom) {
+            await addMessageToRoom(currentChatRoom._id, { senderID: userID, textChat: 'image', imageUrl: downloadURL});
+            setMessage('');
+          } else {
+            console.log('Cannot send message. Current chat room or message is invalid.');
+          }
+      } catch(error){
+        console.error("Upload failed", error.message);
+        toast.error("Image upload failed. Please try again.");
+      }
+    } else{
+      console.log("No image upload");
     }
   };
 
@@ -151,12 +199,19 @@ export const Chat = ({userID}) => {
     return room.user1._id === userID ? room.user2 : room.user1;
   }
 
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0'); // Ensures two-digit format
+    const minutes = date.getMinutes().toString().padStart(2, '0'); // Ensures two-digit format
+    return `${hours}:${minutes}`;
+  };
+
   if(isLoading){
-    return(
-      <div>
-        Loading...
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
       </div>
-    )
+    );
   }
 
   return (
@@ -223,17 +278,22 @@ export const Chat = ({userID}) => {
           </div>
 
           <div className="ChatContainer" ref={chatContainerRef}>
-            <YourChatBubble />
             {/* {messages.map((msg, index) => (
               msg.type === 'my' ? <MyChatBubble key={index} content={msg.content} time={msg.time} isImage={msg.isImage} /> : <YourChatBubble key={index} content={msg.content} />
             ))} */}
             {currentChatRoom.chats.length > 0 &&
             currentChatRoom.chats.map((chat) =>{
-              console.log('Sender ID:', chat.senderID);
-              console.log('Current User ID:', currentChatRoom.user1._id);
+              if(chat.imageUrl){
+                return(
+                  chat.senderID === userID ?  
+                  <MyChatBubble key={chat._id} isImage={true} content={chat.imageUrl} time={formatTime(chat.createdAt)}/> : // if true
+                  <YourChatBubble key={chat._id} isImage={true} content={chat.imageUrl} /> // if false
+                )
+              }
+
              return(
                 chat.senderID === userID ?  
-                <MyChatBubble key={chat._id} content={chat.textChat} time={chat.createdAt}/> : // if true
+                <MyChatBubble key={chat._id} content={chat.textChat} time={formatTime(chat.createdAt)}/> : // if true
                 <YourChatBubble key={chat._id} content={chat.textChat} /> // if false
               )}
             )}
@@ -241,14 +301,14 @@ export const Chat = ({userID}) => {
 
           <div className="SendChat">
             
-            <input type="file" id="SendChatSendImg" onChange={handleImageUpload} />
-            <input type="file" id="SendChatSendVid" onChange={handleImageUpload} />
+            <input type="file" id="SendChatSendImg" onChange={handleUpload} />
+            {/* <input type="file" id="SendChatSendVid" onChange={handleImageUpload} /> */}
             <label htmlFor="SendChatSendImg" className='chat-icon'>
               <img src={require("../../Res/image/image-chat.png")} alt="Send image" />
             </label>
-            <label htmlFor="SendChatSendVid" className='chat-icon'>
+            {/* <label htmlFor="SendChatSendVid" className='chat-icon'>
               <img src={require("../../Res/image/video.png")} alt="Send video" />
-            </label>
+            </label> */}
             
             <input 
               type="text" 
