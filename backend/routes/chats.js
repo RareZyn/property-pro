@@ -58,8 +58,8 @@ router.route('/:roomID/send-message').post(async (req ,res)=>{
 });
 
 // Check if room with user1 and user2 exist
-router.route('/check-room').get(async (req,res)=>{
-  const { user1, user2 } = req.query;
+router.route('/check-room/:user1/:user2').get(async (req,res)=>{
+  const { user1, user2 } = req.params;
 
   try{
     const chatRoom = await ChatRoom.findOne({
