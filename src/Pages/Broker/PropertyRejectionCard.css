@@ -107,21 +107,23 @@
 
 
 @media (max-width: 1200px) {
-    *{
-        font-size: 15px;
-    }
-    
+
     .visible{
-        width: 520px;
         top: 150%;
     }
   }
   
   /* Medium screens (tablets, 992px and up) */
   @media (max-width: 992px) {
-    *{
-        font-size: 14px;
+    
+    .visible{
+        width: 520px;
+        top: 140%;
     }
+  }
+  
+  /* Small screens (landscape phones, 768px and up) */
+  @media (max-width: 795px) {
     
     .visible{
         width: 500px;
@@ -129,39 +131,17 @@
     }
   }
   
-  /* Small screens (landscape phones, 768px and up) */
-  @media (max-width: 795px) {
-    *{
-        font-size: 13px;
-    }
-    
-    .visible{
-        width: 460px;
-        top: 115%;
-    }
-  }
-  
   /* Extra small screens (portrait phones, less than 576px) */
   @media (max-width: 680px) {
-    *{
-        font-size: 12px;
-    }
 
     .visible{
-        padding: 25px;
-        width: 380px;
-        top: 100%;
+        width: 450px;
     }
   }
 
 @media (max-width: 570px) {
-    *{
-        font-size: 11px;
-    }
 
     .visible{
-        padding: 22px;
-        width: 350px;
-        top: 90%;
+        width: 400px;
     }
   }
