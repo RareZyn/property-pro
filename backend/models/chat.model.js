@@ -11,6 +11,10 @@ const chatSchema = new Schema({
         minlength: 1,
         trim: true,
         required: true
+    },
+    imageUrl: {
+        type: String,
+        trim: true
     }
 }, {
     timestamps: true
