@@ -690,6 +690,41 @@ const getHotItemsProperty = asyncHandler(async (req, res) => {
   }
 });
 
+const getPropertyName = asyncHandler(async (req, res) => {
+  const { title } = req.params;
+
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        title: {
+          contains: title, // Use contains to enable partial matching
+          mode: "insensitive", // Optional: make the search case-insensitive
+        },
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    if (properties.length === 0) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json(properties); // Note: Changed to return an array of properties
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve properties: " + error.message });
+  }
+});
+
+
 
 
 
@@ -712,5 +747,6 @@ module.exports = {
   updateVehicle,
   updateHouse,
   getPropertyBought,
-  getHotItemsProperty
+  getHotItemsProperty,
+  getPropertyName,
 };
