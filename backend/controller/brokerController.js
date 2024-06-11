@@ -186,7 +186,6 @@ module.exports = {
 };
 
 const getAllBroker = asyncHandler(async(req, res) => {
-  console.log('lalu')
   const brokers = await prisma.broker.findMany({
     include: {
       user: true,
@@ -196,4 +195,26 @@ const getAllBroker = asyncHandler(async(req, res) => {
 });
 
 
-module.exports = { addBroker,verifyProperty, getAllBroker,unverifiedProperty,verifiedProperty };
+const getVerifyPropertyDetail = asyncHandler(async (req, res) => {
+  const { propertyID } = req.body;
+
+  try {
+    const property = await prisma.property.findUnique({
+      where: { property_id: propertyID },
+      select: { verificationStatus: true },
+    });
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ verificationStatus: property.verificationStatus });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+module.exports = { addBroker,verifyProperty, getAllBroker,unverifiedProperty,verifiedProperty ,getVerifyPropertyDetail };

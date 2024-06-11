@@ -702,4 +702,11 @@ h2 {
   }
 }
 
-/*----------------------*/
+.SupportingDocument{
+  background-color: var(--creamyWhite);;
+}
+
+#changeMessage,#changeStatus{
+  text-align: center;
+  padding: 5px;
+}

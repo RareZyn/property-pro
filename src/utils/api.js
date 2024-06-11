@@ -390,3 +390,21 @@ export const getAllBrokers = async () => {
     throw error;
   }
 };
+
+export const getVerifyPropertyDetail = async (propertyID) => {
+  try {
+    const response = await brokerApi.get("/getVerifyPropertyDetail",propertyID, {
+      timeout: 100 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    console.log(error.message);
+    throw error;
+  }
+};

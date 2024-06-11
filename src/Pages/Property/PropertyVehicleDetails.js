@@ -155,6 +155,74 @@ export const PropertyVehicleDetails = () => {
             </div>
           </div>
 
+          {data?.verificationStatus && (
+            <div className="supporting-doc-grid">
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 1</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[0]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[0]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[0]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 2</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[1]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data.verificationStatus["file[1]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[1]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 3</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[2]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[2]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[2]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="property-fourth-row">
             <div className="info-page-container">
               <h2>Property Information</h2>
@@ -198,8 +266,11 @@ export const PropertyVehicleDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <div style={{display:'flex', width:'100%'}}>
-                  <ProfilePicture imgLink={data?.seller.profilePicture} size={'85px'}/>
+                <div style={{ display: "flex", width: "100%" }}>
+                  <ProfilePicture
+                    imgLink={data?.seller.profilePicture}
+                    size={"85px"}
+                  />
                 </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
@@ -215,11 +286,10 @@ export const PropertyVehicleDetails = () => {
                   <button>Profile</button>
                 </Link>
 
-                <Link to={'/chat'}>
+                <Link to={"/chat"}>
                   <button onClick={createChatRoom}>Chat</button>
                 </Link>
               </div>
-              
             </div>
           </div>
         </div>
