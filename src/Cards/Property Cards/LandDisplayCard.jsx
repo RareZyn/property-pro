@@ -7,18 +7,13 @@ import {
   FaCity,
   FaFileCircleQuestion,
 } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
 export const LandDisplayCard = ({ link, card }) => {
-  const navigate = useNavigate();
   if (!card) return null;
   return (
     <Link to={link}>
       <div id="prop-card">
-        <div
-          id="img-placeholder"
-          onClick={() => navigate("/property-Land-Details")}
-        >
+        <div id="img-placeholder">
           <img
             srcSet={card?.images[0]}
             alt="Image"

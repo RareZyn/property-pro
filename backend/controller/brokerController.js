@@ -62,9 +62,8 @@ const addBroker = asyncHandler(async (req, res) => {
   }
 });
 
-
 const verifyProperty = asyncHandler(async (req, res) => {
-  const { propertyID, verificationResults } = req.body;
+  const { propertyID, verificationResults, brokerID } = req.body; // Added brokerID
 
   try {
     // Fetch the property
@@ -102,12 +101,13 @@ const verifyProperty = asyncHandler(async (req, res) => {
       }
     }
 
-    // Update the property with the verification status and isVerified flag
+    // Update the property with the verification status, isVerified flag, and brokerID
     await prisma.property.update({
       where: { property_id: propertyID },
       data: {
         verificationStatus,
         isVerified,
+        brokerID, // Added brokerID
       },
     });
 
@@ -128,7 +128,93 @@ const verifyProperty = asyncHandler(async (req, res) => {
   }
 });
 
+const unverifiedProperty = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        buyer: null,
+        isVerified: false,
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+
+    console.log("Properties:", properties); // Log properties fetched by Prisma
+
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve available properties" });
+  }
+});
+
+const verifiedProperty = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        isVerified:true,
+        buyer:null,
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+
+    console.log("Properties:", properties); // Log properties fetched by Prisma
+
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve available properties" });
+  }
+});
+
+module.exports = {
+  addBroker,
+  verifyProperty,
+  unverifiedProperty,
+  verifiedProperty,
+};
+
+const getAllBroker = asyncHandler(async(req, res) => {
+  const brokers = await prisma.broker.findMany({
+    include: {
+      user: true,
+    },
+  });
+  res.json(brokers);
+});
 
 
+const getVerifyPropertyDetail = asyncHandler(async (req, res) => {
+  const { propertyID } = req.body;
 
-module.exports = { addBroker,verifyProperty };
+  try {
+    const property = await prisma.property.findUnique({
+      where: { property_id: propertyID },
+      select: { verificationStatus: true },
+    });
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ verificationStatus: property.verificationStatus });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+module.exports = { addBroker,verifyProperty, getAllBroker,unverifiedProperty,verifiedProperty ,getVerifyPropertyDetail };

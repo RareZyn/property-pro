@@ -26,7 +26,6 @@ import { ManageProperty } from "./Pages/Property/ManageProperty.js";
 import { ForumPage } from "./Pages/Social/ForumPage.js";
 import { ForumHeader } from "./Pages/Social/ForumHeader.js";
 import { CreatePost } from "./Cards/Posting Cards/CreatePost.js";
-import { LoginBroker } from "./Pages/Broker/LoginBroker.js";
 import { VerifyPropertyHome } from "./Pages/Broker/VerifyPropertyHome.js";
 import { ChooseBank } from "./Pages/Transaction/ChooseBank.js";
 import { MakePaymentDebitOnline } from "./Pages/Transaction/MakePaymentDebitOnline.js";
@@ -37,6 +36,7 @@ import { PropertyLandDetailsOverview } from "./Pages/Property/PropertyLandDetail
 import { PropertyVehicleDetailsOverview } from "./Pages/Property/PropertyVehicleDetails-Overview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
 import { Navigate } from "react-router-dom";
+import BrokerList from "./Pages/Broker/BrokerList.js";
 
 export const ProtectedRoute = ({ component: Component, isAuthenticated}) => (
   isAuthenticated ? (Component) : (<Navigate to="/login" />)
@@ -67,8 +67,6 @@ export const routes = [
       { path: "", element: <ManageProperty /> },
     ],
   },
-  // { path: '/manage-account', element: <ManageAccount /> },
-  // { path: '/property-details', element: <PropertyDetails /> },
   {
     path: "/property-vehicle-details/:id",
     element: <PropertyVehicleDetails />,
@@ -86,7 +84,6 @@ export const routes = [
   { path: "/forum-page", element: <ForumPage /> },
   { path: "/forum-header", element: <ForumHeader /> },
   { path: "/create-post", element: <CreatePost /> },
-  { path: "/login-broker", element: <LoginBroker /> },
   { path: "/verify-property-homepage", element: <VerifyPropertyHome /> },
   { path: "/:id/choose-bank", element: <ChooseBank /> },
   {
@@ -109,6 +106,7 @@ export const routes = [
   },
   { path: "/image-slideshow", element: <ImageSlideshow /> },
   { path: "*", element: <h1>PAGE NOT FOUND</h1> },
-  { path: "/browser-property", element: <BrowserProperty></BrowserProperty> },
+  { path: "/browser-property", element: <BrowserProperty /> },
+  { path: "/broker-list", element: <BrokerList /> },
 ];
 

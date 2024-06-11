@@ -8,8 +8,10 @@ import { useQuery } from "react-query";
 import { getProperty } from "../../utils/api.js";
 import { PuffLoader } from "react-spinners";
 import { UserContext } from "../../context/UserContext.js";
+import ChatContext from '../../context/ChatContext';
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
 
 export const PropertyVehicleDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -42,6 +44,18 @@ export const PropertyVehicleDetails = () => {
 
   const userId = user?._id;
 
+  // To handle chat vv
+  const { createRoom } = useContext(ChatContext);
+
+  const createChatRoom = async () => {
+    try{
+      await createRoom(userId,data.seller.id);
+    } catch(error){
+      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error);
+    }
+  };
+  // End handle chat ^^
+
   if (isLoading) {
     return (
       <div className="loaderContainer">
@@ -63,7 +77,11 @@ export const PropertyVehicleDetails = () => {
         />
         <div className="property-image-div">
           <div className="property-image-1row">
-            <img id="property-image" srcSet={data?.images[1]} alt="VehicleImage" />
+            <img
+              id="property-image"
+              srcSet={data?.images[1]}
+              alt="VehicleImage"
+            />
             <img id="property-image" src={data?.images[2]} alt="VehicleImage" />
           </div>
           <div className="property-image-1row">
@@ -137,6 +155,74 @@ export const PropertyVehicleDetails = () => {
             </div>
           </div>
 
+          {data?.verificationStatus && (
+            <div className="supporting-doc-grid">
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 1</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[0]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[0]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[0]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 2</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[1]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data.verificationStatus["file[1]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[1]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 3</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[2]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[2]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[2]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="property-fourth-row">
             <div className="info-page-container">
               <h2>Property Information</h2>
@@ -180,10 +266,12 @@ export const PropertyVehicleDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
-                  className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
-                />
+                <div style={{ display: "flex", width: "100%" }}>
+                  <ProfilePicture
+                    imgLink={data?.seller.profilePicture}
+                    size={"85px"}
+                  />
+                </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>
@@ -198,11 +286,10 @@ export const PropertyVehicleDetails = () => {
                   <button>Profile</button>
                 </Link>
 
-                <Link to={`/view-account/${otherID}`}>
-                  <button>Chat</button>
+                <Link to={"/chat"}>
+                  <button onClick={createChatRoom}>Chat</button>
                 </Link>
               </div>
-              
             </div>
           </div>
         </div>

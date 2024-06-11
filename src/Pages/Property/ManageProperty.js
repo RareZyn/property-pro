@@ -9,9 +9,8 @@ import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI.js";
-import { getPropertySeller } from "../../utils/api.js"
+import { getPropertySeller } from "../../utils/api.js";
 import "./ManageProperty.css";
-
 
 export const ManageProperty = () => {
   const { userToken } = useContext(UserContext);
@@ -37,7 +36,7 @@ export const ManageProperty = () => {
   const sellerId = user?._id;
 
   const { data, isError, isLoading } = useQuery(
-    ["getAllFavorites", sellerId],
+    ["getPropertySeller", sellerId],
     () => getPropertySeller(sellerId),
     {
       enabled: !!sellerId,
@@ -45,34 +44,47 @@ export const ManageProperty = () => {
     }
   );
 
-  const renderCard = (property) => {
-    if (!property || !property.propertyType) {
+  console.log(data);
+
+  if (isError) {
+    return <span>Error while fetching the data</span>;
+  }
+  if (isLoading) {
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
+      </div>
+    );
+  }
+
+  const renderCard = (data) => {
+    if (!data || !data.propertyType) {
       return null;
     }
 
-    switch (property.propertyType) {
+    switch (data.propertyType) {
       case "Vehicle":
         return (
           <VehicleComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-vehicledetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-vehicledetails-overview`}
           />
         );
       case "House":
         return (
           <HouseComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-housedetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-housedetails-overview`}
           />
         );
       case "Land":
         return (
           <LandComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-landdetails-overview`}
+            key={data.property_id}
+            card={data}
+            link={`/${data.property_id}/property-landdetails-overview`}
           />
         );
       default:
@@ -83,23 +95,24 @@ export const ManageProperty = () => {
   return (
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
-      <div className="manageproperty-div">
-        {isError && <span>Error while fetching the data</span>}
-        {isLoading ? (
-          <div className="loadContainer">
-            <PuffLoader />
-          </div>
-        ) : (
-          data && data.map((property) => property && renderCard(property))
-        )}
-      </div>
       <div className="manageproperty-add">
         <Link to="/Publish-Property">
-          <button>
+          <button id="button-add">
             <IoAddCircleOutline className="add-icon" />
             <span>Add More Property</span>
           </button>
         </Link>
+      </div>
+      <div className="manageproperty-add">
+        <Link to="/broker-list">
+          <button id="button-add">
+            <IoAddCircleOutline className="add-icon" />
+            <span>Find a broker</span>
+          </button>
+        </Link>
+      </div>
+      <div className="manageproperty-div">
+        {data && data.map((data) => data && renderCard(data))}
       </div>
     </div>
   );

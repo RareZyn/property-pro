@@ -1,409 +1,388 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
-    font-size: 16px;
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
-.VerifyProperty{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 30px 0 50px;
+.VerifyProperty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.property-image-container{
-    border-radius: 20px;
-    margin-bottom: 30px;
-    display: flex;
-  }
+.property-image-container {
+  border-radius: 20px;
+  margin-bottom: 30px;
+  display: flex;
+}
 
-  #mainproperty-image {
-    width: 500px;
-    max-width: 500px;
-    height: 400px;
-    max-height: 400px;  /* Set the width to 100% to make it responsive */
-  }
+#mainproperty-image {
+  width: 500px;
+  max-width: 500px;
+  height: 400px;
+  max-height: 400px; /* Set the width to 100% to make it responsive */
+}
 
 .property-image-div {
-    border-radius: 20px;
-    align-items: center;
-  }
-  
-  .property-image-1row {
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  #property-image {
-    width: 250px; /* Set the width to 100% to make it responsive */
-    max-width: 250px;
-    height: 200px; 
-    max-height: 200px;/* Set a maximum width to prevent it from becoming too large on larger screens */
-  }
-
-.MoreThumbnails{
-    display: grid;
-    place-items: center;
-    cursor: pointer;
+  border-radius: 20px;
+  align-items: center;
 }
 
-.MoreThumbnails img{
-    align-items: center;
-    box-shadow: 2px 2px 5px;
-    width: 280px;
-    aspect-ratio: 1.5/1;
-    margin: 12px;
-    justify-content: center;
-    transition: transform 0.5s ease-in-out;
+.property-image-1row {
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.MoreThumbnails img:nth-child(1){
-    grid-area: 1/1;
-    transform: translate(10px,10px);
+#property-image {
+  width: 250px; /* Set the width to 100% to make it responsive */
+  max-width: 250px;
+  height: 200px;
+  max-height: 200px; /* Set a maximum width to prevent it from becoming too large on larger screens */
 }
 
-.MoreThumbnails img:nth-child(2){
-    grid-area: 1/1;
-    transform: translate(5px,5px);
+.MoreThumbnails {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 }
 
-.MoreThumbnails img:nth-child(3){
-    grid-area: 1/1;
-    transform: translate(0px,0px);
+.MoreThumbnails img {
+  align-items: center;
+  box-shadow: 2px 2px 5px;
+  width: 260px;
+  aspect-ratio: 1.5/1;
+  margin: 12px;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
 }
 
-.MoreThumbnails:hover img:nth-child(1){
-    transform: translate(270px,10px);
-}
-.MoreThumbnails:hover img:nth-child(2){
-    transform: translate(0,10px);
-}
-.MoreThumbnails:hover img:nth-child(3){
-    transform: translate(-270px,10px);
+.MoreThumbnails img:nth-child(1) {
+  grid-area: 1/1;
+  transform: translate(10px, 10px);
 }
 
-
-.PropertyDetailsCard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 860px;
-    background-color: var(--lightGreen);
-    border-radius: 24px;
-    box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
-    
+.MoreThumbnails img:nth-child(2) {
+  grid-area: 1/1;
+  transform: translate(5px, 5px);
 }
 
-.vehicle-title-price, .land-title-price, .house-title-price{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 4% 0 5%;
+.MoreThumbnails img:nth-child(3) {
+  grid-area: 1/1;
+  transform: translate(0px, 0px);
 }
 
-.vehicle-title, .vehicle-details h1, 
-.land-title, .land-details h1,
-.house-title, .house-details h1 {
-    font-family: "Outfit";
-    font-size: 1.8em;
+.MoreThumbnails:hover img:nth-child(1) {
+  transform: translate(270px, 10px);
+}
+.MoreThumbnails:hover img:nth-child(2) {
+  transform: translate(0, 10px);
+}
+.MoreThumbnails:hover img:nth-child(3) {
+  transform: translate(-270px, 10px);
 }
 
-.vehicle-price, .land-price, .house-price{
-    font-family: 'Zilla_Slab';
-    padding: 6%;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: var(--white);
-    box-shadow: 1px 1px 5px black;
+.PropertyDetailsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 820px;
+  background-color: var(--lightGreen);
+  border-radius: 24px;
+  box-shadow: inset var(--darkBlue) 0px 10px 10px -5px;
 }
 
-.seller-details-div h3{
-    font-size: 1.3em;
+.vehicle-title-price,
+.land-title-price,
+.house-title-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4% 0 5%;
 }
 
-.seller-username{
-    font-size: 1.2em;
+.vehicle-title,
+.vehicle-details h1,
+.land-title,
+.land-details h1,
+.house-title,
+.house-details h1 {
+  font-family: "Outfit";
+  font-size: 1.8em;
 }
 
-.seller-details-div{
-    width: 90%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 2%;
+.vehicle-price,
+.land-price,
+.house-price {
+  font-family: "Zilla_Slab";
+  padding: 6%;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: var(--white);
+  box-shadow: 1px 1px 5px black;
 }
 
-.seller-username:hover{
-    cursor: pointer;
-    text-decoration: underline;
+.seller-details-div h3 {
+  font-size: 1.3em;
 }
 
-.seller-username{
-    margin-left: 1%;
+.seller-username {
+  font-size: 1.2em;
 }
 
-.vehicle-details, .land-details, .house-details{
-    width: 90%;
+.seller-details-div {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
 }
 
-.vehicle-details h1, .land-details h1, .house-details h1{
-    text-align: left;
+.seller-username:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.vehicle-desc-div, .land-desc-div, .house-desc-div{
-    padding: 3% 5%;
-    background-color: var(--creamyWhite);
-    width: 90%;
-    margin: 3% auto 0;
-    border: 1px solid black;
-    border-radius: 4px;
-  }
+.seller-username {
+  margin-left: 1%;
+}
 
-  .vehicle-desc-div h3, .land-desc-div h3, .house-desc-div h3{
-    font-size: 1.3em;
-  }
+.vehicle-details,
+.land-details,
+.house-details {
+  width: 90%;
+}
 
-  .vehicle-property-info, .land-property-info, .house-property-info {
-    display: flex;
-    justify-content: center;
-  }
+.vehicle-details h1,
+.land-details h1,
+.house-details h1 {
+  text-align: left;
+}
+
+.vehicle-desc-div,
+.land-desc-div,
+.house-desc-div {
+  padding: 3% 5%;
+  background-color: var(--creamyWhite);
+  width: 90%;
+  margin: 3% auto 0;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.vehicle-desc-div h3,
+.land-desc-div h3,
+.house-desc-div h3 {
+  font-size: 1.3em;
+}
+
+.vehicle-property-info,
+.land-property-info,
+.house-property-info {
+  display: flex;
+  justify-content: center;
+}
 
 .info-page-container {
-    margin: 3% auto 5%;
-    padding: 4%;
-    border: 1px solid black;
-    border-radius: 4px;
-    width: 600px;
-    background-color: var(--creamyWhite);
-  }
-
-  .info-page-container h2 {
-    text-align: center;
-    margin-bottom: 2%;
-    font-size: 1.5em;
-  }
-
-  .info-section {
-    display: flex;
-    padding: 10px;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
-  
-  .info-label {
-    font-weight: bold;
-    width: 40%;
-    font-size: 1.2em;
-  }
-  
-  .info-value {
-    width: 60%;
-    font-size: 1.1em;
-  }
-
-
-.SupportingDocumentCard{
-    background-color: var(--creamyWhite);
-    border-radius: 6px;
-    width: 90%;
-    height: fit-content;
-    padding: 3% 1%;
+  margin: 3% auto 5%;
+  padding: 4%;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 600px;
+  background-color: var(--creamyWhite);
 }
 
-.SupportingDocumentCard h2{
-    font-family: 'Outfit';
-    text-align: center;
-    margin-bottom: 3%;
-    font-size: 1.5em;
+.info-page-container h2 {
+  text-align: center;
+  margin-bottom: 2%;
+  font-size: 1.5em;
 }
 
-.supporting-doc-grid{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    padding: 0;
-    place-items: center;
+.info-section {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
 }
 
-.supporting-doc-grid > div{
-    display: flex;
-    flex-direction: column;
-    margin: 2%;
-    padding: 7% 0;
-    box-shadow: 1px 1px 5px;
-    width: fit-content;
+.info-label {
+  font-weight: bold;
+  width: 40%;
+  font-size: 1.2em;
 }
 
-.supporting-doc-grid div img{
-    margin: 2% auto;
-    width: 50%;
+.info-value {
+  width: 60%;
+  font-size: 1.1em;
 }
 
-.verify-reject-doc{
-    width: 70%;
-    display: flex;
-    justify-content: space-between;
-    margin: 5% auto;
+.SupportingDocumentCard {
+  background-color: var(--creamyWhite);
+  border-radius: 6px;
+  width: 90%;
+  height: fit-content;
+  padding: 3% 1%;
 }
 
-.verify-reject-doc button, .view-doc button{
-    padding: 0;
-    margin: 0;
-    width: fit-content;
-    height: fit-content;
-    box-shadow: 1px 1px 5px black;
-    background-color: var(--creamyWhite);
-    border: 3px solid var(--orange);
-    color: var(--orange);
-    font-size: 1em;
-    border-radius: 5px;
-    transition: padding 0.3s ease-in-out;
+.SupportingDocumentCard h2 {
+  font-family: "Outfit";
+  text-align: center;
+  margin-bottom: 3%;
+  font-size: 1.5em;
 }
 
-.verify-reject-doc button:hover, .view-doc button:hover{
-    background-color: var(--white);
-    color: var(--darkBlue);
-    border: 0px solid black;
-    box-shadow: 1px 1px 5px black;
-    padding: 4%;
-    cursor: pointer;
+.supporting-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0;
+  place-items: center;
 }
 
-.verify-reject-doc button:nth-child(1):active{
-    transition: all 0s;
-    opacity: 100%;
-    background-color: red;
-    color: var(--white);
+.supporting-doc-grid > div {
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  padding: 7% 0;
+  box-shadow: 1px 1px 5px;
+  width: fit-content;
 }
 
-.verify-reject-doc button:nth-child(2):active{
-    transition: all 0s;
-    opacity: 100%;
-    background-color: var(--darkGreen);
-    color: var(--white);
+.supporting-doc-grid div img {
+  margin: 2% auto;
+  width: 50%;
 }
 
-.view-doc{
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
+.verify-reject-doc {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5% auto;
 }
 
-.view-doc h3{
-    color: var(--orange);
-    font-size: 1.1em;
-    margin-right: 2%;
+.verify-reject-doc button,
+.view-doc button {
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  box-shadow: 1px 1px 5px black;
+  background-color: var(--creamyWhite);
+  border: 3px solid var(--orange);
+  color: var(--orange);
+  font-size: 1em;
+  border-radius: 5px;
+  transition: padding 0.3s ease-in-out;
 }
 
-.Verified{
-    background-color: var(--darkGreen);
-    display: flex;
-    flex-direction: column;
-    width: 155px;
-    margin: 5px;
-    box-shadow: 1px 1px 5px;
+.verify-reject-doc button:hover,
+.view-doc button:hover {
+  background-color: var(--white);
+  color: var(--darkBlue);
+  border: 0px solid black;
+  box-shadow: 1px 1px 5px black;
+  padding: 4%;
+  cursor: pointer;
 }
 
-.Verified h3{
-    color: var(--creamyWhite);
-    font-size: 16px;
+.verify-reject-doc button:nth-child(1):active {
+  transition: all 0s;
+  opacity: 100%;
+  background-color: red;
+  color: var(--white);
 }
 
-.Verified .verify-reject-doc > button:nth-of-type(2):hover{
-    color: red;
+.verify-reject-doc button:nth-child(2):active {
+  transition: all 0s;
+  opacity: 100%;
+  background-color: var(--darkGreen);
+  color: var(--white);
 }
 
-
-.progress-bar{
-    width: 75%;
-    height: 25px;
-    border-radius: 50px;
-    background-color: var(--white);
-    margin: 6% auto 1%;
-    border: 1px solid black;
+.view-doc {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
 }
 
-.progress{
-    height:100%;
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
+.view-doc h3 {
+  color: var(--orange);
+  font-size: 1.1em;
+  margin-right: 2%;
 }
 
-.progress-1, .progress-2, .progress-3{
-    box-sizing: border-box;
-    width: 34%;
+.Verified {
+  background-color: var(--darkGreen);
+  display: flex;
+  flex-direction: column;
+  width: 155px;
+  margin: 5px;
+  box-shadow: 1px 1px 5px;
 }
 
-.progress-1{
-    border-radius: 50px 0px 0px 50px;
-    background-color: #27A088;
+.Verified h3 {
+  color: var(--creamyWhite);
+  font-size: 16px;
 }
 
-.progress-2{
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+.Verified .verify-reject-doc > button:nth-of-type(2):hover {
+  color: red;
 }
 
-.progress-text{
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto 8%;
-    text-align: center;
+.progress-text {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto 8%;
+  text-align: center;
 }
 
-
-.RejectVerify{
-    display: flex;
-    gap: 100px;
-    margin: 20px 0;
+.RejectVerify {
+  display: flex;
+  gap: 100px;
 }
 
 .RejectVerify h3:nth-child(1),
-.RejectVerify h3:nth-child(2){
-    border-radius: 30px;
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 1.2em;
+.RejectVerify h3:nth-child(2) {
+  border-radius: 30px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
 }
 
-.RejectVerify h3:nth-child(1){
-    transition: all 0.3s ease-out;
-    background-color: red;
+.RejectVerify h3:nth-child(1) {
+  transition: all 0.3s ease-out;
+  background-color: red;
 }
 
-.RejectVerify h3:nth-child(1):hover{
-    transition: all 0.3s ease-out;
-    opacity: 50%;
+.RejectVerify h3:nth-child(1):hover {
+  transition: all 0.3s ease-out;
+  opacity: 50%;
 }
 
-.RejectVerify h3:nth-child(1):active{
-    transition: all 0s;
-    opacity: 100%;
-    background-color: var(--white);
-    color: red;
+.RejectVerify h3:nth-child(1):active {
+  transition: all 0s;
+  opacity: 100%;
+  background-color: var(--white);
+  color: red;
 }
 
-.RejectVerify h3:nth-child(2){
-    transition: all 0.3s ease-out;
-    background-color: var(--darkGreen);
+.RejectVerify h3:nth-child(2) {
+  transition: all 0.3s ease-out;
+  background-color: var(--darkGreen);
 }
 
-.RejectVerify h3:nth-child(2):hover{
-    opacity: 50%;
+.RejectVerify h3:nth-child(2):hover {
+  opacity: 50%;
 }
 
-.RejectVerify h3:nth-child(2):active{
-    transition: all 0s;
-    opacity: 100%;
-    background-color: white;
-    color: var(--darkGreen);
+.RejectVerify h3:nth-child(2):active {
+  transition: all 0s;
+  opacity: 100%;
+  background-color: white;
+  color: var(--darkGreen);
 }
-
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
@@ -422,13 +401,13 @@
         max-height: 160px;
     }
 
-    .PropertyDetailsCard{
-        max-width: 760px;
-    }
+  .PropertyDetailsCard {
+    max-width: 900px;
+  }
 
-    .MoreThumbnails img{
-        width: 220px;
-    }
+  .MoreThumbnails img {
+    width: 220px;
+  }
 
     .MoreThumbnails:hover img:nth-child(1){
         transform: translate(230px,10px);
@@ -458,13 +437,13 @@
         max-height: 145px;
     }
 
-    .PropertyDetailsCard{
-        max-width: 650px;
-    }
+  .PropertyDetailsCard {
+    max-width: 650px;
+  }
 
-    .MoreThumbnails img{
-        width: 190px;
-    }
+  .MoreThumbnails img {
+    width: 190px;
+  }
 
     .MoreThumbnails:hover img:nth-child(1){
         transform: translate(200px,10px);
@@ -494,13 +473,13 @@
         max-height: 125px;
     }
 
-    .PropertyDetailsCard{
-        max-width: 550px;
-    }
+  .PropertyDetailsCard {
+    max-width: 550px;
+  }
 
-    .MoreThumbnails img{
-        width: 160px;
-    }
+  .MoreThumbnails img {
+    width: 160px;
+  }
 
     .MoreThumbnails:hover img:nth-child(1){
         transform: translate(170px,10px);
@@ -530,33 +509,28 @@
         max-height: 110px;
     }
 
-    .PropertyDetailsCard{
-        max-width: 500px;
-    }
-
-    .MoreThumbnails img{
-        width: 140px;
-    }
-
-    .MoreThumbnails:hover img:nth-child(1){
-        transform: translate(150px,10px);
-    }
-    .MoreThumbnails:hover img:nth-child(2){
-        transform: translate(0,10px);
-    }
-    .MoreThumbnails:hover img:nth-child(3){
-        transform: translate(-150px,10px);
-    }  
-
-    .view-doc h3{
-        font-size: 0.9em;
-    }
-
-    .verify-reject-doc{
-        width: 90%;
-        margin: 0 auto;
-    }
+  .PropertyDetailsCard {
+    max-width: 450px;
   }
+
+  .MoreThumbnails img {
+    width: 140px;
+  }
+
+  .MoreThumbnails:hover img:nth-child(1) {
+    transform: translate(150px, 10px);
+  }
+  .MoreThumbnails:hover img:nth-child(2) {
+    transform: translate(0, 10px);
+  }
+  .MoreThumbnails:hover img:nth-child(3) {
+    transform: translate(-150px, 10px);
+  }
+
+  .view-doc {
+    margin-left: 6%;
+  }
+}
 
 @media (max-width: 570px) {
     
@@ -574,21 +548,45 @@
         max-height: 100px;
     }
 
-    .PropertyDetailsCard{
-        max-width: 450px;
-    }
-
-    .MoreThumbnails img{
-        width: 120px;
-    }
-
-    .MoreThumbnails:hover img:nth-child(1){
-        transform: translate(130px,10px);
-    }
-    .MoreThumbnails:hover img:nth-child(2){
-        transform: translate(0,10px);
-    }
-    .MoreThumbnails:hover img:nth-child(3){
-        transform: translate(-130px,10px);
-    }
+  .PropertyDetailsCard {
+    max-width: 400px;
   }
+
+  .MoreThumbnails img {
+    width: 120px;
+  }
+
+  .MoreThumbnails:hover img:nth-child(1) {
+    transform: translate(130px, 10px);
+  }
+  .MoreThumbnails:hover img:nth-child(2) {
+    transform: translate(0, 10px);
+  }
+  .MoreThumbnails:hover img:nth-child(3) {
+    transform: translate(-130px, 10px);
+  }
+}
+.AcceptButton.active {
+  background-color: rgb(9, 76, 9);
+  color: white;
+}
+
+.RejectButton.active {
+  background-color: rgb(156, 3, 3);
+  color: white;
+}
+
+#submitButton {
+  margin: 40px;
+  padding: 10px 50px;
+  background-color: var(--creamyWhite);
+  color: rgb(0, 116, 0);
+  border-radius: 20px;
+  border: 2px solid (0, 116, 0) ;
+}
+
+#submitButton:hover {
+  background-color: rgb(0, 116, 0);
+  color: var(--creamyWhite);
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+:root{
+    --headerHeight: 5rem;
+    --footerHeight: 11rem 
+}
+
+.header-footer-wrap{
+    min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
+}

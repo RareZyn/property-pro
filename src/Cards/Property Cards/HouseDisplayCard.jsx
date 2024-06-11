@@ -2,14 +2,12 @@ import "./PropertyDisplayCard.css";
 import { Link } from "react-router-dom";
 import { FaShower, FaBed, FaTags, FaLayerGroup } from "react-icons/fa";
 import { FaHouse, FaLocationDot } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
 
 export const HouseDisplayCard = ({ card, link }) => {
-  const navigate = useNavigate();
   if (!card) return null;
   return (
     <Link to={link}>
-      <div id="prop-card" onClick={() => navigate("/property-House-Details")}>
+      <div id="prop-card">
         <div id="img-placeholder">
           <img
             srcSet={card?.images[0]}

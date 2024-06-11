@@ -90,10 +90,12 @@ export const SavedProperty = () => {
 
   return (
     <div>
-      <div className="property-headline">Saved Property</div>
-      <div className="properties-grid">
-        {data && data.map((property) => property && renderCard(property))}
-      </div>
+        <div className="property-browse-div">
+          <div className="property-headline">Saved Property</div>
+          <div className="properties-grid">
+            {data && data.map((property) => property && renderCard(property))}
+          </div>
+        </div>
     </div>
   );
 };

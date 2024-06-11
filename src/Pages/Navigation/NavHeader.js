@@ -72,13 +72,8 @@ export const NavHeader = () => {
   };
 
   const brokerCheck = () => {
-    if (!user) {
-      return '/register-broker';
-    }
-    return user.brokerID ? "/verify-property-homepage" : "/register-broker";
+    return user?.brokerID ? "/verify-property-homepage" : "/register-broker";
   }
-
-  console.log(user?.brokerID);
 
   return (
     <div className="NavHeader">
@@ -102,7 +97,7 @@ export const NavHeader = () => {
           <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
           <CustomLink id="navHeader-broker-button" href={brokerCheck()}> Broker </CustomLink>
-          <CustomLink href={userToken ? `/view-account/${userToken.id}` : null}>My Account</CustomLink>
+          <CustomLink href={userToken ? `/view-account/${userToken.id}/property` : null}>My Account</CustomLink>
           <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>
             Logout

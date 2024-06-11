@@ -4,7 +4,6 @@ import {
   FaFileCircleQuestion,
   FaLocationDot,} from "react-icons/fa6";
 import { FaCity } from "react-icons/fa";
-import { ReplyCard } from "../../Cards/Property Cards/ReplyCard.jsx";
 import { Link, useLocation } from "react-router-dom";
 import "./PropertyDetails.css";
 import { useQuery } from "react-query";
@@ -14,6 +13,8 @@ import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
 import SavedButton from "../../hooks/SavedButton.jsx";
 import PopupShareProperty from "../../Cards/General Cards/PopupShareProperty.jsx";
+import ProfilePicture from "../../Cards/Image Placeholder/ProfilePicture.js";
+import ChatContext from "../../context/ChatContext.js";
 
 export const PropertyLandDetails = () => {
   const { otherID } = useContext(UserContext);
@@ -23,6 +24,17 @@ export const PropertyLandDetails = () => {
   const { data, isError, isLoading } = useQuery(["Property", propertyID], () =>
     getProperty(propertyID)
   );
+
+  // To handle chat vv
+  const { createRoom } = useContext(ChatContext);
+  const createChatRoom = async () => {
+    try{
+      await createRoom(userId,data.seller.id);
+    } catch(error){
+      console.error("Error Create Chat Room {PropertyVehicleDetails}: ",error);
+    }
+  };
+  // End handle chat ^^
 
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
@@ -56,6 +68,7 @@ export const PropertyLandDetails = () => {
     return <div>Error while fetching the data</div>;
   }
   const userId = user?._id;
+
 
   return (
     <div className="PropertyDetailsContainer">
@@ -137,6 +150,74 @@ export const PropertyLandDetails = () => {
             </div>
           </div>
 
+          {data?.verificationStatus && (
+            <div className="supporting-doc-grid">
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Land Detail 1</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[0]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[0]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[0]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Land Detail 2</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[1]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data.verificationStatus["file[1]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[1]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Land Detail 3</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[2]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[2]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[2]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="property-fourth-row">
             <div className="info-page-container">
               <h2>Property Information</h2>
@@ -162,10 +243,12 @@ export const PropertyLandDetails = () => {
             <div className="seller-info">
               <h2>Seller Info</h2>
               <div className="seller-content">
-                <img
-                  className="ProfileView"
-                  src={require("../../Res/image/user profile.png")}
-                />
+                <div style={{ display: "flex", width: "100%" }}>
+                  <ProfilePicture
+                    imgLink={data?.seller.profilePicture}
+                    size={"85px"}
+                  />
+                </div>
                 <div className="seller-detail">
                   <h4>{data.seller.username}</h4>
                   <p>{data.seller.location}</p>
@@ -180,11 +263,10 @@ export const PropertyLandDetails = () => {
                   <button>Profile</button>
                 </Link>
 
-                <Link to="/view-account-header">
-                  <button>Chat</button>
+                <Link to="/chat">
+                  <button onClick={createChatRoom}>Chat</button>
                 </Link>
               </div>
-              
             </div>
           </div>
         </div>

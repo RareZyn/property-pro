@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./ReplyCard.css";
 import {FaCircleXmark,FaCopy } from "react-icons/fa6";
 import axios from "axios";
+import ProfilePicture from "../Image Placeholder/ProfilePicture";
 
 export const ReplyCard = ({ commentObj }) => {
   const [isReplying, setIsReplying] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [ username,setUsername ] = useState('');
+  const [ profilePic,setProfilePic ] = useState('');
 
   useEffect(() =>{
     const getUsername = async () =>{
@@ -14,6 +16,7 @@ export const ReplyCard = ({ commentObj }) => {
       try{
         const response = await axios.get(`http://localhost:5000/users/get/${commentObj.userID}`);
         setUsername(response.data.username);
+        setProfilePic(response.data.profilePicture);
       } catch(error){
         console.error('Error get username from userID {ReplyCard}:',error);
       } finally{
@@ -54,7 +57,8 @@ export const ReplyCard = ({ commentObj }) => {
     
       <div className="first-div">
         <div className="profile-picture">
-          <img src={require("../../Res/image/user-image.png")} alt="User" />
+          {/* <img src={require("../../Res/image/user-image.png")} alt="User" /> */}
+          <ProfilePicture imgLink={profilePic} size='50px'/>
         </div>
         <div id="comment">
           <p id="comment-user">{username}</p>

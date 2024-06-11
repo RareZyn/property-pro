@@ -120,15 +120,18 @@ const handleChange = (event) => {
         <div className="Overview-edit">
           <div className="price-input">
             <div className="info-label">Price</div>
-              <input
-                id="input-section"
-                name="price"
-                type="text"
-                value={propertyDetails.price}
-                onChange={(e) =>
-                  setPropertyDetails({ ...propertyDetails, price: e.target.value })
-                }
-              />
+            <input
+              id="input-section"
+              name="price"
+              type="text"
+              value={propertyDetails.price}
+              onChange={(e) =>
+                setPropertyDetails({
+                  ...propertyDetails,
+                  price: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
 
@@ -136,7 +139,7 @@ const handleChange = (event) => {
           <div className="title-share">
             <div className="title-input">
               <div className="info-label">Title</div>
-                <input
+              <input
                 id="input-section"
                 name="title"
                 type="text"
@@ -147,8 +150,8 @@ const handleChange = (event) => {
                     title: e.target.value,
                   })
                 }
-                />
-              </div>
+              />
+            </div>
             <div className="share-content">
               <PopupShareProperty />
             </div>
@@ -168,6 +171,74 @@ const handleChange = (event) => {
               }
             />
           </div>
+
+          {data?.verificationStatus && (
+            <div className="supporting-doc-grid">
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 1</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[0]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[0]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[0]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 2</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[1]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data.verificationStatus["file[1]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[1]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+              <div className="SupportingDocument">
+                <img
+                  src={require("../../Res/image/broker-icons/codicon_file-pdf.png")}
+                />
+                <div className="view-doc">
+                  <h3>Vehicle Detail 3</h3>
+                  <button className="SupportingDocumentButton">
+                    <a href={data?.file[2]} target="_blank">
+                      View
+                    </a>
+                  </button>
+                </div>
+                <div id="changeMessage">
+                  Message: {data?.verificationStatus["file[2]"].message}
+                </div>
+                <div id="changeStatus">
+                  {data?.verificationStatus["file[2]"].status
+                    ? "Verified"
+                    : "Unverified"}
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="property-fourth-row">
             <div className="info-page-container">

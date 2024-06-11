@@ -18,12 +18,7 @@ export const ChatProvider = ({ children }) => {
 
   const createRoom = async (currentUserID, chatUserID) => {
     try{
-      const existingRoomResponse = await axios.get('http://localhost:5000/chat/check-room', {
-        params: {
-          user1: currentUserID,
-          user2: chatUserID
-        }
-      });
+      const existingRoomResponse = await axios.get(`http://localhost:5000/chat/check-room/${currentUserID}/${chatUserID}`);
 
       const existingRoom = existingRoomResponse.data;
 
@@ -58,7 +53,15 @@ export const ChatProvider = ({ children }) => {
   };
 
   return (
-    <ChatContext.Provider value={{ chatRooms, fetchChatRooms, currentChatRoom, setCurrentChatRoom, addMessageToRoom }}>
+    <ChatContext.Provider 
+    value={{ 
+      chatRooms, 
+      fetchChatRooms, 
+      currentChatRoom, 
+      setCurrentChatRoom, 
+      addMessageToRoom,
+      createRoom
+    }}>
       {children}
     </ChatContext.Provider>
   );

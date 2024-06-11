@@ -9,7 +9,7 @@ router.get("/getProperty/:id",getProperty);
 router.post("/buyProperty/:propertyID", buyProperty);
 router.post("/toFav/:propertyID", toFav);
 router.get("/getAllFavorites", getAllFavorites);
-router.get("/getPropertySeller/:id",getPropertySeller);
+router.get("/getPropertySeller/:id", getPropertySeller);
 router.put("/updateVehicle",updateVehicle);
 router.put("/updateLand", updateLand);
 router.put("/updateHouse",updateHouse);

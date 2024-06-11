@@ -42,6 +42,10 @@
   margin-right: 3%;
 }
 
+#button-add{
+  width: 300px;
+}
+
 /*.MyAccountPropertyAdd img {
   margin-right: 5%;
   width: 25%; 
