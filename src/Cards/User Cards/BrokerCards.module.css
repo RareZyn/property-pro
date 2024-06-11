@@ -1,0 +1,23 @@
+.broker-card-container{
+    display: flex;
+    column-gap: 1.5rem;
+    padding: 1rem 2rem;
+    width: 22.5rem;
+    box-shadow: 2px 2px 17px 0px var(--lightgrey);
+    border-radius: 1rem;
+}
+
+.broker-details{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+
+    h1{
+        font-size: 1.25rem;
+    }
+}
+
+.broker-card-container:hover{
+    cursor: pointer;
+    border: 2px solid var(--orange);
+}

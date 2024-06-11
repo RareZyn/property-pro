@@ -17,6 +17,10 @@ body {
   background-color: var(--light-color);
 }
 
+a{
+  text-decoration: none;
+}
+
 /* Global styles for code elements */
 code {
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",

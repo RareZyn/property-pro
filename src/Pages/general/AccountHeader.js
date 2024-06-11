@@ -46,6 +46,10 @@ export const AccountHeader = () => {
   //   );
   // }
 
+  const currentChild = () =>{
+    return window.location.pathname.split('/').slice(-1)[0];
+  }
+
   return (
     <>
       <div className="ViewAccountHeader">
@@ -65,10 +69,10 @@ export const AccountHeader = () => {
         </section>
         <hr />
         <section id="account-link-container">
-          <Link className="account-link" to={'property'}>Property</Link>
-          <Link className="account-link" to={'post'}>Post</Link>
-          {owner && <Link className="account-link" to={'transaction'}>My Transaction</Link>}
-          {true && <Link className="account-link" to={'about'}>About</Link>}          
+          <Link className={`account-link ${currentChild()==='property'?'active-link':''}`} to={'property'}>Property</Link>
+          <Link className={`account-link ${currentChild()==='post'?'active-link':''}`} to={'post'}>Post</Link>
+          {owner && <Link className={`account-link ${currentChild()==='transaction'?'active-link':''}`} to={'transaction'}>My Transaction</Link>}
+          {true && <Link className={`account-link ${currentChild()==='about'?'active-link':''}`} to={'about'}>About</Link>}          
         </section>
       </div>
       <Outlet />

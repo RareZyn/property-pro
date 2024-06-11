@@ -65,9 +65,7 @@ export const Footer = () => {
 
         <div className="footer-rightcontainer">
           <Link to="/myaccount-details" id="FooterAboutNav">
-            <br></br>
             <h4>About </h4>
-            <br></br>
           </Link>
 
           <Link to="/register" id="FooterTermsNav">
@@ -75,13 +73,10 @@ export const Footer = () => {
           </Link>
 
           <Link to="/forum-page" id="FooterHelpNav">
-            <br></br>
             <h4>Help</h4>
           </Link>
         </div>
       </div>
-
-      <br></br>
       <p>&copy; 2024 Property Pro. All Rights Reserved.</p>
     </footer>
   );

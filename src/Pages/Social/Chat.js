@@ -161,7 +161,6 @@ export const Chat = ({userID}) => {
 
   return (
     <div className="Chat">
-
       <ul className={`ChatList ${isChatScreenActive ? 'active' : ''}`}>
 
         {chatRooms.map(room => (
@@ -244,10 +243,10 @@ export const Chat = ({userID}) => {
             
             <input type="file" id="SendChatSendImg" onChange={handleImageUpload} />
             <input type="file" id="SendChatSendVid" onChange={handleImageUpload} />
-            <label htmlFor="SendChatSendImg">
+            <label htmlFor="SendChatSendImg" className='chat-icon'>
               <img src={require("../../Res/image/image-chat.png")} alt="Send image" />
             </label>
-            <label htmlFor="SendChatSendVid">
+            <label htmlFor="SendChatSendVid" className='chat-icon'>
               <img src={require("../../Res/image/video.png")} alt="Send video" />
             </label>
             

@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard.jsx";
 
@@ -107,24 +107,23 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <div className={`community-grid ${isCommunityVisible ? "slide-in" : ""}`}>
-        <div className="img-div1">
-          <img
-            src={require("../../Res/image/community-image.png")}
-            className="community-img"
-            alt="Community"
-          />
-        </div>
-        <div className="community-details">
-          <div className="community-heading">COMMUNITY</div>
-          <div className="community-desc">
-            Join the discussion with multiple people around the globe.
+      <Link to={'/forum-page'}>
+        <div className={`community-grid ${isCommunityVisible ? "slide-in" : ""}`}>
+          <div className="img-div1">
+            <img
+              src={require("../../Res/image/community-image.png")}
+              className="community-img"
+              alt="Community"
+            />
           </div>
-          <Link to="/forum-page">
-            <button className="homepage-btn">COMMUNITY</button>
-          </Link>
+          <div className="community-details">
+            <div className="community-heading">COMMUNITY</div>
+            <div className="community-desc">
+              Join the discussion with multiple people around the globe.
+            </div>
+          </div>
         </div>
-      </div>
+      </Link>
 
       <div className={`broker-grid ${isBrokerVisible ? "slide-in" : ""}`}>
         <div className="img-div2">
@@ -141,9 +140,6 @@ export const HomePage = () => {
             help people in property transaction.
           </div>
           <div className="broker-btns">
-            <Link to="/login-broker">
-              <button className="homepage-btn log-in-btn">LOG IN</button>
-            </Link>
             <Link to="/register-broker">
               <button className="homepage-btn">SIGN UP</button>
             </Link>

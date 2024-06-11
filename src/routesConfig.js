@@ -36,6 +36,7 @@ import { PropertyLandDetailsOverview } from "./Pages/Property/PropertyLandDetail
 import { PropertyVehicleDetailsOverview } from "./Pages/Property/PropertyVehicleDetails-Overview.js";
 import { ImageSlideshow } from "./Pages/Property/ImageSlideshow.js";
 import { Navigate } from "react-router-dom";
+import BrokerList from "./Pages/Broker/BrokerList.js";
 
 export const ProtectedRoute = ({ component: Component, isAuthenticated}) => (
   isAuthenticated ? (Component) : (<Navigate to="/login" />)
@@ -66,8 +67,6 @@ export const routes = [
       { path: "", element: <ManageProperty /> },
     ],
   },
-  // { path: '/manage-account', element: <ManageAccount /> },
-  // { path: '/property-details', element: <PropertyDetails /> },
   {
     path: "/property-vehicle-details/:id",
     element: <PropertyVehicleDetails />,
@@ -107,6 +106,7 @@ export const routes = [
   },
   { path: "/image-slideshow", element: <ImageSlideshow /> },
   { path: "*", element: <h1>PAGE NOT FOUND</h1> },
-  { path: "/browser-property", element: <BrowserProperty></BrowserProperty> },
+  { path: "/browser-property", element: <BrowserProperty /> },
+  { path: "/broker-list", element: <BrokerList /> },
 ];
 
