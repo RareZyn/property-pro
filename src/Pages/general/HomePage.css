@@ -312,3 +312,9 @@
   height: 100%;
   margin-bottom: 30px;
 }
+
+#puffloader{
+  width: 100%;
+  margin:50px auto;
+  height: 500px;
+}

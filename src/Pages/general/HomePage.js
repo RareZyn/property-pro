@@ -9,6 +9,7 @@ import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
 import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
 import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
 import { useMostHotProperty } from "../../hooks/useMostHotProperty.jsx";
+import { PuffLoader } from "react-spinners";
 
 export const HomePage = () => {
   const [isBuyerHovered, setIsBuyerHovered] = useState(false);
@@ -104,7 +105,9 @@ export const HomePage = () => {
 
 
  if (isLoading) {
-   return <div>Loading...</div>;
+   return (
+    <PuffLoader id="puffloader"/>
+   )
  }
 
  if (isError) {
