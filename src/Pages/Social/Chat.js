@@ -6,7 +6,7 @@ import ChatContext from '../../context/ChatContext';
 import "./Chat.css";
 import { UserContext } from '../../context/UserContext';
 import { getUser } from '../../utils/userAPI';
-import ProfilePicture from '../../Cards/Image Placeholder/ProfilePicture';
+import { PuffLoader } from "react-spinners";
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -152,11 +152,11 @@ export const Chat = ({userID}) => {
   }
 
   if(isLoading){
-    return(
-      <div>
-        Loading...
+    return (
+      <div className="loaderContainer">
+        <PuffLoader />
       </div>
-    )
+    );
   }
 
   return (
