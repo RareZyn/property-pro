@@ -340,6 +340,40 @@ export const verifyProperty = async (propertyID, verificationResults, brokerID) 
   }
 };
 
+export const unverifiedPropery  = async () => {
+  try {
+    const response = await brokerApi.get("/unverifiedProperty", {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
+
+export const verifiedPropery = async () => {
+  try {
+    const response = await brokerApi.get("/verifiedProperty", {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
+
 export const getAllBrokers = async () => {
   try {
     const response = await brokerApi.get("/getAllBroker", {
