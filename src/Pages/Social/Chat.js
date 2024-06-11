@@ -6,6 +6,7 @@ import ChatContext from '../../context/ChatContext';
 import "./Chat.css";
 import { UserContext } from '../../context/UserContext';
 import { getUser } from '../../utils/userAPI';
+import ProfilePicture from '../../Cards/Image Placeholder/ProfilePicture';
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -146,6 +147,10 @@ export const Chat = ({userID}) => {
     return room.user1._id === userID ? room.user2.username : room.user1.username;
   };
 
+  const renderSenderID = (room,userID) => {
+    return room.user1._id === userID ? room.user2 : room.user1;
+  }
+
   if(isLoading){
     return(
       <div>
@@ -161,7 +166,8 @@ export const Chat = ({userID}) => {
 
         {chatRooms.map(room => (
           <li key={room._id} onClick={() => handleChatListClick(0, room)} className={currentChatRoom === room ? 'active' : ''}>
-            <img src={require("../../Res/image/user profile.png")} alt="User profile" />
+            <img src={ renderSenderID(room,userID).profilePicture ||require("../../Res/image/user profile.png")} alt="User profile" />
+            {/* <ProfilePicture imgLink={renderSenderID(room,userID).profilePicture} size='24px'/> */}
             <div>
               <h1>{renderUsername(room,userID)}</h1>
               {room.chats.length > 0 ? (
@@ -211,7 +217,7 @@ export const Chat = ({userID}) => {
             <div className="ChatUser-back" onClick={handleBackToChatList}>
               <FaChevronLeft />
             </div>
-            <img src={require("../../Res/image/user profile.png")} alt="User profile" />
+            <img src={ renderSenderID(currentChatRoom,userID).profilePicture ||require("../../Res/image/user profile.png")} alt="User profile" />
             <h1>{
               renderUsername(currentChatRoom,userID)
             }</h1>
