@@ -42,7 +42,7 @@
 
 #post-card-container{
     background-color: var(--creamyWhite);
-    width: 80%;
+    width: 60%;
     border-radius: 30px;
     padding:1.7em;
     margin-top: 1em;
@@ -143,6 +143,13 @@
     width: 120px;
     height: 120px;
   
+  }
+
+  @media (max-width: 992px) {
+    #post-card-container {
+      width: 80%;
+      align-self: center;
+  }
   }
 
   @media (max-width: 768px) {
