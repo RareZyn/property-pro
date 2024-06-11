@@ -36,7 +36,7 @@ export const ManageProperty = () => {
 
   const sellerId = user?._id;
 
-  const { data, isError, isLoading } = useQuery(
+  const { data :unverifiedData, isError:unverifiedError, isLoading:unverifiedLoading } = useQuery(
     ["getAllFavorites", sellerId],
     () => getPropertySeller(sellerId),
     {
@@ -45,34 +45,36 @@ export const ManageProperty = () => {
     }
   );
 
-  const renderCard = (property) => {
-    if (!property || !property.propertyType) {
+  
+
+  const renderCard = (unverifiedData) => {
+    if (!unverifiedData || !unverifiedData.propertyType) {
       return null;
     }
 
-    switch (property.propertyType) {
+    switch (unverifiedData.propertyType) {
       case "Vehicle":
         return (
           <VehicleComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-vehicledetails-overview`}
+            key={unverifiedData.property_id}
+            card={unverifiedData}
+            link={`/${unverifiedData.property_id}/property-vehicledetails-overview`}
           />
         );
       case "House":
         return (
           <HouseComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-housedetails-overview`}
+            key={unverifiedData.property_id}
+            card={unverifiedData}
+            link={`/${unverifiedData.property_id}/property-housedetails-overview`}
           />
         );
       case "Land":
         return (
           <LandComponentCard
-            key={property.property_id}
-            card={property}
-            link={`/${property.property_id}/property-landdetails-overview`}
+            key={unverifiedData.property_id}
+            card={unverifiedData}
+            link={`/${unverifiedData.property_id}/property-landdetails-overview`}
           />
         );
       default:
@@ -84,13 +86,14 @@ export const ManageProperty = () => {
     <div className="manage-property-container">
       <div className="property-headline">Manage Property</div>
       <div className="manageproperty-div">
-        {isError && <span>Error while fetching the data</span>}
-        {isLoading ? (
+        {unverifiedError && <span>Error while fetching the data</span>}
+        {unverifiedLoading ? (
           <div className="loadContainer">
             <PuffLoader />
           </div>
         ) : (
-          data && data.map((property) => property && renderCard(property))
+          unverifiedData &&
+          unverifiedData.map((property) => property && renderCard(property))
         )}
       </div>
       <div className="manageproperty-add">

@@ -62,7 +62,6 @@ const addBroker = asyncHandler(async (req, res) => {
   }
 });
 
-
 const verifyProperty = asyncHandler(async (req, res) => {
   const { propertyID, verificationResults, brokerID } = req.body; // Added brokerID
 
@@ -129,6 +128,59 @@ const verifyProperty = asyncHandler(async (req, res) => {
   }
 });
 
+const unverifiedProperty = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        buyer: null,
+        isVerified: false,
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
 
+    console.log("Properties:", properties); // Log properties fetched by Prisma
 
-module.exports = { addBroker,verifyProperty };
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve available properties" });
+  }
+});
+
+const verifiedProperty = asyncHandler(async (req, res) => {
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        isVerified:true,
+        buyer:null,
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+      },
+    });
+
+    console.log("Properties:", properties); // Log properties fetched by Prisma
+
+    res.status(200).json(properties);
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve available properties" });
+  }
+});
+
+module.exports = {
+  addBroker,
+  verifyProperty,
+  unverifiedProperty,
+  verifiedProperty,
+};
