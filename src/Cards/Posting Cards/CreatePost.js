@@ -1,8 +1,11 @@
 import styles from "./CreatePost.module.css";
-import { useState,useContext,useEffect } from "react";
+import { useState,useContext,useEffect, useRef } from "react";
 import { FaImages } from "react-icons/fa6";
 import UploadCard from "../General Cards/UploadCard";
 import { ForumContext } from '../../context/ForumContext';
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
+import { toast } from "react-toastify";
 import { getUser } from "../../utils/userAPI";
 import { UserContext } from "../../context/UserContext";
 
@@ -51,10 +54,47 @@ export const CreatePost = () => {
     }
   };
 
+  // vv SECTION FOR HANDLE IMAGE UPLOAD vv
+  const fileInputRef = useRef(null);
 
-  const handleImageClick = () => {
-    setShowImageUpload(true);
+  const handleUpload = async (e) => {
+    if(e.target.files[0]){
+      const image = e.target.files[0];
+      console.log("The image forum:",image);
+      try{
+        const storageRef = firebase
+            .storage()
+            .ref("forums/")
+            .child(`/${userID}`);
+          const fileRef = storageRef.child(image.name);
+
+          const snapshot = await fileRef.put(image);
+          const downloadURL = await snapshot.ref.getDownloadURL();
+
+          console.log(downloadURL);
+          
+          await createForum({ 
+            userID: user? user._id : null,
+            textForum: "image",
+            comments: [],
+            likes: [],
+            likeCount: 0,
+            photoUrl: downloadURL
+          });
+          setNewForumText('');
+      } catch(error){
+        console.error("Upload failed", error.message);
+        toast.error("Image upload failed. Please try again.");
+      }
+    } else{
+      console.log("No image upload");
+    }
   };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+  // ^^ END HANDLE IMAGE UPLOAD ^^
 
   const handleVideoClick = () => {
     setShowVideoUpload(true);
@@ -82,7 +122,13 @@ export const CreatePost = () => {
         </div>
       
       <div id={styles["engagement-container"]}>
-        <div className={styles["engagement-button"]} onClick={handleImageClick}>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleUpload}
+        />
+        <div className={styles["engagement-button"]} onClick={triggerFileInput}>
           <FaImages />
           <span>Media</span>
         </div>
