@@ -22,7 +22,6 @@ export const Chat = ({userID}) => {
   const [message, setMessage] = useState('');
   const [chats, setChats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [uploadImage, setUploadImage] = useState(null);
   const [url, setUrl] = useState("");
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
@@ -139,7 +138,6 @@ export const Chat = ({userID}) => {
   const handleUpload = async (e) => {
     if(e.target.files[0]){
       const image = e.target.files[0];
-      setUploadImage(image);
       console.log(image);
       try{
         const storageRef = firebase

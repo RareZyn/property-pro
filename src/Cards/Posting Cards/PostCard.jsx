@@ -16,8 +16,7 @@ import axios from "axios";
 
 
 function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, profilePicture }) {
-  const longText =
-    textForum;
+  const longText = textForum;
   const [liked, setLiked] = useState(false);
   const [isDiscussionClicked, setIsDiscussionClicked] = useState(true);
   const [showPopdownDiscussion, setShowPopdownDiscussion] = useState(
