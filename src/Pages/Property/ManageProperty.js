@@ -93,7 +93,7 @@ export const ManageProperty = () => {
   };
 
   return (
-    <div className="manage-property-container">
+    <div className="manage-property-container header-footer-wrap">
       <div className="property-headline">Manage Property</div>
       <div id="manage-div">
         <div className="manageproperty-add">

@@ -75,7 +75,7 @@ export const MyAccountDetails = () => {
     );
 
   return (
-    <div className="MyAccountDetails">
+    <div className="MyAccountDetails HDF-wrap">
       <div className="About">
         <div className="details-column">
           <div className="first-name">
