@@ -3,7 +3,7 @@ import style from "./BrowserProperty.module.css";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
 import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
 import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
-import SearchBar from "../../Cards/General Cards/SearchBar";
+import SearchHome from "../../Cards/General Cards/SearchHome";
 import { PuffLoader } from "react-spinners";
 import { unverifiedPropery, verifiedPropery } from "../../utils/api";
 import { useQuery } from "react-query";
@@ -73,24 +73,30 @@ export const BrowserProperty = () => {
     }
   };
 
-  const handleSearchResults = (results) => {
-    if (results && results.length > 0) {
-      const verifiedSearchResults = results.filter(
-        (result) => result.isVerified
-      );
-      const unverifiedSearchResults = results.filter(
-        (result) => !result.isVerified
-      );
+const handleSearchResults = (results) => {
+  if (results && results.length > 0) {
+    const verifiedSearchResults = results.filter((result) => result.isVerified);
+    const unverifiedSearchResults = results.filter(
+      (result) => !result.isVerified
+    );
+
+    if (verifiedSearchResults.length > 0) {
       setSearchResults({
-        verified:
-          verifiedSearchResults.length > 0 ? verifiedSearchResults : null,
-        unverified:
-          unverifiedSearchResults.length > 0 ? unverifiedSearchResults : null,
+        verified: verifiedSearchResults,
+        unverified: null,
+      });
+    } else if (unverifiedSearchResults.length > 0) {
+      setSearchResults({
+        verified: null,
+        unverified: unverifiedSearchResults,
       });
     } else {
       setSearchResults(null);
     }
-  };
+  } else {
+    setSearchResults(null);
+  }
+};
 
   const filteredVerifiedData =
     searchResults && searchResults.verified !== null
@@ -104,7 +110,7 @@ export const BrowserProperty = () => {
   return (
     <div>
       <header id={style["header-container"]}>
-        <SearchBar
+        <SearchHome
           id={style["browse-search"]}
           hint="Browse Property..."
           setSearchResults={handleSearchResults}
