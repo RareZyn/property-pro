@@ -187,11 +187,27 @@ module.exports = {
 
 const getAllBroker = asyncHandler(async(req, res) => {
   const brokers = await prisma.broker.findMany({
-    include: {
-      user: true,
+    where: {
+      isVerified: true,
+      buyer: null,
     },
   });
   res.json(brokers);
+});
+
+const getBroker = asyncHandler(async (req, res) => {
+  const {brokerID} =req.params;
+try{
+    const broker = await prisma.broker.findUnique({
+    where:{
+      broker_id:brokerID
+    }
+  });
+   res.json(broker);
+}catch(error){
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+}
 });
 
 

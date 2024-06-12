@@ -13,5 +13,6 @@ router.get("/unverifiedProperty", unverifiedProperty);
 router.get("/verifiedProperty", verifiedProperty);
 router.get('/getAllBroker', getAllBroker);
 router.get("/getVerifyPropertyDetail",getVerifyPropertyDetail);
+router.get("/getBroker", getAllBroker);
 
 module.exports = router;
