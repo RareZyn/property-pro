@@ -23,10 +23,11 @@ export const MyAccountDetails = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      console.log("dah lalu");
       try {
         const userData = await getUserById(userID);
         setUser(userData);
-        const brokerData = await getBroker(user.brokerID); // Fetch broker data if brokerID exists
+        const brokerData = await getBroker(user.brokerID); 
         setBroker(brokerData);
       } catch (error) {
         // Handle the error appropriately in your UI
@@ -37,7 +38,7 @@ export const MyAccountDetails = () => {
     fetchUser();
   }, [userID]);
 
-  console.log(broker);
+
   const {
     data: sellPropertyData,
     isLoading: sellPropertyLoading,
@@ -124,7 +125,7 @@ export const MyAccountDetails = () => {
           {broker && broker.fileBrokerLicense && (
             <div className="broker-license">
               <h1>Broker License</h1>
-              <img src={broker.fileBrokerLicense} alt="Broker License" />
+              <img src={broker?.fileBrokerLicense} alt="Broker License" />
             </div>
           )}
           <div className="badges-section">

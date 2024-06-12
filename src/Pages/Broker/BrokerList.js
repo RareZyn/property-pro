@@ -63,7 +63,7 @@ function BrokerList(){
       }
     };
     // End handle chat ^^
-
+    console.log(brokers);
     return(
         <div className={`header-footer-wrap ${styles['broker-list-container']}`}>
             <div className={`${styles['broker-list-header']}`}>

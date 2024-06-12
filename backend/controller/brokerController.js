@@ -178,23 +178,17 @@ const verifiedProperty = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = {
-  addBroker,
-  verifyProperty,
-  unverifiedProperty,
-  verifiedProperty,
-};
 
-const getAllBroker = asyncHandler(async(req, res) => {
+const getAllBroker = asyncHandler(async (req, res) => {
   const brokers = await prisma.broker.findMany({
-    where: {
-      isVerified: true,
-      buyer: null,
+    include: {
+      user: true, // This will include the related user details
     },
   });
   res.json(brokers);
 });
 
+  
 const getBroker = asyncHandler(async (req, res) => {
   const { brokerID } = req.query; 
 try{
