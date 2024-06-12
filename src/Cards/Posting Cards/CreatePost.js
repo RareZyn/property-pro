@@ -8,6 +8,7 @@ import "firebase/compat/storage";
 import { toast } from "react-toastify";
 import { getUser } from "../../utils/userAPI";
 import { UserContext } from "../../context/UserContext";
+import { PuffLoader } from "react-spinners";
 
 export const CreatePost = () => {
   const [files, setFiles] = useState([]);
@@ -16,6 +17,7 @@ export const CreatePost = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const { createForum,loading,setLoading } = useContext(ForumContext);
   const [newForumText, setNewForumText] = useState('');
+  const [imageUploading,setImageUploading] = useState(false);
   const {userToken} = useContext(UserContext);
   const[user, setUser] = useState(null);
   useEffect(() => {
@@ -58,6 +60,7 @@ export const CreatePost = () => {
   const fileInputRef = useRef(null);
 
   const handleUpload = async (e) => {
+    setImageUploading(true);
     if(e.target.files[0]){
       const image = e.target.files[0];
       console.log("The image forum:",image);
@@ -85,6 +88,8 @@ export const CreatePost = () => {
       } catch(error){
         console.error("Upload failed", error.message);
         toast.error("Image upload failed. Please try again.");
+      } finally{
+        setImageUploading(false);
       }
     } else{
       console.log("No image upload");
@@ -103,6 +108,15 @@ export const CreatePost = () => {
   const handleFileUpload = (file) => {
     setUploadedFile(file);
   };
+
+  if(imageUploading){
+    return (
+      <div className="loaderContainer">
+        <h3 style={{display:"block"}}>Image is uploading</h3>
+        <PuffLoader />
+      </div>
+    );
+  }
 
   return (
     <div id={styles["post-card-container"]} className="box-shadow">
