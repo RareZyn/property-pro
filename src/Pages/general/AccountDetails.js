@@ -27,7 +27,9 @@ export const MyAccountDetails = () => {
     fetchUser();
   }, [id]);
 
-  // Fetch data for counting sell properties
+  if(user?.brokerID){
+    
+  }
   const {
     data: sellPropertyData,
     isLoading: sellPropertyLoading,

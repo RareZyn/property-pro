@@ -10,6 +10,7 @@ import { PuffLoader } from "react-spinners";
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import { toast } from "react-toastify";
+import { Link } from 'react-router-dom';
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -216,16 +217,25 @@ export const Chat = ({userID}) => {
 
   return (
     <div className="Chat">
-      <ul className={`ChatList ${isChatScreenActive ? 'active' : ''}`}>
-
-        {chatRooms.map(room => (
-          <li key={room._id} onClick={() => handleChatListClick(0, room)} className={currentChatRoom === room ? 'active' : ''}>
-            <img src={ renderSenderID(room,userID).profilePicture ||require("../../Res/image/user profile.png")} alt="User profile" />
+      <ul className={`ChatList ${isChatScreenActive ? "active" : ""}`}>
+        {chatRooms.map((room) => (
+          <li
+            key={room._id}
+            onClick={() => handleChatListClick(0, room)}
+            className={currentChatRoom === room ? "active" : ""}
+          >
+            <img
+              src={
+                renderSenderID(room, userID).profilePicture ||
+                require("../../Res/image/user profile.png")
+              }
+              alt="User profile"
+            />
             {/* <ProfilePicture imgLink={renderSenderID(room,userID).profilePicture} size='24px'/> */}
             <div>
-              <h1>{renderUsername(room,userID)}</h1>
+              <h1>{renderUsername(room, userID)}</h1>
               {room.chats.length > 0 ? (
-              <p>{room.chats[room.chats.length - 1].textChat}</p>
+                <p>{room.chats[room.chats.length - 1].textChat}</p>
               ) : null}
             </div>
           </li>
@@ -242,7 +252,6 @@ export const Chat = ({userID}) => {
         <CustomChatUserList userName={"Nama 2"} chatContent={"Bang, barang saya sampai dah ke?"} onClick={() => handleChatListClick(1)} isActive={activeChatIndex === 1} />
         <CustomChatUserList userName={"Nama 3"} chatContent={"Berapa?"} onClick={() => handleChatListClick(2)} isActive={activeChatIndex === 2} /> */}
         {/* ... other list items */}
-
       </ul>
 
       {/* {currentChatRoom && (
@@ -266,63 +275,86 @@ export const Chat = ({userID}) => {
       )} */}
 
       {currentChatRoom && (
-        <div className={`ChatScreen ${isChatScreenActive ? 'active' : ''}`}>
+        <div className={`ChatScreen ${isChatScreenActive ? "active" : ""}`}>
           <div className="ChatUser">
             <div className="ChatUser-back" onClick={handleBackToChatList}>
               <FaChevronLeft />
             </div>
-            <img src={ renderSenderID(currentChatRoom,userID).profilePicture ||require("../../Res/image/user profile.png")} alt="User profile" />
-            <h1>{
-              renderUsername(currentChatRoom,userID)
-            }</h1>
+            <Link to={`/view-account/${renderSenderID(currentChatRoom,userID)?._id}/about`}>
+                <img
+                  src={
+                    renderSenderID(currentChatRoom, userID).profilePicture ||
+                    require("../../Res/image/user profile.png")
+                  }
+                  alt="User profile"
+                />
+            </Link>
+            <h1>{renderUsername(currentChatRoom, userID)}</h1>
           </div>
 
-          <div className="ChatContainer" ref={chatContainerRef}>
+          <div className="ChatContainer" ref={chatContainerRef} style={{display:"flex",flexDirection:"column"}}>
             {/* {messages.map((msg, index) => (
               msg.type === 'my' ? <MyChatBubble key={index} content={msg.content} time={msg.time} isImage={msg.isImage} /> : <YourChatBubble key={index} content={msg.content} />
             ))} */}
             {currentChatRoom.chats.length > 0 &&
-            currentChatRoom.chats.map((chat) =>{
-              if(chat.imageUrl){
-                return(
-                  chat.senderID === userID ?  
-                  <MyChatBubble key={chat._id} isImage={true} content={chat.imageUrl} time={formatTime(chat.createdAt)}/> : // if true
-                  <YourChatBubble key={chat._id} isImage={true} content={chat.imageUrl} /> // if false
-                )
-              }
+              currentChatRoom.chats.map((chat) => {
+                if (chat.imageUrl) {
+                  return chat.senderID === userID ? (
+                    <MyChatBubble
+                      key={chat._id}
+                      isImage={true}
+                      content={chat.imageUrl}
+                      time={formatTime(chat.createdAt)}
+                    /> // if true
+                  ) : (
+                    <YourChatBubble
+                      key={chat._id}
+                      isImage={true}
+                      content={chat.imageUrl}
+                    />
+                  ); // if false
+                }
 
-             return(
-                chat.senderID === userID ?  
-                <MyChatBubble key={chat._id} content={chat.textChat} time={formatTime(chat.createdAt)}/> : // if true
-                <YourChatBubble key={chat._id} content={chat.textChat} /> // if false
-              )}
-            )}
+                return chat.senderID === userID ? (
+                  <MyChatBubble
+                    key={chat._id}
+                    content={chat.textChat}
+                    time={formatTime(chat.createdAt)}
+                  /> // if true
+                ) : (
+                  <YourChatBubble key={chat._id} content={chat.textChat} />
+                ); // if false
+              })}
           </div>
 
           <div className="SendChat">
-            
             <input type="file" id="SendChatSendImg" onChange={handleUpload} />
             {/* <input type="file" id="SendChatSendVid" onChange={handleImageUpload} /> */}
-            <label htmlFor="SendChatSendImg" className='chat-icon'>
-              <img src={require("../../Res/image/image-chat.png")} alt="Send image" />
+            <label htmlFor="SendChatSendImg" className="chat-icon">
+              <img
+                src={require("../../Res/image/image-chat.png")}
+                alt="Send image"
+              />
             </label>
             {/* <label htmlFor="SendChatSendVid" className='chat-icon'>
               <img src={require("../../Res/image/video.png")} alt="Send video" />
             </label> */}
-            
-            <input 
-              type="text" 
-              className="ChatInput" 
+
+            <input
+              type="text"
+              className="ChatInput"
               placeholder="Type your message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={(e) => { if (e.key === 'Enter') handleSendMessage(userID); }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") handleSendMessage(userID);
+              }}
             />
             <img
-            src={require("../../Res/image/send-orange.png")} 
-            alt="Send"
-            onClick={() => handleSendMessage(userID)}
-            style={{ cursor: 'pointer' }}
+              src={require("../../Res/image/send-orange.png")}
+              alt="Send"
+              onClick={() => handleSendMessage(userID)}
+              style={{ cursor: "pointer" }}
             />
           </div>
         </div>
