@@ -1,23 +1,33 @@
 import "./AccountDetails.css";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../utils/userAPI";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useQuery } from "react-query";
-import { countOtherUserPurchase, countPurchaseProperty, countSellProperty } from "../../utils/api";
-
+import {
+  countOtherUserPurchase,
+  countPurchaseProperty,
+  countSellProperty,
+  getBroker,
+} from "../../utils/api";
 
 export const MyAccountDetails = () => {
   const { id } = useParams();
   const [user, setUser] = useState(null);
+  const [broker, setBroker] = useState(null);
+  const { pathname } = useLocation(); //complete path of our page
+  const userID = pathname.split("/")[2];
+  console.log(userID);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const userData = await getUserById(id);
+        const userData = await getUserById(userID);
         setUser(userData);
+        const brokerData = await getBroker(user.brokerID); // Fetch broker data if brokerID exists
+        setBroker(brokerData);
       } catch (error) {
         // Handle the error appropriately in your UI
         console.error("Failed to fetch user data:", error);
@@ -25,11 +35,9 @@ export const MyAccountDetails = () => {
     };
 
     fetchUser();
-  }, [id]);
+  }, [userID]);
 
-  if(user?.brokerID){
-    
-  }
+  console.log(broker);
   const {
     data: sellPropertyData,
     isLoading: sellPropertyLoading,
@@ -39,7 +47,6 @@ export const MyAccountDetails = () => {
     refetchOnWindowFocus: false,
   });
 
-  // Fetch data for counting purchase properties
   const {
     data: purchasePropertyData,
     isLoading: purchasePropertyLoading,
@@ -114,6 +121,12 @@ export const MyAccountDetails = () => {
               {user === null ? null : user.description}
             </p>
           </div>
+          {broker && broker.fileBrokerLicense && (
+            <div className="broker-license">
+              <h1>Broker License</h1>
+              <img src={broker.fileBrokerLicense} alt="Broker License" />
+            </div>
+          )}
           <div className="badges-section">
             <div className="property-listed-badge">
               <div className="noOf-property-listed">
