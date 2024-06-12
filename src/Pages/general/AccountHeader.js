@@ -56,7 +56,7 @@ export const AccountHeader = () => {
         <section className="flex" id="details-vah">
           <ProfilePicture imgLink={user ? user.profilePicture : null}/>
           <div className = "acc-desc">
-            <h1>{user ? `${user.firstName} ${user.lastName}` : null}</h1>
+            <h1 >{user ? `${user.firstName} ${user.lastName}` : null}</h1>
             <span>{user ? user.description : null}</span>
           </div>
           
@@ -69,8 +69,8 @@ export const AccountHeader = () => {
         </section>
         <hr />
         <section id="account-link-container">
-          <Link className={`account-link ${currentChild()==='property'?'active-link':''}`} to={'property'}>Property</Link>
-          <Link className={`account-link ${currentChild()==='post'?'active-link':''}`} to={'post'}>Post</Link>
+          {owner && <Link className={`account-link ${currentChild()==='property'?'active-link':''}`} to={'property'}>Property</Link>}
+          {owner && <Link className={`account-link ${currentChild()==='post'?'active-link':''}`} to={'post'}>Post</Link>}
           {owner && <Link className={`account-link ${currentChild()==='transaction'?'active-link':''}`} to={'transaction'}>My Transaction</Link>}
           {true && <Link className={`account-link ${currentChild()==='about'?'active-link':''}`} to={'about'}>About</Link>}          
         </section>

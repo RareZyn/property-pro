@@ -2,6 +2,7 @@
     background-color: var(--darkGreen);
     display: flex;
     flex-direction: column;
+    height: var(--accountDetailsHeight);
 }
 
 #details-vah{
@@ -11,6 +12,7 @@
     margin-top: 2%;
     font-family: "Zilla_Slab";
     align-items: center;
+    column-gap: 2rem;
 }
 
 #pp-container{

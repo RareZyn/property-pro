@@ -238,11 +238,9 @@ export const getPropertyBought = async (userId) => {
   try {
     const response = await api.get(`/getPropertyBought`, {
       params: { userId },
-      timeout: 10 * 1000,
     });
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
     throw error.response?.data || error.message;
   }
 };
@@ -409,3 +407,55 @@ export const getVerifyPropertyDetail = async (propertyID) => {
     throw error;
   }
 };
+
+export const getHotItemsProperty = async () => {
+  try {
+    const response = await api.get("/getHotItemsProperty", {
+      timeout: 100 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong");
+    console.log(error.message);
+    throw error;
+  }
+
+}
+
+export const getPropertyName = async (title) => {
+  try {
+    const response = await api.get(`/getPropertyName/${title}`, {
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data; // This will now be an array of properties
+  } catch (error) {
+    toast.error("Something went wrong");
+    throw error;
+  }
+};
+
+export const getBroker = async (brokerID) => {
+  try {
+    const response = await brokerApi.get(`/getBroker`, {
+      params: { brokerID }, // Correctly passing brokerID as a parameter
+      timeout: 10 * 1000,
+    });
+
+    if (response.status === 400 || response.status === 500) {
+      throw response.data;
+    }
+
+    return response.data;
+  } catch (error) {
+    console.log("The user is not a broker");
+  }
+}

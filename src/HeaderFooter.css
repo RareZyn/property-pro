@@ -1,8 +1,13 @@
 :root{
     --headerHeight: 5rem;
-    --footerHeight: 11rem 
+    --footerHeight: 11rem;
+    --accountDetailsHeight: 15.25rem 
 }
 
 .header-footer-wrap{
     min-height: calc(100vh - var(--headerHeight) - var(--footerHeight));
+}
+
+.HDF-wrap{
+    min-height: calc(100vh - var(--headerHeight) - var(--footerHeight) - var(--accountDetailsHeight));
 }

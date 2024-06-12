@@ -35,11 +35,12 @@ router.route('/add-room').post((req, res) =>{
 
 router.route('/:roomID/send-message').post(async (req ,res)=>{
     try {
-        const { senderID, textChat } = req.body;
+        const { senderID, textChat,imageUrl } = req.body;
     
         const newChat = new Chat({
           senderID: senderID,
-          textChat: textChat
+          textChat: textChat,
+          imageUrl: imageUrl
         });
     
         const savedChat = await newChat.save();

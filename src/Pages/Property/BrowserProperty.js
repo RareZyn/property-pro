@@ -1,13 +1,16 @@
+import React, { useState } from "react";
 import style from "./BrowserProperty.module.css";
 import { HouseDisplayCard } from "../../Cards/Property Cards/HouseDisplayCard";
 import { VehicleDisplayCard } from "../../Cards/Property Cards/VehicleDisplayCard";
 import { LandDisplayCard } from "../../Cards/Property Cards/LandDisplayCard";
-import SearchBar from "../../Cards/General Cards/SearchBar";
+import SearchHome from "../../Cards/General Cards/SearchHome";
 import { PuffLoader } from "react-spinners";
 import { unverifiedPropery, verifiedPropery } from "../../utils/api";
 import { useQuery } from "react-query";
 
 export const BrowserProperty = () => {
+  const [searchResults, setSearchResults] = useState(null);
+
   const {
     data: unverifiedData,
     isError: unverifiedError,
@@ -35,34 +38,34 @@ export const BrowserProperty = () => {
     );
   }
 
-  const renderCard = (unverifiedData) => {
-    if (!unverifiedData || !unverifiedData.propertyType) {
+  const renderCard = (property) => {
+    if (!property || !property.propertyType) {
       return null;
     }
 
-    switch (unverifiedData.propertyType) {
+    switch (property.propertyType) {
       case "Vehicle":
         return (
           <VehicleDisplayCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/property-Vehicle-Details/${unverifiedData.property_id}`}
+            key={property.property_id}
+            card={property}
+            link={`/property-Vehicle-Details/${property.property_id}`}
           />
         );
       case "House":
         return (
           <HouseDisplayCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/property-House-Details/${unverifiedData.property_id}`}
+            key={property.property_id}
+            card={property}
+            link={`/property-House-Details/${property.property_id}`}
           />
         );
       case "Land":
         return (
           <LandDisplayCard
-            key={unverifiedData.property_id}
-            card={unverifiedData}
-            link={`/property-Land-Details/${unverifiedData.property_id}`}
+            key={property.property_id}
+            card={property}
+            link={`/property-Land-Details/${property.property_id}`}
           />
         );
       default:
@@ -70,66 +73,72 @@ export const BrowserProperty = () => {
     }
   };
 
-  const verifiedCard = (verifiedData) => {
-    if (!verifiedData || !verifiedData.propertyType) {
-      return null;
-    }
+const handleSearchResults = (results) => {
+  if (results && results.length > 0) {
+    const verifiedSearchResults = results.filter((result) => result.isVerified);
+    const unverifiedSearchResults = results.filter(
+      (result) => !result.isVerified
+    );
 
-    switch (verifiedData.propertyType) {
-      case "Vehicle":
-        return (
-          <VehicleDisplayCard
-            key={verifiedData.property_id}
-            card={verifiedData}
-            link={`/property-Vehicle-Details/${verifiedData.property_id}`}
-          />
-        );
-      case "House":
-        return (
-          <HouseDisplayCard
-            key={verifiedData.property_id}
-            card={verifiedData}
-            link={`/property-House-Details/${verifiedData.property_id}`}
-          />
-        );
-      case "Land":
-        return (
-          <LandDisplayCard
-            key={verifiedData.property_id}
-            card={verifiedData}
-            link={`/property-Land-Details/${verifiedData.property_id}`}
-          />
-        );
-      default:
-        return null;
+    if (verifiedSearchResults.length > 0) {
+      setSearchResults({
+        verified: verifiedSearchResults,
+        unverified: null,
+      });
+    } else if (unverifiedSearchResults.length > 0) {
+      setSearchResults({
+        verified: null,
+        unverified: unverifiedSearchResults,
+      });
+    } else {
+      setSearchResults(null);
     }
-  };
+  } else {
+    setSearchResults(null);
+  }
+};
+
+  const filteredVerifiedData =
+    searchResults && searchResults.verified !== null
+      ? searchResults.verified
+      : verifiedData;
+  const filteredUnverifiedData =
+    searchResults && searchResults.unverified !== null
+      ? searchResults.unverified
+      : unverifiedData;
 
   return (
     <div>
       <header id={style["header-container"]}>
-        <SearchBar id={style["browse-search"]} hint="Browse Property..." />
+        <SearchHome
+          id={style["browse-search"]}
+          hint="Browse Property..."
+          setSearchResults={handleSearchResults}
+        />
       </header>
       <div className="property-browse-div">
-        <h1 className="property-headline">Verified Property</h1>
-        <div className="properties-grid">
-          {verifiedData &&
-            verifiedData.map(
-              (verifiedData) => verifiedData && verifiedCard(verifiedData)
-            )}
-        </div>
+        {filteredVerifiedData && (
+          <div>
+            <h1 className="property-headline">Verified Property</h1>
+            <div className="properties-grid">
+              {filteredVerifiedData.map(
+                (property) => property && renderCard(property)
+              )}
+            </div>
+          </div>
+        )}
 
-        <h1 className="property-headline">Unverified Property</h1>
-        <div className="properties-grid">
-          {unverifiedData &&
-            unverifiedData.map(
-              (unverifiedData) => unverifiedData && renderCard(unverifiedData)
-            )}
-        </div>
+        {filteredUnverifiedData && (
+          <div>
+            <h1 className="property-headline">Unverified Property</h1>
+            <div className="properties-grid">
+              {filteredUnverifiedData.map(
+                (property) => property && renderCard(property)
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-
-////property-Vehicle-Details

@@ -1,188 +1,222 @@
-.MyAccountDetails{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self : center;
+.MyAccountDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
 }
 
-.About{
-    width: 70vw;
-    margin: 6rem auto;
-    display: flex;
-    justify-content: space-between;
+.About {
+  width: 70vw;
+  margin: 6rem auto;
+  display: flex;
+  justify-content: space-between;
 }
 
-.details-column{
-    width: 40%;
-    background-color: var(--creamyWhite);
-    border-radius: 20px;
-    padding: 3% 3% 2% 3%; 
-    display: inline-block;
-    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+.details-column {
+  width: 40%;
+  background-color: var(--creamyWhite);
+  border-radius: 20px;
+  padding: 3% 3% 2% 3%;
+  display: inline-block;
+  box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
 }
 
-.first-name, .username, .type-of-user{
-    text-align: center;
+.first-name,
+.username,
+.type-of-user {
+  text-align: center;
 }
 
-.username, .about{
-    margin-bottom: 5px;
-    font-weight: bold;
+.username,
+.about {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.first-name{
-    font-size: large;
+.first-name {
+  font-size: large;
 }
 
-.username{
-    font-weight: normal;
+.username {
+  font-weight: normal;
 }
 
-.type-of-user{
-    margin-bottom: 15px;
+.type-of-user {
+  margin-bottom: 15px;
 }
 
-.details{
-    font-weight: bold;
+.details {
+  font-weight: bold;
 }
 
-.details div{
-    margin-bottom: 15px;
-    font-weight: lighter;
+.details div {
+  margin-bottom: 15px;
+  font-weight: lighter;
 }
 
-.location-desc, .email-desc, .phone-number-desc {
-    display: flex;
-    align-items: center;
+.location-desc,
+.email-desc,
+.phone-number-desc {
+  display: flex;
+  align-items: center;
 }
 
 .location-desc svg {
-    font-size: 1.2em;
-    margin-right: 2px;
+  font-size: 1.2em;
+  margin-right: 2px;
 }
 
 .email-desc svg {
-    font-size: 1.3em;
-    color: var(--orange);
-    margin-right: 2px;
+  font-size: 1.3em;
+  color: var(--orange);
+  margin-right: 2px;
 }
 
 .phone-number-desc svg {
-    font-size: 1em;
-    color: #52B3A0;
-    margin-right: 2px;
+  font-size: 1em;
+  color: #52b3a0;
+  margin-right: 2px;
 }
 
-.about-badges-column{
-    width: 52%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.about-badges-column {
+  width: 52%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.about-section{
-    background-color: var(--creamyWhite);
-    border-radius: 20px;
-    padding: 6%;
-    margin-bottom: 10px;
-    display: inline-block;
-    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+.about-section,
+.broker-license {
+  background-color: var(--creamyWhite);
+  border-radius: 20px;
+  padding: 6%;
+  margin-bottom: 10px;
+  display: inline-block;
+  box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
 }
 
-.badges-section{
-    padding: 0 10%;
-    margin-bottom: 5%;
-    display: flex;
-    justify-content: space-between;
+.badges-section {
+  padding: 0 10%;
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
 }
 
-.property-listed-badge, .sold-property-badge, .property-purchased-badge{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    padding: 5%;
-    text-align: center;
-    font-size: 12px;
-    box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
+.property-listed-badge,
+.sold-property-badge,
+.property-purchased-badge {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  padding: 5%;
+  text-align: center;
+  font-size: 12px;
+  box-shadow: -2px 3px 12px 0px rgba(0, 0, 0, 0.16);
 }
 
-.noOf-property-listed, .noOf-sold-propety, .noOf-property-purchased{
-    font-weight: bold;
-    font-size: 1.9em;
+.noOf-property-listed,
+.noOf-sold-propety,
+.noOf-property-purchased {
+  font-weight: bold;
+  font-size: 1.9em;
 }
 
-.property-listed-badge:hover, .sold-propety-badge:hover, .property-purchased-badge:hover{
-    cursor: pointer;
+.property-listed-badge:hover,
+.sold-propety-badge:hover,
+.property-purchased-badge:hover {
+  cursor: pointer;
 }
 
-.property-listed-badge{
-    background-color: #52B3A0;
-    color: var(--white);
+.property-listed-badge {
+  background-color: #52b3a0;
+  color: var(--white);
 }
 
-.sold-property-badge{
-    background-color: var(--orange);
+.sold-property-badge {
+  background-color: var(--orange);
 }
 
-.property-purchased-badge{
-    background-color: #2B3D50;
-    color: var(--white);
+.property-purchased-badge {
+  background-color: #2b3d50;
+  color: var(--white);
 }
 
-.acc-grid-container{
-    align-content: center;
-    margin-left: 20%;
-    margin-top: 30px;
-    margin-bottom: 20px;
+.acc-grid-container {
+  align-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
-
 
 /* Large screens (desktops, 1200px and up) */
 @media (max-width: 1200px) {
-    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
-        width: 80px;
-        height: 80px;
-        font-size: 10px;
-    }
+  .property-listed-badge,
+  .sold-property-badge,
+  .property-purchased-badge {
+    width: 80px;
+    height: 80px;
+    font-size: 10px;
+  }
 }
 
 /* Medium screens (tablets, 992px and up) */
 @media (max-width: 992px) {
-    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
-        width: 70px;
-        height: 70px;
-        font-size: 9px;
-    }
+  .property-listed-badge,
+  .sold-property-badge,
+  .property-purchased-badge {
+    width: 70px;
+    height: 70px;
+    font-size: 9px;
+  }
 
-    .badges-section{
-        padding: 0 8%;
-    }
+  .badges-section {
+    padding: 0 8%;
+  }
 }
 
 /* Small screens (landscape phones, 768px and up) */
 @media (max-width: 768px) {
-    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
-        width: 60px;
-        height: 60px;
-        font-size: 8px;
-    }
+  .property-listed-badge,
+  .sold-property-badge,
+  .property-purchased-badge {
+    width: 60px;
+    height: 60px;
+    font-size: 8px;
+  }
 
-    .badges-section{
-        padding: 0 7%;
-    }
+  .badges-section {
+    padding: 0 7%;
+  }
 }
 
 /* Extra small screens (portrait phones, less than 576px) */
 @media (max-width: 576px) {
-    .property-listed-badge, .sold-property-badge, .property-purchased-badge{
-        width: 55px;
-        height: 55px;
-        font-size: 7px;
-    }
+  .property-listed-badge,
+  .sold-property-badge,
+  .property-purchased-badge {
+    width: 55px;
+    height: 55px;
+    font-size: 7px;
+  }
 
-    .badges-section{
-        padding: 0 5%;
-    }
+  .badges-section {
+    padding: 0 5%;
+  }
+}
+
+.broker-license {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36rem;
+  margin: 5px auto;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.broker-license img {
+  width: 300px;
+  height: 300px;
 }
 
 /*.MyAccountDetailsCard{
@@ -208,7 +242,6 @@
 
 .MyAccountDetailsItem img {
     margin-right: 10px; /* Adds spacing between the image and text */
-    /*width: 50px; Adjust image width as needed */
-    /*height: 50px; Adjust image height as needed */
+/*width: 50px; Adjust image width as needed */
+/*height: 50px; Adjust image height as needed */
 /*}*/
-

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { addLand, addVehicle, addHouse, getAllProperties, getProperty, buyProperty, availableProperties, toFav, getAllFavorites, getPropertySeller, updateVehicle, updateLand, updateHouse, getPropertyBought} = require("../controller/propertyController");
+const { addLand, addVehicle, addHouse, getAllProperties, getProperty, buyProperty, availableProperties, toFav, getAllFavorites, getPropertySeller, updateVehicle, updateLand, updateHouse, getPropertyBought, getHotItemsProperty, getPropertyName} = require("../controller/propertyController");
 router.post("/addLand", addLand);
 router.post("/addVehicle", addVehicle);
 router.post("/addHouse", addHouse);
@@ -14,5 +14,7 @@ router.put("/updateVehicle",updateVehicle);
 router.put("/updateLand", updateLand);
 router.put("/updateHouse",updateHouse);
 router.get("/getPropertyBought", getPropertyBought);
+router.get("/getHotItemsProperty",getHotItemsProperty);
+router.get("/getPropertyName/:title", getPropertyName); 
 
 module.exports = router;

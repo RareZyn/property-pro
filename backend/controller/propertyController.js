@@ -657,6 +657,75 @@ const getPropertyBought = asyncHandler(async (req, res) => {
   }
 });
 
+const getHotItemsProperty = asyncHandler(async (req, res) => {
+  try {
+    // Fetch all users with their favorite properties
+    const users = await prisma.users.findMany({
+      select: {
+        favResidencieID: true,
+      },
+    });
+
+    // Extract all favorite property IDs into a single array
+    const favoritePropertyIds = users
+      .flatMap((user) => user.favResidencieID)
+      .filter(Boolean); // Filter out any undefined or null values
+
+    // Remove duplicate property IDs
+    const uniqueFavoritePropertyIds = [...new Set(favoritePropertyIds)];
+
+    // Fetch details of the favorite properties
+    const favoriteProperties = await prisma.property.findMany({
+      where: {
+        property_id: {
+          in: uniqueFavoritePropertyIds,
+        },
+      },
+    });
+
+    // Send the response with the favorite properties
+    res.json(favoriteProperties);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+const getPropertyName = asyncHandler(async (req, res) => {
+  const { title } = req.params;
+
+  try {
+    const properties = await prisma.property.findMany({
+      where: {
+        title: {
+          contains: title, // Use contains to enable partial matching
+          mode: "insensitive", // Optional: make the search case-insensitive
+        },
+      },
+      include: {
+        vehicle: true,
+        land: true,
+        house: true,
+        seller: true,
+        broker: true,
+        buyer: true,
+      },
+    });
+
+    if (properties.length === 0) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json(properties); // Note: Changed to return an array of properties
+  } catch (error) {
+    console.log(error.message);
+    res
+      .status(500)
+      .json({ message: "Failed to retrieve properties: " + error.message });
+  }
+});
+
+
+
 
 
 
@@ -678,4 +747,6 @@ module.exports = {
   updateVehicle,
   updateHouse,
   getPropertyBought,
+  getHotItemsProperty,
+  getPropertyName,
 };

@@ -9,7 +9,7 @@ import { UserContext } from "../../context/UserContext";
 
 export const NavHeader = () => {
   const { userToken } = useContext(UserContext);
-  const[user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -17,14 +17,14 @@ export const NavHeader = () => {
         setUser(userData);
       } catch (error) {
         // Handle the error appropriately in your UI
-        console.error('Failed to fetch user data:', error);
+        console.error("Failed to fetch user data:", error);
       }
     };
 
     if (userToken) {
       fetchUser();
     } else {
-      console.log('No user token');
+      console.log("No user token");
     }
   }, [userToken]);
 
@@ -73,7 +73,13 @@ export const NavHeader = () => {
 
   const brokerCheck = () => {
     return user?.brokerID ? "/verify-property-homepage" : "/register-broker";
-  }
+  };
+
+  const getBrokerButtonClass = () => {
+    return user?.brokerID
+      ? "navHeader-broker-button-animated"
+      : "navHeader-broker-button";
+  };
 
   return (
     <div className="NavHeader">
@@ -96,8 +102,12 @@ export const NavHeader = () => {
           <CustomLink href="/manage-property">Sell</CustomLink>
           <CustomLink href="/chat">Chat</CustomLink>
           <CustomLink href="/forum-page">Community</CustomLink>
-          <CustomLink id="navHeader-broker-button" href={brokerCheck()}> Broker </CustomLink>
-          <CustomLink href={userToken ? `/view-account/${userToken.id}/property` : null}>My Account</CustomLink>
+          <CustomLink id={getBrokerButtonClass()} href={brokerCheck()}>Broker</CustomLink>
+          <CustomLink
+            href={userToken ? `/view-account/${userToken.id}/property` : null}
+          >
+            My Account
+          </CustomLink>
           <CustomLink href="/saved-property">Saved Property</CustomLink>
           <CustomLink href="/" onClick={logout}>
             Logout
@@ -117,7 +127,11 @@ function CustomLink({ href, children, defaultActive, onClick, ...props }) {
 
   return (
     <li className={`nav-item ${isActive ? "active" : ""}`} onClick={onClick}>
-      <Link className={`Navigator ${isActive ? "active" : ""}`} to={href} {...props}>
+      <Link
+        className={`Navigator ${isActive ? "active" : ""}`}
+        to={href}
+        {...props}
+      >
         {children}
       </Link>
     </li>

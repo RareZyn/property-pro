@@ -1,7 +1,7 @@
 import styles from "./SearchBar.module.css";
 import icon from "../../Res/image/search-icon.png";
 import { useState } from "react";
-import axios from "axios";
+import { getPropertyName } from "../../utils/api";
 
 function SearchBar({ hint, setSearchResults }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,10 +14,10 @@ function SearchBar({ hint, setSearchResults }) {
     if (!searchTerm) return;
 
     try {
-      const response = await axios.get(`http://localhost:5000/forum/search?q=${searchTerm}`);
-      setSearchResults(response.data);
+      const response = await getPropertyName(searchTerm);
+      setSearchResults(response); // Set the response directly
     } catch (error) {
-      console.error("Error searching forums:", error);
+      console.error("Error searching properties:", error);
     }
   };
 

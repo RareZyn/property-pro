@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { getProperty, verifyProperty } from "../../utils/api.js";
 import { UserContext } from "../../context/UserContext.js";
 import { getUser } from "../../utils/userAPI";
+import "./VerifyProperty.css";
 
 export const VerifyPropertyVehicle = () => {
   const [supportingPdf1, setSupportingPdf1] = useState();
