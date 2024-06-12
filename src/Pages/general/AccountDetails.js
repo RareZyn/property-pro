@@ -23,7 +23,6 @@ export const MyAccountDetails = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log("dah lalu");
       try {
         const userData = await getUserById(userID);
         setUser(userData);
