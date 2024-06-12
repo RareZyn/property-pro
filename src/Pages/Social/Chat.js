@@ -11,6 +11,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import { toast } from "react-toastify";
 import { Link } from 'react-router-dom';
+import ProfilePicture from '../../Cards/Image Placeholder/ProfilePicture';
 
 export const Chat = ({userID}) => {
   const [messages, setMessages] = useState([]);
@@ -224,13 +225,20 @@ export const Chat = ({userID}) => {
             onClick={() => handleChatListClick(0, room)}
             className={currentChatRoom === room ? "active" : ""}
           >
-            <img
+            <ProfilePicture
+              imgLink={
+                renderSenderID(room, userID).profilePicture ||
+                require("../../Res/image/user profile.png")
+              }
+              size={'3.125rem'}
+            />
+            {/* <img
               src={
                 renderSenderID(room, userID).profilePicture ||
                 require("../../Res/image/user profile.png")
               }
               alt="User profile"
-            />
+            /> */}
             {/* <ProfilePicture imgLink={renderSenderID(room,userID).profilePicture} size='24px'/> */}
             <div>
               <h1>{renderUsername(room, userID)}</h1>
@@ -280,19 +288,27 @@ export const Chat = ({userID}) => {
             <div className="ChatUser-back" onClick={handleBackToChatList}>
               <FaChevronLeft />
             </div>
-            <Link to={`/view-account/${renderSenderID(currentChatRoom,userID)?._id}/about`}>
-                <img
-                  src={
-                    renderSenderID(currentChatRoom, userID).profilePicture ||
-                    require("../../Res/image/user profile.png")
-                  }
-                  alt="User profile"
-                />
+            <Link
+              to={`/view-account/${
+                renderSenderID(currentChatRoom, userID)?._id
+              }/about`}
+            >
+              <img
+                src={
+                  renderSenderID(currentChatRoom, userID).profilePicture ||
+                  require("../../Res/image/user profile.png")
+                }
+                alt="User profile"
+              />
             </Link>
             <h1>{renderUsername(currentChatRoom, userID)}</h1>
           </div>
 
-          <div className="ChatContainer" ref={chatContainerRef} style={{display:"flex",flexDirection:"column"}}>
+          <div
+            className="ChatContainer"
+            ref={chatContainerRef}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             {/* {messages.map((msg, index) => (
               msg.type === 'my' ? <MyChatBubble key={index} content={msg.content} time={msg.time} isImage={msg.isImage} /> : <YourChatBubble key={index} content={msg.content} />
             ))} */}

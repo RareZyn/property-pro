@@ -45,7 +45,7 @@ export const MyAccountPost = () => {
   }, []);  
 
   return (
-    <div>
+    <div className="HDF-wrap">
       <CreatePost />
       <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
         {forums

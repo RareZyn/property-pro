@@ -238,11 +238,9 @@ export const getPropertyBought = async (userId) => {
   try {
     const response = await api.get(`/getPropertyBought`, {
       params: { userId },
-      timeout: 10 * 1000,
     });
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
     throw error.response?.data || error.message;
   }
 };

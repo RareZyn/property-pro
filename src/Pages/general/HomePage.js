@@ -206,8 +206,8 @@ export const HomePage = () => {
         <h1 className="property-headline" >Hot Items</h1>
         <Swiper
           id="swiper"
-          slidesPerView={4}
-          spaceBetween={10}
+          slidesPerView={5}
+          spaceBetween={2}
           pagination={{
             clickable: true,
           }}

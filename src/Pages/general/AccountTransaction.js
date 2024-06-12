@@ -9,7 +9,6 @@ import HouseComponentCard from "../../Cards/Property Cards/HouseComponentCard";
 import LandComponentCard from "../../Cards/Property Cards/LandComponentCard";
 import { PuffLoader } from "react-spinners";
 
-
 export const MyAccountTransaction = () => {
   const { userToken } = useContext(UserContext);
   const [user, setUser] = useState(null);
@@ -32,7 +31,7 @@ export const MyAccountTransaction = () => {
   }, [userToken]);
 
   const userId = user?._id;
- console.log(userId);
+  console.log(userId);
 
   const { data, isError, isLoading } = useQuery(
     ["getPropertyBought", userId],
@@ -45,55 +44,48 @@ export const MyAccountTransaction = () => {
 
   console.log(data);
 
-   const renderCard = (property) => {
-     if (!property || !property.propertyType) {
-       return null;
-     }
+  const renderCard = (property) => {
+    if (!property || !property.propertyType) {
+      return null;
+    }
 
-     switch (property.propertyType) {
-       case "Vehicle":
-         return (
-           <VehicleComponentCard
-             key={property.property_id}
-             card={property}
-             link={`/${property.property_id}/property-vehicledetails-overview`}
-           />
-         );
-       case "House":
-         return (
-           <HouseComponentCard
-             key={property.property_id}
-             card={property}
-             link={`/${property.property_id}/property-housedetails-overview`}
-           />
-         );
-       case "Land":
-         return (
-           <LandComponentCard
-             key={property.property_id}
-             card={property}
-             link={`/${property.property_id}/property-landdetails-overview`}
-           />
-         );
-       default:
-         return null;
-     }
-   };
+    switch (property.propertyType) {
+      case "Vehicle":
+        return (
+          <VehicleComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-vehicledetails-overview`}
+          />
+        );
+      case "House":
+        return (
+          <HouseComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-housedetails-overview`}
+          />
+        );
+      case "Land":
+        return (
+          <LandComponentCard
+            key={property.property_id}
+            card={property}
+            link={`/${property.property_id}/property-landdetails-overview`}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div className="ViewAccountProperty">
+    <div className="ViewAccountProperty HDF-wrap">
       <div className="acc-grid-container">
-        {isError && <span>Error while fetching the data</span>}
-        {isLoading ? (
-          <div className="loadContainer">
-            <PuffLoader />
-          </div>
-        ) : (
-          data && data.map((property) => property && renderCard(property))
-        )}
+        {isError && <span>No property Purchased</span>}
+
+        {data && data.map((property) => property && renderCard(property))}
       </div>
     </div>
   );
 };
-
-

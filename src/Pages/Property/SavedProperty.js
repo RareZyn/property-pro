@@ -89,13 +89,13 @@ export const SavedProperty = () => {
   console.log(data);
 
   return (
-    <div>
-        <div className="property-browse-div">
-          <div className="property-headline">Saved Property</div>
-          <div className="properties-grid">
-            {data && data.map((property) => property && renderCard(property))}
-          </div>
+    <div className="header-footer-wrap">
+      <div className="property-browse-div">
+        <div className="property-headline">Saved Property</div>
+        <div className="properties-grid">
+          {data && data.map((property) => property && renderCard(property))}
         </div>
+      </div>
     </div>
   );
 };

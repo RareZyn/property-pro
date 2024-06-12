@@ -233,4 +233,12 @@ const getVerifyPropertyDetail = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { addBroker,verifyProperty, getAllBroker,unverifiedProperty,verifiedProperty ,getVerifyPropertyDetail };
+module.exports = {
+  addBroker,
+  verifyProperty,
+  getAllBroker,
+  unverifiedProperty,
+  verifiedProperty,
+  getVerifyPropertyDetail,
+  getBroker,
+};
