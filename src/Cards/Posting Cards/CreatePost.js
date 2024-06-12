@@ -60,7 +60,7 @@ export const CreatePost = () => {
   const handleUpload = async (e) => {
     if(e.target.files[0]){
       const image = e.target.files[0];
-      console.log(image);
+      console.log("The image forum:",image);
       try{
         const storageRef = firebase
             .storage()

@@ -15,7 +15,7 @@ import ProfilePicture from "../Image Placeholder/ProfilePicture";
 import axios from "axios";
 
 
-function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, profilePicture }) {
+function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, profilePicture,isImage }) {
   const longText = textForum;
   const [liked, setLiked] = useState(false);
   const [isDiscussionClicked, setIsDiscussionClicked] = useState(true);
@@ -174,9 +174,21 @@ function PostCard({ forumObj, name, lastSeen, postPrivacy, textForum, forumID, p
           </div>
         </div>
 
-        <div id={styles["posting-container"]}>
+        {isImage ? (
+          <img
+            src={textForum}
+            alt="Uploaded content"
+            className="chat-image"
+            style={{ width: "300px", height: "300px" }}
+          />
+        ) : (
+          <div id={styles["posting-container"]}>
+            <TruncatedText text={longText} maxlength={500} />
+          </div>
+        )}
+        {/* <div id={styles["posting-container"]}>
           <TruncatedText text={longText} maxlength={500} />
-        </div>
+        </div> */}
 
         <div id={styles["engagement-container"]}>
           <div className={styles["engagement-button"]} onClick={like}>

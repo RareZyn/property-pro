@@ -57,6 +57,21 @@ const ForumPage = () => {
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map(forum => {
 
+              if(forum.photoUrl){
+                return(
+                  <li key={forum._id}>
+                    <PostCard 
+                      forumObj={forum} 
+                      name={forum.userID.username} 
+                      textForum={forum.photoUrl} 
+                      forumID={forum._id} 
+                      profilePicture={forum.userID.profilePicture} 
+                      isImage={true}
+                    />
+                  </li>
+                )
+              }
+
               return(
                 <li key={forum._id}>
                   <PostCard forumObj={forum} name={forum.userID.username} textForum={forum.textForum} forumID={forum._id} profilePicture={forum.userID.profilePicture}/>
